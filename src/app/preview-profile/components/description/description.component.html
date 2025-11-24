@@ -1,0 +1,110 @@
+<div class="description-container">
+    <!-- About Section -->
+    <div class="about-section">
+        <h2 class="section-title">
+            <mat-icon>person</mat-icon>
+            Sobre Mí
+        </h2>
+        <div class="description-content">
+            <p class="description-text">{{ workerData.about || workerData.description || 'Sin descripción disponible' }}</p>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="additional-info" *ngIf="workerData.username || workerData.email || workerData.phone">
+            <div class="info-item" *ngIf="workerData.username">
+                <mat-icon>account_circle</mat-icon>
+                <span>@{{ workerData.username }}</span>
+            </div>
+            <div class="info-item" *ngIf="workerData.email">
+                <mat-icon>email</mat-icon>
+                <span>{{ workerData.email }}</span>
+            </div>
+            <div class="info-item" *ngIf="workerData.phone">
+                <mat-icon>phone</mat-icon>
+                <span>{{ workerData.phone }}</span>
+            </div>
+            <div class="info-item" *ngIf="workerData.location">
+                <mat-icon>location_on</mat-icon>
+                <span>{{ workerData.location }}</span>
+            </div>
+        </div>
+
+        <!-- Skills (para profesionales) -->
+        <div class="skills-section" *ngIf="workerData.skills && workerData.skills.length > 0">
+            <h3 class="subsection-title">
+                <mat-icon>verified</mat-icon>
+                Habilidades
+            </h3>
+            <div class="skills-tags">
+                <span class="skill-tag" *ngFor="let skill of workerData.skills">{{ skill }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Section -->
+    <div class="action-section">
+        <!-- Contact Buttons -->
+        <div class="contact-buttons">
+            <a *ngIf="workerData.whatsapp" [href]="'https://wa.me/' + workerData.whatsapp" target="_blank" class="contact-btn whatsapp-btn">
+                <mat-icon>chat</mat-icon>
+                <span>Contactar por WhatsApp</span>
+            </a>
+
+            <a *ngIf="!workerData.whatsapp" (click)="contactWorker()" class="contact-btn primary-btn">
+                <mat-icon>phone</mat-icon>
+                <span>Contratar</span>
+            </a>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <!-- Seller Info -->
+            <div *ngIf="!workerData.vehicleInfo" class="info-card">
+                <div class="card-header">
+                    <mat-icon>trending_up</mat-icon>
+                    <h3>Comisiones</h3>
+                </div>
+                <div class="card-content">
+                    <div class="commission-item">
+                        <span class="commission-label">Comisión por venta del vendedor</span>
+                        <span class="commission-value">15%</span>
+                    </div>
+                    <div class="commission-item">
+                        <span class="commission-label">Comisión del vendedor</span>
+                        <span class="commission-value">10%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Info -->
+            <div *ngIf="workerData.vehicleInfo" class="info-card">
+                <div class="card-header">
+                    <mat-icon>directions_car</mat-icon>
+                    <h3>Información del Vehículo</h3>
+                </div>
+                <div class="card-content">
+                    <div class="vehicle-item">
+                        <span class="vehicle-label">Modelo:</span>
+                        <span class="vehicle-value">{{ workerData.vehicleInfo.model }}</span>
+                    </div>
+                    <div class="vehicle-item">
+                        <span class="vehicle-label">Marca:</span>
+                        <span class="vehicle-value">{{ workerData.vehicleInfo.brand }}</span>
+                    </div>
+                    <div class="vehicle-item">
+                        <span class="vehicle-label">Placa:</span>
+                        <span class="vehicle-value">{{ workerData.vehicleInfo.licensePlate }}</span>
+                    </div>
+                    <div class="vehicle-item">
+                        <span class="vehicle-label">Color:</span>
+                        <span class="vehicle-value">{{ workerData.vehicleInfo.color }}</span>
+                    </div>
+                    <div class="vehicle-item">
+                        <span class="vehicle-label">Año:</span>
+                        <span class="vehicle-value">{{ workerData.vehicleInfo.year }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Asegura que los elementos se acomoden correctamente en pantallas pequeñas */
+}
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.boxInput {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.boxInput label {
+  color: #0D97D9;
+}
+
+label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.input-style {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  width: 100%; /* Hace que los inputs se ajusten al tamaño del contenedor */
+}
+
+.text-save {
+  font-family: 'Raleway', sans-serif;
+}
+
+.invalid-feedback {
+  font-size: 0.9rem;
+  color: red;
+}
+
+@media (max-width: 768px) {
+  /* Para dispositivos con pantalla pequeña */
+  .boxInput {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .input-style {
+    width: 100% !important; /* Asegura que los inputs ocupen el 100% del contenedor */
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .col-md-3, .col-md-7, .col-md-4 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .col-12 {
+    width: 100%; /* Los elementos en pantallas pequeñas ocupan el 100% */
+  }
+
+  .btn {
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+  }
+}
+
+@media (min-width: 768px) {
+  /* Para pantallas medianas y grandes */
+  .col-md-3, .col-md-7, .col-md-4 {
+    width: auto; /* Asegura que las columnas se adapten en pantallas grandes */
+  }
+
+  .btn {
+    width: auto; /* El botón no necesita ocupar todo el ancho en pantallas grandes */
+  }
+}

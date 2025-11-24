@@ -1,0 +1,32 @@
+<div class="container-fluid my-5">
+  <div class="my-4">
+    <p class="titleSection text-center w-100">{{ 'Emprendedores' | translate }}</p>
+    <p class="subTitleService text-center mx-2">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus autem natus nostrum quod omnis, ipsam quas iste, odit nihil
+      similique distinctio unde repudiandae hic dolorem at! Ea illum eos facere? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
+      laborum officia magni provident beatae ratione nobis vero delectus mollitia. Aut quisquam at obcaecati expedita maiores molestias
+      dolore commodi harum debitis.
+    </p>
+  </div>
+
+  <div *ngIf="products.length > 0; else noProducts">
+    <div class="row justify-content-center mt-5">
+      <div class="col-12 col-md-4 mb-4 d-flex justify-content-center" *ngFor="let product of products">
+        <div class="box">
+          <img [src]="product.image || 'assets/img/default-product.png'" alt="Product Image" />
+          <div class="product-info">
+            <h4>{{ product.name }}</h4>
+            <p class="commission">Ganar ${{ product.commission || (product.price * 0.15) | number:'1.2-2' }}</p>
+          </div>
+          <a [routerLink]="['/product-detail']" [queryParams]="{id: product._id}">
+            <button class="btn btn-primary w-100">{{ 'Ver Producto' | translate }}</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noProducts>
+    <p class="text-center my-5">{{ 'No hay productos disponibles.' | translate }}</p>
+  </ng-template>
+</div>

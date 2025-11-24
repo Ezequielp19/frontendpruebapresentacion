@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.boxHero {
+  height: 20rem;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(35,107,216,1) 10%, rgba(4,194,252,1) 50%, rgba(103,121,217,1) 90%);
+  background-size: 100% 150% !important;
+  background-repeat: repeat !important;
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+
+p {
+  font-size: 20px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.titleSection {
+  color: white;
+  font-size: 3.1rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  margin-left: 120px;
+  margin-top: 100px;
+}
+
+.sectionRanking {
+  width: 650px !important;
+  height: 200px;
+}
+
+// Responsive para móviles
+@media(max-width: 768px) {
+  .titleSection {
+    font-size: 2.5rem;
+    margin-left: 20px;
+    margin-top: 80px;
+  }
+  
+  .sectionRanking {
+    width: 90% !important;
+  }
+}
+
+@media(max-width: 480px) {
+  .titleSection {
+    font-size: 2rem;
+    margin-left: 10px;
+    margin-top: 60px;
+  }
+  
+  .boxHero {
+    height: 15rem;
+  }
+}
+

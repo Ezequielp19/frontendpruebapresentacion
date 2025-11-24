@@ -1,0 +1,357 @@
+/* ===== DISEÑO PROFESIONAL DESCRIPTION ===== */
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    padding: 30px;
+    border-left: 5px solid #236bd8;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #236bd8;
+    margin: 0 0 20px 0;
+}
+
+.section-title mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    color: #236bd8;
+}
+
+.description-content {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.description-text {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin: 0;
+    text-align: justify;
+}
+
+/* ===== ACTION SECTION ===== */
+.action-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ===== CONTACT BUTTONS ===== */
+.contact-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-btn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+}
+
+.whatsapp-btn:hover {
+    background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+}
+
+.primary-btn {
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    color: white;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(90deg, rgba(4, 194, 252, 1) 10%, rgba(35, 107, 216, 1) 50%, rgba(103, 121, 217, 1) 90%);
+}
+
+.contact-btn mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== INFO CARDS ===== */
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.card-header mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #236bd8;
+}
+
+.card-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #236bd8;
+    margin: 0;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+/* ===== COMMISSION ITEMS ===== */
+.commission-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.commission-item:last-child {
+    border-bottom: none;
+}
+
+.commission-label {
+    color: #666;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.commission-value {
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ===== VEHICLE ITEMS ===== */
+.vehicle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.vehicle-item:last-child {
+    border-bottom: none;
+}
+
+.vehicle-label {
+    color: #666;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.vehicle-value {
+    color: #236bd8;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .about-section {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .description-content {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+    }
+
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 25px;
+    }
+
+    .card-header {
+        padding: 15px 20px;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .commission-item,
+    .vehicle-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .commission-value {
+        align-self: flex-end;
+    }
+}
+
+/* ===== ADDITIONAL INFO ===== */
+.additional-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    font-size: 0.95rem;
+
+    mat-icon {
+        color: #236bd8;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ===== SKILLS SECTION ===== */
+.skills-section {
+    margin-top: 25px;
+}
+
+.subsection-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+
+    mat-icon {
+        color: #236bd8;
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: linear-gradient(135deg, #236bd8 0%, #04c2fc 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(35, 107, 216, 0.2);
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(35, 107, 216, 0.3);
+    }
+}
+
+@media (max-width: 576px) {
+    .about-section {
+        padding: 15px;
+    }
+
+    .description-content {
+        padding: 15px;
+    }
+
+    .card-header {
+        padding: 12px 15px;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .skill-tag {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}

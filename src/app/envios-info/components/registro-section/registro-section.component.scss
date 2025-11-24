@@ -1,0 +1,37 @@
+.boxMain {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.btn {
+  border-radius: 25px;
+  background: linear-gradient(90deg, rgba(35,107,216,1) 10%, rgba(4,194,252,1) 50%, rgba(103,121,217,1) 90%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(35, 107, 216, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(35, 107, 216, 0.4);
+  background: linear-gradient(90deg, rgba(4,194,252,1) 10%, rgba(35,107,216,1) 50%, rgba(103,121,217,1) 90%);
+}
+
+// Responsive para móviles
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

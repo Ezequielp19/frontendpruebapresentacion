@@ -1,0 +1,231 @@
+<nav class="navbar navbar-style navbar-light">
+    <div class="container-fluid">
+        <ul class="navbar-nav elements">
+            <!-- LOGO - PRIMERO -->
+            <div class="boxImg">
+                <a href="/home">
+                    <img class="img-responsive" src="../../../../assets/img/Likevendor-v2.png" alt="Logo LikeVendor">
+                </a>
+            </div>
+
+            <!-- BARRA DE BUSQUEDA - Segundo -->
+            <div class="inputSearch">
+                <!-- BOTÓN "MAS" - Solo visible en desktop -->
+                <div class="mas-dropdown-container desktop-only">
+                    <button class="btn dropdown-toggle btnSearch-all pt-2" type="button" id="dropdownMenuButton1"
+                        (click)="toggleMasDropdown()">
+                        {{'mas'| translate}}
+                    </button>
+                </div>
+
+                <!-- BOTÓN HAMBURGUESA - Solo visible en móviles -->
+                <div class="hamburger-menu mobile-only" (click)="toggleMobileMenu()">
+                    <div class="hamburger-icon" [class.active]="isMobileMenuOpen">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="search-input-container">
+                    <input type="text"
+                           placeholder="{{animatedTitle || (title | translate)}}"
+                           (keyup)="onKeyUp($event)" />
+                </div>
+
+                <button class="btn btnSearch"><mat-icon class="d-flex justify-content-center">search</mat-icon></button>
+
+                <!-- CONTENEDOR DE SUGERENCIAS - DENTRO del inputSearch para posicionamiento correcto -->
+                <div class="search-suggestions-container">
+                    <ul class="search-suggestions" *ngIf="listFiltered && listFiltered.length > 0">
+                        <li class="suggestion-item" *ngFor="let item of listFiltered; let i = index"
+                            [class.selected]="i === selectedIndex"
+                            (click)="selectSuggestion(item)">
+                            <a>{{item}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DROPDOWN "MAS" - Fuera del inputSearch para evitar overflow -->
+            <div class="mas-dropdown-menu" [class.show]="isMasDropdownOpen">
+                <div class="dropdown-header">
+                    <mat-icon>category</mat-icon>
+                    <strong>Menú Principal</strong>
+                </div>
+                <a class="dropdown-item" href="/products">
+                    <mat-icon class="me-2">shopping_bag</mat-icon>
+                    <span>Catálogo de Productos</span>
+                </a>
+                <a class="dropdown-item" href="/envios-info">
+                    <mat-icon class="me-2">local_shipping</mat-icon>
+                    <span>Envíos</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <div class="dropdown-header submenu-header">
+                    <mat-icon>star</mat-icon>
+                    <strong>Categorías Destacadas</strong>
+                </div>
+                <a class="dropdown-item submenu-item" href="/products?category=Electrónica">
+                    <mat-icon class="me-2">devices</mat-icon>
+                    <span>Electrónica</span>
+                </a>
+                <a class="dropdown-item submenu-item" href="/products?category=Moda">
+                    <mat-icon class="me-2">checkroom</mat-icon>
+                    <span>Moda</span>
+                </a>
+                <a class="dropdown-item submenu-item" href="/products?category=Hogar">
+                    <mat-icon class="me-2">home</mat-icon>
+                    <span>Hogar</span>
+                </a>
+                <a class="dropdown-item submenu-item" href="/products?category=Deportes">
+                    <mat-icon class="me-2">sports_soccer</mat-icon>
+                    <span>Deportes</span>
+                </a>
+            </div>
+
+            <!-- BOTONES AUTH - Tercero -->
+            <div class="box-auth">
+                <!-- Mostrar botones de login/register cuando NO está autenticado -->
+                <div class="box-login" *ngIf="!isLoggedIn">
+                    <mat-icon class="icon">account_circle</mat-icon>
+                    <a href="/login" class="auth-link">
+                        <p class="text-auth">{{'Iniciar sesion'| translate}}</p>
+                    </a>
+                </div>
+                <div class="box-register" *ngIf="!isLoggedIn">
+                    <mat-icon class="icon-edit">edit</mat-icon>
+                    <a href="/register" class="auth-link">
+                        <p class="text-auth">{{'registro'| translate}}</p>
+                    </a>
+                </div>
+
+                <!-- Mostrar botón de logout cuando SÍ está autenticado -->
+                <div class="box-logout" *ngIf="isLoggedIn">
+                    <mat-icon class="icon">logout</mat-icon>
+                    <button (click)="logout()" class="auth-link logout-btn">
+                        <p class="text-auth">{{'Cerrar sesion'| translate}}</p>
+                    </button>
+                </div>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+<!-- MENÚ MÓVIL OVERLAY - Se superpone sin empujar contenido -->
+<div class="mobile-menu-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()">
+    <div class="mobile-menu-content" (click)="$event.stopPropagation()">
+        <div class="mobile-menu-header">
+            <h3>Menú</h3>
+            <button class="close-menu-btn" (click)="closeMobileMenu()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="mobile-menu-items">
+            <!-- Botón VIVO -->
+            <a href="/dashboard-live" class="mobile-menu-item live-item" (click)="closeMobileMenu()">
+                <mat-icon class="live-icon">fiber_manual_record</mat-icon>
+                <span>{{ 'VIVO' | translate }}</span>
+            </a>
+
+            <!-- Dropdown EMPRESAS -->
+            <div class="mobile-menu-item dropdown-item" (click)="toggleMobileEmpresas()">
+                <mat-icon>business</mat-icon>
+                <span>{{ 'EMPRESAS' | translate }}</span>
+                <mat-icon class="dropdown-arrow" [class.rotated]="isMobileEmpresasOpen">expand_more</mat-icon>
+            </div>
+
+            <!-- Submenú EMPRESAS -->
+            <div class="mobile-submenu" [class.open]="isMobileEmpresasOpen">
+                <a href="/envios-info" class="mobile-submenu-item" (click)="closeMobileMenu()">
+                    <mat-icon>local_shipping</mat-icon>
+                    <span>Envíos</span>
+                </a>
+            </div>
+
+            <!-- Dropdown CATEGORÍAS DESTACADAS - Nivel principal -->
+            <div class="mobile-menu-item dropdown-item" (click)="toggleMobileCategorias()">
+                <mat-icon>star</mat-icon>
+                <span>{{ 'CATEGORÍAS DESTACADAS' | translate }}</span>
+                <mat-icon class="dropdown-arrow" [class.rotated]="isMobileCategoriasOpen">expand_more</mat-icon>
+            </div>
+
+            <!-- Submenú CATEGORÍAS DESTACADAS -->
+            <div class="mobile-submenu" [class.open]="isMobileCategoriasOpen">
+                <a href="/products?category=Electrónica"
+                   class="mobile-submenu-item" (click)="closeMobileMenu()">
+                    <mat-icon>devices</mat-icon>
+                    <span>Electrónica</span>
+                </a>
+                <a href="/products?category=Moda"
+                   class="mobile-submenu-item" (click)="closeMobileMenu()">
+                    <mat-icon>checkroom</mat-icon>
+                    <span>Moda</span>
+                </a>
+                <a href="/products?category=Hogar"
+                   class="mobile-submenu-item" (click)="closeMobileMenu()">
+                    <mat-icon>home</mat-icon>
+                    <span>Hogar</span>
+                </a>
+                <a href="/products?category=Deportes"
+                   class="mobile-submenu-item" (click)="closeMobileMenu()">
+                    <mat-icon>sports_soccer</mat-icon>
+                    <span>Deportes</span>
+                </a>
+            </div>
+
+            <!-- CATÁLOGO DE PRODUCTOS -->
+            <a href="/products" class="mobile-menu-item" (click)="closeMobileMenu()">
+                <mat-icon>shopping_bag</mat-icon>
+                <span>{{ 'CATÁLOGO DE PRODUCTOS' | translate }}</span>
+            </a>
+
+            <!-- RANKING DE VENDEDORES -->
+            <a href="/ranking" class="mobile-menu-item" (click)="closeMobileMenu()">
+                <mat-icon>leaderboard</mat-icon>
+                <span>{{ 'RANKING DE VENDEDORES' | translate }}</span>
+            </a>
+
+            <!-- PLANES DE PRECIOS -->
+            <a href="/pricing-plans" class="mobile-menu-item" (click)="closeMobileMenu()">
+                <mat-icon>attach_money</mat-icon>
+                <span>{{ 'PLANES DE PRECIOS' | translate }}</span>
+            </a>
+
+            <!-- ENVÍOS -->
+            <a href="/envios-info" class="mobile-menu-item envios-item" (click)="closeMobileMenu()">
+                <mat-icon>local_shipping</mat-icon>
+                <span>{{'Envíos' | uppercase}}</span>
+            </a>
+
+            <!-- Botones de Autenticación -->
+            <a href="/login" class="mobile-menu-item" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
+                <mat-icon>account_circle</mat-icon>
+                <span>{{'Iniciar sesion'| translate | uppercase}}</span>
+            </a>
+            <a href="/register" class="mobile-menu-item" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
+                <mat-icon>edit</mat-icon>
+                <span>{{'registro'| translate | uppercase}}</span>
+            </a>
+            <div class="mobile-menu-item" (click)="logout(); closeMobileMenu()" *ngIf="isLoggedIn">
+                <mat-icon>logout</mat-icon>
+                <span>{{'Cerrar sesion'| translate | uppercase}}</span>
+            </div>
+
+            <!-- Selector de idioma -->
+            <div class="mobile-menu-item language-item" *ngIf="false">
+                <mat-icon>language</mat-icon>
+                <span>{{'Idioma' | uppercase}}</span>
+                <select class="mobile-lang-select" (change)="onLanguageChange($event)">
+                    <option value="es">{{ 'Es' | translate }}</option>
+                    <option value="en">{{ 'En' | translate }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-nav></app-nav>

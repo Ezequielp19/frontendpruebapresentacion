@@ -1,0 +1,38 @@
+<div class="card shadow p-4 py-5 border-color worker-card" [ngClass]="dark ? 'color' : border ? 'third-border' : '' ">
+    <p class="mb-1 description-text" *ngIf="getDescription()">
+        {{ getDescription() }}
+    </p>
+    <div class="mb-3 rating-stars" *ngIf="getStarCount() > 0 || worker?.score">
+        <mat-icon *ngFor="let star of getStarsArray()" 
+                  [class.star-filled]="star <= getStarCount()" 
+                  [class.star-empty]="star > getStarCount()"
+                  class="star-icon">
+            {{ star <= getStarCount() ? 'star' : 'star_border' }}
+        </mat-icon>
+        <span class="rating-text" *ngIf="worker?.score">{{ worker.score }}/10</span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="avatar-container">
+            <img [src]="getProfileImage()" 
+                 class="rounded-circle border-color-img profile-avatar" 
+                 width="80" 
+                 height="80"
+                 [alt]="worker?.name || 'Emprendedor'"
+                 onerror="this.src='assets/img/freelance.png'">
+        </div>
+        <div class="d-flex flex-column justify-content-between info-section">
+            <h6
+                [ngClass]="!dark ? 'text-color text-center font-weight-bold mt-3' : 'text-white text-center font-weight-bold mt-3'">
+                {{worker?.name || 'Emprendedor'}}</h6>
+            <p class="profession-text" 
+               [ngClass]="!dark ? 'text-muted text-center' : 'text-white-50 text-center'"
+               *ngIf="getProfession()">
+                {{ getProfession() }}
+            </p>
+            <button [ngClass]="!dark ? 'btn-color btn-md font-weight-light' : 'btn-dark-version btn-md font-weight-light'" 
+                    (click)="getProfile()">
+                {{'Ver perfil'| translate}}
+            </button>
+        </div>
+    </div>
+</div>

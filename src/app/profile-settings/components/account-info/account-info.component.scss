@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.container-fluid {
+  padding: 20px;
+}
+
+/* Estilo de inputs y etiquetas */
+.boxInput {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.input-style {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  color: #356ca6;
+  font-weight: 600;
+}
+
+/* Estilos para las secciones */
+.text-muted {
+  color: #6c757d !important;
+  font-size: 0.875rem;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Estilos para campos de solo lectura */
+input[readonly] {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+/* Estilos para mensajes de error */
+.text-danger.small {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Estilos para el botón */
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Estilos para el botón de cambio de contraseña */
+.btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+/* Estilos para el contenedor flex */
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+/* 🌟 Responsive */
+@media (min-width: 768px) {
+  .form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .boxInput {
+    width: 48%;
+  }
+}
+
+/* 📲 Para pantallas chicas: todo en una sola columna */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 4px !important;
+  }
+  .form-container {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .boxInput {
+    width: 100% !important;
+    margin: 6px 0 !important;
+  }
+  .input-style, input {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+  .link {
+    font-size: 15px !important;
+    margin-top: 10px !important;
+  }
+  .btnnuevo1 {
+    width: 100% !important;
+    font-size: 16px;
+    padding: 10px 0 !important;
+  }
+  .btn-outline-warning {
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+  .d-flex {
+    flex-direction: column !important;
+  }
+  .ms-2 {
+    margin-left: 0 !important;
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .link {
+    font-size: 13px !important;
+  }
+  .btnnuevo1 {
+    font-size: 14px;
+    padding: 8px 0 !important;
+  }
+  .btn-outline-warning {
+    font-size: 13px;
+    padding: 6px 12px !important;
+  }
+}
+

@@ -1,0 +1,31 @@
+<div class="boxes">
+    <div class="box">
+      <iframe class="video-frame" src="https://www.youtube.com/embed/cb12KmMMDJA?autoplay=1&mute=1"
+          title="TN EN VIVO I SEGUÍ LA TRANSMISIÓN DE TODO NOTICIAS EN VIVO" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+  
+      <!-- Contador simple de espectadores -->
+      <div class="viewers-simple">
+        <mat-icon>visibility</mat-icon>
+        <span>{{ currentViewers }}</span>
+      </div>
+    </div>
+  
+    <!-- Botones debajo del video -->
+    <div class="d-flex box-button">
+      <div *ngFor="let item of buttonsAction; let i = index">
+        <button 
+          class="btn btn-primary btn-lives" 
+          [ngClass]="{'btn-casa': i === 0}"
+          (click)="handleButtonClick(item.id)">
+  
+          <mat-icon *ngIf="item.icon">{{item.icon}}</mat-icon>
+          <img *ngIf="item.id === 3" class="logo-lv" src="../../../../assets/img/logo_blanco.png" alt="">
+          <img *ngIf="item.id === 2" class="logo-lv" src="../../../../assets/img/logo-atencion-cliente-blanco.png" alt="">
+        </button>
+      </div>
+    </div>
+  </div>
+  

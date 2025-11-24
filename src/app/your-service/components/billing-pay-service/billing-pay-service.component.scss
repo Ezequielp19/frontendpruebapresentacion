@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Para asegurar que los elementos se ajusten en pantallas pequeñas */
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.rounded-circle {
+    height: 110px;
+    width: 110px;
+    color: #717477;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.icon {
+    margin-left: 35%;
+    margin-top: 35%;
+    font-size: 35px;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.text-perfil {
+    margin-left: 15px;
+    color: #356ca6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text {
+    width: 500px;
+    height: 100px;
+    //margin-top: 50px;
+    //margin-left: 20px;
+}
+
+.input-style {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    width: 100%; /* Asegura que los inputs se adapten al tamaño del contenedor */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    /* Para pantallas pequeñas (móviles y tabletas) */
+    .col-12 {
+        width: 100%; /* Los elementos ocupan el 100% del ancho */
+    }
+
+    .col-md-3 {
+        width: 100%; /* Asegura que los elementos ocupen todo el ancho en pantallas pequeñas */
+    }
+
+    .btn {
+        width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
+    }
+}
+
+@media (min-width: 768px) {
+    /* Para pantallas medianas y grandes */
+    .col-md-3 {
+        width: auto; /* Asegura que las columnas se ajusten en pantallas más grandes */
+    }
+
+    .btn {
+        width: auto; /* El botón no necesita ocupar todo el ancho en pantallas grandes */
+    }
+}
+
+@media (min-width: 992px) {
+    /* Para pantallas más grandes, como escritorios */
+    .row {
+        flex-direction: row; /* Los elementos se colocan horizontalmente */
+    }
+}

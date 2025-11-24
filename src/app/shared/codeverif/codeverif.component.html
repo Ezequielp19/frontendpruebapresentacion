@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="boxHero container-fluid p-0 m-0 d-flex justify-content-end align-items-center ">
+    <div class="wrapper">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- texto aviso  -->
+            <div class="text-aviso my-3 mx-3">
+                <h3 class="input-style mt-2">Te enviamos un código a tu email, no lo compartas con nadie</h3>
+                <h4 class="input-style">Por favor introduce tu código de 6 dígitos</h4>
+            </div> 
+            
+
+            <!-- Login Form -->
+            <div class="code-input-container">
+                <input #codeInput
+                       name="number1" 
+                       maxlength="1" 
+                       class="code-input form-control" 
+                       formControlName="number1"
+                       placeholder="•"
+                       (input)="onInputChange($event, 1)"
+                       (keydown)="onKeyDown($event, 1)">
+                
+                <input #codeInput
+                       name="number2" 
+                       maxlength="1" 
+                       class="code-input form-control" 
+                       formControlName="number2"
+                       placeholder="•"
+                       (input)="onInputChange($event, 2)"
+                       (keydown)="onKeyDown($event, 2)">
+
+                <input #codeInput
+                       name="number3" 
+                       maxlength="1"  
+                       class="code-input form-control" 
+                       formControlName="number3"
+                       placeholder="•"
+                       (input)="onInputChange($event, 3)"
+                       (keydown)="onKeyDown($event, 3)">
+                
+                <input #codeInput
+                       name="number4" 
+                       maxlength="1"  
+                       class="code-input form-control" 
+                       formControlName="number4"
+                       placeholder="•"
+                       (input)="onInputChange($event, 4)"
+                       (keydown)="onKeyDown($event, 4)">
+
+                <input #codeInput
+                       name="number5" 
+                       maxlength="1" 
+                       class="code-input form-control" 
+                       formControlName="number5"
+                       placeholder="•"
+                       (input)="onInputChange($event, 5)"
+                       (keydown)="onKeyDown($event, 5)">
+                
+                <input #codeInput
+                       name="number6" 
+                       maxlength="1" 
+                       class="code-input form-control" 
+                       formControlName="number6"
+                       placeholder="•"
+                       (input)="onInputChange($event, 6)"
+                       (keydown)="onKeyDown($event, 6)">
+            </div>
+
+            <button type="submit" 
+                    class="input-style btn btn-primary my-3" 
+                    (click)="sendCode()"
+                    [disabled]="isLoading || !formRegister.valid">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                {{ isLoading ? 'Validando...' : 'Validar' }}
+            </button>
+            
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <p>¿No llegó tu código?  
+                    <a class="underlineHover" 
+                       href="javascript:void(0)" 
+                       (click)="resendCode()"
+                       [class.disabled]="isLoading">
+                        Enviar de nuevo
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

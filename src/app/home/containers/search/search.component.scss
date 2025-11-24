@@ -1,0 +1,38 @@
+.boxSearch {
+  width: 630px;
+}
+h2 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.inputSearch {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px !important;
+  padding-left: 30px !important;
+}
+
+.inputSearch input {
+  flex-grow: 2;
+  width: 500px;
+  border: none;
+}
+
+.inputSearch input:focus {
+  outline: none;
+}
+
+.btnSearch {
+  background-color: #ee9d44;
+  color: white;
+}
+.btnAccion {
+  margin-right: 10px !important;
+  border-radius: 8px !important;
+  padding: 2px 5px !important;
+}

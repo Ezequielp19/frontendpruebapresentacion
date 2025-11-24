@@ -1,0 +1,26 @@
+.boxMain{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: linear-gradient(rgba(0, 107, 166, 0.75), rgba(0, 107, 166, 0.75)),url(../../../../assets/img/background.png);
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    //position: fixed;
+    background-attachment: fixed;
+}
+.title{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.desc{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    color: white;
+}

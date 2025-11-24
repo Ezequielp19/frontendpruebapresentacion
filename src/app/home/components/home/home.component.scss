@@ -1,0 +1,53 @@
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.whatsapp-button img {
+    width: 50px;
+    height: 50px;
+}
+.fnd{
+    background: rgb(0,107,166);
+background: linear-gradient(0deg, rgba(0,107,166,1) 0%, rgba(239,250,255,1) 50%, rgba(255,255,255,1) 60%);
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  align-items: center;
+}
+
+.container-fluid {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Asegurar que todos los componentes hijos estén centrados */
+::ng-deep app-hero,
+::ng-deep app-section-service-business,
+::ng-deep app-section-last-admission,
+::ng-deep app-section-vender,
+::ng-deep app-section-freelance,
+::ng-deep app-section-smart-business,
+::ng-deep app-section-income,
+::ng-deep app-live-empr,
+::ng-deep app-sellers-primary {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

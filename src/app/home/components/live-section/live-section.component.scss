@@ -1,0 +1,226 @@
+.container-fluid {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: rgb(250, 250, 250);
+}
+
+.titleSection {
+  color: black;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+.buttons-links {
+  color: black;
+}
+
+.boxes {
+  color: black;
+  margin-bottom: 45px;
+  margin-top: 45px;
+}
+
+.boxes-live {
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.box-half {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.btn-down {
+  color: white;
+}
+
+.mrg-phone {
+  color: black;
+  background: linear-gradient(180deg, #FFFF00 0%, #808000 100%) !important;
+  border: none;
+}
+
+.btn-fashion {
+  color: white;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, #FFFF00 0%, #808000 100%);
+  color: black;
+  border: none;
+}
+
+.btn {
+  background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+  border-radius: 20px;
+}
+
+/* -----------------------------------
+  MEDIA QUERIES RESPONSIVE
+------------------------------------*/
+
+/* Móviles pequeños (hasta 375px) */
+@media (max-width: 375px) {
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .titleSection {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 8%;
+  }
+
+  .boxes {
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+
+  .boxes-live,
+  .buttons-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-down,
+  .mrg-phone,
+  .btn-fashion {
+    margin-bottom: 10px;
+    margin-right: 0;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .box-half {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 10px;
+  }
+}
+
+/* Móviles medianos (376px a 575px) */
+@media (min-width: 376px) and (max-width: 575px) {
+  .container-fluid {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .titleSection {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 6%;
+  }
+
+  .boxes {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  .box-half {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .boxes-live,
+  .buttons-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .btn-down,
+  .mrg-phone,
+  .btn-fashion {
+    margin-bottom: 12px;
+    flex: 0 1 calc(50% - 6px);
+    min-width: 120px;
+  }
+}
+
+/* Tablets (576px a 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container-fluid {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .titleSection {
+    font-size: 2rem;
+    margin-bottom: 5%;
+  }
+
+  .box-half {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .boxes-live,
+  .buttons-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .btn-down,
+  .mrg-phone,
+  .btn-fashion {
+    flex: 0 1 calc(33.333% - 10px);
+    margin-bottom: 15px;
+  }
+}
+
+/* Tablets grandes y laptops pequeños (768px a 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleSection {
+    font-size: 2.1rem;
+  }
+
+  .box-half {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .boxes-live,
+  .buttons-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+/* Laptops (992px a 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .box-half {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
+
+/* Pantallas grandes (1200px en adelante) */
+@media (min-width: 1200px) {
+  .container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .boxes-live {
+    gap: 40px;
+    padding: 0 40px;
+  }
+}
+

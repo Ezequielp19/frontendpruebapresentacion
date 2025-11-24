@@ -1,0 +1,166 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="descriptionForm">
+    <div class="container box-img">
+      <div class="row">
+        <p class="title-img">Agrega Tus imagenes</p>
+        <div class="col-sm-12 col-md-3 img">
+          <label for="input-fl1" class="label">
+            <p><mat-icon>camera_enhance</mat-icon></p>
+            <input id="input-fl1" type="file" class="d-none" (change)="previewImage($event, 1)" accept="image/*">
+            <div class="image-preview" *ngIf="imagePreview1">
+              <img [src]="imagePreview1" alt="Preview 1" />
+            </div>
+          </label>
+        </div>
+
+        <div class="col-sm-12 col-md-3 img">
+          <label for="input-fl2" class="label">
+            <p><mat-icon>camera_enhance</mat-icon></p>
+            <input id="input-fl2" type="file" class="d-none" (change)="previewImage($event, 2)" accept="image/*">
+            <div class="image-preview" *ngIf="imagePreview2">
+              <img [src]="imagePreview2" alt="Preview 2" />
+            </div>
+          </label>
+        </div>
+
+        <div class="col-sm-12 col-md-3 img">
+          <label for="input-fl3" class="label">
+            <p><mat-icon>camera_enhance</mat-icon></p>
+            <input id="input-fl3" type="file" class="d-none" (change)="previewImage($event, 3)" accept="image/*">
+            <div class="image-preview" *ngIf="imagePreview3">
+              <img [src]="imagePreview3" alt="Preview 3" />
+            </div>
+          </label>
+        </div>
+
+        <div class="col-sm-12 col-md-3 img">
+          <label for="input-fl4" class="label">
+            <p><mat-icon>camera_enhance</mat-icon></p>
+            <input id="input-fl4" type="file" class="d-none" (change)="previewImage($event, 4)" accept="image/*">
+            <div class="image-preview" *ngIf="imagePreview4">
+              <img [src]="imagePreview4" alt="Preview 4" />
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-video">
+      <p class="title-video">Agrega Un video</p>
+      <div class="col-sm-12 img">
+        <label for="input-video" class="label-video">
+          <p><mat-icon>videocam</mat-icon></p>
+          <input id="input-video" type="file" class="d-none" (change)="previewVideo($event)">
+          <div class="video-preview" *ngIf="videoPreview">
+            <video [src]="videoPreview" controls width="100%" height="100%"></video>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="boxInput">
+          <label class="mb-2" for="description">Describe tu servicio</label>
+          <textarea 
+            class="text input-style" 
+            wrap="hard" 
+            placeholder="Realiza una breve descripcion"
+            formControlName="description"
+            [class.is-invalid]="hasError('description')">
+          </textarea>
+          <div class="invalid-feedback" *ngIf="hasError('description')">
+            {{ getErrorMessage('description') }}
+          </div>
+        </div>
+        <button class="btn btn-total btn-primary btn-sm" mat-button (click)="calcularDiferencia()">Total</button>
+      </div>
+
+      <div class="col-12 col-md-5 price-box">
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="precioMinimo">Precio Min</label>
+          <input 
+            id="precioMinimo" 
+            class="form-control input-style" 
+            placeholder="$" 
+            type="number" 
+            formControlName="priceMin"
+            [class.is-invalid]="hasError('priceMin')"
+            required>
+          <div class="invalid-feedback" *ngIf="hasError('priceMin')">
+            {{ getErrorMessage('priceMin') }}
+          </div>
+        </div>
+
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="precioMaximo">Precio Max</label>
+          <input 
+            id="precioMaximo" 
+            class="form-control input-style" 
+            placeholder="$" 
+            type="number" 
+            formControlName="priceMax"
+            [class.is-invalid]="hasError('priceMax')"
+            required>
+          <div class="invalid-feedback" *ngIf="hasError('priceMax')">
+            {{ getErrorMessage('priceMax') }}
+          </div>
+        </div>
+
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="diferencia">Comision emprendedor</label>
+          <input class="form-control input-style" placeholder="$usd " id="diferencia" [value]="diferencia" disabled>
+        </div>
+
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="tarifaServicio">Tarifa Servicio</label>
+          <input class="form-control input-style" placeholder="$usd " id="tarifaServicio" [value]="tarifaServicio" disabled>
+        </div>
+
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="status">Estado del producto</label>
+          <select 
+            class="form-select input-style" 
+            id="status" 
+            formControlName="status"
+            [class.is-invalid]="hasError('status')"
+            required>
+            <option value="" disabled>Selecciona</option>
+            <option value="Nuevo">Nuevo</option>
+            <option value="Casi nuevo">Casi nuevo</option>
+            <option value="Poco uso">Poco uso</option>
+            <option value="Usado">Usado</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="hasError('status')">
+            {{ getErrorMessage('status') }}
+          </div>
+        </div>
+
+        <div class="col-12 boxInput">
+          <label class="mb-2" for="location">Ubicacion</label>
+          <input 
+            placeholder="agrega la ubicacion de tu producto" 
+            class="form-control input-style" 
+            type="text"
+            formControlName="location"
+            [class.is-invalid]="hasError('location')"
+            required>
+          <div class="invalid-feedback" *ngIf="hasError('location')">
+            {{ getErrorMessage('location') }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información del formulario -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="alert alert-info" role="alert">
+          <i class="fas fa-info-circle me-2"></i>
+          <strong>Paso 2 de 3:</strong> Describe tu servicio, agrega imágenes/videos y define precios. 
+          Las imágenes ayudarán a los clientes a entender mejor tu oferta.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

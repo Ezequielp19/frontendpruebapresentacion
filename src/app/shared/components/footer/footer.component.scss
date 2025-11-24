@@ -1,0 +1,710 @@
+@import '../../../../styles/variables';
+
+// Estilos base del footer
+footer {
+    background: rgb(35, 107, 216);
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    padding: 20px 0;
+    width: 100%;
+}
+
+.containerFooter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Contenedor de tablas para móviles
+.mobile-tables-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 0;
+    width: 200px;
+}
+
+h4 {
+    color: white;
+    font-weight: 400;
+}
+
+.boxImg {
+    width: 200px;
+    max-width: 100%;
+}
+
+.copyright {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    width: 100%;
+}
+
+.btn-icon {
+    background-color: #236bd8;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.btn-icon .icon {
+    color: white !important;
+}
+
+.boxNewsletter input {
+    background-color: #236bd8;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.boxNewsletter input::placeholder {
+    color: white;
+    font-weight: 300;
+}
+
+.inputNewsletter {
+    width: 100%;
+    color: #236bd8;
+}
+
+input {
+    background-color: #236bd8;
+}
+
+.itemFooter {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+.boxBussines,
+.boxSoporte,
+.boxNewsletter {
+    color: white;
+    margin-left: 15%;
+}
+
+button {
+    background-color: #236bd8;
+    color: white;
+    border-color: transparent;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Smartphones y pantallas pequeñas (iPhone SE, Android pequeños) */
+@media (max-width: 480px) {
+    .containerFooter {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 120px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Espaciado reducido entre iconos */
+    }
+
+    .btn-icon {
+        width: 50px;
+        height: 50px;
+        margin: 10px 2px; /* Margen horizontal reducido */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    h4 {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    li {
+        font-size: 12px;
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .copyright {
+        font-size: 10px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Pantallas medianas (tablets y pantallas pequeñas) */
+@media (max-width: 768px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 150px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Espaciado reducido entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Margen horizontal reducido */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 30px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: center; /* Centrar el contenido de las tablas */
+    }
+
+    .boxBussines h4,
+    .boxSoporte h4 {
+        text-align: center; /* Centrar los títulos */
+    }
+
+    .boxBussines ul,
+    .boxSoporte ul {
+        text-align: center; /* Centrar las listas */
+    }
+
+    .boxBussines li,
+    .boxSoporte li {
+        text-align: center; /* Centrar cada elemento de la lista */
+        justify-content: center;
+        display: flex;
+    }
+
+    .boxBussines .itemFooter,
+    .boxSoporte .itemFooter {
+        text-align: center; /* Centrar los enlaces */
+        display: inline-block;
+    }
+}
+
+/* Pantallas de 640px en adelante */
+@media (max-width: 640px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 170px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Espaciado reducido entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Margen horizontal reducido */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: center; /* Centrar el contenido de las tablas */
+    }
+
+    .boxBussines h4,
+    .boxSoporte h4 {
+        text-align: center; /* Centrar los títulos */
+    }
+
+    .boxBussines ul,
+    .boxSoporte ul {
+        text-align: center; /* Centrar las listas */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar elementos horizontalmente */
+        width: 100%; /* Asegurar que la lista ocupe todo el ancho */
+    }
+
+    .boxBussines li,
+    .boxSoporte li {
+        text-align: center; /* Centrar cada elemento de la lista */
+        justify-content: center;
+        display: flex;
+        width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    .boxBussines .itemFooter,
+    .boxSoporte .itemFooter {
+        text-align: center; /* Centrar los enlaces */
+        display: inline-block;
+        width: 100%; /* Asegurar que el enlace ocupe todo el ancho */
+    }
+}
+
+/* Pantallas de 800px (orientación vertical) */
+@media (max-width: 800px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 160px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Reducir espacio entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Reducir margen horizontal */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 25px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: left;
+    }
+}
+
+/* Pantallas de 896px */
+@media (max-width: 896px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 170px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Reducir espacio entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Reducir margen horizontal */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 30px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: center; /* Centrar el contenido de las tablas */
+    }
+
+    .boxBussines h4,
+    .boxSoporte h4 {
+        text-align: center; /* Centrar los títulos */
+    }
+
+    .boxBussines ul,
+    .boxSoporte ul {
+        text-align: center; /* Centrar las listas */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar elementos horizontalmente */
+        width: 100%; /* Asegurar que la lista ocupe todo el ancho */
+    }
+
+    .boxBussines li,
+    .boxSoporte li {
+        text-align: center; /* Centrar cada elemento de la lista */
+        justify-content: center;
+        display: flex;
+        width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    .boxBussines .itemFooter,
+    .boxSoporte .itemFooter {
+        text-align: center; /* Centrar los enlaces */
+        display: inline-block;
+        width: 100%; /* Asegurar que el enlace ocupe todo el ancho */
+    }
+}
+
+/* Pantallas de 932px y menores */
+@media (max-width: 932px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 170px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Espaciado reducido entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Margen horizontal reducido */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 25px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: center; /* Centrar el contenido de las tablas */
+    }
+
+    .boxBussines h4,
+    .boxSoporte h4 {
+        text-align: center; /* Centrar los títulos */
+    }
+
+    .boxBussines ul,
+    .boxSoporte ul {
+        text-align: center; /* Centrar las listas */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar elementos horizontalmente */
+        width: 100%; /* Asegurar que la lista ocupe todo el ancho */
+    }
+
+    .boxBussines li,
+    .boxSoporte li {
+        text-align: center; /* Centrar cada elemento de la lista */
+        justify-content: center;
+        display: flex;
+        width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    .boxBussines .itemFooter,
+    .boxSoporte .itemFooter {
+        text-align: center; /* Centrar los enlaces */
+        display: inline-block;
+        width: 100%; /* Asegurar que el enlace ocupe todo el ancho */
+    }
+}
+
+/* Pantallas de 667px y menores */
+@media (max-width: 667px) {
+    .containerFooter {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .boxImg {
+        width: 170px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Espaciado reducido entre iconos */
+    }
+
+    .btn-icon {
+        margin: 10px 2px; /* Margen horizontal reducido */
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        margin-left: 0;
+        text-align: center; /* Centrar el contenido de las tablas */
+    }
+
+    .boxBussines h4,
+    .boxSoporte h4 {
+        text-align: center; /* Centrar los títulos */
+    }
+
+    .boxBussines ul,
+    .boxSoporte ul {
+        text-align: center; /* Centrar las listas */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar elementos horizontalmente */
+        width: 100%; /* Asegurar que la lista ocupe todo el ancho */
+    }
+
+    .boxBussines li,
+    .boxSoporte li {
+        text-align: center; /* Centrar cada elemento de la lista */
+        justify-content: center;
+        display: flex;
+        width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    .boxBussines .itemFooter,
+    .boxSoporte .itemFooter {
+        text-align: center; /* Centrar los enlaces */
+        display: inline-block;
+        width: 100%; /* Asegurar que el enlace ocupe todo el ancho */
+    }
+}
+
+/* Pantallas grandes y desktop */
+@media (min-width: 1024px) {
+    .containerFooter {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .mobile-tables-container {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+        flex: 1;
+    }
+
+    .boxBussines,
+    .boxSoporte,
+    .boxNewsletter {
+        margin-left: 15%;
+    }
+
+    .boxImg {
+        width: 200px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    li {
+        width: auto;
+    }
+
+    .copyright {
+        font-size: 14px;
+    }
+
+    .btn-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Ajustes generales para asegurar consistencia */
+@media (max-width: 320px) {
+    .containerFooter {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .boxLogo {
+        margin-bottom: 50px;
+    }
+
+    .mobile-tables-container {
+        gap: 15px;
+    }
+
+    .boxBussines,
+    .boxSoporte {
+        flex: 1;
+        min-width: 0;
+    }
+}

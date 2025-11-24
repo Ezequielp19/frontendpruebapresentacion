@@ -1,0 +1,228 @@
+/* ===== DISEÑO MODERNO RATING SECTION ===== */
+
+.modern-rating-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(35, 107, 216, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ===== RATING HEADER ===== */
+.rating-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(35, 107, 216, 0.1);
+}
+
+.level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(35, 107, 216, 0.3);
+}
+
+.level-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.level-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.level-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #236bd8;
+    margin: 0;
+}
+
+/* ===== RATING STATS ===== */
+.rating-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(35, 107, 216, 0.05) 0%, rgba(4, 194, 252, 0.05) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(35, 107, 216, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(35, 107, 216, 0.1);
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon.success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.stat-icon.rating {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: white;
+}
+
+.stat-icon.response {
+    background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+    color: white;
+}
+
+.stat-icon.products {
+    background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+    color: white;
+}
+
+.stat-icon mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #236bd8;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .modern-rating-card {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .rating-header {
+        padding-bottom: 15px;
+    }
+    
+    .level-badge {
+        padding: 6px 12px;
+        margin-bottom: 12px;
+    }
+    
+    .level-text {
+        font-size: 0.8rem;
+    }
+    
+    .level-title {
+        font-size: 1.1rem;
+    }
+    
+    .rating-stats {
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .stat-icon mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-rating-card {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .level-badge {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .level-text {
+        font-size: 0.75rem;
+    }
+    
+    .level-title {
+        font-size: 1rem;
+    }
+    
+    .rating-stats {
+        gap: 12px;
+    }
+    
+    .stat-item {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .stat-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .stat-icon mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,100 @@
+<div class="floating-live-button" 
+     *ngIf="isStreaming" 
+     [class.menu-open]="showMenu">
+  <!-- Botón principal flotante -->
+  <button class="live-btn" 
+          (click)="toggleMenu()"
+          [class.active]="showMenu"
+          title="Control de transmisión">
+    <div class="pulse-indicator"></div>
+    <mat-icon>live_tv</mat-icon>
+    <span class="btn-text">LIVE</span>
+    <span class="viewer-count" *ngIf="viewerCount > 0">{{ viewerCount }}</span>
+  </button>
+
+  <!-- Menú desplegable -->
+  <div class="live-menu" 
+       *ngIf="showMenu" 
+       (click)="$event.stopPropagation()">
+    <div class="menu-header">
+      <h3>Control de Transmisión</h3>
+      <button class="close-menu-btn" (click)="closeMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="menu-content">
+      <!-- Información del stream -->
+      <div class="stream-info">
+        <div class="info-item">
+          <mat-icon>visibility</mat-icon>
+          <span>{{ viewerCount }} espectadores</span>
+        </div>
+        <div class="info-item">
+          <mat-icon>live_tv</mat-icon>
+          <span>Transmitiendo en vivo</span>
+        </div>
+      </div>
+
+      <!-- Opciones de configuración -->
+      <div class="settings-section">
+        <h4>Configuración</h4>
+
+        <!-- Selector de cámara -->
+        <div class="setting-item">
+          <label class="setting-label">
+            <mat-icon>videocam</mat-icon>
+            Cámara
+          </label>
+          <select class="setting-select" [(ngModel)]="selectedVideoDevice" (change)="changeVideoDevice()">
+            <option value="" disabled>Seleccionar cámara...</option>
+            <option *ngFor="let device of videoDevices" [value]="device.deviceId">
+              {{ device.label || 'Cámara ' + (videoDevices.indexOf(device) + 1) }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Selector de micrófono -->
+        <div class="setting-item">
+          <label class="setting-label">
+            <mat-icon>mic</mat-icon>
+            Micrófono
+          </label>
+          <select class="setting-select" [(ngModel)]="selectedAudioDevice" (change)="changeAudioDevice()">
+            <option value="" disabled>Seleccionar micrófono...</option>
+            <option *ngFor="let device of audioDevices" [value]="device.deviceId">
+              {{ device.label || 'Micrófono ' + (audioDevices.indexOf(device) + 1) }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Selector de calidad de video -->
+        <div class="setting-item">
+          <label class="setting-label">
+            <mat-icon>high_quality</mat-icon>
+            Calidad de Video
+          </label>
+          <select class="setting-select" [(ngModel)]="selectedVideoQuality" (change)="changeVideoQuality()">
+            <option value="1080p">1080p (Full HD)</option>
+            <option value="720p">720p (HD)</option>
+            <option value="480p">480p (SD)</option>
+            <option value="360p">360p (Baja)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Acciones -->
+      <div class="actions-section">
+        <button class="action-btn go-to-live" (click)="goToLive()">
+          <mat-icon>video_library</mat-icon>
+          <span>Ir a transmisión</span>
+        </button>
+        <button class="action-btn stop-stream" (click)="stopStreaming()">
+          <mat-icon>stop</mat-icon>
+          <span>Finalizar transmisión</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

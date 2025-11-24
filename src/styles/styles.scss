@@ -1,0 +1,143 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* src/styles.css */
+// @import './variables-light.scss';
+
+/* Si el modo oscuro está activado */
+// [data-theme='light'] {
+//   @import './variables-dark.scss';
+// }
+
+//animate
+@import 'animate.css';
+
+@import "variables";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+/* Bootstrap se importa desde angular.json, no aquí para evitar duplicados */
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+/* Configuraciones globales para Bootstrap 5 */
+:root {
+  --bs-modal-backdrop-bg: rgba(0, 0, 0, 0.5);
+  --bs-modal-backdrop-opacity: 0.5;
+}
+
+/* Asegurar que los modales de ng-bootstrap funcionen correctamente */
+.modal-backdrop {
+  background-color: var(--bs-modal-backdrop-bg) !important;
+  opacity: var(--bs-modal-backdrop-opacity) !important;
+}
+
+.modal-backdrop.show {
+  opacity: var(--bs-modal-backdrop-opacity) !important;
+}
+
+html,
+body {
+  height: 100%;
+  // background-color: var(--background-color);
+  // color: var(--text-color);
+}
+body {
+  // background-color: #f7f7f7;
+  margin: 0;
+  font-family: Raleway, "Helvetica Neue", sans-serif !important;
+}
+.lightMode{
+  background-color: #f5f5f5;
+  color: #000;
+}
+.darkMode{
+  background-color: #2b2b2b;
+  color: #fff;
+  
+}
+p {
+  //font-family: Lato, "Helvetica Neue", sans-serif !important;
+  font-family: 'Raleway', sans-serif;
+  //font
+}
+button {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 15px !important;
+}
+
+.owl-nav {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.owl-next,
+.owl-prev {
+  background-color: #fff !important;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50% !important;
+
+  display: flex;
+  color: #808080 !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+  text-align: center;
+  padding-top: 0 !important;
+
+  font-size: 2em !important;
+}
+
+.owl-prev {
+  margin-left: -1rem !important;
+}
+
+.owl-next {
+  margin-right: -1rem !important;
+}
+
+//Animations
+
+
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.swiper-slide-visible,
+.swiper-slide {
+  opacity: 0.5;
+  transform: scale(0.7);
+  transition: all 0.5s;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* label style */
+.mat-tab-label{
+  background: white;
+  color:  black;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+/* focus style */
+.mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus{
+  background:  #356ca6;
+  color: white;
+}
+/* ink bar style */
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background: #356ca6;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

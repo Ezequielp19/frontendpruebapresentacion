@@ -1,0 +1,160 @@
+/* ===== DISEÑO PROFESIONAL Y MODERNO DASHBOARD ===== */
+
+.dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* ===== DRAWER CONTAINER ===== */
+.modern-drawer-container {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+}
+
+/* ===== SIDEBAR MODERNO ===== */
+.modern-drawer {
+    width: 320px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    border-right: 1px solid rgba(35, 107, 216, 0.1);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-content {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-section {
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    border-radius: 0 0 20px 20px;
+}
+
+.rating-section {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.main-content {
+    background: transparent;
+    min-height: 100vh;
+}
+
+.modern-toolbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(35, 107, 216, 0.1);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.menu-toggle-btn {
+    background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+    color: white;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(35, 107, 216, 0.3);
+}
+
+.toolbar-title {
+    flex: 1;
+}
+
+.toolbar-title h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #236bd8;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.toolbar-title p {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 4px 0 0 0;
+    font-weight: 400;
+}
+
+.content-wrapper {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .modern-drawer {
+        width: 280px;
+    }
+    
+    .profile-section {
+        padding: 25px 15px;
+        margin-bottom: 15px;
+    }
+    
+    .rating-section {
+        padding: 15px;
+    }
+    
+    .modern-toolbar {
+        padding: 15px 20px;
+    }
+    
+    .toolbar-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .toolbar-title p {
+        font-size: 0.9rem;
+    }
+    
+    .content-wrapper {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-drawer {
+        width: 260px;
+    }
+    
+    .profile-section {
+        padding: 20px 12px;
+        border-radius: 0 0 15px 15px;
+    }
+    
+    .modern-toolbar {
+        padding: 12px 15px;
+    }
+    
+    .menu-toggle-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .toolbar-title h1 {
+        font-size: 1.3rem;
+    }
+    
+    .content-wrapper {
+        padding: 15px 10px;
+    }
+}
+

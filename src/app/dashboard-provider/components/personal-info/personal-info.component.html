@@ -1,0 +1,142 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="formPersonalInfo">
+
+    <!-- SECCIÓN: Información del Registro (Solo Lectura) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-muted mb-3">📋 Información del Registro</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">Nombre</label>
+          <input formControlName="name" class="form-control input-style" readonly />
+          <small class="text-muted">Dato del registro</small>
+        </div>
+      </div>
+
+      <div class="col-7 row">
+        <div class="col-4 boxInput">
+          <label class="mb-2">Apellido</label>
+          <input formControlName="lastName" class="form-control input-style" readonly />
+          <small class="text-muted">Dato del registro</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">Email</label>
+          <input formControlName="email" class="form-control input-style" readonly />
+          <small class="text-muted">Dato del registro</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Información Adicional (Para Completar) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-primary mb-3">➕ Información Adicional</h5>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">DNI <span class="text-danger">*</span></label>
+          <input formControlName="dni" class="form-control input-style" placeholder="12345678" />
+          <div class="text-danger small" *ngIf="formPersonalInfo.get('dni')?.invalid && (formPersonalInfo.get('dni')?.dirty || formPersonalInfo.get('dni')?.touched)">
+            <div *ngIf="formPersonalInfo.get('dni')?.errors?.['required']">El DNI es requerido</div>
+            <div *ngIf="formPersonalInfo.get('dni')?.errors?.['minlength']">Mínimo 7 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-7 row">
+        <div class="col-2 boxInput">
+          <label class="mb-2">Cód. Área <span class="text-danger">*</span></label>
+          <input formControlName="areaCode" class="form-control input-style" placeholder="11" />
+          <div class="text-danger small" *ngIf="formPersonalInfo.get('areaCode')?.invalid && (formPersonalInfo.get('areaCode')?.dirty || formPersonalInfo.get('areaCode')?.touched)">
+            <div *ngIf="formPersonalInfo.get('areaCode')?.errors?.['required']">El código de área es requerido</div>
+            <div *ngIf="formPersonalInfo.get('areaCode')?.errors?.['minlength']">Mínimo 2 caracteres</div>
+          </div>
+        </div>
+        <div class="col-5 boxInput">
+          <label class="mb-2">Teléfono <span class="text-danger">*</span></label>
+          <input formControlName="phone" class="form-control input-style" placeholder="12345678" />
+          <div class="text-danger small" *ngIf="formPersonalInfo.get('phone')?.invalid && (formPersonalInfo.get('phone')?.dirty || formPersonalInfo.get('phone')?.touched)">
+            <div *ngIf="formPersonalInfo.get('phone')?.errors?.['required']">El teléfono es requerido</div>
+            <div *ngIf="formPersonalInfo.get('phone')?.errors?.['minlength']">Mínimo 8 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">Fecha de nacimiento <span class="text-danger">*</span></label>
+          <input formControlName="birthDate" class="form-control input-style" type="date" />
+          <div class="text-danger small" *ngIf="formPersonalInfo.get('birthDate')?.invalid && (formPersonalInfo.get('birthDate')?.dirty || formPersonalInfo.get('birthDate')?.touched)">
+            <div *ngIf="formPersonalInfo.get('birthDate')?.errors?.['required']">La fecha de nacimiento es requerida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Ubicación <span class="text-danger">*</span></label>
+          <input formControlName="location" class="form-control input-style" placeholder="Ciudad, Provincia" />
+          <div class="text-danger small" *ngIf="formPersonalInfo.get('location')?.invalid && (formPersonalInfo.get('location')?.dirty || formPersonalInfo.get('location')?.touched)">
+            <div *ngIf="formPersonalInfo.get('location')?.errors?.['required']">La ubicación es requerida</div>
+            <div *ngIf="formPersonalInfo.get('location')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Preferencias -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-info mb-3">📧 Preferencias de Comunicación</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="newsletter-container">
+          <div class="newsletter-checkbox">
+            <input formControlName="receiveNews" id="receiveNews" type="checkbox" class="newsletter-input" />
+            <label for="receiveNews" class="newsletter-label">
+              <span class="checkbox-custom"></span>
+              <span class="newsletter-text">
+                <i class="fas fa-envelope newsletter-icon"></i>
+                Quiero recibir novedades sobre Likevendor
+              </span>
+            </label>
+            <small class="newsletter-description">
+              Recibe información sobre nuevas funcionalidades, ofertas especiales y actualizaciones de la plataforma
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center my-5">
+      <button 
+        [disabled]="isLoading || formPersonalInfo.invalid" 
+        (click)="submitRegister()" 
+        class="col-3 btn btnnuevo1">
+        <span *ngIf="!isLoading">
+          <i-feather name="save"></i-feather> Guardar información adicional
+        </span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i> Guardando...
+        </span>
+      </button>
+    </div>
+  </form>
+</div> 

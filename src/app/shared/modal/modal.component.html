@@ -1,0 +1,102 @@
+
+
+<ng-template #modalMessage let-modal>
+
+    <!--<div class="modal-body d-flex flex-column align-items-center">
+        <h2 class="modal-title my-5">{{this.title}}</h2>
+        <div class="">
+            <i-feather class="iconModal " [ngClass]="{'iconGreen': nameIcon === 'check', 'iconRed' : nameIcon === 'x' }" name="{{nameIcon}}"></i-feather>          
+        </div>
+        <p class="textMessage my-5">
+            {{this.textMessage}}
+        </p>
+        <div class="col-sm-1 ">
+            <input   class="  form-control input-lg " soloNum />
+        </div>
+        
+        <div class="col-sm-1 ">
+            <input   class="  form-control input-lg"  soloNum />
+        </div>
+
+        <div class="modalFooter w-100 d-flex justify-content-center mb-5 pb-5">
+            <button  type="button" class="btnAccion btn btn-primary"  (click)='modal.close("Close Click")'>{{this.accionButton | titlecase}}</button>
+          </div>
+    </div>-->
+    <div class="boxHero container-fluid p-0 m-0 d-flex justify-content-end align-items-center ">
+        <div class="wrapper">
+            <div id="formContent">
+                <div class="text-aviso my-3 mx-3">
+                    <h3>Te enviamos un código a tu email, no lo compartas con nadie</h3>
+                    <h5>Por favor introduce tu código de 6 dígitos</h5>
+                </div>            
+                <div class="code-input-container">
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                    <input class="code-input form-control" soloNum placeholder="•" />
+                </div>
+    
+                <button class="btn btn-block btn-primary my-2" (click)='modal.close("Close Click")'>Validar</button>
+    
+                <div id="formFooter">
+                    <p>¿No llegó tu código?  <a class="underlineHover" href="#">Enviar de nuevo</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!--<div class="boxHero container-fluid p-0 m-0 d-flex justify-content-end align-items-center ">
+    <div class="wrapper">
+        <div id="formContent">
+             Tabs Titles
+
+            texto aviso
+            <div class="text-aviso my-3 mx-3">
+                <h3>Te enviamos un codigo a tu mail, no lo compartas con nadie</h3>
+                <h5>Por Favor Introduzca su codigo de 6 digitos</h5>
+            </div>
+
+            
+            <form class="container d-flex d-row justify-content-center justify-content-evenly my-4">
+                
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg " soloNum />
+                </div>
+                
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg"  soloNum />
+                </div>
+
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg " soloNum />
+                </div>
+                
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg"  soloNum  />
+                </div>
+
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg " soloNum />
+                </div>
+                
+                <div class="col-sm-1 ">
+                    <input   class="  form-control input-lg"  soloNum  />
+                </div>
+                
+
+                
+            </form>
+
+            <button class="btn btn-block btn-primary my-3" (click)="activeModal.close('Close click')">Validar</button>
+
+            <div id="formFooter">
+                <p>No llego tu codigo?  <a class="underlineHover" href="#">Enviar de Nuevo</a></p>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+

@@ -1,0 +1,367 @@
+.boxMain {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: linear-gradient(rgba(0, 107, 166, 0.75), rgba(0, 107, 166, 0.75)), url(../../../../assets/img/background.png);
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    //position: fixed;
+    background-attachment: fixed;
+}
+
+.box-lives {
+    width: 290px !important;
+    margin-top: 40px;
+}
+
+.cards-container {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    justify-items: center;
+}
+
+.card-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.box-live {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    .video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.btn-box {
+    margin-top: 15px;
+    width: 100%;
+    
+    a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+    }
+    
+    button {
+        width: 100%;
+        padding: 8px 35px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 14px;
+        border: 2px solid white;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    }
+}
+
+.btn-style {
+    color: white;
+    background: rgba(225, 159, 32, 1);
+}
+
+.icon-eye {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.rows {
+    margin-left: -12%;
+    margin-top: 50px;
+}
+
+.title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.row-cols-3 {
+    color: transparent;
+}
+
+.container {
+    color: transparent;
+}
+
+.col {
+    color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: 50px;
+}
+
+/* Paginación móvil */
+.pagination-mobile {
+    display: none; // Por defecto oculto en desktop
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 0 15px;
+    
+    .pagination-btn {
+        background: transparent;
+        border: 2px solid #356ca6;
+        color: #356ca6;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        &:not(:disabled):hover {
+            background: #356ca6;
+            color: white;
+        }
+        
+        i {
+            font-size: 14px;
+        }
+    }
+    
+    .page-numbers {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        
+        .page-number-btn {
+            background: transparent;
+            border: none;
+            color: #356ca6;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            &.active {
+                background: #356ca6;
+                color: white;
+            }
+            
+            &:hover:not(.active) {
+                background: rgba(53, 108, 166, 0.1);
+            }
+        }
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pagination-mobile {
+        display: flex; // Mostrar en tablets y móviles
+    }
+    
+    .cards-grid {
+        gap: 20px;
+        padding: 0 10px;
+        justify-items: center;
+    }
+    
+    .card-wrapper {
+        max-width: 320px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .box-live {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .btn-box {
+        width: 100%;
+        box-sizing: border-box;
+        
+        button {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 13px;
+            padding: 6px 25px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination-mobile {
+        margin-top: 25px;
+        
+        .pagination-btn {
+            width: 36px;
+            height: 36px;
+            
+            i {
+                font-size: 12px;
+            }
+        }
+        
+        .page-numbers {
+            gap: 6px;
+            
+            .page-number-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 13px;
+            }
+        }
+    }
+    
+    .cards-grid {
+        gap: 15px;
+        padding: 0 10px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+    .card-wrapper {
+        max-width: 300px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .box-live {
+        height: 180px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .btn-box {
+        width: 100%;
+        box-sizing: border-box;
+        
+        button {
+            font-size: 13px;
+            padding: 6px 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .pagination-mobile {
+        margin-top: 20px;
+        gap: 10px;
+        
+        .pagination-btn {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .page-numbers {
+            gap: 4px;
+            
+            .page-number-btn {
+                width: 26px;
+                height: 26px;
+                font-size: 12px;
+            }
+        }
+    }
+    
+    .cards-grid {
+        gap: 10px;
+        padding: 0 15px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+    .card-wrapper {
+        max-width: 280px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .box-live {
+        height: 160px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .btn-box {
+        width: 100%;
+        box-sizing: border-box;
+        
+        button {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 12px;
+            padding: 5px 20px;
+        }
+    }
+}
+
+/* Breakpoint específico para Galaxy A8 (2015-2018) */
+@media (min-width: 300px) and (max-width: 350px) {
+    .cards-grid {
+        gap: 15px;
+        padding: 0 10px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+    .card-wrapper {
+        max-width: 280px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .box-live {
+        height: 170px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .btn-box {
+        width: 100%;
+        box-sizing: border-box;
+        
+        button {
+            font-size: 12px;
+            padding: 6px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+}
+

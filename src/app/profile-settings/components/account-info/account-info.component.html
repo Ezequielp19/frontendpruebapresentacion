@@ -1,0 +1,76 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="formAccount">
+
+    <!-- SECCIÓN: Información del Registro (Solo Lectura) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-muted mb-3">📋 Información del Registro</h5>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="boxInput">
+        <label>Email Registrado</label>
+        <input formControlName="email" class="form-control input-style" type="email" readonly />
+        <small class="text-muted">Dato del registro</small>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Información Adicional (Para Completar) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-primary mb-3">➕ Información Adicional</h5>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="boxInput">
+        <label>Teléfono Asociado <span class="text-danger">*</span></label>
+        <input formControlName="phone" class="form-control input-style" type="text" placeholder="15537596" />
+        <div class="text-danger small" *ngIf="formAccount.get('phone')?.invalid && (formAccount.get('phone')?.dirty || formAccount.get('phone')?.touched)">
+          <div *ngIf="formAccount.get('phone')?.errors?.['required']">El teléfono es requerido</div>
+          <div *ngIf="formAccount.get('phone')?.errors?.['minlength']">Mínimo 8 caracteres</div>
+        </div>
+      </div>
+
+      <div class="boxInput text-center">
+        <a href="#" class="link">Verificar Teléfono Asociado</a>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Seguridad -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-warning mb-3">🔒 Seguridad</h5>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="boxInput">
+        <label>Contraseña de la cuenta</label>
+        <div class="d-flex align-items-center">
+          <input class="form-control input-style" type="password" value="••••••••" readonly />
+          <button type="button" (click)="changePassword()" class="btn btn-outline-warning ms-2">
+            <i class="fas fa-key"></i> Cambiar
+          </button>
+        </div>
+        <small class="text-muted">Para cambiar la contraseña, haz clic en el botón "Cambiar"</small>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center my-5">
+      <button 
+        [disabled]="isLoading || formAccount.invalid" 
+        (click)="submitRegister()" 
+        class="col-3 btn btnnuevo1">
+        <span *ngIf="!isLoading">
+          <i-feather name="save"></i-feather> Guardar información adicional
+        </span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i> Guardando...
+        </span>
+      </button>
+    </div>
+
+  </form>
+</div>

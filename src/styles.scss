@@ -1,0 +1,106 @@
+/* Estilos globales para prevenir scroll horizontal y centrar todo */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  width: 100% !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  overflow-x: hidden !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.container {
+  overflow-x: hidden !important;
+}
+
+/* Asegurar que todos los elementos flex no causen scroll */
+* {
+  max-width: 100%;
+}
+
+/* Forzar visibilidad del widget Landbot en todas las pantallas */
+.landbot-widget,
+.landbot-livechat,
+#landbot-container,
+#landbot-widget,
+iframe[src*="landbot"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 768px) {
+  .landbot-widget,
+  .landbot-livechat,
+  #landbot-container,
+  #landbot-widget,
+  iframe[src*="landbot"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Solución para el problema del input de búsqueda en pantallas grandes */
+@media (min-width: 1200px) {
+  .inputSearch input::placeholder {
+    color: #333 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .inputSearch input {
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* Solución adicional para pantallas muy grandes */
+@media (min-width: 1400px) {
+  .inputSearch input::placeholder {
+    color: #333 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .inputSearch input {
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* Estilos globales para todos los placeholders */
+input::placeholder {
+  color: #333 !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+} 

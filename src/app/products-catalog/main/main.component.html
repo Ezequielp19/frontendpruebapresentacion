@@ -1,0 +1,140 @@
+<div class="catalog-container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a routerLink="/home" class="breadcrumb-link">
+      <mat-icon>home</mat-icon>
+      Inicio
+    </a>
+    <mat-icon class="separator">chevron_right</mat-icon>
+    <a *ngIf="selectedCategory === 'all'" routerLink="/products" class="breadcrumb-link active">
+      Catálogo
+    </a>
+    <ng-container *ngIf="selectedCategory !== 'all'">
+      <a routerLink="/products" class="breadcrumb-link">Catálogo</a>
+      <mat-icon class="separator">chevron_right</mat-icon>
+      <span class="breadcrumb-current">{{ getCategoryName(selectedCategory) }}</span>
+    </ng-container>
+  </div>
+
+  <!-- Header -->
+  <div class="catalog-header">
+    <h1>Catálogo de Productos</h1>
+    <p class="subtitle">Descubre {{ filteredProducts.length }} productos disponibles</p>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <!-- Categories Filter -->
+    <div class="categories-filter">
+      <button
+        *ngFor="let cat of categories"
+        class="category-btn"
+        [class.active]="selectedCategory === cat.id"
+        (click)="onCategoryChange(cat.id)">
+        <mat-icon>{{ cat.icon }}</mat-icon>
+        <span>{{ cat.name }}</span>
+      </button>
+    </div>
+
+    <!-- Search and Sort -->
+    <div class="search-sort-bar">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Buscar productos..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()">
+      </div>
+
+      <div class="sort-select">
+        <mat-icon>sort</mat-icon>
+        <select [(ngModel)]="sortBy" (change)="onSortChange()">
+          <option value="name">Nombre A-Z</option>
+          <option value="price-asc">Precio: Menor a Mayor</option>
+          <option value="price-desc">Precio: Mayor a Menor</option>
+          <option value="newest">Más recientes</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <mat-spinner></mat-spinner>
+    <p>Cargando productos...</p>
+  </div>
+
+  <!-- Products Grid -->
+  <div *ngIf="!loading && paginatedProducts.length > 0" class="products-grid">
+    <div *ngFor="let product of paginatedProducts" class="product-card">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name">
+        <div class="product-badges">
+          <span class="badge featured" *ngIf="product.featured">Destacado</span>
+          <span class="badge out-of-stock" *ngIf="product.stock === 0">Agotado</span>
+          <span class="badge stock-badge" [class.low-stock]="product.stock < 10 && product.stock > 0" *ngIf="product.stock > 0">
+            {{ product.stock }} disponibles
+          </span>
+        </div>
+        <div class="product-overlay">
+          <button class="quick-view-btn" (click)="viewProduct(product._id)">
+            <mat-icon>visibility</mat-icon>
+            <span>Vista Rápida</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <p class="product-brand">{{ product.brand }}</p>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+
+        <div class="product-footer">
+          <div class="price-section">
+            <span class="current-price">${{ product.price }}</span>
+          </div>
+
+          <button class="view-btn" (click)="viewProduct(product._id)" [disabled]="product.stock === 0">
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Ver Producto</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results -->
+  <div *ngIf="!loading && filteredProducts.length === 0" class="no-results">
+    <mat-icon>inventory_2</mat-icon>
+    <h2>No se encontraron productos</h2>
+    <p>Intenta ajustar los filtros o la búsqueda</p>
+    <button class="reset-btn" (click)="selectedCategory = 'all'; searchQuery = ''; applyFilters()">
+      <mat-icon>refresh</mat-icon>
+      Limpiar filtros
+    </button>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="!loading && filteredProducts.length > itemsPerPage" class="pagination">
+    <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+      <mat-icon>chevron_left</mat-icon>
+      Anterior
+    </button>
+
+    <div class="page-numbers">
+      <button
+        *ngFor="let page of pageNumbers"
+        class="page-number"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+    </div>
+
+    <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Siguiente
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

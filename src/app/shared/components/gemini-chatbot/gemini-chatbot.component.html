@@ -1,0 +1,10 @@
+<div>
+    <textarea [(ngModel)]="message" placeholder="Enter your question"></textarea>
+    <button (click)="getAnswer()">Send</button>
+
+    <div *ngIf="answer">
+        
+        <h3>Respuesta:</h3>
+        <p>{{ answer }}</p>
+    </div>
+</div>

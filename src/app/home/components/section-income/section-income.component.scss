@@ -1,0 +1,191 @@
+/* ================== GENERAL ================== */
+
+.container-fluid {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: rgb(250, 250, 250);
+}
+
+.titleSection {
+  color: black;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+.buttons-links {
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.boxes {
+  color: black;
+  margin-bottom: 45px;
+  margin-top: 45px;
+}
+
+.boxes-live {
+  color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box-half {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.btn-down {
+  color: white;
+}
+
+.mrg-phone {
+  color: black;
+  background: linear-gradient(180deg, #FFFF00 0%, #808000 100%) !important;
+  border: none;
+  margin-bottom: 12px;
+  margin-right: 12px;
+}
+
+.btn-fashion {
+  color: white;
+  margin-right: 12px;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, #FFFF00 0%, #808000 100%);
+  color: black;
+  border: none;
+}
+
+.btn {
+  background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+  border-radius: 20px;
+}
+
+/* ================== SECTION HERO (prin) ================== */
+
+p {
+  color: white;
+}
+
+// .prin {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 30px 15px;
+//   background: linear-gradient(180deg, #FFFF00 0%, #808000 100%);
+//   position: relative;
+//   overflow: hidden;
+// }
+
+.prin {
+  display: flex;
+  align-items: center;  /* Centra verticalmente */
+  justify-content: space-between;  /* Deja espacio entre texto y la imagen */
+  padding: 30px;
+  background: linear-gradient(180deg, #FFFF00 0%, #808000 100%);
+  flex-wrap: wrap;  /* Para que en pantallas pequeñas baje la imagen */
+}
+
+
+
+.img-main {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+    flex-shrink: 0; /* No dejar que la imagen se reduzca mucho */
+
+}
+
+.text-envios {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 15px;
+    flex: 1 1 400px; /* Ocupa espacio y es responsivo */
+
+  text-align: center;
+}
+
+.text-main {
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 20px;
+  color: black;
+}
+
+.details {
+  margin-top: 15px;
+  font-size: 16px;
+  color: black;
+}
+
+.buttons-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.button-style {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #0D97D9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-style:hover {
+  background-color: black;
+  color: white;
+}
+
+/* ================== RESPONSIVE ADICIONAL ================== */
+
+@media (max-width: 480px) {
+  .text-main {
+    font-size: 18px;
+  }
+
+  .details {
+    font-size: 14px;
+  }
+
+  .button-style {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .img-main {
+    max-width: 300px;
+  }
+
+  .box-half {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  .prin {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-main {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .text-envios {
+    text-align: center;
+    padding: 0 10px;
+  }
+}

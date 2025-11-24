@@ -1,0 +1,99 @@
+<div class="container-fluid my-5">
+    <form>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Nombre</label>
+                    <input class="form-control input-style" type="text" placeholder="Nombre" />
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-4 boxInput">
+                    <label class="mb-2" for="">Apellido</label>
+                    <input class="form-control input-style" type="text" placeholder="Apellido" />
+                </div>
+
+                <div class="col-12 col-md-4 boxInput">
+                    <label class="mb-2" for="">Profesion</label>
+                    <select class="form-select input-style" id="validationCustom04" required>
+                        <option selected disabled value="" class="input-style">Selecciona</option>
+                        <option>Autonomo</option>
+                        <option>Abogado</option>
+                        <option>Diseñador</option>
+                        <option>Rubro Tecnologico</option>
+                        <option>Cocinero</option>
+                        <option>Ventas</option>
+                        <option>Docente/Profesor</option>
+                        <option>Programador</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid state.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12 col-md-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Especialidad</label>
+                    <select class="form-select input-style" id="validationCustom04" required>
+                        <option selected disabled value="" class="input-style">Selecciona</option>
+                        <option>Autonomo</option>
+                        <option>Abogado</option>
+                        <option>Diseñador</option>
+                        <option>Rubro Tecnologico</option>
+                        <option>Cocinero</option>
+                        <option>Ventas</option>
+                        <option>Docente/Profesor</option>
+                        <option>Programador</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid state.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-5 boxInput">
+                    <label class="mb-2" for="">Precio por su servicio</label>
+                    <input class="form-control input-style" placeholder="$/hora" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: Preferencias -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-info mb-3">📧 Preferencias de Comunicación</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="newsletter-container">
+                    <div class="newsletter-checkbox">
+                        <input id="receiveNews" type="checkbox" class="newsletter-input" />
+                        <label for="receiveNews" class="newsletter-label">
+                            <span class="checkbox-custom"></span>
+                            <span class="newsletter-text">
+                                <i class="fas fa-envelope newsletter-icon"></i>
+                                Quiero recibir novedades sobre Likevendor
+                            </span>
+                        </label>
+                        <small class="newsletter-description">
+                            Recibe información sobre nuevas funcionalidades, ofertas especiales y actualizaciones de la plataforma
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center my-5">
+            <button (click)="submitRegister()" class="col-12 col-md-3 btn btnnuevo1 text-save">
+                <i-feather name="save"></i-feather> Guardar cambios
+            </button>
+        </div>
+    </form>
+</div>

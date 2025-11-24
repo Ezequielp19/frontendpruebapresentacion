@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.container-fluid {
+  background: linear-gradient(180deg, rgba(250, 247, 247, 0.2) 0%, rgba(206, 206, 206, 0.6) 40%, rgba(250, 247, 247, 0.2) 100%);
+  padding: 4rem 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.section-info {
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.titleSection {
+  color: #006ba6;
+  font-size: 2.6rem;
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.textSection {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.box-img {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgManBusiness {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.btn {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(35, 107, 216, 0.2);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .row {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .section-info {
+    padding-right: 0;
+  }
+
+  .titleSection {
+    font-size: 2.2rem;
+  }
+
+  .box-img {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+
+  .imgManBusiness {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 3rem 1rem;
+  }
+
+  .titleSection {
+    font-size: 2rem;
+  }
+
+  .textSection {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-fluid {
+    padding: 2rem 0.5rem;
+  }
+
+  .titleSection {
+    font-size: 1.8rem;
+  }
+
+  .textSection {
+    font-size: 1rem;
+  }
+
+  .imgManBusiness {
+    max-height: 250px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Soporte para pantallas grandes */
+@media (min-width: 1200px) {
+  .row {
+    gap: 6rem;
+  }
+  
+  .imgManBusiness {
+    max-height: 450px;
+  }
+}

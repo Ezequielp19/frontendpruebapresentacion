@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btnnuevo1:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(35, 107, 216, 0.3);
+}
+
+.btnnuevo1:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+}
+
+.input-style {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    width: 100%; /* Asegura que los inputs ocupen el 100% del contenedor */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input-style:focus {
+    outline: none;
+    border-color: #236bd8;
+    box-shadow: 0 0 0 2px rgba(35, 107, 216, 0.1);
+}
+
+.text-save {
+    font-family: 'Raleway', sans-serif;
+}
+
+button {
+    background-color: #236bd8;
+}
+
+/* Estilos para las secciones */
+.text-muted {
+    color: #6c757d !important;
+    font-size: 0.875rem;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Estilos para campos de solo lectura */
+input[readonly] {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #6c757d;
+}
+
+/* Estilos para mensajes de error */
+.text-danger.small {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: #dc3545;
+}
+
+/* Estilos para el checkbox de newsletter */
+.newsletter-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.newsletter-container:hover {
+    border-color: #236bd8;
+    box-shadow: 0 4px 12px rgba(35, 107, 216, 0.1);
+}
+
+.newsletter-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.newsletter-input {
+    display: none;
+}
+
+.newsletter-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.newsletter-input:checked + .newsletter-label .checkbox-custom {
+    background-color: #236bd8;
+    border-color: #236bd8;
+}
+
+.newsletter-input:checked + .newsletter-label .checkbox-custom::after {
+    opacity: 1;
+}
+
+.newsletter-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.newsletter-icon {
+    color: #236bd8;
+    font-size: 16px;
+}
+
+.newsletter-description {
+    color: #6c757d;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 32px;
+    line-height: 1.4;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+    .boxInput {
+        margin: 8px;
+    }
+    
+    .input-style {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .btnnuevo1 {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .newsletter-container {
+        padding: 15px;
+    }
+    
+    .newsletter-label {
+        font-size: 15px;
+    }
+    
+    .newsletter-description {
+        font-size: 13px;
+    }
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    /* Para pantallas móviles */
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .col-12 {
+        width: 100%; /* Las columnas ocupan todo el ancho en pantallas pequeñas */
+    }
+
+    .col-md-3,
+    .col-md-7,
+    .col-md-4,
+    .col-md-5 {
+        width: 100%; /* Las columnas se ajustan en pantallas pequeñas */
+    }
+
+    .btn {
+        width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
+    }
+    
+    .input-style, input, textarea {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+    
+    .btnnuevo1 {
+        width: 100% !important;
+        font-size: 16px;
+        padding: 14px 0 !important;
+        margin-top: 10px;
+    }
+    
+    label {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .text-danger.small {
+        font-size: 12px;
+    }
+    
+    .newsletter-container {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .newsletter-label {
+        font-size: 16px;
+        gap: 10px;
+    }
+    
+    .checkbox-custom {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .newsletter-description {
+        font-size: 14px;
+        margin-left: 32px;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Para pantallas medianas y grandes (tabletas en adelante) */
+    .col-md-3 {
+        width: 25%; /* Las columnas de 3 ocupan el 25% del ancho */
+    }
+
+    .col-md-7 {
+        width: 58%; /* Las columnas de 7 ocupan el 58% del ancho */
+    }
+
+    .col-md-4 {
+        width: 30%; /* Las columnas de 4 ocupan el 30% */
+    }
+
+    .col-md-5 {
+        width: 40%; /* Las columnas de 5 ocupan el 40% */
+    }
+
+    .btn {
+        width: auto; /* El botón no ocupa todo el ancho en pantallas grandes */
+    }
+    
+    .newsletter-container {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .newsletter-label {
+        font-size: 15px;
+        gap: 10px;
+    }
+    
+    .checkbox-custom {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .newsletter-description {
+        font-size: 13px;
+        margin-left: 28px;
+    }
+}
+
+/* Para pantallas grandes (escritorios) */
+@media (min-width: 992px) {
+    .row {
+        display: flex;
+        flex-direction: row; /* Se alinean las columnas horizontalmente */
+        justify-content: space-between;
+    }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+    .container-fluid {
+        padding: 5px !important;
+    }
+    
+    .boxInput {
+        margin: 8px 0 !important;
+    }
+    
+    .input-style, input, textarea {
+        font-size: 15px !important;
+        padding: 10px !important;
+    }
+    
+    .btnnuevo1 {
+        font-size: 15px;
+        padding: 12px 0 !important;
+    }
+    
+    label {
+        font-size: 13px;
+    }
+    
+    .text-danger.small {
+        font-size: 11px;
+    }
+    
+    .newsletter-container {
+        padding: 12px;
+        margin: 8px 0;
+    }
+    
+    .newsletter-label {
+        font-size: 15px;
+        gap: 8px;
+    }
+    
+    .checkbox-custom {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .newsletter-description {
+        font-size: 13px;
+        margin-left: 28px;
+    }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+    .container-fluid {
+        padding: 3px !important;
+    }
+    
+    .boxInput {
+        margin: 6px 0 !important;
+    }
+    
+    .input-style, input, textarea {
+        font-size: 14px !important;
+        padding: 8px !important;
+    }
+    
+    .btnnuevo1 {
+        font-size: 14px;
+        padding: 10px 0 !important;
+    }
+    
+    label {
+        font-size: 12px;
+    }
+    
+    .newsletter-container {
+        padding: 10px;
+        margin: 6px 0;
+    }
+    
+    .newsletter-label {
+        font-size: 14px;
+        gap: 6px;
+    }
+    
+    .checkbox-custom {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .newsletter-description {
+        font-size: 12px;
+        margin-left: 24px;
+    }
+}
+
+/* Mejoras de accesibilidad */
+.input-style:focus-visible {
+    outline: 2px solid #236bd8;
+    outline-offset: 2px;
+}
+
+.newsletter-label:focus-within .checkbox-custom {
+    outline: 2px solid #236bd8;
+    outline-offset: 2px;
+}
+
+/* Animaciones suaves */
+.boxInput {
+    transition: all 0.3s ease;
+}
+
+/* Estilos para el estado de carga */
+.btnnuevo1:disabled {
+    background: linear-gradient(90deg, #6c757d 10%, #adb5bd 50%, #6c757d 90%);
+}

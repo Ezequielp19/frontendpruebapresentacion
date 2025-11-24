@@ -1,0 +1,46 @@
+<div class="profile-card">
+    <div class="profile-info">
+        <div class="profile-avatar">
+            <div class="avatar-container">
+                <img *ngIf="workerData.profileImage || workerData.image"
+                     [src]="workerData.profileImage || workerData.image"
+                     alt="Foto de perfil"
+                     class="profile-image">
+                <div *ngIf="!workerData.profileImage && !workerData.image" class="avatar-placeholder">
+                    <mat-icon>person</mat-icon>
+                </div>
+                <div class="status-indicator" *ngIf="workerData.verified"></div>
+            </div>
+        </div>
+
+        <div class="profile-details">
+            <h1 class="profile-name">
+                {{ workerData.name }}
+                <mat-icon *ngIf="workerData.verified" class="verified-badge" title="Verificado">verified</mat-icon>
+            </h1>
+            <p class="profile-username">@{{ workerData.username || workerData.name }}</p>
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <mat-icon>location_on</mat-icon>
+                    <span>{{ workerData.location }}</span>
+                </div>
+                <div class="meta-item" *ngIf="workerData.profession">
+                    <mat-icon>work</mat-icon>
+                    <span>{{ workerData.profession }}</span>
+                </div>
+                <div class="meta-item" *ngIf="workerData.score">
+                    <mat-icon>star</mat-icon>
+                    <span>{{ workerData.score }}/5</span>
+                </div>
+                <div class="meta-item" *ngIf="workerData.experience">
+                    <mat-icon>school</mat-icon>
+                    <span>{{ workerData.experience }} años de experiencia</span>
+                </div>
+                <div class="meta-item" *ngIf="workerData.availability">
+                    <mat-icon>schedule</mat-icon>
+                    <span>{{ workerData.availability }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,232 @@
+// Variables
+$max-container-width: 1400px;
+$card-min-width: 280px;
+$card-max-width: 400px;
+
+// Mixins para breakpoints
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait {
+    @media (min-width: 600px) and (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape {
+    @media (min-width: 900px) and (max-width: 1199px) { @content; }
+}
+@mixin for-desktop {
+    @media (min-width: 1200px) and (max-width: 1799px) { @content; }
+}
+@mixin for-big-desktop {
+    @media (min-width: 1800px) { @content; }
+}
+
+// Estilos base
+.container-fluid {
+    padding: 3rem 1rem;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.title-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+}
+
+.titleSection {
+    color: black;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: bold;
+    margin: 2px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.2;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.box-all {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.box-sellers {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.card {
+    background: transparent;
+    border: none;
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.card-in {
+    height: 100%;
+    display: block;
+    width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .box-main {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 2rem 0.5rem;
+    }
+
+    .title-container {
+        padding: 0 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .titleSection {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+
+    .box-all {
+        padding: 0 0.5rem;
+    }
+
+    .box-sellers {
+        padding: 0;
+    }
+
+    .box-main {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 1.5rem 0.5rem;
+        text-align: center;
+    }
+
+    .title-container {
+        margin-bottom: 1.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .titleSection {
+        margin: 2px;
+        font-size: 1.4rem;
+        text-align: center;
+        width: 100%;
+        line-height: 1.4;
+        padding: 0 0.25rem;
+    }
+
+    .box-all {
+        padding: 0 0.5rem;
+        text-align: center;
+    }
+
+    .box-sellers {
+        padding: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box-main {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+        width: 100%;
+        justify-items: center;
+        gap: 1rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+}
+
+/* Aseguramos que las tarjetas mantengan su aspecto en pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .title-container {
+        padding: 0 0.25rem;
+    }
+
+    .titleSection {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        padding: 0 0.125rem;
+    }
+
+    .box-main {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .card {
+        max-width: 280px;
+    }
+
+    .card-in {
+        width: 100%;
+    }
+}
+
+// .titleSmartBusiness {
+//   color: #006ba6;
+//   font-size: 2.6rem;
+//   font-weight: 400;
+// }
+// .textSmartBusiness {
+//   color: #00000073;
+// }
+// .imgManBusiness {
+//   height: 300px;
+// }
+// }

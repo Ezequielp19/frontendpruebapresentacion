@@ -1,0 +1,54 @@
+<div class="container-fluid my-4">
+  <div class="my-4">
+    <p class="titleSection text-center w-100">{{'Live Emprendedores' | translate}}</p>
+  </div>
+
+  <div class="d-flex justify-content-center buttons-links">
+    <a href="/dashboard-live"><button class="btn mrg-phone">Ver Todo</button></a>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Cargando...</span>
+    </div>
+    <p class="mt-3">Cargando transmisiones...</p>
+  </div>
+
+  <div *ngIf="!isLoading && allStreams.length > 0" class="d-flex mx-2 boxes-live flex-wrap justify-content-center">
+    <div *ngFor="let stream of allStreams" 
+         class="box-live mx-2 mb-3" 
+         [class.stream-live]="isStreamLive(stream)"
+         [class.stream-ended]="!isStreamLive(stream)"
+         (click)="goToStream(stream)">
+      <div class="stream-header">
+        <span class="status-badge" [class.live-badge]="isStreamLive(stream)" [class.ended-badge]="!isStreamLive(stream)">
+          <span *ngIf="isStreamLive(stream)" class="pulse-dot"></span>
+          {{ isStreamLive(stream) ? '🔴 EN VIVO' : '⚫ FINALIZADO' }}
+        </span>
+      </div>
+      <div class="stream-title">{{ stream.title || 'Sin título' }}</div>
+      <div class="stream-info">
+        <mat-icon class="icon-small">person</mat-icon>
+        <span>{{ stream.streamer?.username || stream.user?.username || 'Anónimo' }}</span>
+      </div>
+      <div class="stream-viewers" *ngIf="isStreamLive(stream)">
+        <mat-icon class="icon-small">visibility</mat-icon>
+        <span>{{ stream.viewerCount || 0 }} espectadores</span>
+      </div>
+      <div class="stream-time" *ngIf="!isStreamLive(stream)">
+        <mat-icon class="icon-small">schedule</mat-icon>
+        <span>{{ getStreamTime(stream) }}</span>
+      </div>
+      <div class="stream-category" *ngIf="stream.category">
+        <mat-icon class="icon-small">category</mat-icon>
+        <span>{{ stream.category }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && allStreams.length === 0" class="text-center py-5">
+    <mat-icon class="empty-icon">live_tv</mat-icon>
+    <p class="empty-message">No hay transmisiones disponibles en este momento</p>
+    <a href="/dashboard-live"><button class="btn mrg-phone mt-3">Explorar transmisiones</button></a>
+  </div>
+</div>

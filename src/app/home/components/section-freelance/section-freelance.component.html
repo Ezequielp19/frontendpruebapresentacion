@@ -1,0 +1,43 @@
+<div class="container my-5">
+  <div class="my-4 w-100">
+    <h2 class="titleSection text-center">Freelancers Destacados</h2>
+    <p class="subtitle text-center">Conoce a nuestros profesionales mejor valorados</p>
+  </div>
+  <div class="swiper-container">
+    <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+      <ng-template *ngFor="let item of arrayFreelance" swiperSlide>
+        <div class="cardFreelance" [class.slideActive]="active === item.id">
+          <div class="freelancer-image-container">
+            <img class="img-circle" [src]="item.image" [alt]="item.name"/>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <span>{{item.rating}}</span>
+            </div>
+          </div>
+          <div class="freelancer-info">
+            <h3 class="freelancer-name">{{ item.name }}</h3>
+            <p class="freelancer-role">{{ item.role }}</p>
+          </div>
+        </div>
+      </ng-template>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </swiper>
+  </div>
+</div>
+
+<div class="container">
+  <div class="my-4 w-100">
+    <p class="titleSection text-center">{{'Marcas'| translate}}</p>
+  </div>
+
+  <div class="d-flex boxes">
+    <div class="slider">
+      <div class="slide-track">
+        <div class="slide" *ngFor="let brand of arrayBrands">
+          <img src="../../../../assets/img-brands/{{brand.image}}" width="180" height="90" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

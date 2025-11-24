@@ -1,0 +1,97 @@
+<!-- CONTENEDOR PRINCIPAL DEL WIZARD -->
+<div class="wizard-container">
+  <!-- PASO 1: Selección de Vehículo -->
+  <div *ngIf="!selectedVehiculo">
+    <h2 class="titles">Selecciona un tipo de vehículo:</h2>
+    <div class="div-buttons">
+      <button
+        class="btn btnnuevo1 my-2 mx-2"
+        *ngFor="let vehiculo of vehiculos"
+        (click)="seleccionarVehiculo(vehiculo)">
+        {{ vehiculo }}
+      </button>
+    </div>
+  </div>
+
+  <!-- PASO 2: Selección de Zona -->
+  <div *ngIf="selectedVehiculo && !selectedZona && !selectedProvincia">
+    <h2 class="titles">
+      Selecciona una zona para tu {{ selectedVehiculo }}:
+    </h2>
+    <div class="btn-zonas">
+      <button class="btn btnnuevo1" (click)="seleccionarZona('gba')">GBA</button>
+      <button class="btn btnnuevo1 mx-3" (click)="seleccionarZona('caba')">CABA</button>
+      <button class="btn btnnuevo1" (click)="mostrarProvincias()">Provincias</button>
+    </div>
+  </div>
+
+  <!-- PASO 3: Autocompletado para Barrio si se eligió GBA o CABA -->
+  <div *ngIf="selectedZona && (selectedZona === 'gba' || selectedZona === 'caba')">
+    <h2 class="titles">
+      Selecciona un barrio de {{ selectedZona }}:
+    </h2>
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Buscar barrio</mat-label>
+      <input type="text" matInput [formControl]="barrioControl" [matAutocomplete]="autoBarrio">
+      <mat-autocomplete
+        #autoBarrio="matAutocomplete"
+        (optionSelected)="seleccionarBarrioOCiudad($event.option.value)">
+        <mat-option
+          *ngFor="let barrio of filteredBarrios | async"
+          [value]="barrio">
+          {{ barrio }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <!-- PASO 3 Alternativo: Autocompletado para Provincias y luego Ciudad (si se eligió Provincias) -->
+  <div *ngIf="selectedProvincia || provincias.length">
+    <div *ngIf="!selectedProvincia">
+      <h2 class="titles">Selecciona una provincia:</h2>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Buscar provincia</mat-label>
+        <input type="text" matInput [formControl]="provinciaControl" [matAutocomplete]="autoProvincia">
+        <mat-autocomplete
+          #autoProvincia="matAutocomplete"
+          (optionSelected)="seleccionarProvincia($event.option.value)">
+          <mat-option *ngFor="let prov of filteredProvincias | async" [value]="prov">
+            {{ prov }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div *ngIf="selectedProvincia">
+      <h2 class="titles">Selecciona una ciudad:</h2>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Buscar ciudad</mat-label>
+        <input type="text" matInput [formControl]="ciudadControl" [matAutocomplete]="autoCiudad">
+        <mat-autocomplete
+          #autoCiudad="matAutocomplete"
+          (optionSelected)="seleccionarBarrioOCiudad($event.option.value)">
+          <mat-option *ngFor="let ciudad of filteredCiudades | async" [value]="ciudad">
+            {{ ciudad }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- PASO 4: Mostrar Vehículos Disponibles -->
+  <div *ngIf="vehiculosDisponibles.length">
+    <h2 class="titles">Vehículos disponibles:</h2>
+    <div class="div-buttons row rows row-cols-8">
+      <div class="vehiculo-disponible col" *ngFor="let vehiculo of vehiculosDisponibles">
+        <div class="data-vehiculo">
+          <p class="style-info-vehiculo"><strong>Marca:</strong> {{ vehiculo.marca }}</p>
+          <p class="style-info-vehiculo"><strong>Disponibilidad Horaria:</strong> {{ vehiculo.disponibilidadHoraria }}</p>
+          <img class="style-info-vehiculo" width="170" height="100" [src]="vehiculo.foto" alt="Foto del vehículo">
+          <p class="style-info-vehiculo"><strong>Disponible:</strong> {{ vehiculo.disponible ? 'Sí' : 'No' }}</p>
+          <button (click)="openDialog()" [disabled]="!vehiculo.disponible" class="btn btn-primary">
+            Ver conductor disponible
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

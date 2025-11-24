@@ -1,0 +1,145 @@
+<div class="container-fluid my-5">
+    <form [formGroup]="formPersonalInfo">
+        
+        <!-- SECCIÓN: Información del Registro (Solo Lectura) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-muted mb-3">📋 Información del Registro</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Nombre</label>
+                    <input class="form-control input-style" type="text" placeholder="Nombre" formControlName="name" readonly />
+                    <small class="text-muted">Dato del registro</small>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="boxInput">
+                        <label class="mb-2" for="">Apellido</label>
+                        <input class="form-control input-style" type="text" placeholder="Apellido" formControlName="lastName" readonly />
+                        <small class="text-muted">Dato del registro</small>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="boxInput">
+                        <label class="mb-2" for="">Email</label>
+                        <input class="form-control input-style" type="email" placeholder="📩 Mail" formControlName="email" readonly />
+                        <small class="text-muted">Dato del registro</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: Información Adicional (Para Completar) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-primary mb-3">➕ Información Adicional para Delivery</h5>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">DNI <span class="text-danger">*</span></label>
+                    <input class="form-control input-style" type="text" formControlName="dni" />
+                    <div class="text-danger small" *ngIf="f['dni'].invalid && (f['dni'].dirty || f['dni'].touched)">
+                        <div *ngIf="f['dni'].errors?.['required']">El DNI es requerido</div>
+                        <div *ngIf="f['dni'].errors?.['minlength']">Mínimo 7 caracteres</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-2 mb-3">
+                    <div class="boxInput">
+                        <label class="mb-2" for="">Cód. Área <span class="text-danger">*</span></label>
+                        <input class="form-control input-style soloNum" formControlName="areaCode" />
+                        <div class="text-danger small" *ngIf="f['areaCode'].invalid && (f['areaCode'].dirty || f['areaCode'].touched)">
+                            <div *ngIf="f['areaCode'].errors?.['required']">El código de área es requerido</div>
+                            <div *ngIf="f['areaCode'].errors?.['minlength']">Mínimo 2 caracteres</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 mb-3">
+                    <div class="boxInput">
+                        <label class="mb-2" for="">Teléfono <span class="text-danger">*</span></label>
+                        <input class="form-control input-style soloNum" placeholder="📱" formControlName="phone" />
+                        <div class="text-danger small" *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched)">
+                            <div *ngIf="f['phone'].errors?.['required']">El teléfono es requerido</div>
+                            <div *ngIf="f['phone'].errors?.['minlength']">Mínimo 8 caracteres</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Ubicación Actual <span class="text-danger">*</span></label>
+                    <input class="form-control input-style" placeholder="📌" type="text" formControlName="location" />
+                    <div class="text-danger small" *ngIf="f['location'].invalid && (f['location'].dirty || f['location'].touched)">
+                        <div *ngIf="f['location'].errors?.['required']">La ubicación es requerida</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Fecha de nacimiento <span class="text-danger">*</span></label>
+                    <input class="form-control input-style" type="date" formControlName="birthDate" />
+                    <div class="text-danger small" *ngIf="f['birthDate'].invalid && (f['birthDate'].dirty || f['birthDate'].touched)">
+                        <div *ngIf="f['birthDate'].errors?.['required']">La fecha de nacimiento es requerida</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: Preferencias -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-info mb-3">📧 Preferencias de Comunicación</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="newsletter-container">
+                    <div class="newsletter-checkbox">
+                        <input formControlName="receiveNews" id="receiveNews" type="checkbox" class="newsletter-input" />
+                        <label for="receiveNews" class="newsletter-label">
+                            <span class="checkbox-custom"></span>
+                            <span class="newsletter-text">
+                                <i class="fas fa-envelope newsletter-icon"></i>
+                                Quiero recibir novedades sobre Likevendor
+                            </span>
+                        </label>
+                        <small class="newsletter-description">
+                            Recibe información sobre nuevas funcionalidades, ofertas especiales y actualizaciones de la plataforma
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center my-5">
+            <button 
+                (click)="submitRegister()" 
+                [disabled]="isLoading || formPersonalInfo.invalid"
+                class="col-12 col-md-3 btn btnnuevo1 text-save">
+                <span *ngIf="!isLoading">
+                    <i-feather name="save"></i-feather> Guardar información adicional
+                </span>
+                <span *ngIf="isLoading">
+                    <i class="fas fa-spinner fa-spin"></i> Guardando...
+                </span>
+            </button>
+        </div>
+    </form>
+</div>
+
+

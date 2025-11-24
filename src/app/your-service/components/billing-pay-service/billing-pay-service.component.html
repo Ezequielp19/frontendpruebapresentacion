@@ -1,0 +1,66 @@
+<div class="container-fluid my-5">
+    <form [formGroup]="billingForm">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="boxInput">
+                    <label class="mb-2">Forma de Pago</label>
+                    <div class="payment-methods-container">
+                        <div class="row">
+                            <div class="col-6" *ngFor="let method of paymentMethods">
+                                <div class="form-check">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        [id]="'payment-' + method"
+                                        [checked]="isPaymentMethodSelected(method)"
+                                        (change)="onPaymentMethodChange(method, $any($event.target).checked)">
+                                    <label class="form-check-label" [for]="'payment-' + method">
+                                        {{ method }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="hasError('paymentMethods')">
+                        {{ getErrorMessage('paymentMethods') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="boxInput">
+                    <label class="mb-2" for="location">Ubicacion</label>
+                    <select 
+                        class="form-select input-style" 
+                        id="location" 
+                        formControlName="location"
+                        [class.is-invalid]="hasError('location')"
+                        required>
+                        <option value="" disabled>Elige tu ubicacion</option>
+                        <option *ngFor="let location of locations" [value]="location">
+                            {{ location }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="hasError('location')">
+                        {{ getErrorMessage('location') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-5">
+            <label class="mx-4">¿Necesitas ayuda? <a href="#">Hablar con soporte Tecnico</a></label>
+        </div>
+
+        <!-- Información del formulario -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Paso 3 de 3:</strong> Define los métodos de pago que aceptas y tu ubicación. 
+                    Esta información será visible para los clientes al momento de la compra.
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

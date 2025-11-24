@@ -1,0 +1,47 @@
+<div class="container-fluid my-5   recuadro ">
+    <form>
+        <div class="row">
+            <div class="col-12 col-md-2 box mx-3">
+                <div class="boxInput">
+                    <div class="profile-image-container">
+                        <!-- Input file para seleccionar la imagen -->
+                        <input type="file" id="file-upload" accept="image/*" (change)="onImageSelect($event)" style="display: none;">
+                        <label for="file-upload" class="icon-label">
+                            <mat-icon class="icon">add_circle_outline</mat-icon>
+                        </label>
+                        <img *ngIf="profileImage" [src]="profileImage" class="profile-image" alt="Foto de Perfil">
+                    </div>
+                    <label class="mx-3 mt-2 text-perfil" for="">Foto de Perfil</label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Nombre de usuario</label>
+                    <input class="form-control input-style" />
+                </div>
+                <div class="boxInput">
+                    <label class="mb-2" for="">Nombre de la cuenta</label>
+                    <input placeholder="@" class="form-control input-style" />
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Describa su servicio</label>
+                    <textarea class="text input-style" wrap="hard"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-5">
+            <label class="mx-4">¿Necesitas ayuda con tu perfil? <a href="#">Hablar con soporte Técnico</a></label>
+        </div>
+
+        <div class="row d-flex justify-content-center my-5">
+            <button type="submit" class="col-12 col-md-3 btn btnnuevo1">
+                <i-feather name="save"></i-feather> Guardar cambios
+            </button>
+        </div>
+    </form>
+</div>

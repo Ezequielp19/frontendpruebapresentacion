@@ -1,0 +1,50 @@
+
+<div class="container-fluid boxHero d-flex justify-content-center  ">
+
+    <div class="wrapper my-5">
+      <div id="formContent" class="">
+          <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4" dynamicHeight>
+            <mat-tab>
+              <ng-template mat-tab-label >
+                <mat-icon class="mx-2">assignment</mat-icon>
+                Datos Personales
+              </ng-template>
+              <app-personal-information></app-personal-information>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="mx-2">credit_card</mat-icon>
+                Datos de Facturacion
+              </ng-template>
+              <app-billing-information></app-billing-information>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="mx-2">account_circle</mat-icon>
+                Informacion de la cuenta
+              </ng-template>
+              <app-account-info></app-account-info>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="mx-2">create</mat-icon>
+                Perfil
+              </ng-template>
+              <app-profile></app-profile>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="mx-2"> directions_car</mat-icon>
+                Sistema de envio
+              </ng-template>
+              <app-shipping-system-two></app-shipping-system-two>
+            </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+    
+</div>
+
+
+

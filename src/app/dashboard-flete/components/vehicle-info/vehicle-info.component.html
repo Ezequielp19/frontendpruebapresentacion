@@ -1,0 +1,185 @@
+<div class="container-fluid my-5">
+    <form [formGroup]="formRegister">
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Tipo de Vehiculo</label>
+                    <select class="form-select input-style" formControlName="type" required>
+                        <option selected disabled value="">Selecciona</option>
+                        <option value="Auto">Auto</option>
+                        <option value="Moto">Moto</option>
+                        <option value="Camioneta">Camioneta</option>
+                        <option value="Camion">Camion</option>
+                        <option value="Pick-Up">Pick-Up</option>
+                    </select>
+                    <div class="text-danger small" *ngIf="f['type'].invalid && (f['type'].dirty || f['type'].touched)">
+                        <div *ngIf="f['type'].errors?.['required']">Selecciona un tipo de vehículo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-2 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Marca</label>
+                    <input class="form-control input-style" type="text" formControlName="brand" />
+                    <div class="text-danger small" *ngIf="f['brand'].invalid && (f['brand'].dirty || f['brand'].touched)">
+                        <div *ngIf="f['brand'].errors?.['required']">La marca es requerida</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 mb-3 row">
+                <div class="col-12 col-md-4 boxInput">
+                    <label class="mb-2" for="">Modelo</label>
+                    <input class="form-control input-style" type="text" formControlName="model" />
+                    <div class="text-danger small" *ngIf="f['model'].invalid && (f['model'].dirty || f['model'].touched)">
+                        <div *ngIf="f['model'].errors?.['required']">El modelo es requerido</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Año</label>
+                    <input class="form-control input-style" type="number" formControlName="year" />
+                    <div class="text-danger small" *ngIf="f['year'].invalid && (f['year'].dirty || f['year'].touched)">
+                        <div *ngIf="f['year'].errors?.['required']">El año es requerido</div>
+                        <div *ngIf="f['year'].errors?.['min']">El año debe ser mayor a 1900</div>
+                        <div *ngIf="f['year'].errors?.['max']">El año no puede ser mayor al actual</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Patente</label>
+                    <input name="licensePlate" formControlName="licensePlate" class="form-control input-style"/>
+                    <div class="text-danger small" *ngIf="f['licensePlate'].invalid && (f['licensePlate'].dirty || f['licensePlate'].touched)">
+                        <div *ngIf="f['licensePlate'].errors?.['required']">La patente es requerida</div>
+                        <div *ngIf="f['licensePlate'].errors?.['pattern']">Formato de patente inválido</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Color del vehiculo</label>
+                    <input class="form-control input-style" placeholder="Indica el color" formControlName="color" />
+                    <div class="text-danger small" *ngIf="f['color'].invalid && (f['color'].dirty || f['color'].touched)">
+                        <div *ngIf="f['color'].errors?.['required']">El color es requerido</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 mb-3 row">
+                <div class="col-12 col-md-4 boxInput">
+                    <label class="mb-2" for="">Km recorridos</label>
+                    <input class="form-control input-style" placeholder="⛽" type="number" formControlName="kilometers" />
+                    <div class="text-danger small" *ngIf="f['kilometers'].invalid && (f['kilometers'].dirty || f['kilometers'].touched)">
+                        <div *ngIf="f['kilometers'].errors?.['required']">Los kilómetros son requeridos</div>
+                        <div *ngIf="f['kilometers'].errors?.['min']">Los kilómetros deben ser mayor a 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="">Cedula azul (opcional)</label>
+                    <input class="form-control input-style" type="file" />
+                </div>
+            </div>
+
+           <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-6 boxInput">
+                    <label class="mb-2" for="img">Imágenes del vehículo (máx. 3)</label>
+                    <div id="img" class="container box-img">
+                        <div class="row">
+                            <div class="col-sm img">
+                                <label for="input-fl1" class="label">
+                                    <p><mat-icon>camera_enhance</mat-icon></p>
+                                    <input id="input-fl1" type="file" class="d-none" (change)="previewImage($event, 1)" accept="image/*">
+                                    <div class="image-preview" *ngIf="imagePreview1">
+                                        <img [src]="imagePreview1" alt="Preview 1" />
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-sm img">
+                                <label for="input-fl2" class="label">
+                                    <p><mat-icon>camera_enhance</mat-icon></p>
+                                    <input id="input-fl2" type="file" class="d-none" (change)="previewImage($event, 2)" accept="image/*">
+                                    <div class="image-preview" *ngIf="imagePreview2">
+                                        <img [src]="imagePreview2" alt="Preview 2" />
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-sm img">
+                                <label for="input-fl3" class="label">
+                                    <p><mat-icon>camera_enhance</mat-icon></p>
+                                    <input id="input-fl3" type="file" class="d-none" (change)="previewImage($event, 3)" accept="image/*">
+                                    <div class="image-preview" *ngIf="imagePreview3">
+                                        <img [src]="imagePreview3" alt="Preview 3" />
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- <div class="d-flex align-items-center px-3 my-5">
+            <input class="form-control" type="checkbox" />
+            <label class="px-2">Quiero recibir novedades sobre Likevendor</label>
+        </div> -->
+
+        <!-- SECCIÓN: Preferencias -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-info mb-3">📧 Preferencias de Comunicación</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="newsletter-container">
+                    <div class="newsletter-checkbox">
+                        <input formControlName="receiveNews" id="receiveNews" type="checkbox" class="newsletter-input" />
+                        <label for="receiveNews" class="newsletter-label">
+                            <span class="checkbox-custom"></span>
+                            <span class="newsletter-text">
+                                <i class="fas fa-envelope newsletter-icon"></i>
+                                Quiero recibir novedades sobre Likevendor
+                            </span>
+                        </label>
+                        <small class="newsletter-description">
+                            Recibe información sobre nuevas funcionalidades, ofertas especiales y actualizaciones de la plataforma
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row d-flex justify-content-center my-5">
+            <button 
+                (click)="submitRegister()" 
+                [disabled]="isLoading || formRegister.invalid"
+                class="col-12 col-md-3 btn btnnuevo1">
+                <span *ngIf="!isLoading">
+                    <i-feather name="save"></i-feather> Guardar cambios
+                </span>
+                <span *ngIf="isLoading">
+                    <i class="fas fa-spinner fa-spin"></i> Guardando...
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

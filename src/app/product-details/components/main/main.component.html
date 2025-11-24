@@ -1,0 +1,333 @@
+<div class="modern-product-container">
+    <!-- Product Header -->
+    <div class="product-header">
+        <div class="breadcrumb">
+            <a routerLink="/home" class="breadcrumb-item breadcrumb-link">
+                <mat-icon>home</mat-icon>
+                Inicio
+            </a>
+            <mat-icon class="breadcrumb-icon">chevron_right</mat-icon>
+            <a routerLink="/products" class="breadcrumb-item breadcrumb-link">
+                Catálogo
+            </a>
+            <mat-icon class="breadcrumb-icon">chevron_right</mat-icon>
+            <a *ngIf="productData?.category"
+               [routerLink]="['/products']"
+               [queryParams]="{category: productData.category}"
+               class="breadcrumb-item breadcrumb-link">
+                {{ productData.category }}
+            </a>
+            <mat-icon *ngIf="productData?.category" class="breadcrumb-icon">chevron_right</mat-icon>
+            <span class="breadcrumb-item active">{{ productData?.name || 'Producto' }}</span>
+        </div>
+    </div>
+
+    <!-- Main Product Section -->
+    <div class="product-main-section">
+        <!-- Product Images -->
+        <div class="product-images-section">
+            <div class="product-badges">
+                <div class="badge condition" *ngIf="productData?.featured">
+                    <mat-icon>star</mat-icon>
+                    <span>Destacado</span>
+                </div>
+                <div class="badge category" *ngIf="productData?.category">
+                    <mat-icon>category</mat-icon>
+                    <span>{{ productData.category }}</span>
+                </div>
+                <div class="badge brand" *ngIf="productData?.brand">
+                    <mat-icon>business</mat-icon>
+                    <span>{{ productData.brand }}</span>
+                </div>
+                <div class="badge stock" *ngIf="productData?.stock > 0" [class.low-stock]="productData.stock < 10">
+                    <mat-icon>inventory_2</mat-icon>
+                    <span>{{ productData.stock }} disponibles</span>
+                </div>
+                <div class="badge out-of-stock" *ngIf="productData?.stock === 0">
+                    <mat-icon>inventory_2</mat-icon>
+                    <span>Sin stock</span>
+                </div>
+            </div>
+
+            <div class="main-image-container">
+                <div class="product-image-main">
+                    <img [src]="productData?.imageUrl || 'https://via.placeholder.com/600x450'"
+                         [alt]="productData?.name || 'Producto'"
+                         class="main-image">
+                    <div class="image-overlay">
+                        <button class="zoom-btn">
+                            <mat-icon>zoom_in</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="thumbnail-images">
+                    <div class="thumbnail active">
+                        <img [src]="productData?.imageUrl || 'https://via.placeholder.com/150x100'"
+                             [alt]="productData?.name || 'Vista frontal'">
+                    </div>
+                    <div class="thumbnail">
+                        <img [src]="productData?.imageUrl || 'https://via.placeholder.com/150x100'"
+                             [alt]="productData?.name || 'Vista lateral'">
+                    </div>
+                    <div class="thumbnail">
+                        <img [src]="productData?.imageUrl || 'https://via.placeholder.com/150x100'"
+                             [alt]="productData?.name || 'Detalle'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info-section">
+            <div class="product-header-info">
+                <h1 class="product-title">{{ productData?.name || 'Cargando...' }}</h1>
+                <p class="product-sku" *ngIf="productData?.sku">SKU: {{ productData.sku }}</p>
+                <div class="product-rating">
+                    <div class="stars">
+                        <mat-icon class="star filled">star</mat-icon>
+                        <mat-icon class="star filled">star</mat-icon>
+                        <mat-icon class="star filled">star</mat-icon>
+                        <mat-icon class="star filled">star</mat-icon>
+                        <mat-icon class="star">star_border</mat-icon>
+                    </div>
+                    <span class="rating-text">4.2 (128 reseñas)</span>
+                </div>
+            </div>
+
+            <div class="price-section">
+                <div class="current-price">${{ productData?.price || 0 | number:'1.2-2' }}</div>
+                <div class="original-price" *ngIf="productData?.price">${{ (productData.price * 1.14) | number:'1.2-2' }}</div>
+                <div class="discount-badge" *ngIf="productData?.price">-14%</div>
+            </div>
+
+            <div class="commission-section" *ngIf="productData?.price">
+                <div class="commission-info">
+                    <mat-icon class="commission-icon">trending_up</mat-icon>
+                    <div class="commission-details">
+                        <h3>Ganancia por Comisión</h3>
+                        <span class="commission-amount">${{ (productData.price * 0.15) | number:'1.2-2' }}</span>
+                    </div>
+                    <button class="info-btn" (click)="openDialog()" matTooltip="Información sobre comisiones">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="action-buttons">
+                <button class="btn-primary" (click)="buyProduct()">
+                    <mat-icon>shopping_cart</mat-icon>
+                    <span>Comprar</span>
+                </button>
+                <button class="btn-secondary" (click)="saveProduct()">
+                    <mat-icon>favorite_border</mat-icon>
+                    <span>Guardar</span>
+                </button>
+                <button class="btn-outline" (click)="shareProduct()">
+                    <mat-icon>share</mat-icon>
+                    <span>Compartir</span>
+                </button>
+            </div>
+
+            <!-- Seller Info -->
+            <div class="seller-section">
+                <h3 class="seller-title">Vendedor</h3>
+                <div class="seller-card">
+                    <div class="seller-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Eduardo Gonzalez" class="avatar-image">
+                        <div class="seller-status"></div>
+                    </div>
+                    <div class="seller-info">
+                        <h4 class="seller-name">Eduardo Gonzalez</h4>
+                        <div class="seller-rating">
+                            <div class="stars">
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star">star_border</mat-icon>
+                            </div>
+                            <span class="rating-count">(89 ventas)</span>
+                        </div>
+                        <button class="view-profile-btn" (click)="goToProfile()">
+                            <mat-icon>visibility</mat-icon>
+                            <span>Ver perfil</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Description Section -->
+<div class="product-description-section">
+    <div class="description-container">
+        <div class="description-header">
+            <h2 class="description-title">Descripción del Producto</h2>
+            <div class="description-tabs">
+                <button class="tab-btn" [class.active]="activeTab === 'description'" (click)="setActiveTab('description')">Descripción</button>
+                <button class="tab-btn" [class.active]="activeTab === 'specifications'" (click)="setActiveTab('specifications')">Especificaciones</button>
+                <button class="tab-btn" [class.active]="activeTab === 'reviews'" (click)="setActiveTab('reviews')">Reviews</button>
+            </div>
+        </div>
+
+        <div class="description-content">
+            <!-- Descripción Tab -->
+            <div class="description-text" *ngIf="activeTab === 'description'">
+                <p>La Heladera Samsung K325 es un electrodoméstico de última generación que combina eficiencia energética con tecnología avanzada. Diseñada para familias modernas, ofrece un amplio espacio de almacenamiento y características innovadoras que garantizan la frescura de tus alimentos.</p>
+
+                <h3>Características Principales:</h3>
+                <ul class="feature-list">
+                    <li><mat-icon>check_circle</mat-icon> Capacidad de 325 litros</li>
+                    <li><mat-icon>check_circle</mat-icon> Tecnología No Frost</li>
+                    <li><mat-icon>check_circle</mat-icon> Clasificación energética A++</li>
+                    <li><mat-icon>check_circle</mat-icon> Compartimento especial para verduras</li>
+                    <li><mat-icon>check_circle</mat-icon> Iluminación LED interior</li>
+                    <li><mat-icon>check_circle</mat-icon> Control de temperatura digital</li>
+                </ul>
+            </div>
+
+            <!-- Especificaciones Tab -->
+            <div class="specifications-content" *ngIf="activeTab === 'specifications'">
+                <h3>Especificaciones Técnicas:</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Dimensiones:</span>
+                        <span class="spec-value">60 x 65 x 180 cm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Peso:</span>
+                        <span class="spec-value">75 kg</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Consumo:</span>
+                        <span class="spec-value">280 kWh/año</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Garantía:</span>
+                        <span class="spec-value">2 años</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Capacidad Total:</span>
+                        <span class="spec-value">325 litros</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Capacidad Congelador:</span>
+                        <span class="spec-value">85 litros</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Capacidad Refrigerador:</span>
+                        <span class="spec-value">240 litros</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Tipo de Descongelación:</span>
+                        <span class="spec-value">No Frost</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Eficiencia Energética:</span>
+                        <span class="spec-value">A++</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Ruido:</span>
+                        <span class="spec-value">39 dB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Tab -->
+            <div class="reviews-content" *ngIf="activeTab === 'reviews'">
+                <div class="reviews-summary">
+                    <div class="rating-overview">
+                        <div class="overall-rating">
+                            <span class="rating-number">4.2</span>
+                            <div class="stars-large">
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star filled">star</mat-icon>
+                                <mat-icon class="star">star_border</mat-icon>
+                            </div>
+                            <span class="total-reviews">Basado en 128 reseñas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-list">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="María" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4>María González</h4>
+                                    <div class="review-rating">
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="review-date">Hace 2 días</span>
+                        </div>
+                        <p class="review-text">Excelente heladera, muy silenciosa y eficiente. La tecnología No Frost funciona perfectamente y no tengo que descongelar nunca.</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Carlos" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4>Carlos Rodríguez</h4>
+                                    <div class="review-rating">
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star">star_border</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="review-date">Hace 1 semana</span>
+                        </div>
+                        <p class="review-text">Muy buena calidad-precio. El espacio es amplio y la organización interna es práctica. Recomendada.</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Ana" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4>Ana Martínez</h4>
+                                    <div class="review-rating">
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star filled">star</mat-icon>
+                                        <mat-icon class="star">star_border</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="review-date">Hace 2 semanas</span>
+                        </div>
+                        <p class="review-text">La heladera cumple con todas las expectativas. El diseño es moderno y se integra bien en la cocina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Similar Products Section -->
+<div class="similar-products-section">
+    <div class="similar-products-container">
+        <div class="section-header">
+            <h2 class="section-title">Productos Similares</h2>
+            <p class="section-subtitle">Descubre otros productos que podrían interesarte</p>
+        </div>
+
+        <app-prod-slider></app-prod-slider>
+    </div>
+</div>

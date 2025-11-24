@@ -1,0 +1,152 @@
+.box-car-available {
+   margin-left: 8%;
+    width: 900px;
+    height: 500px;
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    /* Espacio entre las cards */
+}
+
+
+.tipo-vehiculo {
+    font-family: 'Raleway', sans-serif;
+}
+
+.vehicle {
+    padding-top: 12px;
+    padding-bottom: 5px;
+    background-color: rgb(246, 246, 246);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vehicle:hover {
+    background-color: #356ca6;
+    color: white;
+}
+
+.details {
+    font-size: 18px;
+
+
+}
+
+.conductor-details {
+    background-color: rgb(246, 246, 246);
+    border-radius: 15px;
+
+    width: 400px;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.array-conductores {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.text-2xl {
+    font-size: 20px;
+}
+
+.botones-choferes {
+    font-family: 'Raleway', sans-serif;
+    ;
+}
+
+.cargo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.detalles-chofer {
+    font-size: 15px;
+}
+
+i {
+    font-size: 18px;
+}
+
+.btn-wsp {
+    color: black;
+}
+
+.btn-wsp:hover {
+    background-color: rgb(32, 167, 32);
+    color: white;
+}
+
+@media (max-width: 768px) {
+  .box-car-available {
+    margin-left: 0 !important;
+    width: 100vw !important;
+    min-width: 100vw !important;
+    height: auto !important;
+    overflow-x: auto;
+    padding: 0 2px !important;
+  }
+  .card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .vehicle {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto 12px auto !important;
+    padding: 8px 0 !important;
+  }
+  .details {
+    font-size: 15px !important;
+  }
+  .conductor-details {
+    width: 95vw !important;
+    min-width: 0 !important;
+    padding: 8px 0 !important;
+  }
+  .array-conductores {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .title, .text-2xl {
+    font-size: 16px !important;
+  }
+  .btnnuevo1, .btn-primary, .btn-outline-primary {
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 10px 0 !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .conductor-details {
+    width: 99vw !important;
+    padding: 4px 0 !important;
+  }
+  .btnnuevo1, .btn-primary, .btn-outline-primary {
+    font-size: 13px !important;
+    padding: 8px 0 !important;
+  }
+}

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.boxHero {
+  height: 20rem;
+  width: 100%;
+   background: linear-gradient(
+    #006ba6bf,rgba(0, 107, 166, 0.75)),url(../../../../assets/img/background.png);
+  //background-color: rgba(0, 107, 166, 0.7) !important;
+  background-size: 100% 150% !important;
+  background-repeat: repeat !important;
+}
+p{
+    font-size: 20px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.titleSection {
+  color: white;
+  font-size: 3.1rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  // margin-left: 170px;
+  margin-top: 140px;
+}
+.sectionRanking {
+  width: 650px !important;
+  height: 200px;
+}
+
+//agrego un margen en izquierda para que se desplaze a la derecha de un 5%
+
+
+@media(max-width: 320px){
+  .titleSection{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1%;
+  }
+  .groupButton button{
+    margin-inline: 5px;
+  }
+  .groupButton{
+    margin-left: 1%;
+  }
+
+}
+

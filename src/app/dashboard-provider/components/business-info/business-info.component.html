@@ -1,0 +1,164 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="formBusinessInfo">
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-primary mb-3">🏢 Información del Negocio</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Nombre del Negocio <span class="text-danger">*</span></label>
+          <input formControlName="businessName" class="form-control input-style" placeholder="Mi Empresa S.A." />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('businessName')?.invalid && (formBusinessInfo.get('businessName')?.dirty || formBusinessInfo.get('businessName')?.touched)">
+            <div *ngIf="formBusinessInfo.get('businessName')?.errors?.['required']">El nombre del negocio es requerido</div>
+            <div *ngIf="formBusinessInfo.get('businessName')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Categoría del Negocio <span class="text-danger">*</span></label>
+          <select formControlName="businessCategory" class="form-control input-style">
+            <option value="">Selecciona una categoría</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="ropa">Ropa y Accesorios</option>
+            <option value="hogar">Hogar y Jardín</option>
+            <option value="deportes">Deportes</option>
+            <option value="libros">Libros y Entretenimiento</option>
+            <option value="automotriz">Automotriz</option>
+            <option value="salud">Salud y Belleza</option>
+            <option value="alimentos">Alimentos y Bebidas</option>
+            <option value="servicios">Servicios</option>
+            <option value="otros">Otros</option>
+          </select>
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('businessCategory')?.invalid && (formBusinessInfo.get('businessCategory')?.dirty || formBusinessInfo.get('businessCategory')?.touched)">
+            <div *ngIf="formBusinessInfo.get('businessCategory')?.errors?.['required']">La categoría es requerida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="boxInput">
+          <label class="mb-2">Descripción del Negocio <span class="text-danger">*</span></label>
+          <textarea formControlName="businessDescription" class="form-control input-style" rows="4" placeholder="Describe tu negocio, productos o servicios..."></textarea>
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('businessDescription')?.invalid && (formBusinessInfo.get('businessDescription')?.dirty || formBusinessInfo.get('businessDescription')?.touched)">
+            <div *ngIf="formBusinessInfo.get('businessDescription')?.errors?.['required']">La descripción es requerida</div>
+            <div *ngIf="formBusinessInfo.get('businessDescription')?.errors?.['minlength']">Mínimo 20 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Email de Contacto <span class="text-danger">*</span></label>
+          <input formControlName="contactEmail" class="form-control input-style" type="email" placeholder="contacto@miempresa.com" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('contactEmail')?.invalid && (formBusinessInfo.get('contactEmail')?.dirty || formBusinessInfo.get('contactEmail')?.touched)">
+            <div *ngIf="formBusinessInfo.get('contactEmail')?.errors?.['required']">El email es requerido</div>
+            <div *ngIf="formBusinessInfo.get('contactEmail')?.errors?.['email']">Ingresa un email válido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Teléfono de Contacto <span class="text-danger">*</span></label>
+          <input formControlName="contactPhone" class="form-control input-style" placeholder="11-1234-5678" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('contactPhone')?.invalid && (formBusinessInfo.get('contactPhone')?.dirty || formBusinessInfo.get('contactPhone')?.touched)">
+            <div *ngIf="formBusinessInfo.get('contactPhone')?.errors?.['required']">El teléfono es requerido</div>
+            <div *ngIf="formBusinessInfo.get('contactPhone')?.errors?.['minlength']">Mínimo 8 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Sitio Web (opcional)</label>
+          <input formControlName="website" class="form-control input-style" placeholder="https://www.miempresa.com" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('website')?.invalid && (formBusinessInfo.get('website')?.dirty || formBusinessInfo.get('website')?.touched)">
+            <div *ngIf="formBusinessInfo.get('website')?.errors?.['pattern']">Ingresa una URL válida (ej: https://www.ejemplo.com)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Horarios de Atención <span class="text-danger">*</span></label>
+          <input formControlName="businessHours" class="form-control input-style" placeholder="Lun-Vie 9:00-18:00" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('businessHours')?.invalid && (formBusinessInfo.get('businessHours')?.dirty || formBusinessInfo.get('businessHours')?.touched)">
+            <div *ngIf="formBusinessInfo.get('businessHours')?.errors?.['required']">Los horarios son requeridos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="boxInput">
+          <label class="mb-2">Dirección Completa <span class="text-danger">*</span></label>
+          <input formControlName="address" class="form-control input-style" placeholder="Av. Corrientes 1234, Piso 5" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('address')?.invalid && (formBusinessInfo.get('address')?.dirty || formBusinessInfo.get('address')?.touched)">
+            <div *ngIf="formBusinessInfo.get('address')?.errors?.['required']">La dirección es requerida</div>
+            <div *ngIf="formBusinessInfo.get('address')?.errors?.['minlength']">Mínimo 10 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="boxInput">
+          <label class="mb-2">Ciudad <span class="text-danger">*</span></label>
+          <input formControlName="city" class="form-control input-style" placeholder="Buenos Aires" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('city')?.invalid && (formBusinessInfo.get('city')?.dirty || formBusinessInfo.get('city')?.touched)">
+            <div *ngIf="formBusinessInfo.get('city')?.errors?.['required']">La ciudad es requerida</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="boxInput">
+          <label class="mb-2">Provincia <span class="text-danger">*</span></label>
+          <input formControlName="province" class="form-control input-style" placeholder="Buenos Aires" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('province')?.invalid && (formBusinessInfo.get('province')?.dirty || formBusinessInfo.get('province')?.touched)">
+            <div *ngIf="formBusinessInfo.get('province')?.errors?.['required']">La provincia es requerida</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="boxInput">
+          <label class="mb-2">Código Postal <span class="text-danger">*</span></label>
+          <input formControlName="zipCode" class="form-control input-style" placeholder="1043" />
+          <div class="text-danger small" *ngIf="formBusinessInfo.get('zipCode')?.invalid && (formBusinessInfo.get('zipCode')?.dirty || formBusinessInfo.get('zipCode')?.touched)">
+            <div *ngIf="formBusinessInfo.get('zipCode')?.errors?.['required']">El código postal es requerido</div>
+            <div *ngIf="formBusinessInfo.get('zipCode')?.errors?.['minlength']">Mínimo 4 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center my-5">
+      <button 
+        [disabled]="isLoading || formBusinessInfo.invalid" 
+        (click)="submitRegister()" 
+        class="col-3 btn btnnuevo1">
+        <span *ngIf="!isLoading">
+          <i-feather name="save"></i-feather> Guardar información del negocio
+        </span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i> Guardando...
+        </span>
+      </button>
+    </div>
+  </form>
+</div> 

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.boxHero {
+  height: 35rem;
+  width: 100%;
+  background-color: rgba(0, 107, 166, 0.7) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.titleSection {
+  color: white;
+  font-size: 3.1rem;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.btn-outline-white {
+  border: solid 1px white;
+  border-radius: 10px;
+  padding: 5px 20px;
+  color: white;
+  margin-right: 10px !important;
+}
+
+.sectionRanking {
+  width: 650px !important;
+  height: auto;
+  padding: 20px;
+}
+
+.groupButton {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.groupButton button {
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.rankingList {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rankingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.ranking-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ranking-position {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ffd700;
+  min-width: 40px;
+}
+
+.rankingName {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffd700;
+    text-decoration: underline;
+    transform: translateX(5px);
+  }
+}
+
+.rankingScore {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.no-results {
+  padding: 30px;
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .boxHero {
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleSection {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .sectionRanking {
+    width: 90% !important;
+  }
+
+  .groupButton {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .groupButton button {
+    width: 80%;
+  }
+
+  .rankingItem {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titleSection {
+    font-size: 1.8rem;
+  }
+
+  .groupButton button {
+    width: 100%;
+  }
+}

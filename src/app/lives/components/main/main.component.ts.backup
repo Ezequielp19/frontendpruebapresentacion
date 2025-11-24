@@ -1,0 +1,773 @@
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import Hls from 'hls.js';
+import { LiveService } from './live.service';
+
+declare const window: any;
+
+interface ChatMessage {
+  user: string;
+  text: string;
+  time: string;
+  avatar: string;
+  userId?: string;
+  username?: string;
+  message?: string;
+  timestamp?: string;
+}
+
+interface Product {
+  id: string;
+  image: string;
+  title: string;
+  price: string;
+  badge: string;
+}
+
+@Component({
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
+})
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
+  trustedStreamingUrl: SafeResourceUrl | undefined;
+  private streamUrl: string = '';
+  private hls: Hls | undefined;
+
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+
+  // Variables para WebRTC Streaming
+  isStreaming = false;
+  isCreatingStream = false;
+  currentStream: any = null;
+  viewerCount = 0;
+  streamTitle = '';
+  streamDescription = '';
+  streamCategory = 'general';
+  streamRole = '';
+  streamProduct = '';
+  streamProductType = '';
+  streamProductStatus = '';
+  streamTags: string[] = [];
+  newComment = '';
+
+  // Listas de opciones para los filtros (igual que dashboard-live)
+  categorias: string[] = ['electrodomesticos', 'belleza','vestimenta', 'calzados', 'general', 'tecnologia', 'moda', 'educacion'];
+  roles: string[] = ['vendedor', 'comprador', 'proveedor', 'distribuidor', 'revendedor'];
+  productos: string[] = ['refrigerador', 'microondas', 'televisor', 'laptop', 'celular', 'ropa', 'zapatos', 'accesorios'];
+  tiposProducto: string[] = ['nuevo', 'usado', 'reacondicionado', 'liquidacion', 'oferta especial'];
+  estadosProducto: string[] = ['disponible', 'agotado', 'reservado', 'en transito', 'proximamente'];
+
+  private language = 'es';
+  private streamingService: any;
+
+  // Datos para productos adicionales
+  additionalProducts: Product[] = [
+    { id: 'camisa-cuadrille-1', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-2', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-3', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-4', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-5', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-6', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-7', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'camisa-cuadrille-8', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Cuadrille con Botones', price: '$35,000', badge: 'En Venta' },
+    { id: 'saco-gabardina', image: '../../../../assets/img/product-3.png', title: 'Saco Gabardina Mujer', price: '$35,000', badge: 'En Venta' }
+  ];
+
+  // Datos para comentarios
+  comments: ChatMessage[] = [
+    { user: 'Usuario 1', text: '¡Gran transmisión!', time: 'hace 2 min', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face' },
+    { user: 'Usuario 2', text: '¡Me encanta el contenido!', time: 'hace 5 min', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face' },
+    { user: 'Usuario 1', text: '¡Gran transmisión!', time: 'hace 8 min', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face' },
+    { user: 'Usuario 2', text: '¡Me encanta el contenido!', time: 'hace 12 min', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face' }
+  ];
+
+  constructor(
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private liveService: LiveService
+  ) {
+    this.streamingService = this.liveService.getStreamingService();
+  }
+
+  async startStreaming() {
+    if (this.isStreaming) {
+      await this.stopStreaming();
+      return;
+    }
+
+    // Obtener el tipo de usuario desde localStorage (se usará como rol)
+    const userDataStr = localStorage.getItem('user_data');
+    const userData = userDataStr ? JSON.parse(userDataStr) : null;
+    const userType = localStorage.getItem('userType') || userData?.primary_data?.type || 'professional';
+
+    // Mostrar formulario para configurar el stream con TODOS los filtros
+    const { value: formValues } = await Swal.fire({
+      title: '🎥 Configurar Transmisión en Vivo',
+      html: `
+        <div class="stream-form-container">
+          <!-- Información Principal -->
+          <div class="form-section">
+            <h3 class="section-title">📝 Información Principal</h3>
+            <div class="form-row full-width">
+              <label for="swal-input1" class="form-label">
+                <span class="label-icon">🏷️</span>
+                Título del Stream
+              </label>
+              <input
+                id="swal-input1"
+                class="form-input"
+                type="text"
+                placeholder="Ej: Ofertas especiales de electrodomésticos"
+                value="Mi Transmisión en Vivo"
+              />
+            </div>
+
+            <div class="form-row full-width">
+              <label for="swal-input2" class="form-label">
+                <span class="label-icon">📄</span>
+                Descripción (opcional)
+              </label>
+              <textarea
+                id="swal-input2"
+                class="form-textarea"
+                placeholder="Describe de qué tratará tu transmisión..."
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Clasificación del Stream -->
+          <div class="form-section">
+            <h3 class="section-title">🎯 Clasificación</h3>
+            <div class="form-grid">
+              <div class="form-row full-width">
+                <label for="swal-input3" class="form-label">
+                  <span class="label-icon">📂</span>
+                  Categoría
+                </label>
+                <select id="swal-input3" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="electrodomesticos">🔌 Electrodomésticos</option>
+                  <option value="belleza">💄 Belleza</option>
+                  <option value="vestimenta">👕 Vestimenta</option>
+                  <option value="calzados">👟 Calzados</option>
+                  <option value="tecnologia">💻 Tecnología</option>
+                  <option value="moda">👗 Moda</option>
+                  <option value="educacion">📚 Educación</option>
+                  <option value="general">🌐 General</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detalles del Producto -->
+          <div class="form-section">
+            <h3 class="section-title">📦 Detalles del Producto</h3>
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="swal-input4" class="form-label">
+                  <span class="label-icon">🏷️</span>
+                  Producto
+                </label>
+                <select id="swal-input4" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="refrigerador">❄️ Refrigerador</option>
+                  <option value="microondas">🔥 Microondas</option>
+                  <option value="televisor">📺 Televisor</option>
+                  <option value="laptop">💻 Laptop</option>
+                  <option value="celular">📱 Celular</option>
+                  <option value="ropa">👕 Ropa</option>
+                  <option value="zapatos">👟 Zapatos</option>
+                  <option value="accesorios">⌚ Accesorios</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="swal-input5" class="form-label">
+                  <span class="label-icon">🏭</span>
+                  Tipo
+                </label>
+                <select id="swal-input5" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="nuevo">✨ Nuevo</option>
+                  <option value="usado">🔄 Usado</option>
+                  <option value="reacondicionado">🔧 Reacondicionado</option>
+                  <option value="liquidacion">💸 Liquidación</option>
+                  <option value="oferta especial">🎁 Oferta Especial</option>
+                </select>
+              </div>
+
+              <div class="form-row full-width-grid">
+                <label for="swal-input6" class="form-label">
+                  <span class="label-icon">📊</span>
+                  Estado
+                </label>
+                <select id="swal-input6" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="disponible">✅ Disponible</option>
+                  <option value="agotado">❌ Agotado</option>
+                  <option value="reservado">🔒 Reservado</option>
+                  <option value="en transito">🚚 En Tránsito</option>
+                  <option value="proximamente">🔜 Próximamente</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: '🚀 Iniciar Transmisión',
+      cancelButtonText: '❌ Cancelar',
+      width: '750px',
+      customClass: {
+        popup: 'stream-config-modal'
+      },    // Mostrar formulario para configurar el stream con TODOS los filtros
+    const { value: formValues } = await Swal.fire({
+      title: '🎥 Configurar Transmisión en Vivo',
+      html: `
+        <div class="stream-form-container">
+          <!-- Tarjeta de Perfil del Vendedor -->
+          <div class="seller-profile-card">
+            <div class="seller-avatar">
+              <img src="${userAvatar}" alt="${userName}" onerror="this.src='https://via.placeholder.com/80'" />
+              <span class="online-badge"></span>
+            </div>
+            <div class="seller-info">
+              <h3 class="seller-name" onclick="window.location.href='/profile/${userId}'" style="cursor: pointer;">
+                ${userName}
+              </h3>
+              <p class="seller-username">${userUsername}</p>
+              <div class="seller-stats">
+                <div class="stat-item">
+                  <span class="stat-number">${productsOnSale}</span>
+                  <span class="stat-label">En Venta</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                  <span class="stat-number">${productsSold}</span>
+                  <span class="stat-label">Vendidos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Descripción del Vendedor -->
+          <div class="seller-description-card">
+            <h4 class="description-title">📝 Descripción del Vendedor</h4>
+            <p class="description-text">${userDescription}</p>
+          </div>
+
+          <!-- Información Principal -->
+          <div class="form-section">
+            <h3 class="section-title">📝 Información de la Transmisión</h3>
+            <div class="form-row full-width">
+              <label for="swal-input1" class="form-label">
+                <span class="label-icon">🏷️</span>
+                Título del Stream
+              </label>
+              <input
+                id="swal-input1"
+                class="form-input"
+                type="text"
+                placeholder="Ej: Ofertas especiales de electrodomésticos"
+                value="Mi Transmisión en Vivo"
+              />
+            </div>
+
+            <div class="form-row full-width">
+              <label for="swal-input2" class="form-label">
+                <span class="label-icon">�</span>
+                Descripción del Stream (opcional)
+              </label>
+              <textarea
+                id="swal-input2"
+                class="form-textarea"
+                placeholder="Describe de qué tratará tu transmisión..."
+                rows="2"
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <label for="swal-input3" class="form-label">
+                <span class="label-icon">�</span>
+                Categoría
+              </label>
+              <select id="swal-input3" class="form-select">
+                <option value="" disabled selected>Seleccionar...</option>
+                <option value="electrodomesticos">� Electrodomésticos</option>
+                <option value="belleza">� Belleza</option>
+                <option value="vestimenta">👕 Vestimenta</option>
+                <option value="calzados">👟 Calzados</option>
+                <option value="tecnologia">� Tecnología</option>
+                <option value="moda">👗 Moda</option>
+                <option value="educacion">📚 Educación</option>
+                <option value="general">🌐 General</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Detalles del Producto -->
+          <div class="form-section">
+            <h3 class="section-title">📦 Detalles del Producto</h3>
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="swal-input4" class="form-label">
+                  <span class="label-icon">🏷️</span>
+                  Producto
+                </label>
+                <select id="swal-input4" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="refrigerador">❄️ Refrigerador</option>
+                  <option value="microondas">🔥 Microondas</option>
+                  <option value="televisor">📺 Televisor</option>
+                  <option value="laptop">💻 Laptop</option>
+                  <option value="celular">📱 Celular</option>
+                  <option value="ropa">👕 Ropa</option>
+                  <option value="zapatos">👟 Zapatos</option>
+                  <option value="accesorios">⌚ Accesorios</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="swal-input5" class="form-label">
+                  <span class="label-icon">🏭</span>
+                  Tipo
+                </label>
+                <select id="swal-input5" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="nuevo">✨ Nuevo</option>
+                  <option value="usado">🔄 Usado</option>
+                  <option value="reacondicionado">🔧 Reacondicionado</option>
+                  <option value="liquidacion">💸 Liquidación</option>
+                  <option value="oferta especial">🎁 Oferta Especial</option>
+                </select>
+              </div>
+
+              <div class="form-row full-width-grid">
+                <label for="swal-input6" class="form-label">
+                  <span class="label-icon">📊</span>
+                  Estado
+                </label>
+                <select id="swal-input6" class="form-select">
+                  <option value="" disabled selected>Seleccionar...</option>
+                  <option value="disponible">✅ Disponible</option>
+                  <option value="agotado">❌ Agotado</option>
+                  <option value="reservado">🔒 Reservado</option>
+                  <option value="en transito">🚚 En Tránsito</option>
+                  <option value="proximamente">🔜 Próximamente</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: '🚀 Iniciar Transmisión',
+      cancelButtonText: '❌ Cancelar',
+      width: '800px',
+      customClass: {
+        popup: 'stream-config-modal'
+      },
+      preConfirm: () => {
+        return {
+          title: (document.getElementById('swal-input1') as HTMLInputElement).value,
+          description: (document.getElementById('swal-input2') as HTMLTextAreaElement).value,
+          category: (document.getElementById('swal-input3') as HTMLSelectElement).value,
+          product: (document.getElementById('swal-input4') as HTMLSelectElement).value,
+          productType: (document.getElementById('swal-input5') as HTMLSelectElement).value,
+          productStatus: (document.getElementById('swal-input6') as HTMLSelectElement).value
+        }
+      }
+    });
+
+    if (formValues) {
+      this.streamTitle = formValues.title || 'Transmisión en Vivo';
+      this.streamDescription = formValues.description || '';
+      this.streamCategory = formValues.category || 'general';
+      this.streamRole = userType; // Se toma del tipo de usuario
+      this.streamProduct = formValues.product || '';
+      this.streamProductType = formValues.productType || '';
+      this.streamProductStatus = formValues.productStatus || '';
+
+      await this.createAndStartStream();
+    }
+  }
+
+  private async createAndStartStream() {
+    try {
+      this.isCreatingStream = true;
+
+      // 1. Crear el stream en el servidor
+      this.liveService.createWebRTCStream({
+        title: this.streamTitle,
+        description: this.streamDescription,
+        quality: '720p',
+        isPrivate: false,
+        category: this.streamCategory,
+        role: this.streamRole,
+        product: this.streamProduct,
+        productType: this.streamProductType,
+        productStatus: this.streamProductStatus,
+        tags: this.streamTags
+      }).subscribe({
+        next: async (response) => {
+          if (response.success) {
+            this.currentStream = response.stream;
+
+            // 2. Conectar Socket.IO
+            this.streamingService.connectSocket();
+            this.setupSocketListeners();
+
+            // 3. Obtener permisos de cámara y micrófono e iniciar WebRTC
+            try {
+              const mediaStream = await this.streamingService.startBroadcasting(
+                this.currentStream.streamId,
+                this.videoPlayer.nativeElement
+              );
+
+              // 4. Unirse a la sala del stream
+              const userId = localStorage.getItem('userId') || 'streamer';
+              const username = localStorage.getItem('username') || 'Streamer';
+              const role = localStorage.getItem('role') || 'professional';
+
+              this.streamingService.joinStreamRoom(
+                this.currentStream.streamId,
+                userId,
+                username,
+                role
+              );
+
+              // 5. Crear y enviar offer WebRTC
+              await this.streamingService.createOffer(this.currentStream.streamId);
+
+              // 6. Marcar el stream como live en el servidor
+              this.liveService.startWebRTCStream(this.currentStream.streamId).subscribe({
+                next: () => {
+                  this.isStreaming = true;
+                  this.isCreatingStream = false;
+
+                  // Guardar streamId en localStorage para recuperar después de refresh
+                  localStorage.setItem('activeStreamId', this.currentStream.streamId);
+                  localStorage.setItem('activeStreamRole', 'streamer');
+
+                  // Notificar via Socket.IO que el broadcast comenzó
+                  this.streamingService.startBroadcastEvent(this.currentStream.streamId);
+
+                  Swal.fire('¡Transmisión iniciada!', 'Estás en vivo', 'success');
+                },
+                error: (error) => {
+                  console.error('Error al marcar stream como live:', error);
+                  this.cleanupStream();
+                }
+              });
+
+            } catch (error) {
+              console.error('Error al obtener permisos de medios:', error);
+              Swal.fire('Error', 'No se pudo acceder a la cámara o micrófono', 'error');
+              this.cleanupStream();
+            }
+          }
+        },
+        error: (error) => {
+          console.error('Error al crear stream:', error);
+          this.isCreatingStream = false;
+
+          // Verificar si es error 429 (ya hay un stream activo)
+          if (error.status === 429 || error.error?.error?.includes('stream(s) activo')) {
+            Swal.fire({
+              title: 'Ya tienes una transmisión activa',
+              text: '¿Deseas finalizar la transmisión anterior y crear una nueva?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Sí, finalizar anterior',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.endPreviousStreamAndCreateNew();
+              }
+            });
+          } else {
+            Swal.fire('Error', 'No se pudo crear la transmisión. ' + (error.error?.message || error.message || ''), 'error');
+          }
+        }
+      });
+
+    } catch (error) {
+      console.error('Error en createAndStartStream:', error);
+      this.isCreatingStream = false;
+    }
+  }
+
+  private async stopStreaming() {
+    if (!this.currentStream) return;
+
+    const result = await Swal.fire({
+      title: '¿Finalizar transmisión?',
+      text: 'Se terminará el stream para todos los espectadores',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, finalizar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
+      // 1. Finalizar stream en el servidor
+      this.liveService.endWebRTCStream(this.currentStream.streamId).subscribe({
+        next: (response) => {
+          // 2. Notificar via Socket.IO
+          this.streamingService.stopBroadcastEvent(this.currentStream.streamId);
+
+          // 3. Salir de la sala
+          const userId = localStorage.getItem('userId') || 'streamer';
+          this.streamingService.leaveStreamRoom(this.currentStream.streamId, userId);
+
+          // 4. Limpiar recursos
+          this.cleanupStream();
+
+          // 5. Mostrar estadísticas
+          Swal.fire({
+            title: 'Transmisión finalizada',
+            html: `
+              <p>Duración: ${Math.floor(response.stream.duration / 60)} minutos</p>
+              <p>Espectadores totales: ${response.stream.viewerCount}</p>
+              <p>Pico de espectadores: ${response.stream.peakViewers}</p>
+            `,
+            icon: 'success'
+          });
+        },
+        error: (error) => {
+          console.error('Error al finalizar stream:', error);
+          this.cleanupStream();
+        }
+      });
+    }
+  }
+
+  private cleanupStream() {
+    this.streamingService.closeWebRTC();
+    this.streamingService.disconnectSocket();
+    this.isStreaming = false;
+    this.isCreatingStream = false;
+    this.currentStream = null;
+    this.viewerCount = 0;
+
+    // Limpiar localStorage
+    localStorage.removeItem('activeStreamId');
+    localStorage.removeItem('activeStreamRole');
+
+    // Limpiar el video
+    if (this.videoPlayer && this.videoPlayer.nativeElement) {
+      this.videoPlayer.nativeElement.srcObject = null;
+    }
+  }
+
+  private endPreviousStreamAndCreateNew() {
+    // Obtener streams activos del usuario
+    this.liveService.getMyStreams().subscribe({
+      next: (response) => {
+        if (response.success && response.streams && response.streams.length > 0) {
+          // Finalizar todos los streams activos
+          const activeStream = response.streams[0];
+          this.liveService.endWebRTCStream(activeStream.streamId).subscribe({
+            next: () => {
+              console.log('Stream anterior finalizado');
+              // Esperar un poco y crear el nuevo stream
+              setTimeout(() => {
+                this.createAndStartStream();
+              }, 1000);
+            },
+            error: (error) => {
+              console.error('Error al finalizar stream anterior:', error);
+              Swal.fire('Error', 'No se pudo finalizar la transmisión anterior', 'error');
+            }
+          });
+        } else {
+          // Si no hay streams activos, crear uno nuevo directamente
+          this.createAndStartStream();
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener streams:', error);
+        Swal.fire('Error', 'No se pudo verificar transmisiones anteriores', 'error');
+      }
+    });
+  }
+
+  private setupSocketListeners() {
+    // Escuchar cuando viewers se unen
+    this.streamingService.onViewerJoined((data: any) => {
+      this.viewerCount = data.viewerCount;
+      console.log(`Viewer ${data.username} se unió. Total: ${this.viewerCount}`);
+    });
+
+    // Escuchar cuando viewers se van
+    this.streamingService.onViewerLeft((data: any) => {
+      this.viewerCount = data.viewerCount;
+      console.log(`Viewer salió. Total: ${this.viewerCount}`);
+    });
+
+    // Escuchar mensajes del chat
+    this.streamingService.onChatMessage((data: any) => {
+      this.comments.push({
+        user: data.username || data.user,
+        text: data.message || data.text,
+        time: 'ahora',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
+        userId: data.userId,
+        username: data.username,
+        message: data.message,
+        timestamp: data.timestamp
+      });
+    });
+
+    // Escuchar respuestas WebRTC de viewers
+    this.streamingService.onWebRTCAnswer(async (data: any) => {
+      try {
+        await this.streamingService.handleAnswer(data.answer);
+        console.log('Answer recibido de viewer:', data.from);
+      } catch (error) {
+        console.error('Error al manejar answer:', error);
+      }
+    });
+
+    // Escuchar ICE candidates
+    this.streamingService.onWebRTCIceCandidate(async (data: any) => {
+      try {
+        await this.streamingService.handleIceCandidate(data.candidate);
+        console.log('ICE candidate recibido');
+      } catch (error) {
+        console.error('Error al manejar ICE candidate:', error);
+      }
+    });
+  }
+
+  sendComment() {
+    if (this.newComment.trim() && this.currentStream) {
+      this.streamingService.sendChatMessage(
+        this.currentStream.streamId,
+        this.newComment.trim()
+      );
+      this.newComment = '';
+    }
+  }
+
+  addBuy() {
+    return this.router.navigate(['buy-prod']);
+  }
+
+  addFriend() {
+    return Swal.fire('solicitud de amistad enviada', '', 'success');
+  }
+
+  ngOnInit(): void {
+    // Verificar si hay un stream activo guardado (después de refresh)
+    const savedStreamId = localStorage.getItem('activeStreamId');
+    const savedRole = localStorage.getItem('activeStreamRole');
+
+    if (savedStreamId && savedRole === 'streamer') {
+      // Recuperar el stream del servidor
+      this.liveService.getStreamInfo(savedStreamId).subscribe({
+        next: async (response) => {
+          if (response.success && response.stream && response.stream.status === 'live') {
+            this.currentStream = response.stream;
+            this.isStreaming = true;
+            this.viewerCount = response.stream.viewerCount || 0;
+
+            // Reconectar Socket.IO y WebRTC
+            try {
+              this.streamingService.connectSocket();
+              this.setupSocketListeners();
+
+              const userId = localStorage.getItem('userId') || 'streamer';
+              const username = localStorage.getItem('username') || 'Streamer';
+              const role = localStorage.getItem('role') || 'professional';
+
+              this.streamingService.joinStreamRoom(
+                savedStreamId,
+                userId,
+                username,
+                role
+              );
+
+              // Reiniciar broadcasting
+              await this.streamingService.initWebRTC();
+              await this.streamingService.startBroadcasting(
+                savedStreamId,
+                this.videoPlayer.nativeElement
+              );
+              await this.streamingService.createOffer(savedStreamId);
+
+              console.log('Stream recuperado exitosamente después de refresh');
+            } catch (error) {
+              console.error('Error al reconectar stream:', error);
+              this.cleanupStream();
+              Swal.fire('Error', 'No se pudo reconectar al stream', 'error');
+            }
+          } else {
+            // El stream ya no está activo
+            localStorage.removeItem('activeStreamId');
+            localStorage.removeItem('activeStreamRole');
+          }
+        },
+        error: (error) => {
+          console.error('Error al recuperar stream:', error);
+          localStorage.removeItem('activeStreamId');
+          localStorage.removeItem('activeStreamRole');
+        }
+      });
+    }
+
+    // Método legacy para HLS (mantener por compatibilidad)
+    // Se puede comentar si solo se usa WebRTC
+    /*
+    this.liveService.getStreamUrl().subscribe({
+      next: (response) => {
+        this.streamUrl = response.streamingUrl;
+        this.trustedStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.streamUrl);
+        if (this.hls && this.videoPlayer) {
+          this.hls.loadSource(this.streamUrl);
+        }
+      },
+      error: (err) => console.error('Error al obtener la URL de streaming:', err)
+    });
+    */
+  }
+
+  ngAfterViewInit(): void {
+    // Solo inicializar HLS si no se usa WebRTC
+    // this.initPlayer();
+  }
+
+  ngOnDestroy(): void {
+    // Limpiar recursos al destruir el componente
+    if (this.isStreaming) {
+      this.cleanupStream();
+    }
+  }
+
+  private initPlayer() {
+    const video: HTMLVideoElement = this.videoPlayer.nativeElement;
+    if (Hls.isSupported()) {
+      this.hls = new Hls();
+      if (this.streamUrl) {
+        this.hls.loadSource(this.streamUrl);
+      }
+      this.hls.attachMedia(video);
+      this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(err => console.error('Error al reproducir el video:', err));
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = this.streamUrl;
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(err => console.error('Error al reproducir el video:', err));
+      });
+    } else {
+      console.error('El navegador no soporta HLS.');
+    }
+  }
+}

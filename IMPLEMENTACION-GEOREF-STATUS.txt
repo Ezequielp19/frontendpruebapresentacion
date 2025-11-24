@@ -1,0 +1,79 @@
+﻿========================================
+ SISTEMA DE BÚSQUEDA DE UBICACIONES IMPLEMENTADO
+========================================
+
+ BACKEND COMPLETADO:
+
+1.  Servicio: src/services/ubicaciones.service.ts
+   - buscarUbicaciones(): Combina provincias, municipios y localidades
+   - obtenerProvincias(): Lista las 24 provincias
+   - obtenerMunicipiosPorProvincia(): Municipios filtrados
+
+2.  Controlador: src/controllers/ubicaciones.controller.ts
+   - GET /api/ubicaciones/search?q=cordoba&max=10
+   - GET /api/ubicaciones/provincias
+   - GET /api/ubicaciones/municipios?provincia=cordoba&max=50
+
+3.  Rutas: src/routes/ubicaciones.routes.ts
+   - Registradas en app.ts como /api/ubicaciones
+
+4.  Integración con API de Georef AR:
+   - URL: https://apis.datos.gob.ar/georef/api
+   - Endpoints: /provincias, /municipios, /localidades
+   - Búsqueda en paralelo con axios
+   - Timeout de 5 segundos por seguridad
+
+ FRONTEND COMPLETADO:
+
+1.  Servicio: src/app/services/ubicaciones.service.ts
+   - buscarUbicaciones(query, max)
+   - obtenerProvincias()
+   - obtenerMunicipios(provincia, max)
+   - Manejo de errores con rxjs
+
+PENDIENTE - PRÓXIMOS PASOS:
+
+2.  Modificar lives/main.component.ts:
+   - Importar UbicacionesService
+   - Añadir Subject para búsqueda con debounce
+   - Crear método onUbicacionSearch()
+   - Actualizar modal HTML para usar input con autocompletado
+   - Eliminar array estático de ubicaciones
+
+3.  Modificar dashboard-live/main.component.ts:
+   - Importar UbicacionesService
+   - Añadir Subject para búsqueda
+   - Crear método de búsqueda
+   - Actualizar HTML del filtro
+
+4.  Actualizar HTML de modal (lives):
+   - Cambiar <select> por <input type="text">
+   - Añadir lista de resultados con *ngFor
+   - Implementar selección de resultado
+   - Añadir loading indicator
+
+5.  Actualizar HTML de dashboard-live:
+   - Cambiar <select> por <input type="text">
+   - Añadir autocompletado
+   - Mantener funcionalidad de filtrado
+
+========================================
+API DE GEOREF AR - INFORMACIÓN:
+========================================
+
+ Ejemplos de uso:
+- Buscar provincias:
+  https://apis.datos.gob.ar/georef/api/provincias?nombre=cordoba
+
+- Buscar municipios:
+  https://apis.datos.gob.ar/georef/api/municipios?provincia=tucuman&max=10
+
+- Buscar localidades:
+  https://apis.datos.gob.ar/georef/api/localidades?provincia=chubut
+
+ Datos disponibles:
+- 24 provincias (23 + CABA)
+- ~2,300 municipios
+- ~50,000 localidades
+
+========================================

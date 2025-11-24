@@ -1,0 +1,154 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="formBillingInfo">
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-primary mb-3">💳 Información de Facturación</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Número de Documento <span class="text-danger">*</span></label>
+          <input formControlName="docNumber" class="form-control input-style" placeholder="12345678" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('docNumber')?.invalid && (formBillingInfo.get('docNumber')?.dirty || formBillingInfo.get('docNumber')?.touched)">
+            <div *ngIf="formBillingInfo.get('docNumber')?.errors?.['required']">El número de documento es requerido</div>
+            <div *ngIf="formBillingInfo.get('docNumber')?.errors?.['minlength']">Mínimo 7 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">CUIT/CUIL <span class="text-danger">*</span></label>
+          <input formControlName="cuitCuil" class="form-control input-style" placeholder="20-12345678-9" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('cuitCuil')?.invalid && (formBillingInfo.get('cuitCuil')?.dirty || formBillingInfo.get('cuitCuil')?.touched)">
+            <div *ngIf="formBillingInfo.get('cuitCuil')?.errors?.['required']">El CUIT/CUIL es requerido</div>
+            <div *ngIf="formBillingInfo.get('cuitCuil')?.errors?.['minlength']">Mínimo 10 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Tipo de Contribuyente <span class="text-danger">*</span></label>
+          <select formControlName="taxpayerType" class="form-control input-style">
+            <option value="">Selecciona un tipo</option>
+            <option value="IVA_RESPONSABLE_INSCRIPTO">IVA Responsable Inscripto</option>
+            <option value="IVA_RESPONSABLE_NO_INSCRIPTO">IVA Responsable No Inscripto</option>
+            <option value="IVA_NO_RESPONSABLE">IVA No Responsable</option>
+            <option value="IVA_SUJETO_EXENTO">IVA Sujeto Exento</option>
+            <option value="CONSUMIDOR_FINAL">Consumidor Final</option>
+            <option value="RESPONSABLE_MONOTRIBUTO">Responsable Monotributo</option>
+            <option value="SUJETO_NO_CATEGORIZADO">Sujeto No Categorizado</option>
+            <option value="PROVEEDOR_DEL_EXTERIOR">Proveedor del Exterior</option>
+            <option value="CLIENTE_DEL_EXTERIOR">Cliente del Exterior</option>
+            <option value="IVA_LIBERADO">IVA Liberado</option>
+            <option value="AGENTE_DE_PERCEPCION">Agente de Percepción</option>
+            <option value="PEQUEÑO_CONTRIBUYENTE_EVENTUAL">Pequeño Contribuyente Eventual</option>
+            <option value="MONOTRIBUTISTA_SOCIAL">Monotributista Social</option>
+            <option value="PEQUEÑO_CONTRIBUYENTE_EVENTUAL_SOCIAL">Pequeño Contribuyente Eventual Social</option>
+          </select>
+          <div class="text-danger small" *ngIf="formBillingInfo.get('taxpayerType')?.invalid && (formBillingInfo.get('taxpayerType')?.dirty || formBillingInfo.get('taxpayerType')?.touched)">
+            <div *ngIf="formBillingInfo.get('taxpayerType')?.errors?.['required']">El tipo de contribuyente es requerido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Razón Social <span class="text-danger">*</span></label>
+          <input formControlName="businessName" class="form-control input-style" placeholder="Nombre de la empresa" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('businessName')?.invalid && (formBillingInfo.get('businessName')?.dirty || formBillingInfo.get('businessName')?.touched)">
+            <div *ngIf="formBillingInfo.get('businessName')?.errors?.['required']">La razón social es requerida</div>
+            <div *ngIf="formBillingInfo.get('businessName')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Ciudad <span class="text-danger">*</span></label>
+          <input formControlName="cityName" class="form-control input-style" placeholder="Ciudad" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('cityName')?.invalid && (formBillingInfo.get('cityName')?.dirty || formBillingInfo.get('cityName')?.touched)">
+            <div *ngIf="formBillingInfo.get('cityName')?.errors?.['required']">La ciudad es requerida</div>
+            <div *ngIf="formBillingInfo.get('cityName')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Provincia <span class="text-danger">*</span></label>
+          <input formControlName="stateName" class="form-control input-style" placeholder="Provincia" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('stateName')?.invalid && (formBillingInfo.get('stateName')?.dirty || formBillingInfo.get('stateName')?.touched)">
+            <div *ngIf="formBillingInfo.get('stateName')?.errors?.['required']">La provincia es requerida</div>
+            <div *ngIf="formBillingInfo.get('stateName')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="boxInput">
+          <label class="mb-2">Calle <span class="text-danger">*</span></label>
+          <input formControlName="streetName" class="form-control input-style" placeholder="Nombre de la calle" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('streetName')?.invalid && (formBillingInfo.get('streetName')?.dirty || formBillingInfo.get('streetName')?.touched)">
+            <div *ngIf="formBillingInfo.get('streetName')?.errors?.['required']">La calle es requerida</div>
+            <div *ngIf="formBillingInfo.get('streetName')?.errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">Número <span class="text-danger">*</span></label>
+          <input formControlName="streetNumber" class="form-control input-style" placeholder="123" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('streetNumber')?.invalid && (formBillingInfo.get('streetNumber')?.dirty || formBillingInfo.get('streetNumber')?.touched)">
+            <div *ngIf="formBillingInfo.get('streetNumber')?.errors?.['required']">El número es requerido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="boxInput">
+          <label class="mb-2">Código Postal <span class="text-danger">*</span></label>
+          <input formControlName="zipCode" class="form-control input-style" placeholder="1234" />
+          <div class="text-danger small" *ngIf="formBillingInfo.get('zipCode')?.invalid && (formBillingInfo.get('zipCode')?.dirty || formBillingInfo.get('zipCode')?.touched)">
+            <div *ngIf="formBillingInfo.get('zipCode')?.errors?.['required']">El código postal es requerido</div>
+            <div *ngIf="formBillingInfo.get('zipCode')?.errors?.['minlength']">Mínimo 4 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="boxInput">
+          <label class="mb-2">Comentarios</label>
+          <textarea formControlName="comment" class="form-control input-style" rows="3" placeholder="Comentarios adicionales (opcional)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center my-5">
+      <button 
+        [disabled]="isLoading || formBillingInfo.invalid" 
+        (click)="submitRegister()" 
+        class="col-3 btn btnnuevo1">
+        <span *ngIf="!isLoading">
+          <i-feather name="save"></i-feather> Guardar información de facturación
+        </span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i> Guardando...
+        </span>
+      </button>
+    </div>
+  </form>
+</div> 

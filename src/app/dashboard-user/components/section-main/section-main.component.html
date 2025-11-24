@@ -1,0 +1,331 @@
+<div class="modern-dashboard">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <div class="welcome-content">
+            <h1 class="welcome-title">¡Bienvenido de nuevo!</h1>
+            <p class="welcome-subtitle">Gestiona tus productos y maximiza tus ventas</p>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-section">
+        <div class="section-header">
+            <div class="section-title">
+                <h2>Mis Productos</h2>
+                <p>Administra tus productos de manera sencilla y clara</p>
+            </div>
+            <a href="/your-service" class="add-product-btn">
+                <mat-icon>add</mat-icon>
+                <span>Agregar Producto</span>
+            </a>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.imgur.com/QpjAiHq.jpg" alt="Camisa estampada">
+                    <div class="product-overlay">
+                        <div class="share-buttons">
+                            <button class="share-btn instagram">
+                                <i-feather name="instagram"></i-feather>
+                            </button>
+                            <button class="share-btn facebook">
+                                <i-feather name="facebook"></i-feather>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-name">Camisa Estampada</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <span class="rating-count">310</span>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <span class="spec">100% algodón</span>
+                        <span class="spec">Peso ligero</span>
+                        <span class="spec">Acabado premium</span>
+                    </div>
+                    
+                    <p class="product-description">
+                        Camisa de alta calidad con diseño único y moderno. Perfecta para ocasiones casuales y eventos especiales.
+                    </p>
+                    
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Stock:</span>
+                            <span class="detail-value">25 unidades</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ubicación:</span>
+                            <span class="detail-value">Argentina</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-pricing">
+                    <div class="price-section">
+                        <span class="price">$20.99</span>
+                        <mat-icon class="edit-icon">edit</mat-icon>
+                    </div>
+                    <div class="profit-info">
+                        <span class="profit-label">Beneficio de venta:</span>
+                        <span class="profit-value">$1,000</span>
+                    </div>
+                    <button class="details-btn" mat-button (click)="goToProductDetail()">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Revender
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.imgur.com/JvPeqEF.jpg" alt="Zapatos de vestir">
+                    <div class="product-overlay">
+                        <div class="share-buttons">
+                            <button class="share-btn instagram">
+                                <i-feather name="instagram"></i-feather>
+                            </button>
+                            <button class="share-btn facebook">
+                                <i-feather name="facebook"></i-feather>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-name">Zapatos de Vestir Masculino</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <span class="rating-count">310</span>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <span class="spec">Cuero genuino</span>
+                        <span class="spec">Comfort premium</span>
+                        <span class="spec">Estilo elegante</span>
+                    </div>
+                    
+                    <p class="product-description">
+                        Zapatos de vestir de alta calidad, perfectos para ocasiones formales y eventos importantes.
+                    </p>
+                    
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Stock:</span>
+                            <span class="detail-value">25 unidades</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ubicación:</span>
+                            <span class="detail-value">Argentina</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-pricing">
+                    <div class="price-section">
+                        <span class="price">$20.99</span>
+                        <mat-icon class="edit-icon">edit</mat-icon>
+                    </div>
+                    <div class="profit-info">
+                        <span class="profit-label">Beneficio de venta:</span>
+                        <span class="profit-value">$1,000</span>
+                    </div>
+                    <button class="details-btn" mat-button (click)="goToProductDetail()">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Revender
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.imgur.com/Bf4dIaN.jpg" alt="Camisa estilo lineal">
+                    <div class="product-overlay">
+                        <div class="share-buttons">
+                            <button class="share-btn instagram">
+                                <i-feather name="instagram"></i-feather>
+                            </button>
+                            <button class="share-btn facebook">
+                                <i-feather name="facebook"></i-feather>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-name">Camisa Estilo Lineal</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <span class="rating-count">123</span>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <span class="spec">Diseño único</span>
+                        <span class="spec">Para hombres</span>
+                        <span class="spec">Estilo casual</span>
+                    </div>
+                    
+                    <p class="product-description">
+                        Camisa con diseño lineal moderno, ideal para el uso diario y ocasiones informales.
+                    </p>
+                    
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Stock:</span>
+                            <span class="detail-value">25 unidades</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ubicación:</span>
+                            <span class="detail-value">Argentina</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-pricing">
+                    <div class="price-section">
+                        <span class="price">$20.99</span>
+                        <mat-icon class="edit-icon">edit</mat-icon>
+                    </div>
+                    <div class="profit-info">
+                        <span class="profit-label">Beneficio de venta:</span>
+                        <span class="profit-value">$1,000</span>
+                    </div>
+                    <button class="details-btn" mat-button (click)="goToProductDetail()">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Revender
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.imgur.com/HO8e9b8.jpg" alt="Saco color salmon">
+                    <div class="product-overlay">
+                        <div class="share-buttons">
+                            <button class="share-btn instagram">
+                                <i-feather name="instagram"></i-feather>
+                            </button>
+                            <button class="share-btn facebook">
+                                <i-feather name="facebook"></i-feather>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-name">Saco Color Salmón</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <span class="rating-count">110</span>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <span class="spec">Color vibrante</span>
+                        <span class="spec">Tela premium</span>
+                        <span class="spec">Corte moderno</span>
+                    </div>
+                    
+                    <p class="product-description">
+                        Saco en color salmón con diseño elegante y moderno, perfecto para destacar en cualquier ocasión.
+                    </p>
+                    
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Stock:</span>
+                            <span class="detail-value">25 unidades</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Ubicación:</span>
+                            <span class="detail-value">Argentina</span>
+                            <mat-icon class="edit-icon">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-pricing">
+                    <div class="price-section">
+                        <span class="price">$21.99</span>
+                        <mat-icon class="edit-icon">edit</mat-icon>
+                    </div>
+                    <div class="profit-info">
+                        <span class="profit-label">Beneficio de venta:</span>
+                        <span class="profit-value">$1,000</span>
+                    </div>
+                    <button class="details-btn" mat-button (click)="goToProductDetail()">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Revender
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Section -->
+    <div class="promo-banner">
+        <div class="banner-content">
+            <div class="banner-text">
+                <h2 class="banner-title">¡Haz crecer tu negocio y tus ingresos!</h2>
+                <p class="banner-description">
+                    Con nuestros planes de beneficios, puedes adquirir y obtener ingresos del 10%, 15% hasta 30% según tus necesidades
+                </p>
+                <a href="/pricing-plans" class="banner-btn">
+                    <mat-icon>trending_up</mat-icon>
+                    <span>Explorar Planes</span>
+                </a>
+            </div>
+            <div class="banner-image">
+                <img src="../../../../assets/img/ilustracion-frugalidad-dibujada-mano.png" alt="Ilustración de crecimiento">
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Profile Section -->
+    <div class="share-profile-section">
+        <div class="share-content">
+            <h3 class="share-title">Comparte tu perfil con más personas</h3>
+            <p class="share-subtitle">Conecta con clientes potenciales y expande tu red</p>
+            <div class="share-input-group">
+                <input class="share-input" type="text" placeholder="https://click.ly/fake-link-generator#" readonly>
+                <button class="copy-btn">
+                    <mat-icon>content_copy</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

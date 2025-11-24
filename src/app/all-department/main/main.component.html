@@ -1,0 +1,19 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer mode="side" opened class="drawer" #drawer>
+        <div class="my-4 section-main">
+            <app-section-companies></app-section-companies>
+            
+        </div>
+       
+
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="toolbar">
+            <button mat-icon-button (click)="drawer.toggle()" class=" btn menu-button">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <app-section-main [data]="info"></app-section-main>
+    </mat-drawer-content>
+</mat-drawer-container>
+

@@ -1,0 +1,71 @@
+<div class="bg-light py-5 service-3">
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Iterar sobre los tipos de vehículos -->
+      <div *ngFor="let vehicleType of vehicleTypes" class="col-md-6 wrap-service3-box">
+        <div class="card border-0 card-shadow mb-4 service-card">
+          <div class="card-body d-flex">
+            <!-- Ícono del tipo de vehículo -->
+            <div class="mt-4 mr-4 display-2 text-success-gradiant">
+              <img class="img-icon" [src]="getVehicleIcon(vehicleType)" alt="{{ vehicleType }}" />
+            </div>
+            <!-- Descripción del tipo de vehículo -->
+            <div class="title-desc">
+              <h2 class="font-weight-medium">
+                <a href="javascript:void(0)" class="linking vehicle-title">{{ vehicleType }}</a>
+              </h2>
+              <p class="mt-3 desc">
+                Vas a poder elegir el tipo de {{ vehicleType }} que se ajuste a tus necesidades, como también elegir al conductor de tu
+                preferencia!
+              </p>
+            </div>
+          </div>
+
+          <!-- Acordeón de Vehículos -->
+          <mat-accordion>
+            <!-- Iterar sobre los vehículos del tipo actual -->
+            <mat-expansion-panel
+              *ngFor="let vehicle of groupedVehicles[vehicleType]"
+              [expanded]="panelStates[vehicle._id]"
+              (opened)="panelOpenState = true"
+              (closed)="panelOpenState = false"
+              class="vehicle-panel"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="vehicle-title-container">
+                    <span class="vehicle-name">{{ vehicle.vehicleModel }}</span>
+                    <!-- Indicador de estado online/offline -->
+                    <div class="status-indicator" [class]="getDriverStatusClass(vehicle)">
+                      <div class="status-dot"></div>
+                      <span class="status-text">{{ getDriverStatusText(vehicle) }}</span>
+                    </div>
+                    <!-- Botón para ir al perfil del conductor -->
+                    <button class="btn-profile-small" (click)="goToDriverProfile(vehicle, $event)" title="Ver perfil del conductor">
+                      <mat-icon>person</mat-icon>
+                    </button>
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="vehicle-details">
+                <ul class="vehicle-info-list">
+                  <li><strong>Marca:</strong> {{ vehicle.brand }}</li>
+                  <li><strong>Placa:</strong> {{ vehicle.licensePlate }}</li>
+                  <li><strong>Color:</strong> {{ vehicle.color }}</li>
+                  <li><strong>Kilómetros:</strong> {{ vehicle.kilometers | number }}</li>
+                  <li><strong>Año:</strong> {{ vehicle.year }}</li>
+                  <li><strong>Estado:</strong> 
+                    <span [class]="getDriverStatusClass(vehicle)">
+                      {{ getDriverStatusText(vehicle) }}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

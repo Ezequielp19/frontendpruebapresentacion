@@ -1,0 +1,410 @@
+// Importar estilos del componente principal de lives
+@import '../main/main.component.scss';
+
+// Estilos adicionales específicos para el viewer
+
+// ========== PANEL DE CONTROL CRUD ==========
+
+.stream-controls-panel {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+
+    .controls-toggle-btn {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+        mat-icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+        }
+
+        &:hover {
+            background: rgba(255, 107, 53, 0.8);
+            border-color: rgba(255, 107, 53, 1);
+            transform: scale(1.05);
+        }
+
+        &.active {
+            background: rgba(255, 107, 53, 0.9);
+            border-color: rgba(255, 107, 53, 1);
+            animation: pulse-btn 2s infinite;
+        }
+    }
+
+    .controls-dropdown {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 20px;
+        min-width: 320px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        animation: slideDown 0.3s ease;
+
+        .controls-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            h4 {
+                margin: 0;
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .user-role-badge {
+                padding: 4px 12px;
+                border-radius: 12px;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+
+                &.admin {
+                    background: linear-gradient(135deg, #e74c3c, #c0392b);
+                    color: white;
+                }
+
+                &.moderator {
+                    background: linear-gradient(135deg, #f39c12, #e67e22);
+                    color: white;
+                }
+
+                &.professional, &.streamer {
+                    background: linear-gradient(135deg, #3498db, #2980b9);
+                    color: white;
+                }
+            }
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+
+            .control-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                color: white;
+                transition: all 0.3s ease;
+
+                mat-icon {
+                    font-size: 24px;
+                    width: 24px;
+                    height: 24px;
+                }
+
+                span {
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+                }
+
+                &.edit-btn:hover {
+                    background: rgba(52, 152, 219, 0.3);
+                    border-color: rgba(52, 152, 219, 0.8);
+                }
+
+                &.viewers-btn:hover {
+                    background: rgba(155, 89, 182, 0.3);
+                    border-color: rgba(155, 89, 182, 0.8);
+                }
+
+                &.end-btn:hover {
+                    background: rgba(243, 156, 18, 0.3);
+                    border-color: rgba(243, 156, 18, 0.8);
+                }
+
+                &.delete-btn {
+                    grid-column: 1 / -1;
+
+                    &:hover {
+                        background: rgba(231, 76, 60, 0.3);
+                        border-color: rgba(231, 76, 60, 0.8);
+                    }
+                }
+            }
+        }
+
+        .controls-info {
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 13px;
+
+                mat-icon {
+                    font-size: 18px;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-btn {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.6);
+    }
+}
+
+// ========== FIN PANEL DE CONTROL ==========
+
+.loading-container {
+    min-height: 100vh;
+    background: #1c9af3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading-spinner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+
+        mat-icon {
+            font-size: 64px;
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+
+            &.spinning {
+                animation: spin 1s linear infinite;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+.stream-ended-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 20;
+
+    mat-icon {
+        font-size: 80px;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        opacity: 0.7;
+    }
+
+    h3 {
+        font-size: 32px;
+        margin: 0 0 10px 0;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 16px;
+        opacity: 0.8;
+        margin-bottom: 30px;
+    }
+
+    .back-btn {
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }
+    }
+}
+
+.no-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+    text-align: center;
+
+    mat-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        margin-bottom: 15px;
+        opacity: 0.5;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+// Ajustes para el video del viewer (sin muted)
+.video-player {
+    background: #000;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+// ========== ESTILOS PARA PERFIL Y ACCIONES ==========
+
+.profile-actions {
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 20px;
+}
+
+.action-btn.friend-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+    text-decoration: none;
+
+    mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+    }
+
+    span {
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 222, 128, 0.5);
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        background: #9ca3af;
+        box-shadow: none;
+
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+}
+
+// Responsive para el botón de agregar amigo
+@media (max-width: 768px) {
+    .action-btn.friend-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .action-btn.friend-btn {
+        padding: 11px 18px;
+        font-size: 13px;
+
+        mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

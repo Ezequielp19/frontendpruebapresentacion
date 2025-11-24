@@ -1,0 +1,240 @@
+<div class="live-container" *ngIf="!isLoading">
+    <div class="live-layout">
+
+        <!-- Columna Principal: Streaming y Productos -->
+        <div class="main-column">
+
+            <!-- Sección de streaming en vivo -->
+            <div class="streaming-section">
+
+                <!-- Video Player -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <video #remoteVideo autoplay playsinline width="100%" height="auto" class="video-player"></video>
+
+                        <!-- Panel de Control CRUD (Solo para Owner/Admin/Moderator) -->
+                        <div class="stream-controls-panel" *ngIf="canManageStream && !streamEnded">
+                            <!-- Botón para mostrar/ocultar controles -->
+                            <button class="controls-toggle-btn" (click)="toggleControlPanel()"
+                                    [class.active]="showControlPanel"
+                                    title="Controles de Gestión">
+                                <mat-icon>settings</mat-icon>
+                            </button>
+
+                            <!-- Controles desplegables -->
+                            <div class="controls-dropdown" *ngIf="showControlPanel">
+                                <div class="controls-header">
+                                    <h4>Gestión de Stream</h4>
+                                    <span class="user-role-badge" [class]="currentUserRole">
+                                        {{ isStreamOwner ? 'PROPIETARIO' : currentUserRole.toUpperCase() }}
+                                    </span>
+                                </div>
+
+                                <div class="controls-grid">
+                                    <!-- Editar Stream (UPDATE) -->
+                                    <button class="control-btn edit-btn" (click)="editStream()"
+                                            *ngIf="canManageStream"
+                                            title="Editar información del stream">
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Editar</span>
+                                    </button>
+
+                                    <!-- Gestionar Espectadores (READ) -->
+                                    <button class="control-btn viewers-btn" (click)="manageViewers()"
+                                            *ngIf="canManageStream"
+                                            title="Gestionar espectadores">
+                                        <mat-icon>people</mat-icon>
+                                        <span>Espectadores</span>
+                                    </button>
+
+                                    <!-- Finalizar Stream (SOFT DELETE) -->
+                                    <button class="control-btn end-btn" (click)="endStream()"
+                                            *ngIf="canManageStream"
+                                            title="Finalizar transmisión">
+                                        <mat-icon>stop_circle</mat-icon>
+                                        <span>Finalizar</span>
+                                    </button>
+
+                                    <!-- Eliminar Stream (DELETE) -->
+                                    <button class="control-btn delete-btn" (click)="deleteStream()"
+                                            *ngIf="isStreamOwner || currentUserRole === 'admin'"
+                                            title="Eliminar permanentemente">
+                                        <mat-icon>delete_forever</mat-icon>
+                                        <span>Eliminar</span>
+                                    </button>
+                                </div>
+
+                                <!-- Información adicional -->
+                                <div class="controls-info">
+                                    <div class="info-item">
+                                        <mat-icon>schedule</mat-icon>
+                                        <span>Duración: {{ getStreamDuration() }}</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <mat-icon>visibility</mat-icon>
+                                        <span>{{ viewerCount }} viendo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Overlay de información del stream -->
+                        <div class="stream-info-overlay" *ngIf="stream && !streamEnded">
+                            <div class="live-badge" *ngIf="isCurrentStreamLive">
+                                <span class="pulse"></span>
+                                EN VIVO
+                            </div>
+                            <div class="ended-badge" *ngIf="!isCurrentStreamLive">
+                                <span class="ended-dot"></span>
+                                FINALIZADO
+                            </div>
+                            <div class="viewer-count">
+                                <mat-icon>visibility</mat-icon>
+                                <span>{{ viewerCount }} espectadores</span>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje de stream finalizado -->
+                        <div class="stream-ended-overlay" *ngIf="streamEnded">
+                            <mat-icon>videocam_off</mat-icon>
+                            <h3>Stream Finalizado</h3>
+                            <p>Esta transmisión ha terminado</p>
+                            <button class="back-btn" (click)="router.navigate(['/dashboard-live'])">
+                                Volver al listado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfil del Vendedor/Streamer -->
+                <div class="seller-profile" *ngIf="stream">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img [src]="stream.streamer?.avatar || 'https://i.imgur.com/EnANUqj.jpg'" alt="Avatar" class="avatar-img">
+                                <div class="status-indicator"></div>
+                            </div>
+                            <div class="profile-info">
+                                <h2 class="seller-name">{{ stream.streamer?.username || 'Streamer' }}</h2>
+                                <span class="seller-username">@{{ stream.streamer?.username || 'streamer' }}</span>
+                                <div class="seller-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">{{ stream.viewerCount || 0 }}</span>
+                                        <span class="stat-label">Viendo ahora</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">{{ stream.metadata?.totalViews || 0 }}</span>
+                                        <span class="stat-label">Vistas Totales</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-description">
+                            <p class="description-title">{{ stream.title }}</p>
+                            <p class="description-text">{{ stream.description || 'Sin descripción' }}</p>
+                            <div class="stream-tags" *ngIf="stream.tags && stream.tags.length > 0">
+                                <span class="tag" *ngFor="let tag of stream.tags">{{ tag }}</span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="action-btn friend-btn" (click)="addFriend()">
+                                <mat-icon>person_add</mat-icon>
+                                <span>Agregar Amigo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Productos -->
+            <div class="products-section">
+                <!-- Productos -->
+                <div class="product-card" *ngFor="let product of additionalProducts">
+                    <div class="product-image-container">
+                        <img [src]="product.image" [alt]="product.title" class="product-image">
+                        <div class="product-badge">{{ product.badge }}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <div class="product-price">
+                            <span class="price-label">Precio:</span>
+                            <span class="price-value">{{ product.price }}</span>
+                        </div>
+                        <div class="product-actions">
+                            <div class="action-buttons">
+                                <a routerLink="/chat" class="action-btn chat-btn">
+                                    <img src="../../../../assets/img/logo-atencion-cliente-blanco.png" alt="Chat">
+                                </a>
+                                <a routerLink="/product-detail" [queryParams]="{id: product.id || 'default'}" class="action-btn dashboard-btn">
+                                    <img src="../../../../assets/img/logo_blanco.png" alt="Ver Producto">
+                                </a>
+                            </div>
+                            <button class="buy-btn" (click)="addBuy()">
+                                <mat-icon>shopping_bag</mat-icon>
+                                <span>Comprar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Lateral: Comentarios -->
+        <div class="sidebar-column">
+            <!-- Sección de Comentarios -->
+            <div class="comments-section">
+                <div class="comments-header">
+                    <h3 class="comments-title">
+                        <mat-icon>chat</mat-icon>
+                        Comentarios
+                    </h3>
+                    <span class="comments-count">{{ messages.length }} comentarios</span>
+                </div>
+
+                <div class="comments-list">
+                    <div class="comment-item" *ngFor="let comment of messages">
+                        <div class="comment-avatar">
+                            <img [src]="comment.avatar" [alt]="comment.user" class="avatar-img">
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="comment-user">{{ comment.user }}</span>
+                                <span class="comment-time">{{ comment.time }}</span>
+                            </div>
+                            <p class="comment-text">{{ comment.text }}</p>
+                        </div>
+                    </div>
+
+                    <div class="no-comments" *ngIf="messages.length === 0">
+                        <mat-icon>chat_bubble_outline</mat-icon>
+                        <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+                    </div>
+                </div>
+
+                <!-- Nuevo comentario -->
+                <div class="new-comment">
+                    <div class="comment-input-container">
+                        <input
+                            type="text"
+                            placeholder="Escribe un comentario..."
+                            class="comment-input"
+                            [(ngModel)]="newComment"
+                            (keyup.enter)="sendComment()"
+                            [disabled]="streamEnded">
+                        <button class="send-comment-btn" (click)="sendComment()" [disabled]="streamEnded || !newComment.trim()">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading -->
+<div class="loading-container" *ngIf="isLoading">
+    <div class="loading-spinner">
+        <mat-icon class="spinning">refresh</mat-icon>
+        <p>Cargando transmisión...</p>
+    </div>
+</div>

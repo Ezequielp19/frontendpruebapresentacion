@@ -1,0 +1,312 @@
+.floating-live-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  font-family: 'Roboto', sans-serif;
+
+  .live-btn {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    border: 3px solid white;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    overflow: visible;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(255, 0, 0, 0.6);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    }
+
+    .pulse-indicator {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      z-index: 1;
+      margin-bottom: 2px;
+    }
+
+    .btn-text {
+      font-size: 10px;
+      font-weight: 700;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    .viewer-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: white;
+      color: #ff0000;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+  }
+
+  .live-menu {
+    position: absolute;
+    bottom: 90px;
+    left: 80px;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+
+
+    .menu-header {
+      background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .close-menu-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
+        mat-icon {
+          color: white;
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    .menu-content {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 0;
+
+      .stream-info {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 20px;
+
+        .info-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+          font-size: 14px;
+          color: #333;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            color: #ff0000;
+          }
+        }
+      }
+
+      .settings-section {
+        margin-bottom: 20px;
+
+        h4 {
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 16px 0;
+          color: #333;
+        }
+
+        .setting-item {
+          margin-bottom: 16px;
+
+          .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+
+            mat-icon {
+              font-size: 18px;
+              width: 18px;
+              height: 18px;
+              color: #666;
+            }
+          }
+
+          .setting-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:focus {
+              outline: none;
+              border-color: #ff0000;
+            }
+          }
+        }
+      }
+
+      .actions-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .action-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 10px;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          mat-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+          }
+
+          &.go-to-live {
+            background: linear-gradient(90deg, rgba(35, 107, 216, 1) 10%, rgba(4, 194, 252, 1) 50%, rgba(103, 121, 217, 1) 90%);
+            color: white;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+            }
+          }
+
+          &.stop-stream {
+            background: #ff0000;
+            color: white;
+
+            &:hover {
+              background: #cc0000;
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Ajustar menú en móviles */
+@media (max-width: 768px) {
+  .floating-live-button {
+    bottom: 15px;
+    left: 15px;
+
+    .live-btn {
+      width: 60px;
+      height: 60px;
+
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .btn-text {
+        font-size: 9px;
+      }
+    }
+
+    .live-menu {
+      width: calc(100vw - 100px);
+      max-width: 300px;
+      left: 75px;
+      bottom: 75px;
+      max-height: calc(100vh - 100px);
+    }
+  }
+}
+

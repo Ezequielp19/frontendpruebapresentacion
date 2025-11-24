@@ -1,0 +1,116 @@
+<div class="boxHero container-fluid p-0 m-0 d-flex justify-content-end align-items-center ">
+
+    <!-- <div class="linea-divisora">
+
+    </div> -->
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <article class="card-body mx-auto container-fluid">
+                <h4 class="card-title mt-3 text-center"><strong>Registro</strong> </h4>
+
+                <form [formGroup]="formRegister" (ngSubmit)="submitRegister()">
+
+                    <!--NOMBRE-->
+                    <div class="mb-2  d-flex justify-content-around mx-3">
+
+                        <div class="col-sm-5">
+                            <label for="exampleFormControlInput1 " class="form-label label">Nombre</label>
+                            <input name="nombre" class="form-control mb-3 label-center" placeholder="Nombre" type="text"
+                                formControlName="nombre">
+                            <div class="text-danger small"
+                                *ngIf="formRegister.controls['nombre'].invalid && (formRegister.controls['nombre'].dirty || formRegister.controls['nombre'].touched)">
+                                <div *ngIf="f['nombre'].errors && f['nombre'].errors['required']">
+                                    El nombre es requerido
+                                </div>
+                                <div *ngIf="f['nombre'].errors && f['nombre'].errors['minlength']">
+                                    Mínimo 5 caracteres
+                                </div>
+                            </div>
+                        </div>
+                        <!--APELLIDO-->
+                        <div class="col-sm-5 lastname">
+                            <label for="exampleFormControlInput1 " class="form-label label">Apellido</label>
+                            <input name="apellido" class="form-control mb-3  label-center" placeholder="Apellido"
+                                type="text" formControlName="apellido">
+                            <div class="text-danger small"
+                                *ngIf="formRegister.controls['apellido'].invalid && (formRegister.controls['apellido'].dirty || formRegister.controls['apellido'].touched)">
+                                <div *ngIf="f['apellido'].errors && f['apellido'].errors['required']">
+                                    El apellido es requerido
+                                </div>
+                                <div *ngIf="f['apellido'].errors && f['apellido'].errors['minlength']">
+                                    Mínimo 4 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--CORREO ELECTRONICO-->
+                    <div class="mb-3 container-fluid form-group col-sm-11 ">
+                        <label for="exampleFormControlInput1 " class="form-label label">Correo electronico</label>
+                        <input name="email" class="form-control  label-center"
+                            placeholder="Escribe tu correo electronico" type="email" formControlName="email">
+                        <div class="text-danger small"
+                            *ngIf="formRegister.controls['email'].invalid && (formRegister.controls['email'].dirty || formRegister.controls['email'].touched)">
+                            <div *ngIf="f['email'].errors && f['email'].errors['required']">
+                                El email es requerido
+                            </div>
+                            <div *ngIf="f['email'].errors && f['email'].errors['pattern']">
+                                Formato de email inválido
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--CONTRASEÑA-->
+                    <div class="mb-3 container-fluid form-group col-sm-11">
+                        <label for="exampleFormControlInput1 " class="form-label label">Contraseña</label>
+                        <input name="contraseña" class="form-control  label-center"
+                            placeholder="Escribe tu contraseña" type="password" formControlName="contraseña">
+                        <div class="text-danger small"
+                            *ngIf="formRegister.controls['contraseña'].invalid && (formRegister.controls['contraseña'].dirty || formRegister.controls['contraseña'].touched)">
+                            <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['required']">
+                                La contraseña es requerida
+                            </div>
+                            <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['minlength']">
+                                Mínimo 8 caracteres
+                            </div>
+                            <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['pattern']">
+                                Debe contener mayúsculas, minúsculas y números
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--REPETIR CONTRASEÑA-->
+                    <div class="mb-3 container-fluid form-group col-sm-11">
+                        <label for="exampleFormControlInput1 " class="form-label label">Repite tu Contraseña</label>
+                        <input name="confirmarContraseña" class="form-control  label-center"
+                            placeholder="Confirma tu contraseña" type="password" formControlName="confirmarContraseña">
+                        <div class="text-danger small"
+                            *ngIf="formRegister.controls['confirmarContraseña'].invalid && (formRegister.controls['confirmarContraseña'].dirty || formRegister.controls['confirmarContraseña'].touched)">
+                            <div *ngIf="f['confirmarContraseña'].errors && f['confirmarContraseña'].errors['required']">
+                                Confirma tu contraseña
+                            </div>
+                            <div *ngIf="f['confirmarContraseña'].errors && f['confirmarContraseña'].errors['passwordMismatch']">
+                                Las contraseñas no coinciden
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-3 d-flex justify-content-center">
+                        <button type="submit"
+                            [disabled]="isLoading || !formRegister.valid || !passwordsMatch"
+                            class="btn btn-block btn-primary input-style btnnuevo1">
+                            <span *ngIf="!isLoading">Registrarme</span>
+                            <span *ngIf="isLoading">
+                                <i class="fas fa-spinner fa-spin"></i> Registrando...
+                            </span>
+                        </button>
+                    </div>
+                    <p class="text-center input-style bg-white text-black">Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></p>
+                </form>
+            </article>
+        </div>
+    </div>
+</div>

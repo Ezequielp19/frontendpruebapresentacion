@@ -1,0 +1,319 @@
+<div class="checkout-container">
+    <div class="checkout-layout">
+        
+        <!-- Header de la página -->
+        <div class="checkout-header">
+            <h1 class="checkout-title">
+                <mat-icon>shopping_cart</mat-icon>
+                Proceso de Compra
+            </h1>
+            <p class="checkout-subtitle">Completa tu compra de forma segura</p>
+        </div>
+
+        <div class="checkout-content">
+            
+            <!-- Columna de Métodos de Pago -->
+            <div class="payment-column">
+                <div class="payment-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <mat-icon>payment</mat-icon>
+                            Métodos de Pago
+                        </h2>
+                        <p class="section-description">Selecciona tu método de pago preferido</p>
+                    </div>
+
+                    <div class="payment-methods">
+                        
+                        <!-- PayPal -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('paypal')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <img src="https://i.imgur.com/7kQEsHU.png" alt="PayPal">
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">PayPal</h3>
+                                        <p class="payment-description">Pago rápido y seguro</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="paypal" id="paypal">
+                                    <label for="paypal"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'paypal'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Pay -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('personalpay')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <img src="../../../../assets/img/logo-personalpay.jpeg" alt="Personal Pay">
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Personal Pay</h3>
+                                        <p class="payment-description">Transferencia bancaria</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="personalpay" id="personalpay">
+                                    <label for="personalpay"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'personalpay'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Binance -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('binance')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <svg width="35px" height="35px" viewBox="-153.6 -153.6 1331.20 1331.20" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" stroke-width="0.01024">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                                <style>.st1 { fill: #fff }</style>
+                                            <g id="Icon">
+                                                <circle cx="512" cy="512" r="512" style="fill:#f3ba2f"></circle>
+                                                    <path class="st1" d="M404.9 468 512 360.9l107.1 107.2 62.3-62.3L512 236.3 342.6 405.7z"></path>
+                                                    <path transform="rotate(-45.001 298.629 511.998)" class="st1" d="M254.6 467.9h88.1V556h-88.1z"></path>
+                                                    <path class="st1" d="M404.9 556 512 663.1l107.1-107.2 62.4 62.3h-.1L512 787.7 342.6 618.3l-.1-.1z"></path>
+                                                    <path transform="rotate(-45.001 725.364 512.032)" class="st1" d="M681.3 468h88.1v88.1h-88.1z"></path>
+                                                    <path class="st1" d="M575.2 512 512 448.7l-46.7 46.8-5.4 5.3-11.1 11.1-.1.1.1.1 63.2 63.2 63.2-63.3z"></path>
+                                                </g>
+                                        </g>
+                                    </svg>
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Binance</h3>
+                                        <p class="payment-description">Criptomonedas</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="binance" id="binance">
+                                    <label for="binance"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'binance'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prex -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('prex')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <img src="../../../../assets/img/prex.png" alt="Prex">
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Prex</h3>
+                                        <p class="payment-description">Billetera digital</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="prex" id="prex">
+                                    <label for="prex"></label>
+                                </div>
+                        </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'prex'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payoneer -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('payoneer')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <img src="https://img.icons8.com/?size=100&id=TTvcaHYa3zkn&format=png&color=000000" alt="Payoneer">
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Payoneer</h3>
+                                        <p class="payment-description">Transferencia internacional</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="payoneer" id="payoneer">
+                                    <label for="payoneer"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'payoneer'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ripio -->
+                        <div class="payment-method-card" (click)="onPaymentMethodChange('ripio')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <img src="../../../../assets/img/ripio.png" alt="Ripio">
+                                        </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Ripio</h3>
+                                        <p class="payment-description">Criptomonedas argentinas</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="ripio" id="ripio">
+                                    <label for="ripio"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'ripio'">
+                                <div class="input-group">
+                                    <mat-icon>email</mat-icon>
+                                    <input type="email" class="form-input" placeholder="Ingrese su email para enviarle la factura">
+                                </div>
+                                </div>
+                            </div>
+
+                        <!-- Tarjeta de Crédito -->
+                        <div class="payment-method-card credit-card" (click)="onPaymentMethodChange('credit')">
+                            <div class="payment-method-header">
+                                <div class="payment-method-info">
+                                    <div class="payment-icon">
+                                        <mat-icon>credit_card</mat-icon>
+                                    </div>
+                                    <div class="payment-details">
+                                        <h3 class="payment-name">Tarjeta de Crédito</h3>
+                                        <p class="payment-description">Visa, Mastercard, American Express</p>
+                                    </div>
+                                </div>
+                                <div class="payment-radio">
+                                    <input type="radio" name="paymentMethod" value="credit" id="credit">
+                                    <label for="credit"></label>
+                                </div>
+                            </div>
+                            <div class="payment-method-content" *ngIf="paymentData.method === 'credit'">
+                                <div class="credit-card-form">
+                                    <div class="form-row">
+                                        <div class="input-group full-width">
+                                            <mat-icon>person</mat-icon>
+                                            <input type="text" class="form-input" placeholder="Nombre del titular de la tarjeta">
+                                        </div>
+                                </div>
+
+                                    <div class="form-row">
+                                        <div class="input-group full-width">
+                                            <mat-icon>credit_card</mat-icon>
+                                            <input type="text" class="form-input" placeholder="0000 0000 0000 0000">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="input-group half-width">
+                                            <mat-icon>calendar_today</mat-icon>
+                                            <input type="text" class="form-input" placeholder="MM/YY">
+                                        </div>
+                                        <div class="input-group half-width">
+                                            <mat-icon>lock</mat-icon>
+                                            <input type="text" class="form-input" placeholder="CVC/CVV">
+                                        </div>
+                                    </div>
+
+                                    <div class="security-info">
+                                        <mat-icon>security</mat-icon>
+                                        <span>Tu transacción está protegida por certificado SSL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna de Resumen -->
+            <div class="summary-column">
+                <div class="order-summary">
+                    <div class="summary-header">
+                        <h2 class="summary-title">
+                            <mat-icon>receipt</mat-icon>
+                            Resumen de la Compra
+                        </h2>
+                    </div>
+
+                    <div class="summary-content">
+                        <!-- Producto -->
+                        <div class="product-item">
+                            <div class="product-info">
+                                <h3 class="product-name">Camisa a cuadrille negra</h3>
+                                <p class="product-description">Talla M - Color Negro</p>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">$3.500</span>
+                            </div>
+                    </div>
+
+                        <!-- Descuento -->
+                        <div class="discount-info">
+                            <mat-icon>local_offer</mat-icon>
+                            <span>Ahorrar 20% con tu tarjeta favorita</span>
+                </div>
+
+                        <div class="summary-divider"></div>
+
+                        <!-- Detalles de entrega -->
+                        <div class="delivery-info">
+                            <div class="info-row">
+                                <span class="info-label">Dirección de entrega</span>
+                                <span class="info-value">Juan Alberdi - 1200</span>
+                    </div>
+                    </div>
+
+                        <div class="summary-divider"></div>
+
+                        <!-- Cálculos -->
+                        <div class="calculation-section">
+                            <div class="calculation-row">
+                                <span class="calculation-label">Subtotal</span>
+                                <span class="calculation-value">$3.500</span>
+                            </div>
+                            <div class="calculation-row">
+                                <span class="calculation-label">Impuestos (5%)</span>
+                                <span class="calculation-value">${{paymentData.taxes}}</span>
+                            </div>
+                            <div class="calculation-row total-row">
+                                <span class="calculation-label">Total a Pagar</span>
+                                <span class="calculation-value total-price">${{paymentData.total}}</span>
+                            </div>
+                    </div>
+
+                        <!-- Botón de compra -->
+                        <div class="purchase-section">
+                            <button class="purchase-btn" (click)="processPayment()">
+                                <mat-icon>shopping_cart</mat-icon>
+                                <span>Completar Compra</span>
+                            </button>
+                            <p class="security-note">
+                                <mat-icon>security</mat-icon>
+                                Pago 100% seguro y protegido
+                            </p>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

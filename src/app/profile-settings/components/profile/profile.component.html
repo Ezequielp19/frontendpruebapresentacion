@@ -1,0 +1,109 @@
+<div class="container-fluid my-5">
+    <form [formGroup]="formProfile">
+        
+        <!-- SECCIÓN: Información del Registro (Solo Lectura) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-muted mb-3">📋 Información del Registro</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 📷 FOTO DE PERFIL -->
+            <div class="col-2 box mx-3">
+                <div class="boxInput">
+                    <input type="file" (change)="onFileSelected($event)" hidden #fileInput accept="image/*" />
+                    <div class="rounded-circle" (click)="fileInput.click()">
+                        <img *ngIf="profileImage" [src]="profileImage" class="img-fluid profile-img" />
+                        <mat-icon *ngIf="!profileImage" class="icon">add_circle_outline</mat-icon>
+                    </div>
+                    <label class="mx-3 mt-2 text-perfil">Foto de Perfil</label>
+                </div>
+            </div>
+
+            <!-- 📛 NOMBRE Y CUENTA -->
+            <div class="col-3 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2">Nombre</label>
+                    <input formControlName="name" class="form-control input-style" readonly />
+                    <small class="text-muted">Dato del registro</small>
+                </div>
+                <div class="boxInput">
+                    <label class="mb-2">Apellido</label>
+                    <input formControlName="lastName" class="form-control input-style" readonly />
+                    <small class="text-muted">Dato del registro</small>
+                </div>
+            </div>
+
+            <!-- 📧 EMAIL -->
+            <div class="col-3 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2">Email</label>
+                    <input formControlName="email" class="form-control input-style" readonly />
+                    <small class="text-muted">Dato del registro</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: Información Adicional (Para Completar) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="text-primary mb-3">➕ Información Adicional para Emprendedor</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 📛 NOMBRE Y CUENTA -->
+            <div class="col-3 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2">Nombre de usuario <span class="text-danger">*</span></label>
+                    <input formControlName="username" class="form-control input-style" />
+                    <div class="text-danger small" *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+                        <div *ngIf="f['username'].errors?.['required']">El nombre de usuario es requerido</div>
+                        <div *ngIf="f['username'].errors?.['minlength']">Mínimo 3 caracteres</div>
+                    </div>
+                </div>
+                <div class="boxInput">
+                    <label class="mb-2">Nombre de la cuenta <span class="text-danger">*</span></label>
+                    <input formControlName="accountName" placeholder="@" class="form-control input-style" />
+                    <div class="text-danger small" *ngIf="f['accountName'].invalid && (f['accountName'].dirty || f['accountName'].touched)">
+                        <div *ngIf="f['accountName'].errors?.['required']">El nombre de cuenta es requerido</div>
+                        <div *ngIf="f['accountName'].errors?.['minlength']">Mínimo 3 caracteres</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📝 DESCRIPCIÓN -->
+            <div class="col-6 mt-3">
+                <div class="boxInput">
+                    <label class="mb-2">Describe tus aptitudes <span class="text-danger">*</span></label>
+                    <textarea formControlName="description" class="text input-style" wrap="hard" rows="4"></textarea>
+                    <div class="text-danger small" *ngIf="f['description'].invalid && (f['description'].dirty || f['description'].touched)">
+                        <div *ngIf="f['description'].errors?.['required']">La descripción es requerida</div>
+                        <div *ngIf="f['description'].errors?.['minlength']">Mínimo 10 caracteres</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🛠 SOPORTE -->
+        <div class="my-5">
+            <label class="mx-4">¿Necesitas ayuda con tu perfil? <a href="#">Hablar con soporte Técnico</a></label>
+        </div>
+
+        <!-- 💾 GUARDAR -->
+        <div class="row d-flex justify-content-center my-5">
+            <button 
+                [disabled]="isLoading || formProfile.invalid" 
+                (click)="submitProfile()" 
+                class="col-3 btn btnnuevo1">
+                <span *ngIf="!isLoading">
+                    <i-feather name="save"></i-feather> Guardar información adicional
+                </span>
+                <span *ngIf="isLoading">
+                    <i class="fas fa-spinner fa-spin"></i> Guardando...
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

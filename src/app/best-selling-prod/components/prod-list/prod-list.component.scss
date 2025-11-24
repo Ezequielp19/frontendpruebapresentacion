@@ -1,0 +1,210 @@
+/* Fuente personalizada */
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.example-button {
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.example-tooltip-red {
+  background: #00ac69;
+  font-size: 15px;
+}
+
+.info-comision {
+  margin-top: 5px !important;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+.principal {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.sellers {
+  color: black;
+}
+
+.btn {
+  border-radius: 20px;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
+.filter-color {
+  color: yellow !important;
+}
+
+.btn-profile {
+  margin-top: 5px;
+}
+
+.name-surname {
+  font-size: 20px;
+}
+
+.cat-name {
+  font-size: 15px;
+}
+
+.desc {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-color: black;
+}
+
+.titleSection {
+  color: #006ba6;
+  font-size: 2.6rem;
+  font-weight: 400;
+  font-family: 'Raleway', sans-serif;
+}
+
+.textSection {
+  width: 600px;
+  color: #00000073;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+}
+
+.card {
+  margin-inline: -10px;
+}
+
+.row-sellers {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap; /* Cambiado a 'wrap' para la responsividad */
+  justify-content: center; /* Centrado de contenido */
+}
+
+.rows {
+  width: 100% !important;
+}
+
+.card-info {
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 20px;
+  background: rgb(0, 107, 166);
+  background: linear-gradient(0deg, rgba(0, 107, 166, 1) 0%, rgba(255, 255, 255, 0.5214460784313726) 56%, rgba(255, 255, 255, 1) 100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-info:hover {
+  transform: scale(1.05); /* Efecto de hover */
+}
+
+.buttons-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Hacer que los botones se ajusten al tamaño de la pantalla */
+}
+
+.buttons-prod {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .row-sellers {
+    margin-top: 40px; /* Reducir el margen superior */
+    margin-bottom: 40px; /* Reducir el margen inferior */
+    flex-direction: column; /* Asegurar que las tarjetas se alineen en una sola columna */
+  }
+
+  .card-info {
+    width: 100%; /* Asegurar que las tarjetas ocupen el 100% del contenedor */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .btn {
+    font-size: 14px; /* Reducir el tamaño del botón en pantallas más pequeñas */
+    padding: 10px; /* Ajustar el padding */
+  }
+
+  .info-comision {
+    font-size: 14px; /* Reducir el tamaño de la fuente */
+  }
+
+  .textSection {
+    width: 100%; /* Ancho completo en pantallas pequeñas */
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titleSection {
+    font-size: 2rem; /* Reducir el tamaño del título */
+  }
+
+  .textSection {
+    font-size: 16px; /* Reducir el tamaño del texto */
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 12px; /* Reducir el tamaño de los botones */
+    padding: 8px; /* Ajustar el padding */
+  }
+
+  .card-info {
+    margin-bottom: 15px; /* Reducir margen inferior */
+  }
+
+  .card-img-top {
+    height: auto; /* Asegurar que la imagen sea responsiva */
+  }
+}
+
+@media (max-width: 320px) {
+  .sellers {
+    margin-top: 60px; /* Ajustar el margen superior para pantallas muy pequeñas */
+  }
+
+  .card-info {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho */
+  }
+
+  .buttons-links {
+    flex-direction: column; /* Los botones se apilan en pantallas pequeñas */
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%; /* Hacer los botones de ancho completo */
+    margin: 5px 0;
+  }
+
+  .info-comision {
+    font-size: 12px; /* Ajustar el tamaño de la fuente */
+  }
+}
+
+
+.btnnuevo {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+   border: 1px solid yellow; /* Borde amarillo */
+  border-radius: 5px; /* Opcional: bordes redondeados */
+  padding: 10px 15px; /* Opcional: mejora la apariencia del botón */
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}

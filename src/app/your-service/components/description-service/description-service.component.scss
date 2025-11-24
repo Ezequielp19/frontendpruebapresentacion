@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+}
+
+.boxInput {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.boxInput label {
+  color: #0D97D9;
+}
+
+label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.input-style {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  width: 100%;
+}
+
+.text-save {
+  font-family: 'Raleway', sans-serif;
+}
+
+.text {
+  width: 100%;
+  height: 160px;
+}
+
+.price-box {
+  margin-left: 70px;
+}
+
+.box-img {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.img {
+  background-color: rgb(249, 249, 249);
+  border-radius: 1px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgb(242, 242, 242);
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.img:hover {
+  border-color: #0D97D9;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.image-preview img {
+  object-fit: cover; /* Esto asegura que la imagen se ajuste sin deformarse */
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-video {
+  display: flex;
+  justify-content: center;
+  margin-top: 13%;
+}
+
+.box-video {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title-img, .title-video {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.btn-total {
+  margin-left: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .img {
+    max-width: 100%;
+    height: 120px;
+  }
+
+  .price-box {
+    margin-left: 0;
+  }
+
+  .boxInput {
+    margin: 10px 0;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .text-save {
+    width: 100%;
+  }
+
+  .col-md-6, .col-md-5 {
+    width: 100%;
+  }
+
+  .col-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .title-img, .title-video {
+    font-size: 18px;
+  }
+
+  .img {
+    height: 120px;
+  }
+
+  .price-box {
+    margin-left: 0;
+  }
+
+  .btn-total {
+    width: 80%;
+  }
+}
+/* Estilo para la vista previa del video */
+.video-preview video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;  /* Ajusta el video sin deformarlo */
+}
+
+/* ========================== */
+/* MEDIA QUERIES PARA 1024x600 */
+/* ========================== */
+
+/* Netbook específico (1024 x 600) */
+@media (width: 1024px) and (height: 600px) {
+  .container-fluid {
+    padding: 15px !important;
+  }
+
+  .row {
+    margin: 0 !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+
+  .col-12, .col-md-6, .col-md-5 {
+    width: 100% !important;
+    padding: 8px !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Ajustes para el área de imágenes */
+  .box-img {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Centrar el contenedor padre de las imágenes */
+  .container.box-img {
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  /* Centrar la fila de imágenes */
+  .container.box-img .row {
+    margin: 0 auto !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  /* Centrar las columnas individuales */
+  .container.box-img .col-sm-12.col-md-3 {
+    width: 45% !important;
+    max-width: 140px !important;
+    margin: 5px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .img {
+    width: 100% !important;
+    max-width: 140px !important;
+    height: 120px !important;
+    margin: 0 !important;
+  }
+
+  .title-img, .title-video {
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+  }
+
+  /* Ajustes para el área de video */
+  .box-video {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .label-video {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 10% !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ajustes para el formulario de descripción */
+  .boxInput {
+    margin: 10px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .boxInput label {
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .text {
+    width: 90% !important;
+    max-width: 90% !important;
+    height: 90px !important;
+    font-size: 12px !important;
+    box-sizing: border-box !important;
+    padding: 8px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Ajustes para el botón total */
+  .btn-total {
+    margin: 10px 0 !important;
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+
+  /* Ajustes para el área de precios */
+  .price-box {
+    margin-left: 0 !important;
+    margin-top: 20px !important;
+  }
+
+  .input-style, .form-control, .form-select {
+    font-size: 12px !important;
+    padding: 8px !important;
+    height: auto !important;
+  }
+
+  /* Ajustes para el grid de imágenes */
+  .col-sm-12.col-md-3 {
+    width: 50% !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Centrar el botón siguiente */
+  .btn.btnnuevo1.text-save {
+    margin: 0 auto !important;
+    display: block !important;
+    width: 80% !important;
+    text-align: center !important;
+  }
+}
+
+/* Rango amplio para 1024px */
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .container-fluid {
+    padding: 20px !important;
+  }
+
+  .row {
+    margin: 0 !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+
+  .col-12, .col-md-6, .col-md-5 {
+    width: 100% !important;
+    // padding: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Ajustes para el área de imágenes */
+  .box-img {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Centrar el contenedor padre de las imágenes */
+  .container.box-img {
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  /* Centrar la fila de imágenes */
+  .container.box-img .row {
+    margin: 0 auto !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  /* Centrar las columnas individuales */
+  .container.box-img .col-sm-12.col-md-3 {
+    width: 45% !important;
+    max-width: 150px !important;
+    margin: 8px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .img {
+    width: 100% !important;
+    max-width: 150px !important;
+    height: 130px !important;
+    margin: 0 !important;
+  }
+
+  .title-img, .title-video {
+    font-size: 17px !important;
+    margin-bottom: 25px !important;
+    text-align: center !important;
+  }
+
+  /* Ajustes para el área de video */
+  .box-video {
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .label-video {
+    margin-top: 10% !important;
+  }
+
+  /* Ajustes para el formulario de descripción */
+  .boxInput {
+    margin: 12px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .boxInput label {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .text {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 130px !important;
+    font-size: 13px !important;
+    box-sizing: border-box !important;
+    padding: 10px !important;
+  }
+
+  /* Ajustes para el botón total */
+  .btn-total {
+    margin: 12px 0 !important;
+    width: 100% !important;
+    font-size: 13px !important;
+  }
+
+  /* Ajustes para el área de precios */
+  .price-box {
+    margin-left: 0 !important;
+    margin-top: 25px !important;
+  }
+
+  .input-style, .form-control, .form-select {
+    font-size: 13px !important;
+    padding: 10px !important;
+    height: auto !important;
+  }
+
+  /* Ajustes para el grid de imágenes */
+  .col-sm-12.col-md-3 {
+    width: 50% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+/* ========================== */
+/* MEDIA QUERY PARA PANTALLAS GRANDES */
+/* ========================== */
+
+/* Pantallas grandes (1024px y superiores) */
+@media (min-width: 1024px) {
+  .container-fluid {
+    padding: 25px !important;
+  }
+
+  .row {
+    margin: 0 !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+
+  .col-12, .col-md-6, .col-md-5 {
+    width: 100% !important;
+    padding: 15px !important;
+    margin-bottom: 25px !important;
+  }
+
+  /* Ajustes para el área de imágenes */
+  .box-img {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* Centrar el contenedor padre de las imágenes */
+  .container.box-img {
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 400px !important;
+  }
+
+  /* Centrar la fila de imágenes */
+  .container.box-img .row {
+    margin: 0 auto !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 400px !important;
+  }
+
+  /* Centrar las columnas individuales */
+  .container.box-img .col-sm-12.col-md-3 {
+    width: 45% !important;
+    max-width: 180px !important;
+    margin: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .img {
+    width: 100% !important;
+    max-width: 180px !important;
+    height: 160px !important;
+    margin: 0 !important;
+  }
+
+  .title-img, .title-video {
+    font-size: 22px !important;
+    margin-bottom: 30px !important;
+    text-align: center !important;
+  }
+
+  /* Ajustes para el área de video */
+  .box-video {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 400px !important;
+  }
+
+  .label-video {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 15% !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ajustes para el formulario de descripción */
+  .boxInput {
+    margin: 15px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .boxInput label {
+    font-size: 16px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .text {
+    width: 90% !important;
+    max-width: 90% !important;
+    height: 140px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+    padding: 12px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Ajustes para el botón total */
+  .btn-total {
+    margin: 15px 0 !important;
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  /* Ajustes para el área de precios */
+  .price-box {
+    margin-left: 0 !important;
+    margin-top: 30px !important;
+  }
+
+  .input-style, .form-control, .form-select {
+    font-size: 16px !important;
+    padding: 12px !important;
+    height: auto !important;
+  }
+
+  /* Ajustes para el grid de imágenes */
+  .col-sm-12.col-md-3 {
+    width: 50% !important;
+    margin-bottom: 25px !important;
+  }
+
+  /* Centrar el botón siguiente */
+  .btn.btnnuevo1.text-save {
+    margin: 0 auto !important;
+    display: block !important;
+    width: 70% !important;
+    text-align: center !important;
+  }
+}

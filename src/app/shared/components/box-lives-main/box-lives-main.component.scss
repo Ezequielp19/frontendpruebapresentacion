@@ -1,0 +1,515 @@
+.boxes {
+    color: black;
+    margin-bottom: 120px;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.box {
+    width: 300px;
+    height: 350px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #0D97D9;
+    border-width: 1px;
+    color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    border: none;
+}
+
+/* Contador simple de espectadores */
+.viewers-simple {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ff4444;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+    animation: twitchPulse 2s infinite;
+}
+
+.viewers-simple mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 11px;
+}
+
+.viewers-simple span {
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animación titilante estilo Twitch */
+@keyframes twitchPulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+    }
+}
+
+.buttons-links {
+    color: transparent;
+}
+
+.btn-down {
+    color: white;
+}
+
+.box-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 5px 15px;
+    background: transparent;
+    margin-top: 0;
+}
+
+.btn-lives {
+    width: 80px;
+    height: 60px;
+    background-color: #0D97D9;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.btn-lives:hover {
+    background-color: #0b7bb8;
+    transform: translateY(-2px);
+}
+
+.btn-lives mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-lv {
+    width: 28px;
+    height: 28px;
+    display: block;
+    object-fit: contain;
+}
+
+.btn-casa {
+  background: #0D97D9 !important;
+}
+
+.btn-casa mat-icon {
+  color: white !important;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media(max-width: 480px) {
+    .boxes {
+        margin-bottom: 60px;
+        margin-top: 60px;
+        padding: 0 15px;
+        width: 100%;
+        justify-content: center;
+        gap: 3px;
+    }
+
+    .box {
+        width: 280px;
+        height: 320px;
+        margin: 0 auto;
+    }
+
+    .box-button {
+        gap: 10px;
+        padding: 3px 12px;
+    }
+
+    .btn-lives {
+        width: 70px;
+        height: 50px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .logo-lv {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .viewers-simple {
+        top: 8px;
+        right: 8px;
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .viewers-simple mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+        margin-left: 8px;
+    }
+}
+
+@media(max-width: 375px) {
+    .boxes {
+        margin-bottom: 50px;
+        margin-top: 50px;
+        padding: 0 10px;
+        gap: 2px;
+    }
+
+    .box {
+        width: 260px;
+        height: 300px;
+    }
+
+    .box-button {
+        gap: 8px;
+        padding: 2px 10px;
+    }
+
+    .btn-lives {
+        width: 65px;
+        height: 45px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .logo-lv {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+}
+
+@media(max-width: 320px) {
+    .buttons-links {
+        margin-top: 70px;
+        margin-bottom: 70px;
+        flex-wrap: wrap;
+    }
+
+    .boxes {
+        margin-bottom: 40px;
+        margin-top: 40px;
+        padding: 0 5px;
+        gap: 1px;
+    }
+
+    .box {
+        margin-left: 0;
+        margin-right: 0;
+        width: 250px;
+        height: 280px;
+    }
+
+    .box-button {
+        gap: 6px;
+        padding: 1px 8px;
+        flex-wrap: wrap;
+    }
+
+    .btn-down {
+        margin-top: 20px;
+    }
+
+    .btn-lives {
+        width: 60px;
+        height: 40px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .logo-lv {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    .container-fluid {
+        height: 1700px;
+    }
+
+    .viewers-simple {
+        top: 6px;
+        right: 6px;
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+
+    .viewers-simple mat-icon {
+        font-size: 10px;
+        width: 10px;
+        height: 10px;
+        margin-left: 6px;
+    }
+}
+
+/* Media Queries para tablets */
+@media(min-width: 481px) and (max-width: 768px) {
+    .boxes {
+        margin-bottom: 80px;
+        margin-top: 80px;
+        padding: 0 20px;
+        gap: 6px;
+    }
+
+    .box {
+        width: 290px;
+        height: 340px;
+    }
+
+    .box-button {
+        gap: 15px;
+        padding: 6px 18px;
+    }
+
+    .btn-lives {
+        width: 85px;
+        height: 65px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 26px;
+        width: 26px;
+        height: 26px;
+    }
+
+    .logo-lv {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+}
+
+/* Media Queries para pantallas medianas */
+@media(min-width: 769px) and (max-width: 1024px) {
+    .boxes {
+        gap: 8px;
+    }
+
+    .box {
+        width: 320px;
+        height: 370px;
+    }
+
+    .btn-lives {
+        width: 90px;
+        height: 70px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-lv {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+}
+
+/* Netbook específico (1024 x 600) - ULTRA COMPACTO */
+@media (width: 1024px) and (height: 600px) {
+    .boxes {
+        margin-bottom: 15px;
+        margin-top: 15px;
+        gap: 1px;
+    }
+
+    .box {
+        width: 220px;
+        height: 240px;
+    }
+
+    .box-button {
+        gap: 5px;
+        padding: 1px 8px;
+    }
+
+    .btn-lives {
+        width: 50px;
+        height: 35px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .logo-lv {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+    }
+
+    .viewers-simple {
+        top: 4px;
+        right: 4px;
+        font-size: 8px;
+        padding: 1px 3px;
+    }
+
+    .viewers-simple mat-icon {
+        font-size: 8px;
+        width: 8px;
+        height: 8px;
+        margin-left: 4px;
+    }
+}
+
+/* Netbook y pantallas similares (1024px de ancho) - ULTRA COMPACTO */
+@media (min-width: 1024px) and (max-width: 1024px) {
+    .boxes {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        gap: 2px;
+    }
+
+    .box {
+        width: 230px;
+        height: 260px;
+    }
+
+    .box-button {
+        gap: 6px;
+        padding: 2px 10px;
+    }
+
+    .btn-lives {
+        width: 55px;
+        height: 40px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .logo-lv {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+    }
+
+    .viewers-simple {
+        top: 6px;
+        right: 6px;
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+
+    .viewers-simple mat-icon {
+        font-size: 9px;
+        width: 9px;
+        height: 9px;
+        margin-left: 5px;
+    }
+}
+
+/* Pantallas grandes (1200px en adelante) */
+@media(min-width: 1025px) {
+    .boxes {
+        gap: 10px;
+    }
+
+    .box {
+        width: 350px;
+        height: 400px;
+    }
+
+    .btn-lives {
+        width: 95px;
+        height: 75px;
+    }
+
+    .btn-lives mat-icon {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo-lv {
+        width: 34px;
+        height: 34px;
+        object-fit: contain;
+    }
+}
+
+// .titleEmprender {
+//   color: #006ba6;
+//   font-size: 2.6rem;
+//   font-weight: 400;
+// }
+
+// .textEmprender {
+//   color: #00000073;
+//   text-align: right !important;
+// }

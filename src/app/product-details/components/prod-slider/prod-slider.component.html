@@ -1,0 +1,57 @@
+<div class="modern-slider-container">
+    <div *ngIf="loading" class="loading-container">
+        <p>Cargando productos...</p>
+    </div>
+
+    <owl-carousel-o *ngIf="!loading && products.length > 0" [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let product of products">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+                    <div class="product-overlay">
+                        <button class="quick-view-btn" (click)="viewProduct(product._id)">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button class="favorite-btn">
+                            <mat-icon>favorite_border</mat-icon>
+                        </button>
+                    </div>
+                    <div class="product-badge" *ngIf="product.featured">Destacado</div>
+                    <div class="product-badge" *ngIf="!product.featured && product.stock > 0">Disponible</div>
+                    <div class="product-badge out-of-stock" *ngIf="product.stock === 0">Agotado</div>
+                </div>
+
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description }}</p>
+
+                    <div class="product-rating">
+                        <div class="stars">
+                            <mat-icon class="star filled">star</mat-icon>
+                            <mat-icon class="star filled">star</mat-icon>
+                            <mat-icon class="star filled">star</mat-icon>
+                            <mat-icon class="star filled">star</mat-icon>
+                            <mat-icon class="star">star_border</mat-icon>
+                        </div>
+                        <span class="rating-count">({{ product.stock > 10 ? '50+' : product.stock * 5 }})</span>
+                    </div>
+
+                    <div class="price-section">
+                        <span class="current-price">${{ product.price }}</span>
+                        <span class="brand" *ngIf="product.brand">{{ product.brand }}</span>
+                    </div>
+
+                    <button class="view-product-btn" (click)="viewProduct(product._id)" [disabled]="product.stock === 0">
+                        <mat-icon>shopping_cart</mat-icon>
+                        <span>Ver Producto</span>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+
+    <div *ngIf="!loading && products.length === 0" class="no-products">
+        <mat-icon>inventory_2</mat-icon>
+        <p>No hay productos disponibles en este momento</p>
+    </div>
+</div>

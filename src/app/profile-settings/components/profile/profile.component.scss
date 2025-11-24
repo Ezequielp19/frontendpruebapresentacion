@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.rounded-circle {
+    height: 110px;
+    width: 110px;
+    color: #717477;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.icon {
+    font-size: 35px;
+    color: #717477;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.text-perfil {
+    color: #356ca6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text {
+    width: 100%;
+    height: 100px;
+}
+
+.input-style {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+
+/* 🔥 RESPONSIVE DESIGN */
+@media (max-width: 991px) {
+    .col-3, .col-2 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 4px !important;
+  }
+  .row {
+    flex-direction: column !important;
+    margin: 0 !important;
+  }
+  .col-2, .col-3 {
+    width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+  }
+  .boxInput {
+    margin: 6px 0 !important;
+  }
+  .rounded-circle {
+    margin: 0 auto 8px auto !important;
+    height: 80px;
+    width: 80px;
+  }
+  .icon {
+    font-size: 28px;
+  }
+  .profile-img {
+    width: 100%;
+    height: 100%;
+  }
+  .text {
+    height: 60px;
+    font-size: 14px;
+  }
+  .btnnuevo1 {
+    width: 100% !important;
+    font-size: 16px;
+    padding: 10px 0 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .rounded-circle {
+    height: 60px;
+    width: 60px;
+  }
+  .btnnuevo1 {
+    font-size: 14px;
+    padding: 8px 0 !important;
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "frontend": {
+    "phases": {
+      "preBuild": {
+        "commands": [
+          "npm ci"
+        ]
+      },
+      "build": {
+        "commands": [
+          "npm run build:prod"
+        ]
+      }
+    },
+    "artifacts": {
+      "baseDirectory": "dist/likeVendor",
+      "files": [
+        "**/*"
+      ]
+    },
+    "cache": {
+      "paths": [
+        "node_modules/**/*"
+      ]
+    }
+  },
+  "test": {
+    "phases": {
+      "test": {
+        "commands": [
+          "npm run test"
+        ]
+      }
+    },
+    "artifacts": {
+      "baseDirectory": "test-results",
+      "files": [
+        "**/*"
+      ]
+    }
+  }
+}

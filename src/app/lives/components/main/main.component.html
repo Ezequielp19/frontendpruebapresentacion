@@ -1,0 +1,158 @@
+<div class="live-container">
+    <div class="live-layout">
+
+        <!-- Columna Principal: Streaming y Productos -->
+        <div class="main-column">
+
+            <!-- Sección de streaming en vivo -->
+            <div class="streaming-section">
+
+                <!-- Video Player Moderno -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <video #videoPlayer controls autoplay muted width="100%" height="auto" class="video-player"></video>
+                        <div class="video-overlay" *ngIf="!isStreaming && !isCreatingStream">
+                            <button class="stream-btn" (click)="startStreaming()">
+                                <mat-icon>play_arrow</mat-icon>
+                                <span>Iniciar Directo</span>
+                            </button>
+                        </div>
+                        <div class="video-overlay" *ngIf="isCreatingStream">
+                            <div class="loading-spinner">
+                                <mat-icon class="spinning">refresh</mat-icon>
+                                <span>Iniciando transmisión...</span>
+                            </div>
+                        </div>
+                        <div class="stream-info-overlay" *ngIf="isStreaming">
+                            <div class="live-badge">
+                                <span class="pulse"></span>
+                                EN VIVO
+                            </div>
+                            <div class="viewer-count">
+                                <mat-icon>visibility</mat-icon>
+                                <span>{{ viewerCount }} espectadores</span>
+                            </div>
+                            <button class="stop-stream-btn" (click)="startStreaming()">
+                                <mat-icon>stop</mat-icon>
+                                <span>Finalizar</span>
+                            </button>
+                        </div>
+
+                        <!-- Botón de más opciones removido - ahora está en el botón flotante global -->
+                    </div>
+                </div>
+
+                <!-- Perfil del Vendedor Moderno -->
+                <div class="seller-profile">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="https://i.imgur.com/EnANUqj.jpg" alt="Avatar" class="avatar-img">
+                                <div class="status-indicator"></div>
+                            </div>
+                            <div class="profile-info">
+                                <h2 class="seller-name">Juana Rodriguez</h2>
+                                <span class="seller-username">@rod_juli</span>
+                                <div class="seller-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">24</span>
+                                        <span class="stat-label">En Venta</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">670</span>
+                                        <span class="stat-label">Vendidos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-description">
+                            <p class="description-title">Descripción del Vendedor</p>
+                            <p class="description-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo
+                                delectus. Nesciunt exercitationem modi inventore quidem, quos eius eum
+                                reprehenderit voluptatem cupiditate possimus dolorum tenetur molestiae
+                                dolorem necessitatibus voluptas harum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Productos -->
+            <div class="products-section">
+
+                <!-- Productos -->
+                <div class="product-card" *ngFor="let product of additionalProducts">
+                    <div class="product-image-container">
+                        <img [src]="product.image" [alt]="product.title" class="product-image">
+                        <div class="product-badge">{{ product.badge }}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <div class="product-price">
+                            <span class="price-label">Precio:</span>
+                            <span class="price-value">{{ product.price }}</span>
+                        </div>
+                        <div class="product-actions">
+                            <div class="action-buttons">
+                                <a routerLink="/chat" class="action-btn chat-btn">
+                                    <img src="../../../../assets/img/logo-atencion-cliente-blanco.png" alt="Chat">
+                                </a>
+                                <a routerLink="/product-detail" [queryParams]="{id: product.id}" class="action-btn dashboard-btn">
+                                    <img src="../../../../assets/img/logo_blanco.png" alt="Ver Producto">
+                                </a>
+                            </div>
+                            <button class="buy-btn" (click)="addBuy()">
+                                <mat-icon>shopping_bag</mat-icon>
+                                <span>Comprar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Lateral: Comentarios -->
+        <div class="sidebar-column">
+            <!-- Sección de Comentarios Moderna -->
+            <div class="comments-section">
+                <div class="comments-header">
+                    <h3 class="comments-title">
+                        <mat-icon>chat</mat-icon>
+                        Comentarios
+                    </h3>
+                    <span class="comments-count">{{ comments.length }} comentarios</span>
+                </div>
+
+                <div class="comments-list">
+                    <div class="comment-item" *ngFor="let comment of comments">
+                        <div class="comment-avatar">
+                            <img [src]="comment.avatar" [alt]="comment.user" class="avatar-img">
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="comment-user">{{ comment.user }}</span>
+                                <span class="comment-time">{{ comment.time }}</span>
+                            </div>
+                            <p class="comment-text">{{ comment.text }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nuevo comentario -->
+                <div class="new-comment">
+                    <div class="comment-input-container">
+                        <input
+                            type="text"
+                            placeholder="Escribe un comentario..."
+                            class="comment-input"
+                            [(ngModel)]="newComment"
+                            (keyup.enter)="sendComment()"
+                            [disabled]="!isStreaming">
+                        <button class="send-comment-btn" (click)="sendComment()" [disabled]="!isStreaming || !newComment.trim()">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

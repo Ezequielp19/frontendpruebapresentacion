@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LikeVendor</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/heroes/hero-3/assets/css/hero-3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/password-resets/password-reset-12/assets/css/password-reset-12.css">
+
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+  <!-- Landbot script -->
+  <script type="module" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs"></script>
+  <script type="module">
+    window.addEventListener('DOMContentLoaded', function() {
+      if (!window.myLandbot) {
+        window.myLandbot = new Landbot.Livechat({
+          configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1462873-GVJW24K40UWOAQ4U/index.json',
+          autoOpen: false, // No abrir automáticamente
+          disableAnimations: false, // Mantener animaciones
+          enableEmojiPicker: true, // Habilitar selector de emojis
+          enableFileUpload: true, // Habilitar subida de archivos
+          enableTypingIndicator: true // Mostrar indicador de escritura
+        });
+      }
+    });
+  </script>
+  
+  <!-- Script para controlar zoom en pantallas grandes -->
+  <script>
+    // Controlar zoom en pantallas grandes (PC)
+    function controlZoom() {
+      // Detectar si es pantalla grande (PC)
+      if (window.innerWidth >= 1024) {
+        // Prevenir zoom con Ctrl + rueda del mouse
+        document.addEventListener('wheel', function(e) {
+          if (e.ctrlKey) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+        
+        // Prevenir zoom con Ctrl + +/-
+        document.addEventListener('keydown', function(e) {
+          if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=')) {
+            e.preventDefault();
+          }
+        });
+        
+        // Mantener zoom al 100%
+        let currentZoom = 1;
+        const observer = new ResizeObserver(() => {
+          const newZoom = window.outerWidth / window.innerWidth;
+          if (newZoom !== currentZoom && newZoom !== 1) {
+            // Forzar zoom al 100%
+            document.body.style.zoom = 1;
+            currentZoom = 1;
+          }
+        });
+        observer.observe(document.body);
+      }
+    }
+    
+    // Ejecutar cuando se carga la página
+    window.addEventListener('load', controlZoom);
+    
+    // Ejecutar cuando cambia el tamaño de la ventana
+    window.addEventListener('resize', controlZoom);
+  </script>
+
+  <!-- EmailJS Script -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</body>
+</html>

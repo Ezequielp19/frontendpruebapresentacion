@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+.boxHero {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#formContent {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.example-stretched-tabs {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-tab-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  padding: 12px 16px;
+  min-width: 120px;
+}
+
+.mat-tab-label-active {
+  background-color: #f8f9fa;
+  color: #236bd8;
+}
+
+.mat-tab-body-content {
+  padding: 30px;
+  min-height: 400px;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .wrapper {
+    max-width: 95%;
+    padding: 0 15px;
+  }
+  
+  #formContent {
+    padding: 25px;
+  }
+  
+  .mat-tab-body-content {
+    padding: 25px;
+  }
+  
+  .mat-tab-label {
+    font-size: 13px;
+    padding: 10px 12px;
+    min-width: 100px;
+  }
+}
+
+/* Responsive para móviles grandes */
+@media (max-width: 768px) {
+  .boxHero {
+    padding: 10px 0;
+  }
+  
+  .wrapper {
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 0;
+  }
+  
+  #formContent {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+  
+  .mat-tab-body-content {
+    padding: 15px;
+    min-height: 300px;
+  }
+  
+  .mat-tab-label {
+    font-size: 12px;
+    padding: 8px 6px;
+    min-width: 80px;
+  }
+  
+  /* Hacer que las pestañas se apilen en móvil */
+  .mat-tab-group {
+    flex-direction: column;
+  }
+  
+  .mat-tab-header {
+    border-bottom: none;
+  }
+  
+  .mat-tab-labels {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .mat-tab-label {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+  }
+  
+  .mat-tab-label-active {
+    background-color: #236bd8;
+    color: white;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .boxHero {
+    padding: 5px 0;
+  }
+  
+  .wrapper {
+    padding: 0 5px;
+  }
+  
+  #formContent {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+  }
+  
+  .mat-tab-body-content {
+    padding: 10px;
+    min-height: 250px;
+  }
+  
+  .mat-tab-label {
+    font-size: 11px;
+    padding: 6px 4px;
+    min-width: 70px;
+  }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+  .wrapper {
+    padding: 0 2px;
+  }
+  
+  #formContent {
+    padding: 8px;
+    margin: 2px 0;
+  }
+  
+  .mat-tab-body-content {
+    padding: 8px;
+    min-height: 200px;
+  }
+  
+  .mat-tab-label {
+    font-size: 10px;
+    padding: 4px 2px;
+    min-width: 60px;
+  }
+}
+
+/* Mejoras para el contenido de las pestañas */
+.mat-tab-body-content {
+  overflow-x: hidden;
+}
+
+/* Animaciones suaves */
+.mat-tab-label {
+  transition: all 0.3s ease;
+}
+
+.mat-tab-label:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilos para el scroll en móvil */
+@media (max-width: 768px) {
+  .mat-tab-body-content {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+} 

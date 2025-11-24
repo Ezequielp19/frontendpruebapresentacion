@@ -1,0 +1,18 @@
+#scroll-container {
+    height: 500px;
+    /* Altura deseada */
+    overflow-y: auto;
+    /* Habilita el desplazamiento vertical */
+}
+body{
+    background-color: #f7f7f7;
+    transition: all .3s ease-in-out;
+}
+.lightMode{
+    background-color: #f5f5f5;
+    color: #000;
+}
+.darkMode{
+    background-color: #2b2b2b;
+    color: #fff;
+}

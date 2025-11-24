@@ -1,0 +1,164 @@
+.titleSection {
+  color: #356ca6;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 3%;
+  margin-top: 6%;
+
+}
+
+.subTitleService {
+  margin-top: 5%;
+  margin-bottom: 2%;
+
+}
+
+.buttons-links {
+  color: black;
+}
+
+.boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.box {
+  width: 100%;
+  max-width: 350px;
+  /* Limit max width for better aesthetics */
+  border-radius: 20px;
+  border: none;
+  /* Remove border for cleaner look */
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* Soft, modern shadow */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Smooth spring-like transition */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(35, 107, 216, 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+    /* Subtle zoom on hover */
+  }
+
+  .product-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    z-index: 1;
+
+    h4 {
+      margin: 0 0 10px 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #2c3e50;
+      line-height: 1.4;
+      height: 3em;
+      /* Fixed height for alignment */
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .commission {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #20b038;
+      /* Green for money/success */
+      margin: 10px 0 0 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      &::before {
+        content: '💰';
+        /* Optional icon */
+        font-size: 1rem;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0 20px 20px 20px;
+  }
+}
+
+button {
+  padding: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #356ca6 0%, #04c2fc 100%);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(53, 108, 166, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(53, 108, 166, 0.5);
+    background: linear-gradient(135deg, #2a527e 0%, #039dc9 100%);
+  }
+}
+
+/* Removed carousel controls as they are no longer needed */
+
+@media(max-width: 768px) {
+  .boxes {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .box {
+    width: calc(50% - 10px);
+    height: auto;
+    /* Allow height to adjust */
+  }
+}
+
+@media(max-width: 480px) {
+  .subTitleService {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+  }
+
+  .boxes {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="boxSearch">
+  <div>
+    <h2>
+      ¡Emprende tu propio negocio
+      <br>
+      <br>
+      como el mejor!
+    </h2>
+    <div class="inputSearch p-5 my-3">
+      <input placeholder="Trabando Freelance..." />
+      <button class="btn btnSearch">Buscar</button>
+    </div>
+  </div>
+  <div class="d-flex w-100 ml-2">
+    <button [className]="marketplaceActive ? 'btn btn-sm btn-light btnAccion' : 'btn btn-sm btn-outline-light btnAccion'" (click)="MarketplaceActiveOn()">Marketplace</button>
+    <button [className]="companyActive ? 'btn btn-sm btn-light btnAccion' : 'btn btn-sm btn-outline-light btnAccion'" (click)="CompanyActiveOn()">Equipo empresas</button>
+    <button [className]="freelanceActive ? 'btn btn-sm btn-light btnAccion' : 'btn btn-sm btn-outline-light btnAccion'" (click)="FreelanceActiveOn()">Freelance profesional</button>
+  </div>
+</div>

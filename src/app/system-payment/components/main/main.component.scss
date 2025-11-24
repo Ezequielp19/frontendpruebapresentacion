@@ -1,0 +1,97 @@
+/* Estilos generales */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.boxHero {
+    width: 100%;
+    background: linear-gradient(rgba(0, 107, 166, 0.75), rgba(0, 107, 166, 0.75)), url(../../../../assets/img/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+.boxMain {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    width: 100%;
+}
+
+/* Formulario */
+.form-control {
+    height: 50px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #039be5;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Botón de pago */
+.free-button {
+    background: #1565c0;
+    height: 52px;
+    font-size: 15px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Texto y títulos */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.title-pay {
+    font-family: Raleway, "Helvetica Neue", sans-serif !important;
+    font-size: 18px;
+}
+
+.resumen-info {
+    font-size: 18px;
+}
+
+.impuestos {
+    font-size: 16px;
+}
+
+.small {
+    color: #1565c0;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .boxMain {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .btn-pay {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+}
+

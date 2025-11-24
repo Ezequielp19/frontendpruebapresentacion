@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.container-fluid {
+  padding: 20px;
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.boxInput {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.input-style {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 🌟 Responsive */
+
+/* 🖥 Pantallas grandes (min-width: 992px) → Diseño original */
+@media (min-width: 992px) {
+  .form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .boxInput {
+    width: 30%;
+  }
+}
+
+/* 📱 Tablets (768px - 991px) → 2 columnas */
+@media (max-width: 991px) {
+  .form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .boxInput {
+    width: 48%;
+  }
+}
+
+/* 📲 Móviles (max-width: 767px) → 1 columna */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 4px !important;
+  }
+  .form-container {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .boxInput {
+    width: 100% !important;
+    margin: 6px 0 !important;
+  }
+  .input-style, input, select {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+  .btnnuevo1 {
+    width: 100% !important;
+    font-size: 16px;
+    padding: 10px 0 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .btnnuevo1 {
+    font-size: 14px;
+    padding: 8px 0 !important;
+  }
+}

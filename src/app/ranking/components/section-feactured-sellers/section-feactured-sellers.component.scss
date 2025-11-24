@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.principal {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1rem, 5vw, 3rem);
+}
+
+.sellers {
+  color: black;
+}
+
+.titleSection {
+  color: #006ba6;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.textSection {
+  max-width: 600px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  text-align: center;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.row-sellers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  margin: 2rem 0;
+}
+
+.card-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.name-surname {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: bold;
+  margin: 1rem 0 0.5rem;
+  color: #333;
+}
+
+.cat-name {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.desc {
+  margin: 1rem 0;
+  font-weight: 500;
+  color: #006ba6;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  text-decoration: none;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  }
+}
+
+.buttons-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  border-radius: 25px;
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(35, 107, 216, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .principal {
+    padding: 1rem;
+  }
+
+  .row-sellers {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .card-info {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal {
+    padding: 1rem 0.5rem;
+  }
+
+  .row-sellers {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card-info {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .buttons-links {
+    padding: 0 1rem;
+  }
+}
+
+/* Soporte para pantallas grandes */
+@media (min-width: 1200px) {
+  .row-sellers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card-info {
+    padding: 2rem;
+  }
+}
+
+/* Estilos para el ranking */
+.ranking-section {
+  margin-top: 4rem;
+  padding: 2rem 0;
+}
+
+.ranking-title {
+  color: #006ba6;
+  font-size: 2.2rem;
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.ranking-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ranking-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #e0e0e0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  &:nth-child(1) {
+    border-left-color: #ffd700;
+    background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+  }
+
+  &:nth-child(2) {
+    border-left-color: #c0c0c0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  &:nth-child(3) {
+    border-left-color: #cd7f32;
+    background: linear-gradient(135deg, #fdf6e3 0%, #ffffff 100%);
+  }
+}
+
+.ranking-position {
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.position-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+
+  &.top-three {
+    background: linear-gradient(135deg, #236bd8 0%, #04c2fc 100%);
+    color: white;
+    box-shadow: 0 4px 10px rgba(35, 107, 216, 0.3);
+  }
+}
+
+.ranking-info {
+  flex: 1;
+}
+
+.ranking-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+  font-family: 'Raleway', sans-serif;
+
+  &.clickeable {
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #006ba6;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+  }
+}
+
+.ranking-details {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ranking-score {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #006ba6;
+  font-weight: 500;
+  font-size: 0.95rem;
+
+  i {
+    color: #ffd700;
+  }
+}
+
+.ranking-category {
+  background: linear-gradient(90deg, #236bd8 0%, #04c2fc 100%);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.ranking-badge {
+  margin-left: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.2rem;
+
+  &.top-three {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #b8860b;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+  }
+
+  i {
+    font-size: 1.3rem;
+  }
+}
+
+/* Responsive para el ranking */
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 0 1rem;
+  }
+
+  .ranking-card {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .ranking-position {
+    margin-right: 0;
+  }
+
+  .ranking-details {
+    justify-content: center;
+  }
+
+  .ranking-badge {
+    margin-left: 0;
+  }
+
+  .ranking-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ranking-card {
+    padding: 0.8rem;
+  }
+
+  .position-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .ranking-name {
+    font-size: 1.1rem;
+  }
+
+  .ranking-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ranking-badge {
+    width: 40px;
+    height: 40px;
+
+    i {
+      font-size: 1.1rem;
+    }
+  }
+}

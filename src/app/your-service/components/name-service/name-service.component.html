@@ -1,0 +1,52 @@
+<div class="container-fluid my-5">
+    <form [formGroup]="nameServiceForm">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="boxInput">
+                    <label class="mb-2" for="category">Selecciona la categoria</label>
+                    <select 
+                        class="form-select input-style" 
+                        id="category" 
+                        formControlName="category"
+                        [class.is-invalid]="hasError('category')"
+                        required>
+                        <option value="" disabled>Selecciona la categoria</option>
+                        <option *ngFor="let category of categories" [value]="category">
+                            {{ category }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="hasError('category')">
+                        {{ getErrorMessage('category') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 row">
+                <div class="col-12 col-md-4 boxInput">
+                    <label class="mb-2" for="serviceName">Nombre del servicio</label>
+                    <input 
+                        class="form-control input-style" 
+                        type="text" 
+                        id="serviceName" 
+                        formControlName="nameService"
+                        [class.is-invalid]="hasError('nameService')"
+                        placeholder="Escribe el nombre del producto o servicio" />
+                    <div class="invalid-feedback" *ngIf="hasError('nameService')">
+                        {{ getErrorMessage('nameService') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del formulario -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Paso 1 de 3:</strong> Define el nombre y categoría de tu servicio. 
+                    Esta información será visible para los clientes.
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

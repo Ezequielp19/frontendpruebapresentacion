@@ -1,0 +1,906 @@
+/* ========================== */
+/* ESTILOS MODERNOS Y PROFESIONALES */
+/* ========================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+.checkout-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 107, 166, 0.95) 0%, rgba(0, 107, 166, 0.85) 100%), 
+                url('../../../../assets/img/background.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 20px;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ========================== */
+/* HEADER DE LA PÁGINA */
+/* ========================== */
+
+.checkout-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.checkout-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    mat-icon {
+        font-size: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.checkout-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 400;
+}
+
+/* ========================== */
+/* CONTENIDO PRINCIPAL */
+/* ========================== */
+
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* ========================== */
+/* COLUMNA DE MÉTODOS DE PAGO */
+/* ========================== */
+
+.payment-column {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.payment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+
+    mat-icon {
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        color: #006ba6;
+    }
+}
+
+.section-description {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ========================== */
+/* TARJETAS DE MÉTODOS DE PAGO */
+/* ========================== */
+
+.payment-method-card {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        border-color: #006ba6;
+        background: #f1f5f9;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 107, 166, 0.15);
+    }
+
+    &.credit-card {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+}
+
+.payment-method-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.payment-method-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.payment-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+
+    img, svg {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+
+    mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+        color: #006ba6;
+    }
+}
+
+.payment-details {
+    flex: 1;
+}
+
+.payment-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+}
+
+.payment-description {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.payment-radio {
+    position: relative;
+}
+
+.payment-radio input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-radio input[type="radio"]:checked {
+    border-color: #006ba6;
+    background: #006ba6;
+}
+
+.payment-radio input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.payment-method-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================== */
+/* FORMULARIOS */
+/* ========================== */
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+
+    mat-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        z-index: 2;
+    }
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    background: white;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &:focus {
+        border-color: #006ba6;
+        box-shadow: 0 0 0 3px rgba(0, 107, 166, 0.1);
+    }
+
+    &::placeholder {
+        color: #9ca3af;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: calc(50% - 7.5px);
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.credit-card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.security-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 10px;
+
+    mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: #10b981;
+    }
+}
+
+/* ========================== */
+/* COLUMNA DE RESUMEN */
+/* ========================== */
+
+.summary-column {
+    position: sticky;
+    top: 20px;
+}
+
+.order-summary {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.summary-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.summary-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+
+    mat-icon {
+        font-size: 1.4rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        color: #006ba6;
+    }
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ========================== */
+/* INFORMACIÓN DEL PRODUCTO */
+/* ========================== */
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 5px 0;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.product-price {
+    text-align: right;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #006ba6;
+}
+
+.discount-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #92400e;
+    border: 1px solid #f59e0b;
+
+    mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: #f59e0b;
+    }
+}
+
+.summary-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #e5e7eb 50%, transparent 100%);
+    margin: 10px 0;
+}
+
+/* ========================== */
+/* INFORMACIÓN DE ENTREGA */
+/* ========================== */
+
+.delivery-info {
+    padding: 15px 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 0.95rem;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* ========================== */
+/* CÁLCULOS */
+/* ========================== */
+
+.calculation-section {
+    padding: 15px 0;
+}
+
+.calculation-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.calculation-label {
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.calculation-value {
+    font-size: 0.95rem;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.total-row {
+    padding-top: 15px;
+    border-top: 2px solid #e5e7eb;
+    margin-top: 15px;
+}
+
+.total-row .calculation-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.total-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #006ba6;
+}
+
+/* ========================== */
+/* BOTÓN DE COMPRA */
+/* ========================== */
+
+.purchase-section {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.purchase-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, #006ba6 0%, #005a8b 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 107, 166, 0.3);
+    margin-bottom: 15px;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 107, 166, 0.4);
+        background: linear-gradient(135deg, #005a8b 0%, #004a73 100%);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0;
+
+    mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: #10b981;
+    }
+}
+
+/* ========================== */
+/* ESTILOS RESPONSIVE */
+/* ========================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .summary-column {
+        position: static;
+        order: 2;
+    }
+
+    .payment-column {
+        order: 1;
+    }
+
+    .checkout-title {
+        font-size: 2rem;
+    }
+
+    .checkout-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 15px;
+    }
+
+    .checkout-layout {
+        gap: 20px;
+    }
+
+    .checkout-title {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .checkout-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .payment-column,
+    .order-summary {
+        padding: 20px;
+    }
+
+    .payment-method-card {
+        padding: 15px;
+    }
+
+    .payment-icon {
+        width: 40px;
+        height: 40px;
+
+        img, svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        mat-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .payment-name {
+        font-size: 1rem;
+    }
+
+    .payment-description {
+        font-size: 0.85rem;
+    }
+
+    .form-input {
+        padding: 12px 12px 12px 40px;
+        font-size: 0.9rem;
+    }
+
+    .input-group mat-icon {
+        left: 12px;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .product-item {
+        padding: 15px;
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .product-description {
+        font-size: 0.85rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+}
+
+/* Móviles medianos */
+@media (max-width: 480px) {
+    .checkout-container {
+        padding: 10px;
+    }
+
+    .checkout-title {
+        font-size: 1.5rem;
+    }
+
+    .checkout-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .payment-column,
+    .order-summary {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .summary-title {
+        font-size: 1.2rem;
+    }
+
+    .payment-method-card {
+        padding: 12px;
+    }
+
+    .payment-method-info {
+        gap: 12px;
+    }
+
+    .payment-icon {
+        width: 35px;
+        height: 35px;
+
+        img, svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .payment-name {
+        font-size: 0.95rem;
+    }
+
+    .payment-description {
+        font-size: 0.8rem;
+    }
+
+    .form-input {
+        padding: 10px 10px 10px 35px;
+        font-size: 0.85rem;
+    }
+
+    .input-group mat-icon {
+        left: 10px;
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .half-width {
+        width: 100%;
+    }
+
+    .product-item {
+        padding: 12px;
+    }
+
+    .purchase-btn {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+
+    .total-price {
+        font-size: 1.2rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 320px) {
+    .checkout-container {
+        padding: 8px;
+    }
+
+    .checkout-title {
+        font-size: 1.3rem;
+    }
+
+    .checkout-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .payment-column,
+    .order-summary {
+        padding: 12px;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    .summary-title {
+        font-size: 1.1rem;
+    }
+
+    .payment-method-card {
+        padding: 10px;
+    }
+
+    .payment-icon {
+        width: 30px;
+        height: 30px;
+
+        img, svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .payment-name {
+        font-size: 0.9rem;
+    }
+
+    .payment-description {
+        font-size: 0.75rem;
+    }
+
+    .form-input {
+        padding: 8px 8px 8px 30px;
+        font-size: 0.8rem;
+    }
+
+    .input-group mat-icon {
+        left: 8px;
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .product-item {
+        padding: 10px;
+    }
+
+    .purchase-btn {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    .total-price {
+        font-size: 1.1rem;
+    }
+}
+
+/* ========================== */
+/* ANIMACIONES MODERNAS */
+/* ========================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.checkout-header {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.payment-column {
+    animation: slideInRight 0.6s ease-out 0.2s both;
+}
+
+.order-summary {
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.payment-method-card {
+    animation: fadeInUp 0.4s ease-out;
+}

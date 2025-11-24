@@ -1,0 +1,270 @@
+.mat-tab-group {
+    //margin-bottom: 48px;
+    //margin-top: 48px;
+    //height: 100%;
+    border-radius: 8px;
+}
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+
+}
+
+.boxHero {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 107, 166, 0.75), rgba(0, 107, 166, 0.75)), url(../../../../assets/img/background.png);
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    //position: fixed;
+    background-attachment: fixed;
+}
+
+.wrapper {
+    //display: flex;
+    //align-items: center;
+    //flex-direction: column;
+    //justify-content: center;
+    width: 80%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#formContent {
+    //-webkit-border-radius: 15px 15px 15px 15px;
+    //border-radius: 10px 10px 10px 10px;
+    border-radius: 8px;
+    background: #fff;
+    width: 100%;
+    max-width: 100%;
+    //position: relative;
+    padding: 0;
+    //-webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    //box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    //text-align: center;
+}
+
+
+
+
+
+//background-color: rgba(0, 107, 166, 0.7) !important;
+//background-size: 100% 100% !important;
+//background-repeat: no-repeat !important;
+//background-image: linear-gradient(rgba(0, 107, 166, 0.75), rgba(0, 107, 166, 0.75)),url(../../../../assets/img/background.png);
+//background-image: url('../../../../assets/img/hero-ranking.png');
+//background-image: url('../../../assets/img/hero-ranking.png');
+//background-image: url('../../../../assets/img/hero-ranking.png');
+
+/* ========================== */
+/* MEDIA QUERIES PARA 1024x600 */
+/* ========================== */
+
+/* Netbook específico (1024 x 600) */
+@media (width: 1024px) and (height: 600px) {
+  .wrapper {
+    width: 95%;
+    padding: 20px;
+  }
+
+  #formContent {
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  .mat-tab-group {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ajustes para las pestañas */
+  .mat-tab-label {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    min-width: auto !important;
+  }
+
+  .mat-tab-label-content {
+    font-size: 12px !important;
+  }
+
+  /* Ajustes para el contenido de las pestañas */
+  .container-fluid {
+    padding: 15px !important;
+  }
+
+  /* Ajustes para los formularios */
+  .row {
+    margin: 0 !important;
+    justify-content: center !important;
+  }
+
+  .col-12, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7 {
+    padding: 8px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Ajustes para inputs y labels */
+  .boxInput {
+    margin: 10px 0 !important;
+  }
+
+  .boxInput label {
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .input-style, .form-control, .form-select, .text {
+    font-size: 12px !important;
+    padding: 8px !important;
+    height: auto !important;
+  }
+
+  /* Ajustes para botones */
+  .btn {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    margin: 10px auto !important;
+  }
+
+  /* Ajustes específicos para imágenes */
+  .img {
+    margin-bottom: 15px !important;
+  }
+
+  .title-img, .title-video {
+    font-size: 14px !important;
+    text-align: center !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Ajustes para el grid de imágenes */
+  .col-sm-12.col-md-3 {
+    width: 50% !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Ajustes para el área de descripción */
+  .col-md-6, .col-md-5 {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Ajustes para el botón total */
+  .btn-total {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
+
+  /* Ajustes para el enlace de soporte */
+  .mx-4 {
+    margin: 15px !important;
+    text-align: center !important;
+    font-size: 12px !important;
+  }
+}
+
+/* Rango amplio para 1024px */
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .wrapper {
+    width: 90%;
+    padding: 25px;
+  }
+
+  #formContent {
+    padding: 25px;
+    margin: 0 auto;
+  }
+
+  .mat-tab-group {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ajustes para las pestañas */
+  .mat-tab-label {
+    font-size: 13px !important;
+    padding: 10px 15px !important;
+    min-width: auto !important;
+  }
+
+  .mat-tab-label-content {
+    font-size: 13px !important;
+  }
+
+  /* Ajustes para el contenido de las pestañas */
+  .container-fluid {
+    padding: 20px !important;
+  }
+
+  /* Ajustes para los formularios */
+  .row {
+    margin: 0 !important;
+    justify-content: center !important;
+  }
+
+  .col-12, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7 {
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Ajustes para inputs y labels */
+  .boxInput {
+    margin: 12px 0 !important;
+  }
+
+  .boxInput label {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .input-style, .form-control, .form-select, .text {
+    font-size: 13px !important;
+    padding: 10px !important;
+    height: auto !important;
+  }
+
+  /* Ajustes para botones */
+  .btn {
+    font-size: 13px !important;
+    padding: 10px 20px !important;
+    margin: 12px auto !important;
+  }
+
+  /* Ajustes específicos para imágenes */
+  .img {
+    margin-bottom: 20px !important;
+  }
+
+  .title-img, .title-video {
+    font-size: 15px !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Ajustes para el grid de imágenes */
+  .col-sm-12.col-md-3 {
+    width: 50% !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Ajustes para el área de descripción */
+  .col-md-6, .col-md-5 {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Ajustes para el botón total */
+  .btn-total {
+    margin: 12px 0 !important;
+    width: 100% !important;
+  }
+
+  /* Ajustes para el enlace de soporte */
+  .mx-4 {
+    margin: 20px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+  }
+}

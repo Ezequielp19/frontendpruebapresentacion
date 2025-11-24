@@ -1,0 +1,204 @@
+<div class="boxMain">
+
+    <div class="container">
+        <p class="d-flex text-center justify-content-center title">Transmisiones en Vivo</p>
+
+        <!-- Filtros -->
+        <div class="filters-container">
+            <p class="subtitle">Selecciona los filtros y presiona "Buscar" para filtrar las transmisiones</p>
+
+            <div class="filters-grid">
+                <!-- Filtro de Categoría -->
+                <div class="filter-item">
+                    <label class="filter-label">Categoría</label>
+                    <select class="filter-select" (change)="seleccionarCategoria($event)">
+                        <option value="" disabled>-- Selecciona una categoría --</option>
+                        <option *ngFor="let categoria of categorias" [value]="categoria">
+                            {{ categoria | titlecase }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Rol -->
+                <div class="filter-item">
+                    <label class="filter-label">Rol</label>
+                    <select class="filter-select" (change)="seleccionarRol($event)">
+                        <option value="" disabled>-- Selecciona un rol --</option>
+                        <option *ngFor="let rol of roles" [value]="rol">
+                            {{ rol | titlecase }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Productos -->
+                <div class="filter-item">
+                    <label class="filter-label">Productos</label>
+                    <select class="filter-select" (change)="seleccionarProducto($event)">
+                        <option value="" disabled>-- Selecciona un producto --</option>
+                        <option *ngFor="let producto of productos" [value]="producto">
+                            {{ producto | titlecase }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Tipo de Producto -->
+                <div class="filter-item">
+                    <label class="filter-label">Tipo de Producto</label>
+                    <select class="filter-select" (change)="seleccionarTipoProducto($event)">
+                        <option value="" disabled>-- Selecciona tipo --</option>
+                        <option *ngFor="let tipo of tiposProducto" [value]="tipo">
+                            {{ tipo | titlecase }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Estado del Producto -->
+                <div class="filter-item">
+                    <label class="filter-label">Estado del Producto</label>
+                    <select class="filter-select" (change)="seleccionarEstado($event)">
+                        <option value="" disabled>-- Selecciona estado --</option>
+                        <option *ngFor="let estado of estadosProducto" [value]="estado">
+                            {{ estado | titlecase }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Buscador de Ubicación -->
+                <div class="filter-item">
+                    <label class="filter-label">Ubicación</label>
+                    <div class="ubicacion-search-container">
+                        <input
+                            type="text"
+                            class="filter-select ubicacion-search-input"
+                            [value]="ubicacionSeleccionada"
+                            (input)="onUbicacionSearch($any($event.target).value)"
+                            placeholder="Buscar ubicación..."
+                            autocomplete="off"
+                        />
+                        <div class="ubicacion-results" *ngIf="ubicacionesResultados.length > 0 || ubicacionesCargando">
+                            <div class="ubicacion-loading" *ngIf="ubicacionesCargando">
+                                Buscando...
+                            </div>
+                            <div
+                                class="ubicacion-result-item"
+                                *ngFor="let ubicacion of ubicacionesResultados"
+                                (click)="seleccionarUbicacionBusqueda(ubicacion)"
+                            >
+                                {{ ubicacion.nombreCompleto }}
+                            </div>
+                            <div class="ubicacion-no-results" *ngIf="!ubicacionesCargando && ubicacionesResultados.length === 0">
+                                No se encontraron resultados
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="filter-actions">
+                <button class="btn-search" (click)="aplicarFiltros()">
+                    <mat-icon>search</mat-icon>
+                    Buscar
+                </button>
+                <button 
+                    class="btn-clear-filters" 
+                    (click)="limpiarFiltros()"
+                    *ngIf="hayFiltrosActivos()">
+                    <mat-icon>clear_all</mat-icon>
+                    Limpiar Filtros
+                </button>
+            </div>
+        </div>
+
+        <!-- Componente de tarjetas para streams legacy -->
+        <app-card-live-dashboard [vivos]="vivos"></app-card-live-dashboard>
+
+        <!-- Lista de Streams Activos WebRTC -->
+        <div class="active-streams-section" *ngIf="activeStreams.length > 0">
+            <h2 class="section-title">
+                <mat-icon>live_tv</mat-icon>
+                Transmisiones en Vivo
+            </h2>
+
+            <div class="loading-spinner" *ngIf="isLoading">
+                <mat-icon class="spinning">refresh</mat-icon>
+                <p>Cargando transmisiones...</p>
+            </div>
+
+            <div class="streams-grid" *ngIf="!isLoading">
+                <div class="stream-card" *ngFor="let stream of activeStreams" (click)="watchStream(stream.streamId)">
+                    <div class="stream-thumbnail">
+                        <img [src]="stream.thumbnailUrl || 'assets/img/default-stream-thumbnail.jpg'"
+                             [alt]="stream.title"
+                             onerror="this.src='assets/img/product-1.png'">
+                        <div class="live-indicator" *ngIf="isStreamLive(stream)">
+                            <span class="pulse-dot"></span>
+                            EN VIVO
+                        </div>
+                        <div class="ended-indicator" *ngIf="!isStreamLive(stream)">
+                            <span class="ended-dot"></span>
+                            FINALIZADO
+                        </div>
+                        <div class="stream-duration">{{ getTimeAgo(stream.startedAt) }}</div>
+                    </div>
+
+                    <div class="stream-info">
+                        <h3 class="stream-title">{{ stream.title }}</h3>
+
+                        <div class="streamer-info">
+                            <img [src]="stream.streamer?.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face'"
+                                 [alt]="stream.streamer?.username"
+                                 class="streamer-avatar">
+                            <span class="streamer-name">{{ stream.streamer?.username || 'Streamer' }}</span>
+                        </div>
+
+                        <div class="stream-stats">
+                            <div class="stat-item">
+                                <mat-icon>visibility</mat-icon>
+                                <span>{{ stream.viewerCount || 0 }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <mat-icon>hd</mat-icon>
+                                <span>{{ stream.quality || '720p' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="stream-category" *ngIf="stream.category">
+                            <span class="category-badge">{{ stream.category }}</span>
+                        </div>
+
+                        <div class="stream-tags" *ngIf="stream.tags && stream.tags.length > 0">
+                            <span class="tag" *ngFor="let tag of stream.tags.slice(0, 3)">{{ tag }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            <div class="pagination-controls" *ngIf="totalPages > 1 && !isLoading">
+                <button class="page-btn" (click)="previousPage()" [disabled]="currentPage === 1">
+                    <mat-icon>chevron_left</mat-icon>
+                    Anterior
+                </button>
+
+                <div class="page-numbers">
+                    <span class="page-info">Página {{ currentPage }} de {{ totalPages }}</span>
+                </div>
+
+                <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                    Siguiente
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensaje cuando no hay streams -->
+        <div class="no-streams-message" *ngIf="activeStreams.length === 0 && !isLoading">
+            <mat-icon>videocam_off</mat-icon>
+            <h3>No hay transmisiones en vivo en este momento</h3>
+            <p>Vuelve más tarde o activa las notificaciones para saber cuándo inicie un stream</p>
+        </div>
+
+    </div>
+
+</div>

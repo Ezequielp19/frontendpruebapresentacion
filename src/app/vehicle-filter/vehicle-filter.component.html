@@ -1,0 +1,23 @@
+<div>
+    <label for="type">Type:</label>
+    <select id="type" [(ngModel)]="filters.type" name="type">
+        <option value="auto">Auto</option>
+        <option value="camioneta">Pickup</option>
+        <option value="moto">Moto</option>
+        <option value="camion">Camión</option>
+    </select>
+
+    <label for="location">Location:</label>
+    <input id="location" [(ngModel)]="filters.location" name="location">
+
+    <button (click)="applyFilter()">Apply Filter</button>
+</div>
+
+<div *ngIf="vehicles.length > 0">
+    <div *ngFor="let vehicle of vehicles">
+        {{ vehicle.details.brand }} {{ vehicle.details.model }} - {{ vehicle.type }} - {{ vehicle.location }}
+    </div>
+</div>
+<div *ngIf="vehicles.length === 0">
+    No se encontraron vehículos que coincidan con los filtros aplicados.
+</div>

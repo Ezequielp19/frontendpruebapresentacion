@@ -1,0 +1,71 @@
+<!-- Solo mostrar productos si NO es un conductor -->
+<div *ngIf="!workerData.vehicleInfo" class="products-container">
+    <div class="products-header">
+        <h2 class="products-title">
+            <mat-icon>inventory</mat-icon>
+            Productos de {{ workerData.name }}
+        </h2>
+        <p class="products-subtitle">Descubre los productos disponibles</p>
+    </div>
+
+    <!-- Loading state -->
+    <div *ngIf="isLoading" class="loading-state">
+        <mat-icon>refresh</mat-icon>
+        <p>Cargando productos...</p>
+    </div>
+
+    <!-- Products grid -->
+    <div *ngIf="!isLoading && products.length > 0" class="products-grid">
+        <div *ngFor="let product of products" class="product-card">
+            <div class="product-image">
+                <img *ngIf="product.images && product.images.length > 0"
+                     [src]="product.images[0]"
+                     [alt]="product.name"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <img *ngIf="product.image"
+                     [src]="product.image"
+                     [alt]="product.name"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <mat-icon *ngIf="!product.image && (!product.images || product.images.length === 0)">image</mat-icon>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">{{ product.name || 'Producto sin nombre' }}</h3>
+                <p class="product-description">{{ product.description || 'Sin descripción' }}</p>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="price-value">{{ product.price ? (product.price | currency:'EUR':'symbol':'1.0-0') : 'Consultar' }}</span>
+                    </div>
+                    <div *ngIf="product.stock !== undefined" class="product-stock"
+                         [class.low-stock]="product.stock < 10">
+                        <mat-icon>inventory_2</mat-icon>
+                        <span>{{ product.stock }}</span>
+                    </div>
+                </div>
+                <div *ngIf="product.rating" class="product-rating">
+                    <mat-icon>star</mat-icon>
+                    <span>{{ product.rating }}/5</span>
+                    <span class="reviews-count">({{ product.reviews || 0 }} opiniones)</span>
+                </div>
+            </div>
+            <div class="product-actions">
+                <button class="btn-view-product" (click)="goToProductDetail(product._id || product.id)">
+                    <mat-icon>visibility</mat-icon>
+                    Ver Detalles
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estado sin productos -->
+    <div *ngIf="!isLoading && products.length === 0" class="no-products-card">
+        <div class="no-products-icon">
+            <mat-icon>inventory_2</mat-icon>
+        </div>
+        <h3 class="no-products-title">No hay productos disponibles</h3>
+        <p class="no-products-text">Este vendedor aún no ha publicado productos en su catálogo.</p>
+        <button class="btn-contact-seller" (click)="contactSeller()">
+            <mat-icon>chat</mat-icon>
+            Contactar Vendedor
+        </button>
+    </div>
+</div>

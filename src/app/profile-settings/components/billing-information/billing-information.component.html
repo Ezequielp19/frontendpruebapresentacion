@@ -1,0 +1,74 @@
+<div class="container-fluid my-5">
+  <form [formGroup]="formRegister">
+    <div class="form-container">
+      <div class="boxInput">
+        <label>Nombre</label>
+        <input class="form-control input-style" type="text" placeholder="Nombre" />
+      </div>
+
+      <div class="boxInput">
+        <label>Apellido</label>
+        <input class="form-control input-style" type="text" placeholder="Apellido" />
+      </div>
+
+      <div class="boxInput">
+        <label>CBU-ALIAS</label>
+        <input class="form-control input-style" type="text" placeholder="num - alias" />
+      </div>
+
+      <div class="boxInput">
+        <label>Wallet Virtual</label>
+        <input class="form-control input-style" type="text" placeholder="Nombre de cuenta en wallet" />
+      </div>
+
+      <div class="boxInput">
+        <label>DNI</label>
+        <input class="form-control input-style" type="text" placeholder="DNI" />
+      </div>
+
+      <div class="boxInput">
+        <label>CUIT-CUIL</label>
+        <input name="cuit" formControlName="cuit" class="form-control input-style" placeholder="CUIT-CUIL" />
+      </div>
+
+      <div class="boxInput">
+        <label>Razón Social</label>
+        <input class="form-control input-style" placeholder="Indica tu R.Social" />
+      </div>
+
+      <div class="boxInput">
+        <label>Rubro</label>
+        <input class="form-control input-style" placeholder="Indica tu Rubro" />
+      </div>
+
+      <div class="boxInput">
+        <label>Dirección</label>
+        <input class="form-control input-style" placeholder="Calle" />
+      </div>
+
+      <div class="boxInput">
+        <label>Provincia</label>
+        <select class="form-select input-style">
+          <option selected disabled>Selecciona</option>
+          <option>Rio Negro</option>
+          <option>Córdoba</option>
+          <option>La Rioja</option>
+        </select>
+      </div>
+
+      <div class="boxInput">
+        <label>Código Postal</label>
+        <input class="form-control input-style" placeholder="Cod" />
+      </div>
+    </div>
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="newsCheck" />
+      <label for="newsCheck">Quiero recibir novedades sobre Likevendor</label>
+    </div>
+
+    <div class="submit-container">
+      <button (click)="submitRegister()" class="btn   btnnuevo1">Guardar cambios</button>
+    </div>
+  </form>
+</div>

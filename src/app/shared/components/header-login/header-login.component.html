@@ -1,0 +1,67 @@
+
+
+
+
+<div class="boxHero container-fluid p-0 m-0 d-flex  align-items-center ">
+
+    <!-- <div class="title-main">
+        <p class=" py-4 text-white title-1">Unete a LikeVendor,</p>
+        <p class="text-white title-2"> y comienza a crecer.</p>
+        <img class="img-logo" src="../../../../assets/img/logo_blanco.png" alt="">
+    </div>
+
+    <div class="linea-divisora">
+
+    </div> -->
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <article class="card-body mx-auto container-fluid">
+                <h4 class="card-title mt-3 text-center  "><strong>INICIAR SESION</strong> </h4>
+
+
+
+                <form [formGroup]="formRegister" (ngSubmit)="submitRegister()">
+
+
+
+
+
+                    <div class="mb-3 container-fluid form-group col-sm-11 ">
+                        <label for="exampleFormControlInput1 " class="form-label label">Correo electronico</label>
+                        <input name="email" class="form-control  label-center"
+                            placeholder="Escribe tu correo electronico" type="email" formControlName="email">
+                        <div
+                            *ngIf="formRegister.controls['email'].invalid && (formRegister.controls['email'].dirty || formRegister.controls['email'].touched)">
+                            <div class="text-danger" *ngIf="f['email'].errors && f['email'].errors['required']">
+                                El Mail es Requerido
+                            </div>
+                            <div class="text-danger" *ngIf="f['email'].errors && f['email'].errors['pattern']">
+                                No cumple con los requisitos de un mail
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-3 container-fluid form-group col-sm-11 ">
+                        <label for="exampleFormControlInput1 " class="form-label label">Contraseña</label>
+                        <input name="password" class="form-control  label-center" placeholder="Escribe tu contraseña"
+                            type="password" formControlName="password">
+
+                    </div>
+
+
+
+                    <div class="form-group my-3 d-flex justify-content-center">
+                        <button type="submit"
+                            class="btn btn-block btn-primary input-style btnnuevo1">Iniciar Sesion</button>
+                    </div>
+                    <p class="text-center input-style bg-white text-black"><a href="/change-password">Olvidaste tu contraseña?</a></p>
+                    <p class="text-center input-style bg-white text-black">No tienes cuenta?    <a href="/register">Registrarme</a></p>
+                </form>
+            </article>
+        </div>
+    </div>
+</div>

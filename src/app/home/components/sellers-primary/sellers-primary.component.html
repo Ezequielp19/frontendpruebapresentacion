@@ -1,0 +1,13 @@
+<div class="container-fluid box-all">
+  <div class="title-container">
+    <p class="titleSection">{{ 'Emprendedores destacados' | translate }}</p>
+  </div>
+
+  <div class="my-5 box-sellers">
+    <div class="box-main">
+      <div class="card" *ngFor="let item of workers; let even = even; let index = index">
+        <app-worker-card class="card-in" [dark]="!even" [worker]="item" [border]="index == 2"></app-worker-card>
+      </div>
+    </div>
+  </div>
+</div>

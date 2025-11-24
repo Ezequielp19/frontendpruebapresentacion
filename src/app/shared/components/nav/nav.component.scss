@@ -1,0 +1,1646 @@
+/* ===== OCULTAR NAVBAR ORIGINAL EN MÓVILES ===== */
+
+/* Ocultar navbar original en pantallas pequeñas */
+@media (max-width: 1024px) {
+  .navbar {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   COMPONENTE NAV - ESTILOS BASE (DESKTOP)
+   ======================================== */
+
+/* ===== ESTRUCTURA BASE ===== */
+.navbar {
+    height: 39px;
+    margin-bottom: 30px;
+    border-color: rgb(86, 86, 86);
+}
+
+#navbarsExample07 {
+    margin-left: 0;
+    width: 100%;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ===== ELEMENTOS DE NAVEGACIÓN ===== */
+.nav-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 32px;
+}
+
+.nav-link {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-top: 0;
+    font-size: 11px;
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
+
+    
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.nav-link-2 {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 3px;
+    animation: 'animate__swing';
+    animation-duration: 7s;
+}
+
+.nav-link-lv {
+    text-decoration: none;
+}
+
+/* ===== BOTÓN VIVO ===== */
+.active-live {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color: #e8f439;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dropdownMenuButton0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#dropdownMenuButton04 {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+.live-box {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.live-icon {
+    margin: 0;
+    font-size: 12px;
+    padding-left: 4px;
+    color: red;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* ===== DROPDOWN EMPRESAS ===== */
+#dropdownMenuButton1 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btnSearch {
+    margin: 0;
+    text-decoration: none;
+    padding: 6px 15px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* ===== RANKING DE VENDEDORES ===== */
+#dropdownMenuButton2 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* ===== BOTONES DE TRABAJOS ===== */
+.trabajos {
+    background: rgb(35,107,216);
+    background: linear-gradient(90deg, rgba(35,107,216,1) 10%, rgba(4,194,252,1) 50%, rgba(103,121,217,1) 90%);
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    height: 32px;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== BOTONES DE ENVÍOS ===== */
+.envios {
+    background: rgb(35,107,216);
+    background: linear-gradient(90deg, rgba(35,107,216,1) 10%, rgba(4,194,252,1) 50%, rgba(103,121,217,1) 90%);
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    height: 32px;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.truck-icon {
+    color: white;
+    margin-left: 8px;
+}
+
+.work-icon {
+    color: white;
+    margin-left: 8px;
+}
+
+#dropdownMenuButton3 {
+    margin: 0 10px 0 0;
+}
+
+#dropdownMenuButton4 {
+    margin: 0;
+}
+
+.nav-link-2 {
+    width: 60px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ICONOS DE TRABAJOS ===== */
+.trabajos img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.trabajos svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ENLACES DENTRO DE TRABAJOS ===== */
+.trabajos a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ICONOS DE ENVÍOS ===== */
+.envios img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.envios svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ENLACES DENTRO DE ENVÍOS ===== */
+.envios a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* ===== SOBRESCRIBIR CUALQUIER CONFLICTO DE NAV-LINK ===== */
+.envios a.nav-link {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* ===== SELECTOR DE IDIOMA ===== */
+.btn-language {
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-top: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.selectLang {
+    margin-left: 0;
+}
+
+.btn-lang {
+    color: black;
+    border-color: white;
+    width: 60px;
+    margin-top: 0;
+    border-radius: 10px;
+    background-color: #e8f439;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    padding: 0 10px;
+}
+
+select {
+    width: 60px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid #e8f439;
+    background-color: #e8f439;
+    color: black;
+    font-size: 11px;
+    padding: 0 5px;
+}
+
+option {
+    background-color: rgb(35,107,216);
+    color: white;
+}
+
+/* ===== ELEMENTOS MÓVILES (OCULTOS EN DESKTOP) ===== */
+#rankingMobile, #logoMobile {
+    display: none;
+}
+
+/* ===== ANIMACIONES ===== */
+.animate__bounceInDown {
+    animation-duration: 7s;
+}
+
+.parpadeo {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ===== DROPDOWN EMPRESAS OVERLAY ===== */
+.empresas-dropdown-container {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.empresas-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0;
+  margin: 5px 0 0 0;
+  min-width: 180px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 99999 !important;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* ===== ESTILOS PARA EL DROPDOWN EMPRESAS ===== */
+.empresas-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.empresas-dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: #f0f8ff;
+    color: #236bd8;
+    text-decoration: none;
+  }
+
+  &:active, &:focus {
+    background: #e6f3ff;
+    color: #236bd8;
+    outline: none;
+  }
+}
+
+.empresas-dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0;
+  margin: 0;
+  min-width: 180px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 9999999999;
+  list-style: none;
+}
+
+.empresas-dropdown-list > li:hover > .empresas-dropdown-submenu {
+  display: block;
+}
+
+/* ===== DROPDOWN MENUS ===== */
+.dropdown-menu {
+    background: #ffffff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 0;
+    margin: 5px 0 0 0;
+    min-width: 180px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 9999999999;
+    isolation: isolate;
+}
+
+.dropdown-menu li {
+    position: static;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 16px;
+    color: #333;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-item:hover {
+    background: #f0f8ff;
+    color: #236bd8;
+    text-decoration: none;
+}
+
+.dropdown-item:active,
+.dropdown-item:focus {
+    background: #e6f3ff;
+    color: #236bd8;
+    outline: none;
+    border: none;
+}
+
+.dropdown-item::after {
+    display: none;
+}
+
+/* ===== SUBMENÚS ===== */
+.dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #ffffff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 0;
+    margin: 0;
+    min-width: 180px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 9999999999;
+}
+
+.dropdown-submenu .dropdown-item {
+    padding: 10px 16px 10px 25px;
+    border: none;
+}
+
+.dropdown-submenu .dropdown-item:hover {
+    background: #f0f8ff;
+    color: #236bd8;
+    text-decoration: none;
+}
+
+.dropdown-submenu .dropdown-item:active,
+.dropdown-submenu .dropdown-item:focus {
+    background: #e6f3ff;
+    color: #236bd8;
+    outline: none;
+    border: none;
+}
+
+/* ===== SCROLLBAR PERSONALIZADO ===== */
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* ===== UTILIDADES ===== */
+.img-lv {
+    color: black;
+}
+
+.linea {
+    width: 100px;
+    position: absolute;
+    margin: 18px 0px 0px 0px !important;
+}
+
+#scroll-container {
+    overflow-y: auto;
+}
+
+/* ===== HOVER PARA SUBMENÚS EN DESKTOP ===== */
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+/* ===== MEDIA QUERIES RESPONSIVE - ESTRUCTURA EN 2 COLUMNAS ===== */
+
+/* ===== VISTA WEB (DESKTOP) - LAYOUT HORIZONTAL ===== */
+
+/* Pantallas grandes - Layout horizontal como antes */
+@media (min-width: 1025px) {
+    .navbar {
+        height: 39px;
+        margin-bottom: 30px;
+    }
+
+    #navbarsExample07 {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        margin-left: 0;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .nav-item {
+        margin: 0;
+    }
+
+    #dropdownMenuButton0 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #dropdownMenuButton1 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #dropdownMenuButton2 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .envios {
+        margin-left: 0;
+        margin-right: 0;
+        width: 80px !important;
+        height: 32px;
+        min-width: 80px;
+        max-width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Asegurar centrado perfecto en desktop */
+    .envios img,
+    .envios svg {
+        width: 24px !important;
+        height: 24px !important;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Asegurar que los enlaces dentro de envios estén perfectamente centrados */
+    .envios a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+
+    #dropdownMenuButton3 {
+        margin: 0;
+    }
+
+    .btn-language {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* ===== PANTALLAS MEDIANAS - ESTRUCTURA EN 2 COLUMNAS CON EMPAREJAMIENTO POR COLOR ===== */
+
+@media (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 25px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        width: 100%;
+        padding: 15px;
+        justify-items: center;
+    }
+
+    .nav-item {
+        width: auto;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 10px;
+        margin-top: 4px;
+        text-align: center;
+    }
+
+    .nav-link-2 {
+        width: 60px;
+        height: 32px;
+        margin: 0;
+        justify-content: center;
+    }
+
+    .active-live {
+        height: 32px;
+        width: 80px;
+        justify-content: center;
+    }
+
+    #dropdownMenuButton0 {
+        width: auto;
+    }
+
+    #dropdownMenuButton04 {
+        width: 80px;
+        height: 32px;
+        padding: 0 15px;
+        justify-content: center;
+    }
+
+    .btnSearch {
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 10px;
+        width: auto;
+        justify-content: center;
+    }
+
+    .envios {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .btn-language {
+        width: auto;
+        justify-content: center;
+    }
+
+    .selectLang {
+        width: auto;
+        justify-content: center;
+    }
+
+    .btn-lang {
+        height: 32px;
+        width: 60px;
+        font-size: 10px;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    select {
+        height: 32px;
+        width: 60px;
+        font-size: 10px;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        display: block !important;
+        width: 100%;
+        grid-column: span 2;
+        margin: 15px 0;
+    }
+
+    #logoMobile img {
+        height: 28px;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #rankingMobile .nav-link {
+        width: 100%;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 10px;
+    }
+}
+
+/* ===== MÓVILES - ESTRUCTURA EN 2 COLUMNAS CON EMPAREJAMIENTO POR COLOR ===== */
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        width: 100%;
+        padding: 10px;
+        justify-items: center;
+    }
+
+    .nav-item {
+        width: auto;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 9px;
+        margin-top: 3px;
+        text-align: center;
+    }
+
+    .nav-link-2 {
+        width: 60px;
+        height: 32px;
+        margin: 0;
+        justify-content: center;
+    }
+
+    .active-live {
+        height: 32px;
+        width: 80px;
+        justify-content: center;
+    }
+
+    #dropdownMenuButton0 {
+        width: auto;
+    }
+
+    #dropdownMenuButton04 {
+        width: 80px;
+        height: 32px;
+        padding: 0 15px;
+        justify-content: center;
+    }
+
+    .btnSearch {
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 9px;
+        width: auto;
+        justify-content: center;
+    }
+
+    .envios {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .btn-language {
+        width: auto;
+        justify-content: center;
+    }
+
+    .selectLang {
+        width: auto;
+        justify-content: center;
+    }
+
+    .btn-lang {
+        height: 32px;
+        width: 60px;
+        font-size: 9px;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    select {
+        height: 32px;
+        width: 60px;
+        font-size: 9px;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        display: block !important;
+        width: 100%;
+        grid-column: span 2;
+        margin: 10px 0;
+    }
+
+    #logoMobile img {
+        height: 26px;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #rankingMobile .nav-link {
+        width: 100%;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 9px;
+    }
+
+    /* Dropdown overlay responsivo para móviles */
+    .empresas-dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: 300px !important;
+        max-height: 60vh !important;
+        z-index: 99999 !important;
+        margin: 5px 0 0 0 !important;
+    }
+}
+
+/* ===== MÓVILES PEQUEÑOS - ESTRUCTURA EN 2 COLUMNAS CON EMPAREJAMIENTO POR COLOR ===== */
+
+@media (max-width: 576px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+        padding: 8px;
+        justify-items: center;
+    }
+
+    .nav-item {
+        width: auto;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 8px;
+        margin-top: 2px;
+        text-align: center;
+    }
+
+    .nav-link-2 {
+        width: 60px;
+        height: 32px;
+        margin: 0;
+        justify-content: center;
+    }
+
+    .active-live {
+        height: 32px;
+        width: 80px;
+        justify-content: center;
+    }
+
+    #dropdownMenuButton0 {
+        width: auto;
+    }
+
+    #dropdownMenuButton04 {
+        width: 80px;
+        height: 32px;
+        padding: 0 15px;
+        justify-content: center;
+    }
+
+    .btnSearch {
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 8px;
+        width: auto;
+        justify-content: center;
+    }
+
+    .envios {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+        justify-content: center;
+    }
+
+    .btn-language {
+        width: auto;
+        justify-content: center;
+    }
+
+    .selectLang {
+        width: auto;
+        justify-content: center;
+    }
+
+    .btn-lang {
+        height: 32px;
+        width: 60px;
+        font-size: 8px;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    select {
+        height: 32px;
+        width: 60px;
+        font-size: 8px;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        display: block !important;
+        width: 100%;
+        grid-column: span 2;
+        margin: 8px 0;
+    }
+
+    #logoMobile img {
+        height: 24px;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #rankingMobile .nav-link {
+        width: 100%;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 8px;
+    }
+
+    /* Dropdown overlay responsivo para móviles pequeños */
+    .empresas-dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: 280px !important;
+        max-height: 50vh !important;
+        z-index: 99999 !important;
+        margin: 3px 0 0 0 !important;
+    }
+}
+
+/* ===== ORIENTACIÓN HORIZONTAL (LANDSCAPE) - ESTRUCTURA EN 2 COLUMNAS CON EMPAREJAMIENTO POR COLOR ===== */
+
+/* Media query para orientación horizontal en móviles */
+@media (orientation: landscape) and (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        margin-left: 0;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 15px;
+        justify-items: center;
+    }
+
+    .nav-item {
+        width: auto;
+        margin: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-link {
+        height: 32px;
+        padding: 6px 12px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        margin: 0;
+        justify-content: center;
+    }
+
+    /* Botón VIVO */
+    .active-live {
+        margin: 0 auto;
+        width: 80px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #dropdownMenuButton0 {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    #dropdownMenuButton04 {
+        width: 80px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+    }
+
+    .live-box {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .live-icon {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    /* Dropdown EMPRESAS */
+    .static-op {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    #dropdownMenuButton1 {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    .btnSearch {
+        width: auto;
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* RANKING DE VENDEDORES */
+    #dropdownMenuButton2 {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    /* Botones de envíos */
+    .envios {
+        margin: 0 auto;
+        width: 60px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #dropdownMenuButton3 {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    .nav-link-2 {
+        width: 60px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Selector de idioma */
+    .btn-language {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    .selectLang {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    .btn-lang {
+        width: 60px;
+        height: 32px;
+        font-size: 12px;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    select {
+        width: 60px;
+        font-size: 12px;
+        height: 32px;
+    }
+
+    /* Dropdowns */
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin: 10px 0;
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+    }
+
+    .dropdown-menu .dropdown-submenu {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-left: 20px;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        display: block !important;
+        width: auto;
+        grid-column: span 2;
+        margin: 15px 0;
+    }
+
+    #logoMobile img {
+        height: 32px;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #rankingMobile .nav-link {
+        width: auto;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Orientación horizontal para diferentes tamaños */
+@media (orientation: landscape) and (max-width: 768px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 12px;
+        justify-items: center;
+    }
+
+    .nav-link {
+        height: 32px;
+        font-size: 11px;
+        padding: 6px 15px;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+    }
+
+    .active-live {
+        width: 80px;
+        height: 32px;
+    }
+
+    #dropdownMenuButton04 {
+        height: 32px;
+        padding: 0 15px;
+        font-size: 11px;
+    }
+
+    .live-icon {
+        font-size: 10px;
+    }
+
+    .btnSearch {
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+
+    .envios {
+        height: 32px;
+        width: 60px;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+    }
+
+    .btn-lang {
+        width: 60px;
+        height: 32px;
+        font-size: 11px;
+        padding: 0 10px;
+    }
+
+    select {
+        width: 60px;
+        font-size: 11px;
+        height: 32px;
+    }
+
+    #logoMobile img {
+        height: 32px;
+    }
+
+    #rankingMobile .nav-link {
+        height: 32px;
+        font-size: 11px;
+    }
+
+    /* Dropdown overlay responsivo para landscape móviles */
+    .empresas-dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: 250px !important;
+        max-height: 50vh !important;
+        z-index: 99999 !important;
+        margin: 5px 0 0 0 !important;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        grid-column: span 2;
+        margin: 12px 0;
+    }
+}
+
+/* Orientación horizontal para móviles pequeños */
+@media (orientation: landscape) and (max-width: 480px) {
+    .navbar {
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 10px;
+        justify-items: center;
+    }
+
+    .nav-link {
+        height: 32px;
+        font-size: 10px;
+        padding: 6px 15px;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+    }
+
+    .active-live {
+        width: 80px;
+        height: 32px;
+    }
+
+    #dropdownMenuButton04 {
+        height: 32px;
+        padding: 0 15px;
+        font-size: 10px;
+    }
+
+    .live-icon {
+        font-size: 9px;
+    }
+
+    .btnSearch {
+        height: 32px;
+        padding: 6px 15px;
+        font-size: 10px;
+    }
+
+    .envios {
+        height: 32px;
+        width: 60px;
+    }
+
+    .nav-link-2 {
+        height: 32px;
+        width: 60px;
+    }
+
+    .btn-lang {
+        width: 60px;
+        height: 32px;
+        font-size: 10px;
+        padding: 0 10px;
+    }
+
+    select {
+        width: 60px;
+        font-size: 10px;
+        height: 32px;
+    }
+
+    #logoMobile img {
+        height: 32px;
+    }
+
+    #rankingMobile .nav-link {
+        height: 32px;
+        font-size: 10px;
+    }
+
+    /* EMPAREJAMIENTO POR COLOR - REORDENAMIENTO VISUAL */
+    /* Fila 1: VIVO (amarillo) + IDIOMA (amarillo) */
+    .active-live {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-language {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* Fila 2: BOLSA (gradiente azul) + CAMIÓN (gradiente azul) */
+    #dropdownMenuButton3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .envios {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    /* Fila 3: EMPRESAS (azul) + RANKING (azul) */
+    #dropdownMenuButton1 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #dropdownMenuButton2 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    /* Elementos móviles en grid */
+    #rankingMobile, #logoMobile {
+        grid-column: span 2;
+        margin: 10px 0;
+    }
+}
+
+
+
+
+

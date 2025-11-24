@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.rounded-circle {
+    height: 110px;
+    width: 110px;
+    color: #717477;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    object-fit: cover;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.icon {
+    font-size: 54px !important;
+    color: #236bd8;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.text-perfil {
+    color: #356ca6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text {
+    width: 100%;
+    height: 100px;
+}
+
+.input-style {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+
+button {
+    background-color: #236bd8;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .col-12 {
+        width: 100%; /* Las columnas ocupan todo el ancho en pantallas pequeñas */
+    }
+
+    .col-md-2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .col-md-3 {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
+    }
+
+    .profile-image-container, .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .icon {
+        font-size: 38px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-2 {
+        width: 20%; /* Las columnas de 2 ocupan el 20% del ancho */
+    }
+
+    .col-md-3 {
+        width: 30%; /* Las columnas de 3 ocupan el 30% del ancho */
+    }
+
+    .btn {
+        width: auto; /* El botón no ocupa todo el ancho en pantallas grandes */
+    }
+}
+
+@media (min-width: 992px) {
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-image-container, .profile-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .icon {
+        font-size: 28px !important;
+    }
+}
+
+.btnnuevo1 {
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    color: white;
+}

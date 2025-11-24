@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center buttons-links">
+    <div *ngFor="let cat of categories">
+        <button class="btn btn-primary my-2 mx-2" (click)="selectProd(cat)">{{ cat }}</button>
+    </div>
+</div>
+
+<div *ngIf="selectProd" class="row-sellers">
+    <div class="row rows row-cols-12 ">
+        <div class="card card-info col-3 shadow px-3 mx-0 py-4 border-color " *ngFor="let prod of prodAvailable">
+
+            <div class="card">
+
+                <div class="d-flex">
+                    <mat-icon mat-raised-button  matTooltip="{{prod.beneficios}}" matTooltipClass="example-tooltip-red"
+                    aria-label="Button that shows a red tooltip" class="example-button">contact_support</mat-icon>
+
+                    <a ><p class="info-comision mb-0" mat-button (click)="openDialog()">Que es esto?</p></a>
+                </div>
+
+
+
+                <img src="{{prod.foto}}" class="card-img-top" alt="Laptop" />
+                <hr>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <p class="small"><a href="#!" class="text-muted">{{prod.tipoCat}}</a></p>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <p class="mb-0">{{prod.nombre}}</p>
+                        <h3 class="text-dark mb-0">{{prod.precio}}</h3>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="text-muted fw-bold mb-0">Descripcion<span>{{prod.descripcion}}</span></p>
+                        <!--
+                            <div class="ms-auto text-warning">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>-->
+                    </div>
+                    <div class="buttons-prod">
+                        <button class="btn btnnuevo btn-sm" (click)="goToBuyProduct('sample-product-id')">Vender</button>
+                        <button class="btn btnnuevo1 btn-sm" (click)="goToProductDetail('sample-product-id')">Ver producto</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

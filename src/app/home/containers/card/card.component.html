@@ -1,0 +1,17 @@
+<owl-carousel-o class="customIcons" [options]="customOptions">
+  <ng-template *ngFor="let item of arrayCard" carouselSlide>
+    <div class="boxCard slide mx-4">
+      <img [src]="item.image" />
+      <div *ngIf="item.color == undefined" class="titleCardGanar bg-primary">
+        <h6 class="text-center pt-2">{{ item.title }}</h6>
+      </div>
+      <div
+        *ngIf="item.color != undefined"
+        class="titleCard d-flex align-items-center justify-content-center"
+        [style.background-color]="item.color"
+      >
+        <h6 class="text-center">{{ item.title }}</h6>
+      </div>
+    </div>
+  </ng-template>
+</owl-carousel-o>

@@ -1,0 +1,34 @@
+<div class="profile-container">
+    <!-- Header Section -->
+    <div class="profile-header">
+        <div class="profile-background"></div>
+        <div class="profile-content">
+            <app-photo-name [workerData]="workerData"></app-photo-name>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="profile-body">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left Column - Description -->
+                <div class="col-lg-8">
+                    <div class="content-card">
+                        <app-description [workerData]="workerData"></app-description>
+                    </div>
+                </div>
+
+                <!-- Right Column - Products/Info -->
+                <div class="col-lg-4">
+                    <div class="sidebar-card">
+                        <app-products
+                            [workerData]="workerData"
+                            [sellerProducts]="sellerProducts"
+                            [loadingProducts]="loadingProducts">
+                        </app-products>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

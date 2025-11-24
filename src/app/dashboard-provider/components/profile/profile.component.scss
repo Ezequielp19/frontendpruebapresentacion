@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.btnnuevo1 {
+  background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btnnuevo1:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(35, 107, 216, 0.3);
+}
+
+.btnnuevo1:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.rounded-circle {
+    height: 110px;
+    width: 110px;
+    color: #717477;
+    background-color: white;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-circle:hover {
+    border-color: #236bd8;
+    box-shadow: 0 4px 12px rgba(35, 107, 216, 0.2);
+}
+
+.icon {
+    font-size: 35px;
+    color: #717477;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.text-perfil {
+    color: #356ca6;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: #356ca6;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #236bd8;
+    text-decoration: underline;
+}
+
+.text {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    font-family: 'Raleway', sans-serif;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.text:focus {
+    outline: none;
+    border-color: #236bd8;
+    box-shadow: 0 0 0 2px rgba(35, 107, 216, 0.1);
+}
+
+.input-style {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input-style:focus {
+    outline: none;
+    border-color: #236bd8;
+    box-shadow: 0 0 0 2px rgba(35, 107, 216, 0.1);
+}
+
+/* Estilos para las secciones */
+.text-muted {
+  color: #6c757d !important;
+  font-size: 0.875rem;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Estilos para campos de solo lectura */
+input[readonly] {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+/* Estilos para mensajes de error */
+.text-danger.small {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  color: #dc3545;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+    .col-3, .col-2 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .boxInput {
+        margin: 8px;
+    }
+    
+    .rounded-circle {
+        height: 100px;
+        width: 100px;
+    }
+    
+    .icon {
+        font-size: 30px;
+    }
+    
+    .input-style, .text {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .btnnuevo1 {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Responsive para móviles grandes */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 10px !important;
+  }
+  
+  .row {
+    flex-direction: column !important;
+    margin: 0 !important;
+  }
+  
+  .col-2, .col-3 {
+    width: 100% !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+  }
+  
+  .boxInput {
+    margin: 10px 0 !important;
+  }
+  
+  .rounded-circle {
+    margin: 0 auto 15px auto !important;
+    height: 90px;
+    width: 90px;
+  }
+  
+  .icon {
+    font-size: 28px;
+  }
+  
+  .profile-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .text {
+    height: 80px;
+    font-size: 16px !important;
+    padding: 12px !important;
+  }
+  
+  .input-style {
+    font-size: 16px !important;
+    padding: 12px !important;
+  }
+  
+  .btnnuevo1 {
+    width: 100% !important;
+    font-size: 16px;
+    padding: 14px 0 !important;
+    margin-top: 10px;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .text-perfil {
+    font-size: 11px;
+  }
+  
+  .text-danger.small {
+    font-size: 12px;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .container-fluid {
+    padding: 5px !important;
+  }
+  
+  .col-2, .col-3 {
+    margin: 0 0 15px 0 !important;
+  }
+  
+  .boxInput {
+    margin: 8px 0 !important;
+  }
+  
+  .rounded-circle {
+    height: 80px;
+    width: 80px;
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  
+  .text {
+    height: 70px;
+    font-size: 15px !important;
+    padding: 10px !important;
+  }
+  
+  .input-style {
+    font-size: 15px !important;
+    padding: 10px !important;
+  }
+  
+  .btnnuevo1 {
+    font-size: 15px;
+    padding: 12px 0 !important;
+  }
+  
+  label {
+    font-size: 13px;
+  }
+  
+  .text-perfil {
+    font-size: 10px;
+  }
+  
+  .text-danger.small {
+    font-size: 11px;
+  }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+  .container-fluid {
+    padding: 3px !important;
+  }
+  
+  .col-2, .col-3 {
+    margin: 0 0 12px 0 !important;
+  }
+  
+  .boxInput {
+    margin: 6px 0 !important;
+  }
+  
+  .rounded-circle {
+    height: 70px;
+    width: 70px;
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+  
+  .text {
+    height: 60px;
+    font-size: 14px !important;
+    padding: 8px !important;
+  }
+  
+  .input-style {
+    font-size: 14px !important;
+    padding: 8px !important;
+  }
+  
+  .btnnuevo1 {
+    font-size: 14px;
+    padding: 10px 0 !important;
+  }
+  
+  label {
+    font-size: 12px;
+  }
+  
+  .text-perfil {
+    font-size: 9px;
+  }
+}
+
+/* Mejoras de accesibilidad */
+.input-style:focus-visible,
+.text:focus-visible {
+  outline: 2px solid #236bd8;
+  outline-offset: 2px;
+}
+
+/* Animaciones suaves */
+.boxInput {
+  transition: all 0.3s ease;
+}
+
+/* Estilos para el estado de carga */
+.btnnuevo1:disabled {
+  background: linear-gradient(90deg, #6c757d 10%, #adb5bd 50%, #6c757d 90%);
+} 

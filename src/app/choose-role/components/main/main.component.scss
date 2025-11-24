@@ -1,0 +1,176 @@
+.py-xl-8 {
+    background: rgb(35,107,216);
+    background: linear-gradient(90deg, rgba(35,107,216,1) 10%, rgba(4,194,252,1) 50%, rgba(103,121,217,1) 90%);
+}
+
+.boxMain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.icon-blue {
+    color: rgb(35,107,216);
+    font-size: 80px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon-blue:hover {
+    transform: scale(1.2);
+    color: rgba(4,194,252,1);
+}
+
+.boxes {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    background-color: rgb(248, 248, 248);
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boxes:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 15px 30px rgba(0,0,0,0.15);
+}
+
+.details-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.title-role, .title-role-emprendedor, .title-role-pro, .cliente {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    color: rgb(35,107,216);
+}
+
+ul {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    color: #555;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.btn-action, .btn-action-emprendedor {
+           background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+
+    color: white;
+    font-size: 16px;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-action:hover, .btn-action-emprendedor:hover {
+    background-color: rgba(4,194,252,1);
+    transform: scale(1.05);
+}
+
+.btn-action-emprendedor {
+    background-color: rgb(232, 244, 57);
+    margin-left: 18%;
+}
+
+@media (max-width: 1200px) {
+    .boxes {
+        max-width: 300px;
+    }
+
+    .title-role,
+    .title-role-emprendedor,
+    .title-role-pro {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .boxes {
+        max-width: 280px;
+    }
+
+    .title-role,
+    .title-role-emprendedor,
+    .title-role-pro {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .boxes {
+        max-width: 90%;
+    }
+
+    .title-role,
+    .title-role-emprendedor,
+    .title-role-pro {
+        font-size: 14px;
+    }
+
+    .btn-action,
+    .btn-action-emprendedor {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .boxes {
+        max-width: 100%;
+    }
+
+    .icon-blue {
+        font-size: 5rem;
+    }
+
+    .title-role,
+    .title-role-emprendedor,
+    .title-role-pro {
+        font-size: 14px;
+    }
+
+    .btn-action,
+    .btn-action-emprendedor {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .icon-blue {
+        font-size: 4rem;
+    }
+
+    .title-role,
+    .title-role-emprendedor,
+    .title-role-pro {
+        font-size: 12px;
+    }
+
+    .btn-action,
+    .btn-action-emprendedor {
+        font-size: 14px;
+    }
+}
+
+
+.btn-action-negocio {
+        background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    margin-left: 1%;
+    margin-top:16px;
+}
+
+.btn-action-empre {
+        background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    margin-left: 3%;
+    margin-top:16px;
+}
