@@ -2,14 +2,12 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/likeVendor",
-  "routes": [
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!.*\\.).*)$",
+      "destination": "/index.html"
     }
   ]
 }
