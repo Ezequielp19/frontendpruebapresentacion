@@ -4,6 +4,9 @@
   "outputDirectory": "dist/likeVendor",
   "cleanUrls": false,
   "trailingSlash": false,
+  "env": {
+    "NODE_ENV": "production"
+  },
   "rewrites": [
     {
       "source": "/((?!.*\\.).*)$",
