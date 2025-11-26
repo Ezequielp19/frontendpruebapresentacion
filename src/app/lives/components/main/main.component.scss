@@ -918,6 +918,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
     z-index: 10;
 
     .live-badge {
@@ -926,11 +928,13 @@
         gap: 8px;
         background: rgba(255, 0, 0, 0.9);
         color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 10px 18px;
+        border-radius: 25px;
         font-weight: bold;
         font-size: 14px;
         box-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
+        white-space: nowrap;
+        flex-shrink: 0;
 
         .pulse {
             width: 10px;
@@ -938,6 +942,7 @@
             background: white;
             border-radius: 50%;
             animation: pulse-live 1.5s ease-in-out infinite;
+            flex-shrink: 0;
         }
     }
 
@@ -947,11 +952,13 @@
         gap: 8px;
         background: rgba(108, 117, 125, 0.9);
         color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 10px 18px;
+        border-radius: 25px;
         font-weight: bold;
         font-size: 14px;
         box-shadow: 0 2px 10px rgba(108, 117, 125, 0.4);
+        white-space: nowrap;
+        flex-shrink: 0;
 
         .ended-dot {
             width: 10px;
@@ -959,50 +966,149 @@
             background: white;
             border-radius: 50%;
             opacity: 0.8;
+            flex-shrink: 0;
         }
     }
 
     .viewer-count {
         display: flex;
         align-items: center;
-        gap: 6px;
-        background: rgba(0, 0, 0, 0.7);
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.8);
         color: white;
-        padding: 8px 14px;
-        border-radius: 20px;
+        padding: 10px 16px;
+        border-radius: 25px;
         font-size: 14px;
         font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
 
         mat-icon {
             font-size: 18px;
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
+        }
+
+        span {
+            white-space: nowrap;
         }
     }
 
     .stop-stream-btn {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         background: rgba(220, 53, 69, 0.9);
         color: white;
         border: none;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 10px 18px;
+        border-radius: 25px;
         font-weight: 600;
-        font-size: 13px;
+        font-size: 14px;
         cursor: pointer;
         transition: all 0.3s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
 
         mat-icon {
             font-size: 18px;
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
+        }
+
+        span {
+            white-space: nowrap;
         }
 
         &:hover {
             background: rgba(200, 35, 51, 1);
             transform: scale(1.05);
+        }
+    }
+
+    // Responsive para móviles
+    @media (max-width: 768px) {
+        padding: 15px 12px;
+        gap: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .live-badge,
+        .ended-badge {
+            padding: 10px 16px;
+            font-size: 13px;
+            order: 1;
+        }
+
+        .viewer-count {
+            padding: 10px 14px;
+            font-size: 13px;
+            order: 2;
+            
+            span {
+                font-size: 12px;
+            }
+        }
+
+        .stop-stream-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            order: 3;
+            margin-left: auto; // Empuja el botón a la derecha
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 12px 10px;
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+
+        .live-badge,
+        .ended-badge {
+            padding: 12px 18px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
+            order: 1;
+        }
+
+        .viewer-count {
+            padding: 12px 18px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
+            order: 2;
+        }
+
+        .stop-stream-btn {
+            padding: 14px 20px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
+            order: 3;
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 360px) {
+        padding: 10px 8px;
+        gap: 6px;
+
+        .live-badge,
+        .ended-badge,
+        .viewer-count,
+        .stop-stream-btn {
+            padding: 10px 14px;
+            font-size: 12px;
+        }
+
+        .viewer-count span,
+        .stop-stream-btn span {
+            font-size: 12px;
         }
     }
 }
