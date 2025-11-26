@@ -67,27 +67,47 @@
                 <div class="filter-item">
                     <label class="filter-label">Ubicación</label>
                     <div class="ubicacion-search-container">
-                        <input
-                            type="text"
-                            class="filter-select ubicacion-search-input"
-                            [value]="ubicacionSeleccionada"
-                            (input)="onUbicacionSearch($any($event.target).value)"
-                            placeholder="Buscar ubicación..."
-                            autocomplete="off"
-                        />
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                class="filter-select ubicacion-search-input"
+                                [value]="ubicacionSeleccionada"
+                                (input)="onUbicacionSearch($any($event.target).value)"
+                                placeholder="Buscar ubicación..."
+                                autocomplete="off"
+                            />
+                            <button 
+                                *ngIf="ubicacionSeleccionada" 
+                                class="clear-ubicacion-btn"
+                                (click)="limpiarUbicacion()"
+                                type="button"
+                                title="Limpiar ubicación">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
                         <div class="ubicacion-results" *ngIf="ubicacionesResultados.length > 0 || ubicacionesCargando">
                             <div class="ubicacion-loading" *ngIf="ubicacionesCargando">
-                                Buscando...
+                                <mat-icon class="spinning">refresh</mat-icon>
+                                Buscando ubicaciones en Argentina...
                             </div>
                             <div
                                 class="ubicacion-result-item"
                                 *ngFor="let ubicacion of ubicacionesResultados"
                                 (click)="seleccionarUbicacionBusqueda(ubicacion)"
                             >
-                                {{ ubicacion.nombreCompleto }}
+                                <div class="ubicacion-info">
+                                    <span class="ubicacion-nombre">{{ ubicacion.nombre }}</span>
+                                    <span class="ubicacion-tipo" *ngIf="ubicacion.tipo">
+                                        {{ ubicacion.tipo | titlecase }}
+                                    </span>
+                                </div>
+                                <div class="ubicacion-completo" *ngIf="ubicacion.nombreCompleto && ubicacion.nombreCompleto !== ubicacion.nombre">
+                                    {{ ubicacion.nombreCompleto }}
+                                </div>
                             </div>
-                            <div class="ubicacion-no-results" *ngIf="!ubicacionesCargando && ubicacionesResultados.length === 0">
-                                No se encontraron resultados
+                            <div class="ubicacion-no-results" *ngIf="!ubicacionesCargando && ubicacionesResultados.length === 0 && ubicacionSeleccionada && ubicacionSeleccionada.length >= 2">
+                                <mat-icon>location_off</mat-icon>
+                                No se encontraron ubicaciones para "{{ ubicacionSeleccionada }}"
                             </div>
                         </div>
                     </div>

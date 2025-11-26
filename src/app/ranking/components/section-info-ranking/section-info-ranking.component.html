@@ -1,19 +1,32 @@
-<div class="container-fluid box px-5 py-4">
-  <div class="row boxSmartBusiness justify-content-end">
-    <div class="col-6 pr-5 section-info">
-      <h2 class="titleSection my-4">{{ 'ranking.you_can_be_here' | translate }}</h2>
-      <p class="textSection my-4">
-        Los Compradores están primordialmente preocupados por obtener un retorno decente sobre su inversión. Los Vendedores tienden a darle
-        un valor sentimental que a veces distorsiona el precio verdadero. Un Negocio es un "elemento vivo", por ende debería venderse como
-        tal. Por eso utilizamos el Método de Flujos de Caja Descontados, tomando en cuenta factores como Costo de Capital, para así llegar a
-        un Valor Patrimonial verdadero.
-      </p>
-      <div class="w-100 text-start my-4">
-        <button class="btn px-3" (click)="goToRegister()">{{ 'ranking.start_now' | translate }}</button>
+<div class="ranking-info-section">
+  <div class="container-custom">
+    <div class="content-wrapper">
+      <!-- Sección de texto -->
+      <div class="text-section">
+        <h2 class="title-section">{{ 'ranking.you_can_be_here' | translate }}</h2>
+        <div class="text-content">
+          <p class="text-paragraph">
+            Los Compradores están primordialmente preocupados por obtener un <strong>retorno decente</strong> sobre su inversión.
+          </p>
+          <p class="text-paragraph">
+            Los Vendedores tienden a darle un <strong>valor sentimental</strong> que a veces distorsiona el precio verdadero.
+          </p>
+          <p class="text-paragraph highlight">
+            Un Negocio es un <em>"elemento vivo"</em>, por ende debería venderse como tal.
+          </p>
+          <p class="text-paragraph">
+            Por eso utilizamos el <strong>Método de Flujos de Caja Descontados</strong>, tomando en cuenta factores como Costo de Capital, para así llegar a un Valor Patrimonial verdadero.
+          </p>
+        </div>
+        <div class="button-container">
+          <button class="cta-button" (click)="goToRegister()">
+            <span>{{ 'ranking.start_now' | translate }}</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="col-5 d-flex justify-content-center box-img">
-      <img class="img-fluid imgManBusiness" src="../../../../assets/img/bussines-man-2.png" alt="Hombre de Negocios" />
     </div>
   </div>
 </div>

@@ -3,8 +3,8 @@ import { CategoriesLivesService } from 'src/app/services/categories-lives.servic
 import { LiveService } from 'src/app/lives/components/main/live.service';
 import { Router } from '@angular/router';
 import { UbicacionesService } from 'src/app/services/ubicaciones.service';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -54,22 +54,35 @@ export class MainComponent implements OnInit, OnDestroy {
   ) {
     // Configurar búsqueda de ubicaciones con debounce
     this.ubicacionSearchSubject.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
+      debounceTime(300), // Esperar 300ms después de que el usuario deje de escribir
+      distinctUntilChanged(), // Solo buscar si el valor cambió
       switchMap(query => {
-        if (query.length < 2) {
-          return [];
+        // Si la query es muy corta, no buscar
+        if (!query || query.trim().length < 2) {
+          this.ubicacionesResultados = [];
+          this.ubicacionesCargando = false;
+          return of([]);
         }
+        
+        // Activar indicador de carga
         this.ubicacionesCargando = true;
-        return this.ubicacionesService.buscarUbicaciones(query, 10);
+        
+        // Buscar ubicaciones en Argentina (provincias, municipios, localidades)
+        return this.ubicacionesService.buscarUbicaciones(query.trim(), 15).pipe(
+          catchError(error => {
+            console.error('Error al buscar ubicaciones:', error);
+            this.ubicacionesCargando = false;
+            return of([]);
+          })
+        );
       })
     ).subscribe({
       next: (resultados) => {
-        this.ubicacionesResultados = resultados;
+        this.ubicacionesResultados = resultados || [];
         this.ubicacionesCargando = false;
       },
       error: (error) => {
-        console.error('Error al buscar ubicaciones:', error);
+        console.error('Error en suscripción de búsqueda:', error);
         this.ubicacionesCargando = false;
         this.ubicacionesResultados = [];
       }
@@ -124,12 +137,27 @@ export class MainComponent implements OnInit, OnDestroy {
 
   // Búsqueda de ubicaciones
   onUbicacionSearch(query: string) {
-    this.ubicacionSearchSubject.next(query);
+    // Limpiar resultados si la búsqueda es muy corta
+    if (!query || query.trim().length < 2) {
+      this.ubicacionesResultados = [];
+      this.ubicacionesCargando = false;
+      // Si está vacío, limpiar también la selección
+      if (!query || query.trim().length === 0) {
+        this.ubicacionSeleccionada = '';
+      }
+      return;
+    }
+    
+    // Disparar búsqueda de sugerencias (el Subject ya tiene debounce configurado)
+    this.ubicacionSearchSubject.next(query.trim());
   }
 
   seleccionarUbicacionBusqueda(ubicacion: any) {
-    this.ubicacionSeleccionada = ubicacion.nombreCompleto;
+    // Guardar la ubicación seleccionada con el nombre completo
+    this.ubicacionSeleccionada = ubicacion.nombreCompleto || ubicacion.nombre || ubicacion;
+    // Limpiar resultados de búsqueda después de seleccionar
     this.ubicacionesResultados = [];
+    this.ubicacionesCargando = false;
   }
 
   limpiarUbicacion() {
