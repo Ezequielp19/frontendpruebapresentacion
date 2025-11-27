@@ -1030,58 +1030,31 @@
 
     // Responsive para móviles
     @media (max-width: 768px) {
-        padding: 15px 12px;
-        gap: 10px;
-        flex-direction: row;
-        flex-wrap: wrap;
+        padding: 15px 10px;
+        gap: 12px;
+        flex-direction: column;
+        align-items: stretch;
         justify-content: flex-start;
 
         .live-badge,
         .ended-badge {
-            padding: 10px 16px;
-            font-size: 13px;
+            padding: 12px 20px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
             order: 1;
         }
 
         .viewer-count {
-            padding: 10px 14px;
-            font-size: 13px;
+            padding: 12px 20px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
             order: 2;
             
             span {
-                font-size: 12px;
+                font-size: 14px;
             }
-        }
-
-        .stop-stream-btn {
-            padding: 10px 16px;
-            font-size: 13px;
-            order: 3;
-            margin-left: auto; // Empuja el botón a la derecha
-        }
-    }
-
-    @media (max-width: 480px) {
-        padding: 12px 10px;
-        gap: 8px;
-        flex-direction: column;
-        align-items: stretch;
-
-        .live-badge,
-        .ended-badge {
-            padding: 12px 18px;
-            font-size: 14px;
-            width: 100%;
-            justify-content: center;
-            order: 1;
-        }
-
-        .viewer-count {
-            padding: 12px 18px;
-            font-size: 14px;
-            width: 100%;
-            justify-content: center;
-            order: 2;
         }
 
         .stop-stream-btn {
@@ -1094,21 +1067,53 @@
         }
     }
 
-    @media (max-width: 360px) {
-        padding: 10px 8px;
-        gap: 6px;
+    @media (max-width: 480px) {
+        padding: 15px 12px;
+        gap: 15px;
 
         .live-badge,
-        .ended-badge,
-        .viewer-count,
-        .stop-stream-btn {
-            padding: 10px 14px;
-            font-size: 12px;
+        .ended-badge {
+            padding: 14px 22px;
+            font-size: 15px;
         }
 
-        .viewer-count span,
-        .stop-stream-btn span {
-            font-size: 12px;
+        .viewer-count {
+            padding: 14px 22px;
+            font-size: 15px;
+            
+            span {
+                font-size: 15px;
+            }
+        }
+
+        .stop-stream-btn {
+            padding: 16px 24px;
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        padding: 12px 10px;
+        gap: 12px;
+
+        .live-badge,
+        .ended-badge {
+            padding: 12px 18px;
+            font-size: 13px;
+        }
+
+        .viewer-count {
+            padding: 12px 18px;
+            font-size: 13px;
+            
+            span {
+                font-size: 13px;
+            }
+        }
+
+        .stop-stream-btn {
+            padding: 14px 20px;
+            font-size: 13px;
         }
     }
 }
