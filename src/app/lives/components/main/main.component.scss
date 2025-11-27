@@ -935,6 +935,7 @@
         box-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
         white-space: nowrap;
         flex-shrink: 0;
+        animation: blink-live 2s ease-in-out infinite;
 
         .pulse {
             width: 10px;
@@ -1030,11 +1031,12 @@
 
     // Responsive para móviles
     @media (max-width: 768px) {
-        padding: 15px 10px;
-        gap: 12px;
+        padding: 10px 12px 20px 12px; // Menos padding arriba, más abajo
+        gap: 10px;
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%); // Fondo más transparente
 
         .live-badge,
         .ended-badge {
@@ -1043,6 +1045,10 @@
             width: 100%;
             justify-content: center;
             order: 1;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1.5s ease-in-out infinite; // Animación más rápida en móvil
         }
 
         .viewer-count {
@@ -1068,13 +1074,17 @@
     }
 
     @media (max-width: 480px) {
-        padding: 15px 12px;
-        gap: 15px;
+        padding: 8px 12px 18px 12px; // Aún menos padding arriba
+        gap: 10px;
 
         .live-badge,
         .ended-badge {
             padding: 14px 22px;
             font-size: 15px;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1.2s ease-in-out infinite; // Aún más rápido
         }
 
         .viewer-count {
@@ -1093,13 +1103,17 @@
     }
 
     @media (max-width: 360px) {
-        padding: 12px 10px;
-        gap: 12px;
+        padding: 6px 10px 15px 10px; // Mínimo padding arriba
+        gap: 8px;
 
         .live-badge,
         .ended-badge {
             padding: 12px 18px;
             font-size: 13px;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1s ease-in-out infinite; // Muy rápido
         }
 
         .viewer-count {
@@ -1126,6 +1140,30 @@
     50% {
         opacity: 0.5;
         transform: scale(0.8);
+    }
+}
+
+@keyframes blink-live {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        opacity: 0.85;
+        box-shadow: 0 2px 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@keyframes blink-live-mobile {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 2px 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6);
+        transform: scale(1.02);
     }
 }
 
