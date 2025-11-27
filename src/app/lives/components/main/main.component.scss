@@ -1031,93 +1031,69 @@
 
     // Responsive para móviles
     @media (max-width: 768px) {
-        padding: 20px 12px 10px 12px; // Más padding arriba, menos abajo
-        gap: 10px;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-end;
-        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%); // Fondo más visible en la parte inferior
+        padding: 0;
+        gap: 0;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: none; // Sin fondo para que no tape el video
 
-        .live-badge,
-        .ended-badge {
-            padding: 12px 20px;
+        // Esquina izquierda arriba: Espectadores
+        .viewer-count {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 10px 16px;
             font-size: 14px;
-            width: 100%;
+            width: auto;
             justify-content: center;
             order: 1;
-        }
-
-        .live-badge {
-            animation: blink-live-mobile 1.5s ease-in-out infinite; // Animación más rápida en móvil
-        }
-
-        .viewer-count {
-            padding: 12px 20px;
-            font-size: 14px;
-            width: 100%;
-            justify-content: center;
-            order: 2;
+            margin: 0;
             
             span {
                 font-size: 14px;
             }
         }
 
-        .stop-stream-btn {
-            padding: 14px 20px;
+        // Esquina derecha arriba: EN VIVO
+        .live-badge,
+        .ended-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 10px 18px;
             font-size: 14px;
-            width: 100%;
+            width: auto;
+            justify-content: center;
+            order: 2;
+            margin: 0;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1.5s ease-in-out infinite;
+        }
+
+        // Abajo derecha: Finalizar
+        .stop-stream-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            width: auto;
             justify-content: center;
             order: 3;
-            margin-left: 0;
+            margin: 0;
         }
     }
 
     @media (max-width: 480px) {
-        padding: 18px 12px 8px 12px; // Más padding arriba
-        gap: 10px;
-
-        .live-badge,
-        .ended-badge {
-            padding: 14px 22px;
-            font-size: 15px;
-        }
-
-        .live-badge {
-            animation: blink-live-mobile 1.2s ease-in-out infinite; // Aún más rápido
-        }
-
+        // Esquina izquierda arriba: Espectadores
         .viewer-count {
-            padding: 14px 22px;
-            font-size: 15px;
-            
-            span {
-                font-size: 15px;
-            }
-        }
-
-        .stop-stream-btn {
-            padding: 16px 24px;
-            font-size: 15px;
-        }
-    }
-
-    @media (max-width: 360px) {
-        padding: 15px 10px 6px 10px; // Más padding arriba
-        gap: 8px;
-
-        .live-badge,
-        .ended-badge {
-            padding: 12px 18px;
-            font-size: 13px;
-        }
-
-        .live-badge {
-            animation: blink-live-mobile 1s ease-in-out infinite; // Muy rápido
-        }
-
-        .viewer-count {
-            padding: 12px 18px;
+            top: 10px;
+            left: 10px;
+            padding: 10px 14px;
             font-size: 13px;
             
             span {
@@ -1125,9 +1101,60 @@
             }
         }
 
-        .stop-stream-btn {
-            padding: 14px 20px;
+        // Esquina derecha arriba: EN VIVO
+        .live-badge,
+        .ended-badge {
+            top: 10px;
+            right: 10px;
+            padding: 10px 16px;
             font-size: 13px;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1.2s ease-in-out infinite;
+        }
+
+        // Abajo derecha: Finalizar
+        .stop-stream-btn {
+            bottom: 10px;
+            right: 10px;
+            padding: 12px 18px;
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        // Esquina izquierda arriba: Espectadores
+        .viewer-count {
+            top: 8px;
+            left: 8px;
+            padding: 8px 12px;
+            font-size: 12px;
+            
+            span {
+                font-size: 12px;
+            }
+        }
+
+        // Esquina derecha arriba: EN VIVO
+        .live-badge,
+        .ended-badge {
+            top: 8px;
+            right: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+        }
+
+        .live-badge {
+            animation: blink-live-mobile 1s ease-in-out infinite;
+        }
+
+        // Abajo derecha: Finalizar
+        .stop-stream-btn {
+            bottom: 8px;
+            right: 8px;
+            padding: 10px 16px;
+            font-size: 12px;
         }
     }
 }
