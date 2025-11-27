@@ -110,9 +110,26 @@ export class SectionFeacturedSellersComponent implements OnInit, OnDestroy {
   loadRankings(): void {
     this.subscriptions.add(
       this.rankingService.getRankings().subscribe((data) => {
-        this.rankings = data;
+        let rankingsArray: any[] = [];
+        
+        // Manejar tanto array directo como objeto con propiedad rankings
+        if (Array.isArray(data)) {
+          rankingsArray = data;
+        } else if (data && typeof data === 'object') {
+          // Si es un objeto, intentar extraer el array
+          const dataObj = data as any;
+          rankingsArray = dataObj.rankings || dataObj.ranking || dataObj.data || [];
+        } else {
+          console.error("Error: data no es un array ni un objeto válido", data);
+          rankingsArray = [];
+        }
+
+        // Limitar a los primeros 5 resultados
+        this.rankings = rankingsArray.slice(0, 5);
+        console.log(`Mostrando ${this.rankings.length} rankings (de ${rankingsArray.length} totales)`);
       }, error => {
         console.error("Error al obtener los rankings:", error);
+        this.rankings = [];
       })
     );
   }

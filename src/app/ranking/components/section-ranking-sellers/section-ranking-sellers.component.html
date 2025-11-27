@@ -6,9 +6,52 @@
     <h2 class="titleSection">{{ 'ranking.title' | translate }}</h2>
 
     <div class="groupButton mt-4">
-      <button class="btn btn-sm btn-outline-light btnAccion">{{ 'ranking.professionals' | translate }}</button>
-      <button class="btn btn-sm btn-outline-light btnAccion">{{ 'ranking.providers' | translate }}</button>
-      <button class="btn btn-sm btn-outline-light btnAccion">{{ 'ranking.entrepreneurs' | translate }}</button>
+      <button 
+        class="btn btn-sm btn-outline-light btnAccion" 
+        [class.active]="professionalsActive"
+        (click)="filterSellers('Profesionales')">
+        {{ 'ranking.professionals' | translate }}
+      </button>
+      <button 
+        class="btn btn-sm btn-outline-light btnAccion" 
+        [class.active]="dedicatedActive"
+        (click)="filterSellers('Dedicados')">
+        {{ 'ranking.providers' | translate }}
+      </button>
+      <button 
+        class="btn btn-sm btn-outline-light btnAccion" 
+        [class.active]="selfemployedActive"
+        (click)="filterSellers('Autonomos')">
+        {{ 'ranking.entrepreneurs' | translate }}
+      </button>
+    </div>
+
+    <!-- Lista de vendedores filtrados -->
+    <div class="rankingList mt-4" *ngIf="sellersRanked.length > 0">
+      <div class="rankingItem" *ngFor="let seller of sellersRanked; let i = index" (click)="viewProfile(seller)">
+        <div class="ranking-info">
+          <div class="ranking-position">{{ i + 1 }}</div>
+          <div class="ranking-content">
+            <div class="rankingName">{{ seller.name }}</div>
+            <div class="rankingDescription" *ngIf="seller.description">
+              {{ seller.description | slice:0:100 }}{{ seller.description.length > 100 ? '...' : '' }}
+            </div>
+          </div>
+        </div>
+        <div class="rankingScore" *ngIf="hasRating(seller)">
+          <i class="fas fa-star"></i>
+          <span>{{ getSellerRating(seller) }}</span>
+        </div>
+        <div class="rankingScore" *ngIf="!hasRating(seller)">
+          <i class="fas fa-star"></i>
+          <span>-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje si no hay resultados -->
+    <div class="no-results mt-4" *ngIf="sellersRanked.length === 0 && allSellers.length > 0">
+      <p>No se encontraron vendedores para este filtro</p>
     </div>
 
   </div>

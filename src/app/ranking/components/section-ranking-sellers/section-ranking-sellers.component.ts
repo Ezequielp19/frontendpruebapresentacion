@@ -39,12 +39,22 @@ export class SectionRankingSellersComponent implements OnInit, OnDestroy {
       }).subscribe({
         next: ({ autonomous, dedicated, professional }) => {
           // Extraer los datos de las respuestas
-          const autonomousArray = autonomous?.data || autonomous || [];
-          const dedicatedArray = dedicated?.data || dedicated || [];
-          const professionalArray = professional?.professionals || professional?.data || professional || [];
+          const autonomousArray = (autonomous?.data || autonomous || []).map((seller: any) => ({
+            ...seller,
+            sellerType: 'Autonomos'
+          }));
+          const dedicatedArray = (dedicated?.data || dedicated || []).map((seller: any) => ({
+            ...seller,
+            sellerType: 'Dedicados'
+          }));
+          const professionalArray = (professional?.professionals || professional?.data || professional || []).map((seller: any) => ({
+            ...seller,
+            sellerType: 'Profesionales'
+          }));
 
           this.allSellers = [...autonomousArray, ...dedicatedArray, ...professionalArray];
           console.log('Total vendedores cargados:', this.allSellers.length);
+          console.log('Autónomos:', autonomousArray.length, 'Dedicados:', dedicatedArray.length, 'Profesionales:', professionalArray.length);
           this.filterSellers('Autonomos');
         },
         error: (error) => {
@@ -59,21 +69,28 @@ export class SectionRankingSellersComponent implements OnInit, OnDestroy {
     this.dedicatedActive = type === 'Dedicados';
     this.professionalsActive = type === 'Profesionales';
 
-    this.sellersRanked = this.allSellers.filter(seller => {
+    const filtered = this.allSellers.filter(seller => {
+      // Usar la propiedad sellerType que agregamos al cargar los datos
+      const sellerType = (seller as any).sellerType;
+      if (sellerType) {
+        return sellerType === type;
+      }
+      
+      // Fallback: usar métodos anteriores si no hay sellerType
       if (type === 'Autonomos') {
-        // Un autónomo tiene description que incluye "Autonomos" o tiene un campo específico
         return (seller as Autonomous).description?.includes('Autonomos') || false;
       } else if (type === 'Dedicados') {
-        // Un dedicado tiene description que incluye "Dedicados"
         return (seller as Dedicated).description?.includes('Dedicados') || false;
       } else if (type === 'Profesionales') {
-        // Un profesional simplemente tiene el campo profession definido
         return !!(seller as Professional).profession;
       }
       return false;
     });
 
-    console.log(`Filtrados ${this.sellersRanked.length} vendedores de tipo: ${type}`);
+    // Limitar a 3 resultados
+    this.sellersRanked = filtered.slice(0, 3);
+
+    console.log(`Filtrados ${this.sellersRanked.length} vendedores de tipo: ${type} (de ${filtered.length} totales)`);
   }
 
   // Determinar el tipo de vendedor
@@ -86,6 +103,16 @@ export class SectionRankingSellersComponent implements OnInit, OnDestroy {
       return 'professional';
     }
     return 'user';
+  }
+
+  // Obtener rating del vendedor (helper para template)
+  getSellerRating(seller: Autonomous | Dedicated | Professional): number | null {
+    return (seller as any).rating || null;
+  }
+
+  // Verificar si el vendedor tiene rating
+  hasRating(seller: Autonomous | Dedicated | Professional): boolean {
+    return !!(seller as any).rating;
   }
 
   // Navegar al perfil del vendedor
