@@ -1173,4 +1173,28 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
       console.error('El navegador no soporta HLS.');
     }
   }
+
+  /**
+   * Navegar al perfil del streamer (usuario actual que está transmitiendo)
+   */
+  goToProfile(): void {
+    // Obtener el ID del usuario actual desde localStorage
+    const userId = localStorage.getItem('userId') || 
+                   localStorage.getItem('user_id') ||
+                   '';
+
+    if (!userId) {
+      // Si no hay ID de usuario (usuario estático), navegar a preview-profile sin parámetros
+      this.router.navigate(['/preview-profile']);
+      return;
+    }
+
+    // Navegar a preview-profile con el ID del usuario
+    this.router.navigate(['/preview-profile'], {
+      queryParams: {
+        id: userId,
+        type: 'user' // Tipo por defecto
+      }
+    });
+  }
 }

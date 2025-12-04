@@ -7,6 +7,7 @@ import { ComissionsComponent } from './components/comissions/comissions.componen
 import { CompaniesAssociatedComponent } from './components/companies-associated/companies-associated.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PrivacyPoliticsComponent } from './components/privacy-politics/privacy-politics.component';
+import { CustomerServiceComponent } from './components/customer-service/customer-service.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   {
     path: 'legal', component: LegalComponent
+  },
+  {
+    path: 'atencion-cliente', component: CustomerServiceComponent
   }
 ];
 

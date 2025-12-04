@@ -205,6 +205,29 @@
 
 // ========== FIN PANEL DE CONTROL ==========
 
+// ========== ESTILOS PARA PERFIL DEL STREAMER ==========
+.seller-profile {
+    .profile-info {
+        .seller-name {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1f2937;
+            
+            &:hover {
+                color: #236bd8;
+                text-decoration: underline;
+                transform: translateX(2px);
+            }
+            
+            &:active {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+// ========== FIN ESTILOS PERFIL STREAMER ==========
+
 .loading-container {
     min-height: 100vh;
     background: #1c9af3;

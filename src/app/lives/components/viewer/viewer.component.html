@@ -115,7 +115,7 @@
                                 <div class="status-indicator"></div>
                             </div>
                             <div class="profile-info">
-                                <h2 class="seller-name">{{ stream.streamer?.username || 'Streamer' }}</h2>
+                                <h2 class="seller-name" (click)="goToProfile()" style="cursor: pointer;">{{ stream.streamer?.username || 'Streamer' }}</h2>
                                 <span class="seller-username">@{{ stream.streamer?.username || 'streamer' }}</span>
                                 <div class="seller-stats">
                                     <div class="stat-item">

@@ -7,15 +7,15 @@
             </div>
             <p class="copyright">Copyright © 2021</p>
             <div class="d-flex w-100">
-                <button class="btn btn-icon py-2">
+                <a [href]="socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="btn btn-icon py-2" title="LinkedIn">
                     <i-feather class="icon px-0" name="linkedin"></i-feather>
-                </button>
-                <button class="btn btn-icon py-2">
+                </a>
+                <a [href]="socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="btn btn-icon py-2" title="Instagram">
                     <i-feather class="icon px-0" name="instagram"></i-feather>
-                </button>
-                <button class="btn btn-icon py-2">
+                </a>
+                <a [href]="socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="btn btn-icon py-2" title="Facebook">
                     <i-feather class="icon px-0" name="facebook"></i-feather>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
             <div class="boxSoporte">
                 <h4>{{'soporte'| translate}}</h4>
                 <ul>
-                    <li><a class="itemFooter" href="#">{{'atención al cliente' | translate}}</a></li>
+                    <li><a class="itemFooter" href="/atencion-cliente">{{'atención al cliente' | translate}}</a></li>
                     <li><a class="itemFooter" href="/terminos-condiciones">{{'terminos y condiciones'| translate}}</a></li>
                     <li><a class="itemFooter" href="/legal">{{'legal'| translate}}</a></li>
                     <li><a class="itemFooter" href="/politica-privacidad">{{'politicas de privacidad' | translate}}</a></li>

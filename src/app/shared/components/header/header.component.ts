@@ -309,6 +309,43 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.themeService.toggleTheme();
   }
 
+  // Método para navegar a secciones de Live
+  navigateToLiveSection(section: 'emprendedores' | 'negocios' | 'profesionales' | 'proveedores'): void {
+    // Cerrar el dropdown
+    this.isMasDropdownOpen = false;
+    
+    // Verificar si estamos en el home
+    const currentUrl = this.route.url;
+    const isHome = currentUrl === '/home' || currentUrl === '/' || currentUrl.startsWith('/home');
+    
+    if (isHome) {
+      // Si estamos en el home, hacer scroll a la sección
+      const sectionId = `live-${section}`;
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          // Calcular offset para el header fijo
+          const headerOffset = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    } else {
+      // Si no estamos en el home, navegar a dashboard-live
+      this.route.navigate(['/dashboard-live']).then(() => {
+        // Si la navegación fue exitosa, intentar hacer scroll después de un delay
+        setTimeout(() => {
+          // Aquí podrías agregar lógica adicional si dashboard-live tiene secciones
+        }, 500);
+      });
+    }
+  }
+
             // Método para abrir/cerrar el dropdown "más"
   toggleMasDropdown(): void {
     console.log('=== Toggle Dropdown Called ===');

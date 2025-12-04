@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardLiveRoutingModule } from './dashboard-live-routing.module';
 import { MainComponent } from './components/main/main.component';
@@ -20,7 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     MatIconModule,
     TranslateModule,
     SharedModule,
-
+    FormsModule
 ]
 })
 export class DashboardLiveModule { }

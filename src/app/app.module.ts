@@ -26,6 +26,7 @@ import { LayoutComponent } from './layout/layout.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SharedModule } from './shared/shared.module';
 import { IconsModule } from './icons/icons.module';
+import { FooterSectionModule } from './footer-section/footer-section.module';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VehicleFilterComponent } from './vehicle-filter/vehicle-filter.component';
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppRoutingModule,
     SharedModule,
     IconsModule,
+    FooterSectionModule,
     BrowserAnimationsModule,
     RouterModule,
     NgbModule,

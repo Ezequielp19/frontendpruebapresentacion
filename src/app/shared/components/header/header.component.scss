@@ -215,6 +215,118 @@ nav {
   transition: all 0.3s ease;
 }
 
+/* Estilos específicos para el botón de iniciar sesión con gradiente azul LikeVendor */
+.box-login {
+  padding: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  
+  .auth-link.btn-login-blue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    border-radius: 25px;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+    margin: 0;
+
+    .text-auth {
+      color: white !important;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .icon-arrow {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+      background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Estilos específicos para el botón de registro con gradiente azul LikeVendor */
+.box-register {
+  padding: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  
+  .auth-link.btn-register-gradient {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    border-radius: 25px;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+    margin: 0;
+
+    .text-auth {
+      color: white !important;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .icon-arrow {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+      background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
 .icon,
 .icon-edit {
   font-size: 48px;
@@ -1464,6 +1576,82 @@ nav {
       &.rotated {
         transform: rotate(180deg);
       }
+    }
+  }
+
+  /* Botón de Iniciar Sesión móvil */
+  &.mobile-btn-login {
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    color: white !important;
+    border-radius: 25px;
+    margin: 10px 20px;
+    padding: 12px 20px;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+    border: none;
+
+    .mobile-btn-text {
+      color: white !important;
+      font-weight: 600;
+      font-size: 15px;
+      text-transform: none;
+    }
+
+    .mobile-btn-icon {
+      color: white !important;
+      margin: 0;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  /* Botón de Registro móvil */
+  &.mobile-btn-register {
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    color: white !important;
+    border-radius: 25px;
+    margin: 10px 20px;
+    padding: 12px 20px;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+    border: none;
+
+    .mobile-btn-text {
+      color: white !important;
+      font-weight: 600;
+      font-size: 15px;
+      text-transform: none;
+    }
+
+    .mobile-btn-icon {
+      color: white !important;
+      margin: 0;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 

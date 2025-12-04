@@ -53,9 +53,21 @@
                     <mat-icon>category</mat-icon>
                     <strong>Menú Principal</strong>
                 </div>
-                <a class="dropdown-item" href="/products">
-                    <mat-icon class="me-2">shopping_bag</mat-icon>
-                    <span>Catálogo de Productos</span>
+                <a class="dropdown-item" (click)="navigateToLiveSection('emprendedores')" href="javascript:void(0)">
+                    <mat-icon class="me-2">live_tv</mat-icon>
+                    <span>Live Emprendedores</span>
+                </a>
+                <a class="dropdown-item" (click)="navigateToLiveSection('negocios')" href="javascript:void(0)">
+                    <mat-icon class="me-2">business</mat-icon>
+                    <span>Live Negocios</span>
+                </a>
+                <a class="dropdown-item" (click)="navigateToLiveSection('profesionales')" href="javascript:void(0)">
+                    <mat-icon class="me-2">work</mat-icon>
+                    <span>Live Profesionales</span>
+                </a>
+                <a class="dropdown-item" (click)="navigateToLiveSection('proveedores')" href="javascript:void(0)">
+                    <mat-icon class="me-2">local_shipping</mat-icon>
+                    <span>Live Proveedores</span>
                 </a>
                 <a class="dropdown-item" href="/envios-info">
                     <mat-icon class="me-2">local_shipping</mat-icon>
@@ -90,15 +102,15 @@
             <div class="box-auth">
                 <!-- Mostrar botones de login/register cuando NO está autenticado -->
                 <div class="box-login" *ngIf="!isLoggedIn">
-                    <mat-icon class="icon">account_circle</mat-icon>
-                    <a href="/login" class="auth-link">
-                        <p class="text-auth">{{'Iniciar sesion'| translate}}</p>
+                    <a href="/login" class="auth-link btn-login-blue">
+                        <span class="text-auth">{{'Iniciar sesion'| translate}}</span>
+                        <mat-icon class="icon-arrow">login</mat-icon>
                     </a>
                 </div>
                 <div class="box-register" *ngIf="!isLoggedIn">
-                    <mat-icon class="icon-edit">edit</mat-icon>
-                    <a href="/register" class="auth-link">
-                        <p class="text-auth">{{'registro'| translate}}</p>
+                    <a href="/register" class="auth-link btn-register-gradient">
+                        <span class="text-auth">{{'registro'| translate}}</span>
+                        <mat-icon class="icon-arrow">play_arrow</mat-icon>
                     </a>
                 </div>
 
@@ -131,21 +143,6 @@
                 <span>{{ 'VIVO' | translate }}</span>
             </a>
 
-            <!-- Dropdown EMPRESAS -->
-            <div class="mobile-menu-item dropdown-item" (click)="toggleMobileEmpresas()">
-                <mat-icon>business</mat-icon>
-                <span>{{ 'EMPRESAS' | translate }}</span>
-                <mat-icon class="dropdown-arrow" [class.rotated]="isMobileEmpresasOpen">expand_more</mat-icon>
-            </div>
-
-            <!-- Submenú EMPRESAS -->
-            <div class="mobile-submenu" [class.open]="isMobileEmpresasOpen">
-                <a href="/envios-info" class="mobile-submenu-item" (click)="closeMobileMenu()">
-                    <mat-icon>local_shipping</mat-icon>
-                    <span>Envíos</span>
-                </a>
-            </div>
-
             <!-- Dropdown CATEGORÍAS DESTACADAS - Nivel principal -->
             <div class="mobile-menu-item dropdown-item" (click)="toggleMobileCategorias()">
                 <mat-icon>star</mat-icon>
@@ -177,10 +174,28 @@
                 </a>
             </div>
 
-            <!-- CATÁLOGO DE PRODUCTOS -->
-            <a href="/products" class="mobile-menu-item" (click)="closeMobileMenu()">
-                <mat-icon>shopping_bag</mat-icon>
-                <span>{{ 'CATÁLOGO DE PRODUCTOS' | translate }}</span>
+            <!-- LIVE EMPRENDEDORES -->
+            <a class="mobile-menu-item" (click)="navigateToLiveSection('emprendedores'); closeMobileMenu()" href="javascript:void(0)">
+                <mat-icon>live_tv</mat-icon>
+                <span>Live Emprendedores</span>
+            </a>
+
+            <!-- LIVE NEGOCIOS -->
+            <a class="mobile-menu-item" (click)="navigateToLiveSection('negocios'); closeMobileMenu()" href="javascript:void(0)">
+                <mat-icon>business</mat-icon>
+                <span>Live Negocios</span>
+            </a>
+
+            <!-- LIVE PROFESIONALES -->
+            <a class="mobile-menu-item" (click)="navigateToLiveSection('profesionales'); closeMobileMenu()" href="javascript:void(0)">
+                <mat-icon>work</mat-icon>
+                <span>Live Profesionales</span>
+            </a>
+
+            <!-- LIVE PROVEEDORES -->
+            <a class="mobile-menu-item" (click)="navigateToLiveSection('proveedores'); closeMobileMenu()" href="javascript:void(0)">
+                <mat-icon>local_shipping</mat-icon>
+                <span>Live Proveedores</span>
             </a>
 
             <!-- RANKING DE VENDEDORES -->
@@ -202,13 +217,13 @@
             </a>
 
             <!-- Botones de Autenticación -->
-            <a href="/login" class="mobile-menu-item" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
-                <mat-icon>account_circle</mat-icon>
-                <span>{{'Iniciar sesion'| translate | uppercase}}</span>
+            <a href="/login" class="mobile-menu-item mobile-btn-login" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
+                <span class="mobile-btn-text">{{'Iniciar sesion'| translate}}</span>
+                <mat-icon class="mobile-btn-icon">login</mat-icon>
             </a>
-            <a href="/register" class="mobile-menu-item" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
-                <mat-icon>edit</mat-icon>
-                <span>{{'registro'| translate | uppercase}}</span>
+            <a href="/register" class="mobile-menu-item mobile-btn-register" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
+                <span class="mobile-btn-text">{{'registro'| translate}}</span>
+                <mat-icon class="mobile-btn-icon">play_arrow</mat-icon>
             </a>
             <div class="mobile-menu-item" (click)="logout(); closeMobileMenu()" *ngIf="isLoggedIn">
                 <mat-icon>logout</mat-icon>

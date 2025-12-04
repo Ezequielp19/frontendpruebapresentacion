@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { LiveService } from './main/live.service';
 import Hls from 'hls.js';
 
@@ -66,7 +67,10 @@ export class LiveComponent implements AfterViewInit, OnDestroy {
     { id: 'camisa-deportiva', image: 'https://i.imgur.com/QpjAiHq.jpg', title: 'Camisa Deportiva', price: '$30,000', badge: 'En Venta' }
   ];
 
-  constructor(private liveService: LiveService) {}
+  constructor(
+    private liveService: LiveService,
+    private router: Router
+  ) {}
 
   ngAfterViewInit(): void {
     this.startStreaming();
@@ -164,5 +168,29 @@ export class LiveComponent implements AfterViewInit, OnDestroy {
 
   changeVideoQuality(): void {
     localStorage.setItem('preferredVideoQuality', this.selectedVideoQuality);
+  }
+
+  /**
+   * Navegar al perfil del streamer (usuario actual que está transmitiendo)
+   */
+  goToProfile(): void {
+    // Obtener el ID del usuario actual desde localStorage
+    const userId = localStorage.getItem('userId') || 
+                   localStorage.getItem('user_id') ||
+                   '';
+
+    if (!userId) {
+      // Si no hay ID de usuario (usuario estático), navegar a preview-profile sin parámetros
+      this.router.navigate(['/preview-profile']);
+      return;
+    }
+
+    // Navegar a preview-profile con el ID del usuario
+    this.router.navigate(['/preview-profile'], {
+      queryParams: {
+        id: userId,
+        type: 'user' // Tipo por defecto
+      }
+    });
   }
 }

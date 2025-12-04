@@ -11,7 +11,7 @@
                 <!-- Filtro de Categoría -->
                 <div class="filter-item">
                     <label class="filter-label">Categoría</label>
-                    <select class="filter-select" (change)="seleccionarCategoria($event)">
+                    <select class="filter-select" (change)="seleccionarCategoria($event)" [ngModel]="categoriaSeleccionada">
                         <option value="" disabled>-- Selecciona una categoría --</option>
                         <option *ngFor="let categoria of categorias" [value]="categoria">
                             {{ categoria | titlecase }}
@@ -131,7 +131,7 @@
         </div>
 
         <!-- Componente de tarjetas para streams legacy -->
-        <app-card-live-dashboard [vivos]="vivos"></app-card-live-dashboard>
+        <app-card-live-dashboard *ngIf="vivos.length > 0" [vivos]="vivos"></app-card-live-dashboard>
 
         <!-- Lista de Streams Activos WebRTC -->
         <div class="active-streams-section" *ngIf="activeStreams.length > 0">
@@ -213,7 +213,7 @@
         </div>
 
         <!-- Mensaje cuando no hay streams -->
-        <div class="no-streams-message" *ngIf="activeStreams.length === 0 && !isLoading">
+        <div class="no-streams-message" *ngIf="activeStreams.length === 0 && vivos.length === 0 && !isLoading">
             <mat-icon>videocam_off</mat-icon>
             <h3>No hay transmisiones en vivo en este momento</h3>
             <p>Vuelve más tarde o activa las notificaciones para saber cuándo inicie un stream</p>

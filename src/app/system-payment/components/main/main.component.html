@@ -23,9 +23,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulatePayPalPayment()">
+                                <mat-icon>payment</mat-icon>
+                                <span>Pagar con PayPal</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -43,9 +45,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulatePersonalPayPayment()">
+                                <mat-icon>account_balance_wallet</mat-icon>
+                                <span>Pagar con Personal Pay</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -92,9 +96,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulateBinancePayment()">
+                                <mat-icon>currency_bitcoin</mat-icon>
+                                <span>Pagar con Binance</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -112,9 +118,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulatePrexPayment()">
+                                <mat-icon>account_balance_wallet</mat-icon>
+                                <span>Pagar con Prex</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -133,9 +141,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulatePayoneerPayment()">
+                                <mat-icon>payment</mat-icon>
+                                <span>Pagar con Payoneer</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -153,9 +163,11 @@
 
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <div class="card-body">
-                            <input type="text" class="form-control"
-                                placeholder="Ingrese su email para enviarle la factura">
+                        <div class="card-body payment-action">
+                            <button class="btn-pay-wallet" (click)="simulateRipioPayment()">
+                                <mat-icon>account_balance_wallet</mat-icon>
+                                <span>Pagar con Ripio</span>
+                            </button>
                         </div>
 
                     </mat-expansion-panel>
@@ -234,6 +246,13 @@
                             <span class="text-muted certificate-text"><i class="fa fa-lock"></i>
                                 <p>Tu transaccion esta protegida por el certificado SSL</p>
                             </span>
+
+                            <div class="payment-action mt-3">
+                                <button class="btn-pay-wallet" (click)="simulateCardPayment()">
+                                    <mat-icon>credit_card</mat-icon>
+                                    <span>Pagar con Tarjeta</span>
+                                </button>
+                            </div>
 
                         </div>
 

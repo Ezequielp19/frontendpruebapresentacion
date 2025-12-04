@@ -1,0 +1,126 @@
+<div class="container-fluid section-combined">
+  <!-- Título y descripción -->
+  <div class="section-header">
+    <h2 class="titleSection text-center">{{ 'Emprendedores' | translate }}</h2>
+    <p class="subTitleService text-center">
+      Descubre productos increíbles y transmisiones en vivo de nuestros emprendedores
+    </p>
+  </div>
+
+  <!-- Tabs Menu -->
+  <div class="tabs-container">
+    <div class="tabs-wrapper">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'products'"
+        (click)="activeTab = 'products'">
+        <mat-icon>shopping_bag</mat-icon>
+        <span>{{ 'Productos Destacados' | translate }}</span>
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'live'"
+        (click)="activeTab = 'live'">
+        <mat-icon>live_tv</mat-icon>
+        <span>{{ 'Live Emprendedores' | translate }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenido de Productos -->
+  <div class="tab-content" *ngIf="activeTab === 'products'">
+    <div *ngIf="isLoadingProducts" class="loading-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Cargando productos...</span>
+      </div>
+      <p class="mt-3">Cargando productos...</p>
+    </div>
+
+    <div *ngIf="!isLoadingProducts && products.length > 0" class="products-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image-wrapper">
+          <img [src]="product.image || 'assets/img/default-product.png'" 
+               [alt]="product.name" 
+               class="product-image" />
+        </div>
+        <div class="product-info">
+          <h4 class="product-name">{{ product.name }}</h4>
+          <p class="commission">
+            💰 Ganar ${{ product.commission || (product.price * 0.15) | number:'1.2-2' }}
+          </p>
+        </div>
+        <a [routerLink]="['/product-detail']" [queryParams]="{id: product._id}">
+          <button class="btn btn-product">{{ 'Ver Producto' | translate }}</button>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoadingProducts && products.length === 0" class="empty-state">
+      <mat-icon>inventory_2</mat-icon>
+      <p>{{ 'No hay productos disponibles.' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Contenido de Live Streams -->
+  <div class="tab-content" *ngIf="activeTab === 'live'">
+    <div class="streams-header-section">
+      <h3 class="streams-title">
+        <mat-icon>live_tv</mat-icon>
+        {{ 'Transmisiones en Vivo' | translate }}
+      </h3>
+      <a [routerLink]="['/dashboard-live']" class="btn-view-all">
+        <button class="btn btn-view-all-btn">Ver Todo</button>
+      </a>
+    </div>
+
+    <div *ngIf="isLoadingStreams" class="loading-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Cargando transmisiones...</span>
+      </div>
+      <p class="mt-3">Cargando transmisiones...</p>
+    </div>
+
+    <div *ngIf="!isLoadingStreams && allStreams.length > 0" class="streams-grid">
+      <div *ngFor="let stream of allStreams" 
+           class="stream-card" 
+           [class.stream-live]="isStreamLive(stream)"
+           [class.stream-ended]="!isStreamLive(stream)"
+           (click)="goToStream(stream)">
+        <div class="stream-header">
+          <span class="status-badge" 
+                [class.live-badge]="isStreamLive(stream)" 
+                [class.ended-badge]="!isStreamLive(stream)">
+            <span *ngIf="isStreamLive(stream)" class="pulse-dot"></span>
+            {{ isStreamLive(stream) ? '🔴 EN VIVO' : '⚫ FINALIZADO' }}
+          </span>
+        </div>
+        <div class="stream-title">{{ stream.title || 'Sin título' }}</div>
+        <div class="stream-info">
+          <mat-icon class="icon-small">person</mat-icon>
+          <span>{{ stream.streamer?.username || stream.user?.username || 'Anónimo' }}</span>
+        </div>
+        <div class="stream-viewers" *ngIf="isStreamLive(stream)">
+          <mat-icon class="icon-small">visibility</mat-icon>
+          <span>{{ stream.viewerCount || 0 }} espectadores</span>
+        </div>
+        <div class="stream-time" *ngIf="!isStreamLive(stream)">
+          <mat-icon class="icon-small">schedule</mat-icon>
+          <span>{{ getStreamTime(stream) }}</span>
+        </div>
+        <div class="stream-category" *ngIf="stream.category">
+          <mat-icon class="icon-small">category</mat-icon>
+          <span>{{ stream.category }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoadingStreams && allStreams.length === 0" class="empty-state">
+      <mat-icon>live_tv</mat-icon>
+      <p>No hay transmisiones disponibles en este momento</p>
+      <a [routerLink]="['/dashboard-live']">
+        <button class="btn btn-view-all-btn mt-3">Explorar transmisiones</button>
+      </a>
+    </div>
+  </div>
+</div>
+

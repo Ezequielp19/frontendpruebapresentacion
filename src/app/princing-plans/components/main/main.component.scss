@@ -63,8 +63,12 @@
 }
 
 #generic_price_table .generic_content .generic_price_btn a{
-	border: 1px solid #5fbae9;
-    color: #5fbae9;
+	border: none;
+    color: #fff;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    opacity: 1;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
 }
 
 #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head_bg,
@@ -80,8 +84,11 @@
 
 #generic_price_table .generic_content:hover .generic_price_btn a,
 #generic_price_table .generic_content.active .generic_price_btn a{
-	background-color: #5fbae9;
+	background: linear-gradient(90deg, #1a5aa8 10%, #039dc9 50%, #5568b8 90%);
 	color: #fff;
+	opacity: 1;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(35, 107, 216, 0.5);
 }
 #generic_price_table{
 	margin: 0px 0 0px 0;
@@ -257,6 +264,30 @@
 }
 @media (min-width: 1200px) {
 }
+
+/* Estilos para reducir opacidad del primer y último plan */
+#generic_price_table .row .col-md-4:first-child .generic_content {
+	opacity: 0.85;
+	transition: opacity 0.3s ease;
+}
+
+#generic_price_table .row .col-md-4:last-child .generic_content {
+	opacity: 0.85;
+	transition: opacity 0.3s ease;
+}
+
+#generic_price_table .row .col-md-4:first-child .generic_content:hover,
+#generic_price_table .row .col-md-4:last-child .generic_content:hover {
+	opacity: 1;
+}
+
+/* Mejorar visibilidad del botón sin hover - ya aplicado arriba */
+
+/* Reducir efecto de hover para que sea más sutil */
+#generic_price_table .generic_content:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
 #generic_price_table_home{
 	 font-family: 'Raleway', sans-serif;
 }
@@ -428,6 +459,16 @@ section{
 }
 
 .btn1{
+	background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+	color: #fff !important;
+	font-weight: 600;
+	box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+	opacity: 1 !important;
+	transition: all 0.3s ease;
+}
 
- background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+.btn1:hover {
+	background: linear-gradient(90deg, #1a5aa8 10%, #039dc9 50%, #5568b8 90%);
+	box-shadow: 0 4px 12px rgba(35, 107, 216, 0.5);
+	transform: translateY(-2px);
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { SwiperOptions, Virtual, Autoplay, Navigation } from 'swiper';
@@ -168,7 +169,7 @@ export class SectionFreelanceComponent implements OnInit {
    
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -178,5 +179,15 @@ export class SectionFreelanceComponent implements OnInit {
 
   onSlideChange() {
     console.log('slide change');
+  }
+
+  goToProfile(freelancerId: number): void {
+    // Navegar al perfil del freelancer con el ID
+    this.router.navigate(['/preview-profile'], {
+      queryParams: {
+        id: freelancerId.toString(),
+        type: 'user'
+      }
+    });
   }
 }

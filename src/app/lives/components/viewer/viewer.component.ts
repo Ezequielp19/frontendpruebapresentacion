@@ -677,4 +677,36 @@ export class ViewerComponent implements OnInit, OnDestroy {
   get isCurrentStreamLive(): boolean {
     return this.isStreamLive(this.stream);
   }
+
+  /**
+   * Navegar al perfil del streamer
+   */
+  goToProfile(): void {
+    if (!this.stream) {
+      // Si no hay stream, navegar a preview-profile sin parámetros
+      this.router.navigate(['/preview-profile']);
+      return;
+    }
+
+    // Obtener el ID del streamer de diferentes posibles ubicaciones
+    const streamerId = this.stream.streamer?._id || 
+                       this.stream.streamer?.id || 
+                       this.stream.userId || 
+                       this.stream.user?._id || 
+                       this.stream.createdBy;
+
+    if (!streamerId) {
+      // Si no hay ID del streamer (usuario estático), navegar a preview-profile sin parámetros
+      this.router.navigate(['/preview-profile']);
+      return;
+    }
+
+    // Navegar a preview-profile con el ID del streamer
+    this.router.navigate(['/preview-profile'], {
+      queryParams: {
+        id: streamerId,
+        type: 'user' // Tipo por defecto, se puede ajustar según la lógica del negocio
+      }
+    });
+  }
 }

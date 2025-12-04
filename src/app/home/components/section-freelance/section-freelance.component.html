@@ -6,7 +6,7 @@
   <div class="swiper-container">
     <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
       <ng-template *ngFor="let item of arrayFreelance" swiperSlide>
-        <div class="cardFreelance" [class.slideActive]="active === item.id">
+        <div class="cardFreelance" [class.slideActive]="active === item.id" (click)="goToProfile(item.id)" style="cursor: pointer;">
           <div class="freelancer-image-container">
             <img class="img-circle" [src]="item.image" [alt]="item.name"/>
             <div class="rating">

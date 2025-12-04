@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private ubicacionSearchSubject = new Subject<string>();
 
   // Valores seleccionados
-  categoriaSeleccionada: string = '';
+  categoriaSeleccionada: string = 'calzados'; // Categoría por defecto
   rolSeleccionado: string = '';
   productoSeleccionado: string = '';
   tipoProductoSeleccionado: string = '';
@@ -90,12 +90,23 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadActiveStreams();
+    // Cargar lives estáticos de calzados por defecto
+    this.loadCalzadosStaticLives();
+    
+    // Aplicar filtro de calzados automáticamente al cargar
+    this.aplicarFiltros();
 
     // Refrescar la lista cada 10 segundos
     this.refreshInterval = setInterval(() => {
       this.loadActiveStreams(false);
     }, 10000);
+  }
+
+  // Cargar lives estáticos de calzados
+  loadCalzadosStaticLives(): void {
+    this.liveService.getVivosPorCategoria('calzados').subscribe((vivos) => {
+      this.vivos = vivos || [];
+    });
   }
 
   ngOnDestroy(): void {
@@ -179,10 +190,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
   // Método para aplicar todos los filtros
   aplicarFiltros() {
-    // Aplicar filtros locales (legacy)
+    // Aplicar filtros locales (legacy) - siempre cargar calzados si está seleccionado
     if (this.categoriaSeleccionada) {
       this.liveService.getVivosPorCategoria(this.categoriaSeleccionada).subscribe((vivos) => {
-        this.vivos = vivos;
+        this.vivos = vivos || [];
       });
     }
 

@@ -7,7 +7,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { LegalComponent } from './components/legal/legal.component';
 import { PrivacyPoliticsComponent } from './components/privacy-politics/privacy-politics.component';
 import { CompaniesAssociatedComponent } from './components/companies-associated/companies-associated.component';
+import { CustomerServiceComponent } from './components/customer-service/customer-service.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -19,11 +21,13 @@ import { TranslateModule } from '@ngx-translate/core';
     ContactComponent,
     LegalComponent,
     PrivacyPoliticsComponent,
-    CompaniesAssociatedComponent
+    CompaniesAssociatedComponent,
+    CustomerServiceComponent
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    MatIconModule
   ]
 })
 export class FooterSectionModule { }

@@ -51,8 +51,16 @@
                                 <div class="status-indicator"></div>
                             </div>
                             <div class="profile-info">
-                                <h2 class="seller-name">Juana Rodriguez</h2>
+                                <h2 class="seller-name" (click)="goToProfile()" style="cursor: pointer;">Juana Rodriguez</h2>
                                 <span class="seller-username">@rod_juli</span>
+                                <div class="seller-rating">
+                                    <mat-icon class="star-icon star-filled">star</mat-icon>
+                                    <mat-icon class="star-icon star-filled">star</mat-icon>
+                                    <mat-icon class="star-icon star-filled">star</mat-icon>
+                                    <mat-icon class="star-icon star-filled">star</mat-icon>
+                                    <mat-icon class="star-icon star-filled">star</mat-icon>
+                                    <span class="rating-text">5/5</span>
+                                </div>
                                 <div class="seller-stats">
                                     <div class="stat-item">
                                         <span class="stat-number">24</span>

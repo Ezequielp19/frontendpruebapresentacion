@@ -19,6 +19,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { LiveSectionComponent } from './components/live-section/live-section.component';
 import { LiveEmprComponent } from './components/live-empr/live-empr.component';
 import { SellersPrimaryComponent } from './components/sellers-primary/sellers-primary.component';
+import { SectionEmprendedoresLiveComponent } from './components/section-emprendedores-live/section-emprendedores-live.component';
+import { SectionLiveProveedoresComponent } from './components/section-live-proveedores/section-live-proveedores.component';
 import { SharedModule } from '../shared/shared.module';
 import { DialogContentExampleDialog } from './components/section-income/section-income.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -41,6 +43,8 @@ import { RouterModule } from '@angular/router';
     LiveSectionComponent,
     LiveEmprComponent,
     SellersPrimaryComponent,
+    SectionEmprendedoresLiveComponent,
+    SectionLiveProveedoresComponent,
     DialogContentExampleDialog
   ],
   imports: [CommonModule, CarouselModule, IconsModule, HomeRoutingModule, SwiperModule,MatIconModule,SharedModule,MatTooltipModule,MatDialogModule,TranslateModule,NgbCarouselModule,RouterModule],

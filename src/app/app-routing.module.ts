@@ -18,6 +18,7 @@ import { ContactComponent } from './footer-section/components/contact/contact.co
 import { LegalComponent } from './footer-section/components/legal/legal.component';
 import { PrivacyPoliticsComponent } from './footer-section/components/privacy-politics/privacy-politics.component';
 import { TermsConditionsComponent } from './footer-section/components/terms-conditions/terms-conditions.component';
+import { CustomerServiceComponent } from './footer-section/components/customer-service/customer-service.component';
 import { ElectronicsLivesComponent } from './lives-category/components/electronics-lives/electronics-lives.component';
 import { BeautyLivesComponent } from './lives-category/components/beauty-lives/beauty-lives.component';
 import { ClothesLivesComponent } from './lives-category/components/clothes-lives/clothes-lives.component';
@@ -75,6 +76,9 @@ const routes: Routes = [
       },
       {
         path: 'terminos-condiciones', component: TermsConditionsComponent
+      },
+      {
+        path: 'atencion-cliente', component: CustomerServiceComponent
       },
       {
         path: 'lives-electronics',component: ElectronicsLivesComponent

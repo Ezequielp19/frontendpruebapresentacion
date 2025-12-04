@@ -162,14 +162,51 @@
     color: #1f2937;
     margin: 0 0 5px 0;
     line-height: 1.2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        color: #236bd8;
+        text-decoration: underline;
+        transform: translateX(2px);
+    }
+    
+    &:active {
+        transform: translateX(0);
+    }
 }
 
 .seller-username {
     font-size: 16px;
     color: #6b7280;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     display: block;
+}
+
+.seller-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 15px;
+    
+    .star-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: #ffc107;
+        
+        &.star-filled {
+            color: #ffc107;
+        }
+    }
+    
+    .rating-text {
+        font-size: 14px;
+        color: #6b7280;
+        font-weight: 500;
+        margin-left: 6px;
+    }
 }
 
 .seller-stats {

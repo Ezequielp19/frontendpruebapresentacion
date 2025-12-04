@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService, AuthorizePaymentRequest } from 'src/app/services/payment.service';
 import { AlertasService } from 'src/app/services/alertas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main',
@@ -115,5 +116,167 @@ export class MainComponent implements OnInit {
   }
 
   panelOpenState = false;
+
+  /**
+   * Simular pago con PayPal
+   */
+  simulatePayPalPayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con PayPal',
+      html: 'Redirigiendo a PayPal...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con PayPal se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Personal Pay
+   */
+  simulatePersonalPayPayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con Personal Pay',
+      html: 'Conectando con Personal Pay...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con Personal Pay se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Binance
+   */
+  simulateBinancePayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con Binance',
+      html: 'Verificando transacción...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con Binance se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Prex
+   */
+  simulatePrexPayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con Prex',
+      html: 'Conectando con Prex...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con Prex se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Payoneer
+   */
+  simulatePayoneerPayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con Payoneer',
+      html: 'Redirigiendo a Payoneer...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con Payoneer se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Ripio
+   */
+  simulateRipioPayment(): void {
+    Swal.fire({
+      title: 'Procesando pago con Ripio',
+      html: 'Conectando con Ripio...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con Ripio se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
+
+  /**
+   * Simular pago con Tarjeta de Crédito
+   */
+  simulateCardPayment(): void {
+    // Validar que los campos estén llenos (simulación)
+    Swal.fire({
+      title: 'Procesando pago con Tarjeta',
+      html: 'Validando información de la tarjeta...',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pago exitoso!',
+        text: 'Tu pago con tarjeta de crédito se ha procesado correctamente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#236bd8'
+      });
+    });
+  }
 }
 

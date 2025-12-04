@@ -43,6 +43,16 @@ background: linear-gradient(0deg, rgba(0,107,166,1) 0%, rgba(239,250,255,1) 50%,
 ::ng-deep app-section-smart-business,
 ::ng-deep app-section-income,
 ::ng-deep app-live-empr,
+::ng-deep app-section-live-proveedores {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Espaciado adicional para Emprendedores destacados */
 ::ng-deep app-sellers-primary {
   width: 100%;
   max-width: 100%;
@@ -50,4 +60,13 @@ background: linear-gradient(0deg, rgba(0,107,166,1) 0%, rgba(239,250,255,1) 50%,
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 4rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 3rem;
+  }
+  
+  @media (max-width: 576px) {
+    margin-top: 2rem;
+  }
 }
