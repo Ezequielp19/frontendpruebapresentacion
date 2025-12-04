@@ -50,6 +50,8 @@
   padding: 8px 16px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: fit-content;
 
   &.active {
     background-color: white;
@@ -165,6 +167,15 @@
 }
 
 /* RESPONSIVE */
+/* Móviles grandes y tablets pequeñas */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .groupButton button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 768px) {
   .boxHero {
     height: auto;
@@ -190,6 +201,8 @@
 
   .groupButton button {
     width: 80%;
+    padding: 10px 16px;
+    font-size: 0.95rem;
   }
 
   .rankingItem {
@@ -206,5 +219,7 @@
 
   .groupButton button {
     width: 100%;
+    padding: 10px 12px;
+    font-size: 0.9rem;
   }
 }
