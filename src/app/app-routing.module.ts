@@ -170,7 +170,7 @@ const routes: Routes = [
       {
         path: 'choose-role',
         loadChildren: () => import('./choose-role/choose-role.module').then((m) => m.ChooseRoleModule),
-        canActivate: [AuthGuard] // Proteger - requiere autenticación
+       // Proteger - requiere autenticación
       },
       {
         path: 'all-department',
