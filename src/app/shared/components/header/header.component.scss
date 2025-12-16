@@ -202,7 +202,8 @@ nav {
 
 .box-login,
 .box-register,
-.box-logout {
+.box-logout,
+.box-profile {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -213,6 +214,14 @@ nav {
   padding: 10px;
   margin: 0;
   transition: all 0.3s ease;
+}
+
+.box-auth-logged {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 /* Estilos específicos para el botón de iniciar sesión con gradiente azul LikeVendor */
@@ -374,6 +383,62 @@ nav {
 
   &:hover .text-auth {
     color: #236bd8 !important;
+  }
+}
+
+/* Estilos específicos para el botón Mi Perfil */
+.box-profile {
+  padding: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  
+  .auth-link.btn-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    border-radius: 25px;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+    margin: 0;
+
+    .text-auth {
+      color: white !important;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+      background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
 }
 

@@ -193,6 +193,11 @@ const routes: Routes = [
       {
         path: 'api-testing',
         loadChildren: () => import('./components/api-testing/api-testing.module').then((m) => m.ApiTestingModule)
+      },
+      {
+        path: 'mi-perfil',
+        loadChildren: () => import('./mi-perfil/mi-perfil.module').then((m) => m.MiPerfilModule),
+        canActivate: [AuthGuard] // Proteger - requiere autenticación
       }
     ],
   },

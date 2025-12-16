@@ -1,0 +1,308 @@
+<div class="mi-perfil-container">
+  <div class="container-fluid py-5">
+    <!-- Header del Perfil -->
+    <div class="profile-header mb-5">
+      <h1 class="profile-title">{{ 'my profile' | translate }}</h1>
+      <p class="profile-subtitle">Gestiona tus productos, mensajes y estadísticas</p>
+    </div>
+
+    <!-- Navegación por Pestañas -->
+    <div class="tabs-navigation mb-4">
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'productos'"
+        (click)="cambiarSeccion('productos')">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Tus Productos</span>
+        <span class="badge" *ngIf="misProductos.length > 0">{{ misProductos.length }}</span>
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'mensajes'"
+        (click)="cambiarSeccion('mensajes')">
+        <mat-icon>mail</mat-icon>
+        <span>Tus Mensajes</span>
+        <span class="badge badge-unread" *ngIf="getMensajesNoLeidos() > 0">{{ getMensajesNoLeidos() }}</span>
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'destacados'"
+        (click)="cambiarSeccion('destacados')">
+        <mat-icon>star</mat-icon>
+        <span>Productos Destacados</span>
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'clicks'"
+        (click)="cambiarSeccion('clicks')">
+        <mat-icon>trending_up</mat-icon>
+        <span>Productos Más Clickeados</span>
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'calculadora'"
+        (click)="cambiarSeccion('calculadora')">
+        <mat-icon>calculate</mat-icon>
+        <span>Calculadora de Ganancias</span>
+      </button>
+    </div>
+
+    <!-- Sección: Tus Productos -->
+    <div class="section-content" *ngIf="seccionActiva === 'productos'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>inventory_2</mat-icon>
+          Tus Productos ({{ misProductos.length }})
+        </h2>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let producto of misProductos">
+          <div class="product-image">
+            <img [src]="producto.imagen" [alt]="producto.nombre">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ producto.nombre }}</h3>
+            <p class="product-category">{{ producto.categoria }}</p>
+            <p class="product-description">{{ producto.descripcion }}</p>
+            <div class="product-footer">
+              <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
+              <button class="btn-action">
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Tus Mensajes -->
+    <div class="section-content" *ngIf="seccionActiva === 'mensajes'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>mail</mat-icon>
+          Tus Mensajes ({{ misMensajes.length }})
+        </h2>
+        <p class="section-subtitle" *ngIf="getMensajesNoLeidos() > 0">
+          Tienes {{ getMensajesNoLeidos() }} mensaje(s) sin leer
+        </p>
+      </div>
+      <div class="messages-list">
+        <div 
+          class="message-card" 
+          [class.unread]="!mensaje.leido"
+          *ngFor="let mensaje of misMensajes"
+          (click)="marcarMensajeLeido(mensaje)">
+          <div class="message-header">
+            <div class="message-sender">
+              <mat-icon class="sender-icon">person</mat-icon>
+              <strong>{{ mensaje.remitente }}</strong>
+            </div>
+            <div class="message-meta">
+              <span class="message-date">{{ mensaje.fecha }}</span>
+              <span class="message-status" *ngIf="!mensaje.leido">
+                <mat-icon>mark_email_unread</mat-icon>
+                No leído
+              </span>
+            </div>
+          </div>
+          <h4 class="message-subject">{{ mensaje.asunto }}</h4>
+          <p class="message-text">{{ mensaje.mensaje }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Productos Destacados -->
+    <div class="section-content" *ngIf="seccionActiva === 'destacados'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>star</mat-icon>
+          Productos Destacados ({{ productosDestacados.length }})
+        </h2>
+        <p class="section-subtitle">Estos son tus productos más populares y destacados</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card featured" *ngFor="let producto of productosDestacados">
+          <div class="featured-badge">
+            <mat-icon>star</mat-icon>
+            Destacado
+          </div>
+          <div class="product-image">
+            <img [src]="producto.imagen" [alt]="producto.nombre">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ producto.nombre }}</h3>
+            <p class="product-category">{{ producto.categoria }}</p>
+            <p class="product-description">{{ producto.descripcion }}</p>
+            <div class="product-footer">
+              <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
+              <button class="btn-action" (click)="verDetallesProducto(producto)">
+                <mat-icon>visibility</mat-icon>
+                Ver Detalles
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Productos Más Clickeados -->
+    <div class="section-content" *ngIf="seccionActiva === 'clicks'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>trending_up</mat-icon>
+          Productos Más Clickeados ({{ productosMasClickeados.length }})
+        </h2>
+        <p class="section-subtitle">Estadísticas de visualizaciones de tus productos</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let producto of productosMasClickeados">
+          <div class="product-image">
+            <img [src]="producto.imagen" [alt]="producto.nombre">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ producto.nombre }}</h3>
+            <p class="product-category">{{ producto.categoria }}</p>
+            <p class="product-description">{{ producto.descripcion }}</p>
+            <div class="product-stats">
+              <div class="stat-item">
+                <mat-icon>mouse</mat-icon>
+                <span class="stat-value">{{ producto.clicks }}</span>
+                <span class="stat-label">Clicks</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Calculadora de Ganancias -->
+    <div class="section-content" *ngIf="seccionActiva === 'calculadora'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>calculate</mat-icon>
+          Calculadora de Ganancias para Revendedores
+        </h2>
+        <p class="section-subtitle">Calcula las ganancias según el plan del empresario y el precio del producto</p>
+      </div>
+
+      <div class="calculator-container">
+        <div class="calculator-form">
+          <div class="form-group">
+            <label for="precio-producto">
+              <mat-icon>attach_money</mat-icon>
+              Precio del Producto ($)
+            </label>
+            <input 
+              type="number" 
+              id="precio-producto"
+              class="form-control"
+              [(ngModel)]="precioProducto"
+              (input)="calcularGanancias()"
+              placeholder="Ingresa el precio del producto"
+              min="0"
+              step="0.01">
+          </div>
+
+          <div class="form-group">
+            <label for="plan-empresario">
+              <mat-icon>business</mat-icon>
+              Plan del Empresario
+            </label>
+            <select 
+              id="plan-empresario"
+              class="form-control"
+              [(ngModel)]="planSeleccionado"
+              (change)="calcularGanancias()">
+              <option [value]="5">Plan 5% (5 empleados)</option>
+              <option [value]="15">Plan 15% (15 empleados)</option>
+              <option [value]="30">Plan 30% (30 empleados)</option>
+            </select>
+          </div>
+
+          <div class="calculator-actions">
+            <button class="btn-calculate" (click)="calcularGanancias()">
+              <mat-icon>calculate</mat-icon>
+              Calcular
+            </button>
+            <button class="btn-clear" (click)="limpiarCalculadora()">
+              <mat-icon>refresh</mat-icon>
+              Limpiar
+            </button>
+          </div>
+        </div>
+
+        <div class="calculator-result" *ngIf="resultadoCalculo">
+          <h3 class="result-title">
+            <mat-icon>analytics</mat-icon>
+            Resultado del Cálculo
+          </h3>
+          
+          <div class="result-grid">
+            <div class="result-card">
+              <div class="result-label">Precio Original del Producto</div>
+              <div class="result-value original">${{ resultadoCalculo.precioOriginal | number:'1.2-2' }}</div>
+            </div>
+
+            <div class="result-card discount">
+              <div class="result-label">
+                <mat-icon>remove_circle</mat-icon>
+                Descuento por Plan ({{ resultadoCalculo.planPorcentaje }}%)
+              </div>
+              <div class="result-value">-${{ resultadoCalculo.descuentoPlan | number:'1.2-2' }}</div>
+            </div>
+
+            <div class="result-card profit">
+              <div class="result-label">
+                <mat-icon>person</mat-icon>
+                Ganancia del Revendedor (Autónomo) - 1%
+              </div>
+              <div class="result-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</div>
+            </div>
+
+            <div class="result-card final">
+              <div class="result-label">
+                <mat-icon>business</mat-icon>
+                Ganancia del Empresario
+              </div>
+              <div class="result-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</div>
+            </div>
+          </div>
+
+          <div class="result-summary">
+            <div class="summary-item highlight revendedor">
+              <span class="summary-label">
+                <mat-icon>person</mat-icon>
+                Lo que le queda al Revendedor (Autónomo):
+              </span>
+              <span class="summary-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</span>
+            </div>
+            <div class="summary-item highlight empresario">
+              <span class="summary-label">
+                <mat-icon>business</mat-icon>
+                Lo que le queda al Empresario:
+              </span>
+              <span class="summary-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator-info" *ngIf="!resultadoCalculo">
+          <div class="info-card">
+            <mat-icon>info</mat-icon>
+            <h4>¿Cómo funciona?</h4>
+            <ul>
+              <li>El empresario contrata un plan (5%, 15% o 30%) según la cantidad de empleados</li>
+              <li>Se descuenta el porcentaje correspondiente al plan del empresario</li>
+              <li>El revendedor (autónomo) siempre obtiene un 1% de ganancia sobre el precio original</li>
+              <li>El resto del dinero queda para el empresario (después de descontar el plan y la ganancia del revendedor)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -114,12 +114,22 @@
                     </a>
                 </div>
 
-                <!-- Mostrar botón de logout cuando SÍ está autenticado -->
-                <div class="box-logout" *ngIf="isLoggedIn">
-                    <mat-icon class="icon">logout</mat-icon>
-                    <button (click)="logout()" class="auth-link logout-btn">
-                        <p class="text-auth">{{'Cerrar sesion'| translate}}</p>
-                    </button>
+                <!-- Mostrar botones cuando SÍ está autenticado -->
+                <div class="box-auth-logged" *ngIf="isLoggedIn">
+                    <!-- Botón Mi Perfil -->
+                    <div class="box-profile">
+                        <a href="/mi-perfil" class="auth-link btn-profile">
+                            <mat-icon class="icon">person</mat-icon>
+                            <span class="text-auth">{{'my profile'| translate}}</span>
+                        </a>
+                    </div>
+                    <!-- Botón Cerrar Sesión -->
+                    <div class="box-logout">
+                        <mat-icon class="icon">logout</mat-icon>
+                        <button (click)="logout()" class="auth-link logout-btn">
+                            <p class="text-auth">{{'Cerrar sesion'| translate}}</p>
+                        </button>
+                    </div>
                 </div>
             </div>
         </ul>
@@ -224,6 +234,10 @@
             <a href="/register" class="mobile-menu-item mobile-btn-register" (click)="closeMobileMenu()" *ngIf="!isLoggedIn">
                 <span class="mobile-btn-text">{{'registro'| translate}}</span>
                 <mat-icon class="mobile-btn-icon">play_arrow</mat-icon>
+            </a>
+            <a href="/mi-perfil" class="mobile-menu-item" (click)="closeMobileMenu()" *ngIf="isLoggedIn">
+                <mat-icon>person</mat-icon>
+                <span>{{'my profile'| translate | uppercase}}</span>
             </a>
             <div class="mobile-menu-item" (click)="logout(); closeMobileMenu()" *ngIf="isLoggedIn">
                 <mat-icon>logout</mat-icon>

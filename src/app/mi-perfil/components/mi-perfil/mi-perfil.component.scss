@@ -1,0 +1,1216 @@
+.mi-perfil-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem 0;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .profile-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-subtitle {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+  }
+}
+
+.tabs-navigation {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+
+  .tab-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    position: relative;
+
+    mat-icon {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .badge {
+      background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+
+      &.badge-unread {
+        background: #e74c3c;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    &:hover {
+      background: #f8f9fa;
+      border-color: #236bd8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(35, 107, 216, 0.2);
+    }
+
+    &.active {
+      background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+      color: white;
+      border-color: #236bd8;
+      box-shadow: 0 4px 15px rgba(35, 107, 216, 0.4);
+
+      mat-icon {
+        color: white;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.section-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+
+  .section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+
+      mat-icon {
+        color: #236bd8;
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .section-subtitle {
+      color: #7f8c8d;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  &.featured {
+    border: 2px solid #f39c12;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(35, 107, 216, 0.4);
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      background: white;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  .product-info {
+    padding: 1.5rem;
+
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-category {
+      font-size: 0.85rem;
+      color: #7f8c8d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-description {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        mat-icon {
+          color: #236bd8;
+          font-size: 1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+
+        .stat-value {
+          font-weight: 700;
+          font-size: 1.1rem;
+          color: #2c3e50;
+        }
+
+        .stat-label {
+          font-size: 0.85rem;
+          color: #7f8c8d;
+        }
+      }
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #27ae60;
+      }
+
+      .btn-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        mat-icon {
+          font-size: 1.1rem;
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+          background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+        }
+      }
+    }
+  }
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #236bd8;
+    box-shadow: 0 4px 12px rgba(35, 107, 216, 0.2);
+    transform: translateX(5px);
+  }
+
+  &.unread {
+    background: #f0f8ff;
+    border-color: #236bd8;
+    border-left: 4px solid #236bd8;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .message-sender {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .sender-icon {
+        color: #236bd8;
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      strong {
+        color: #2c3e50;
+        font-size: 1.1rem;
+      }
+    }
+
+    .message-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .message-date {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+      }
+
+      .message-status {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: #e74c3c;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        mat-icon {
+          font-size: 1rem;
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+
+  .message-subject {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+  }
+
+  .message-text {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+
+// Tablets grandes y desktop pequeño (768px - 992px)
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .section-content {
+    padding: 1.75rem;
+  }
+}
+
+// Tablets (576px - 768px)
+@media (max-width: 768px) {
+  .mi-perfil-container {
+    padding: 1.5rem 0;
+  }
+
+  .profile-header {
+    margin-bottom: 2rem;
+
+    .profile-title {
+      font-size: 2rem;
+    }
+
+    .profile-subtitle {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  .tabs-navigation {
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #236bd8;
+      border-radius: 2px;
+    }
+
+    .tab-button {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+
+      mat-icon {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      span:not(.badge) {
+        display: inline;
+      }
+    }
+  }
+
+  .section-content {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+
+    .section-header {
+      margin-bottom: 1.5rem;
+
+      .section-title {
+        font-size: 1.5rem;
+
+        mat-icon {
+          font-size: 1.75rem;
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+      }
+
+      .section-subtitle {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .product-card {
+    .product-image {
+      height: 220px;
+    }
+
+    .product-info {
+      padding: 1.25rem;
+
+      .product-name {
+        font-size: 1.1rem;
+      }
+
+      .product-description {
+        font-size: 0.9rem;
+      }
+
+      .product-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .product-price {
+          font-size: 1.35rem;
+        }
+
+        .btn-action {
+          width: 100%;
+          justify-content: center;
+          padding: 0.75rem 1rem;
+        }
+      }
+    }
+  }
+
+  .message-card {
+    padding: 1.25rem;
+
+    .message-header {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.75rem;
+
+      .message-sender {
+        width: 100%;
+      }
+
+      .message-meta {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    .message-subject {
+      font-size: 1rem;
+    }
+
+    .message-text {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Móviles pequeños (hasta 576px)
+@media (max-width: 576px) {
+  .mi-perfil-container {
+    padding: 1rem 0;
+  }
+
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .profile-header {
+    margin-bottom: 1.5rem;
+
+    .profile-title {
+      font-size: 1.75rem;
+      padding: 0 0.5rem;
+    }
+
+    .profile-subtitle {
+      font-size: 0.9rem;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .tabs-navigation {
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    margin-bottom: 1.25rem;
+
+    .tab-button {
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 10px;
+
+      mat-icon {
+        font-size: 1.1rem;
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+
+      .badge {
+        width: 20px;
+        height: 20px;
+        font-size: 0.65rem;
+        margin-left: 0.35rem;
+      }
+
+      span:not(.badge) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .section-content {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 10px;
+
+    .section-header {
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+
+      .section-title {
+        font-size: 1.35rem;
+        gap: 0.5rem;
+
+        mat-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      .section-subtitle {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .product-card {
+    border-radius: 10px;
+
+    .featured-badge {
+      top: 8px;
+      right: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      border-radius: 15px;
+
+      mat-icon {
+        font-size: 0.9rem;
+        width: 0.9rem;
+        height: 0.9rem;
+      }
+    }
+
+    .product-image {
+      height: 200px;
+    }
+
+    .product-info {
+      padding: 1rem;
+
+      .product-name {
+        font-size: 1.05rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .product-category {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-description {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .product-stats {
+        padding: 0.6rem;
+        margin-bottom: 0.75rem;
+
+        .stat-item {
+          gap: 0.4rem;
+
+          mat-icon {
+            font-size: 1.1rem;
+            width: 1.1rem;
+            height: 1.1rem;
+          }
+
+          .stat-value {
+            font-size: 1rem;
+          }
+
+          .stat-label {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .product-footer {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+
+        .product-price {
+          font-size: 1.25rem;
+        }
+
+        .btn-action {
+          width: 100%;
+          justify-content: center;
+          padding: 0.65rem 1rem;
+          font-size: 0.85rem;
+
+          mat-icon {
+            font-size: 1rem;
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .messages-list {
+    gap: 0.75rem;
+  }
+
+  .message-card {
+    padding: 1rem;
+    border-radius: 10px;
+
+    .message-header {
+      margin-bottom: 0.75rem;
+
+      .message-sender {
+        .sender-icon {
+          font-size: 1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+
+        strong {
+          font-size: 1rem;
+        }
+      }
+
+      .message-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        .message-date {
+          font-size: 0.85rem;
+        }
+
+        .message-status {
+          font-size: 0.8rem;
+
+          mat-icon {
+            font-size: 0.9rem;
+            width: 0.9rem;
+            height: 0.9rem;
+          }
+        }
+      }
+    }
+
+    .message-subject {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .message-text {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Móviles muy pequeños (hasta 375px)
+@media (max-width: 375px) {
+  .profile-header {
+    .profile-title {
+      font-size: 1.5rem;
+    }
+
+    .profile-subtitle {
+      font-size: 0.85rem;
+    }
+  }
+
+  .tabs-navigation {
+    .tab-button {
+      padding: 0.6rem 0.85rem;
+      font-size: 0.8rem;
+
+      span:not(.badge) {
+        display: none;
+      }
+
+      mat-icon {
+        margin: 0;
+      }
+    }
+  }
+
+  .section-content {
+    padding: 1rem;
+
+    .section-header {
+      .section-title {
+        font-size: 1.2rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .product-card {
+    .product-image {
+      height: 180px;
+    }
+
+    .product-info {
+      padding: 0.85rem;
+    }
+  }
+}
+
+// Desktop grande (1200px+)
+@media (min-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .section-content {
+    padding: 2.5rem;
+  }
+}
+
+// ===== CALCULADORA DE GANANCIAS =====
+.calculator-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calculator-form {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+
+      mat-icon {
+        color: #236bd8;
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #236bd8;
+        box-shadow: 0 0 0 3px rgba(35, 107, 216, 0.1);
+      }
+
+      &::placeholder {
+        color: #999;
+      }
+    }
+
+    select.form-control {
+      cursor: pointer;
+      background: white;
+    }
+  }
+
+  .calculator-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      mat-icon {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    .btn-calculate {
+      background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(35, 107, 216, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(35, 107, 216, 0.4);
+        background: linear-gradient(90deg, #1e5bb8 10%, #03b0e0 50%, #5a6bc8 90%);
+      }
+    }
+
+    .btn-clear {
+      background: #e0e0e0;
+      color: #555;
+
+      &:hover {
+        background: #d0d0d0;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.calculator-result {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  .result-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+
+    mat-icon {
+      color: #236bd8;
+      font-size: 1.75rem;
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .result-card {
+      background: #f8f9fa;
+      padding: 1.25rem;
+      border-radius: 10px;
+      border-left: 4px solid #236bd8;
+
+      &.discount {
+        border-left-color: #e74c3c;
+        background: #fff5f5;
+      }
+
+      &.profit {
+        border-left-color: #27ae60;
+        background: #f0fff4;
+      }
+
+      &.final {
+        border-left-color: #236bd8;
+        background: linear-gradient(135deg, #f0f8ff 0%, #e8f4fd 100%);
+        grid-column: 1 / -1;
+      }
+
+      .result-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+
+        mat-icon {
+          font-size: 1.1rem;
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+      }
+
+      .result-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+
+        &.original {
+          color: #236bd8;
+        }
+      }
+    }
+  }
+
+  .result-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      gap: 1rem;
+
+      .summary-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+        color: #555;
+        flex: 1;
+
+        mat-icon {
+          font-size: 1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+
+      .summary-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      &.highlight {
+        &.revendedor {
+          background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+          color: white;
+
+          .summary-label,
+          .summary-value {
+            color: white;
+            font-weight: 600;
+          }
+
+          mat-icon {
+            color: white;
+          }
+        }
+
+        &.empresario {
+          background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);
+          color: white;
+
+          .summary-label,
+          .summary-value {
+            color: white;
+            font-weight: 600;
+          }
+
+          mat-icon {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.calculator-info {
+  .info-card {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e8f4fd 100%);
+    border: 2px solid #236bd8;
+    border-radius: 12px;
+    padding: 2rem;
+
+    mat-icon {
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      color: #236bd8;
+      margin-bottom: 1rem;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0.75rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+        color: #555;
+        line-height: 1.6;
+
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #236bd8;
+          font-weight: 700;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+// Responsive para calculadora
+@media (max-width: 768px) {
+  .calculator-form {
+    padding: 1.5rem;
+
+    .calculator-actions {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .calculator-result {
+    padding: 1.5rem;
+
+    .result-grid {
+      grid-template-columns: 1fr;
+
+      .result-card.final {
+        grid-column: 1;
+      }
+    }
+  }
+
+  .calculator-info .info-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .calculator-form {
+    padding: 1.25rem;
+  }
+
+  .calculator-result {
+    padding: 1.25rem;
+
+    .result-title {
+      font-size: 1.25rem;
+    }
+
+    .result-grid .result-card {
+      padding: 1rem;
+
+      .result-value {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
