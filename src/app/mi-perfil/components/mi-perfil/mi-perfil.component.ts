@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CalificacionesModalComponent } from '../calificaciones-modal/calificaciones-modal.component';
+import { CambiarPasswordModalComponent } from '../cambiar-password-modal/cambiar-password-modal.component';
 
 interface Producto {
   id: number;
@@ -159,6 +160,7 @@ export class MiPerfilComponent implements OnInit {
 
   seccionActiva: string = 'datos';
   periodoSeleccionado: string = 'mes'; // hora, dia, semana, mes, año
+  filtroProductos: string = 'todos'; // todos, destacados, masClickeados
 
   // Datos del perfil del usuario
   misDatos: any = {
@@ -182,6 +184,22 @@ export class MiPerfilComponent implements OnInit {
   planSeleccionado: number = 5; // 5%, 15% o 30%
   resultadoCalculo: any = null;
 
+  // Variables para edición de productos
+  productoEditando: Producto | null = null;
+  mostrarModalEdicion: boolean = false;
+  productoEditado: Producto = {
+    id: 0,
+    nombre: '',
+    precio: 0,
+    imagen: '',
+    descripcion: '',
+    categoria: ''
+  };
+
+  // Variables para edición de datos del perfil
+  mostrarModalEdicionDatos: boolean = false;
+  datosEditados: any = {};
+
 
   constructor(
     private router: Router,
@@ -189,23 +207,46 @@ export class MiPerfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Agregar productos destacados a misProductos si no están
+    this.productosDestacados.forEach(productoDestacado => {
+      const existe = this.misProductos.find(p => p.id === productoDestacado.id);
+      if (!existe) {
+        this.misProductos.push({ ...productoDestacado, destacado: true });
+      } else {
+        existe.destacado = true;
+      }
+    });
+
+    // Agregar clicks a productos que están en productosMasClickeados
+    this.productosMasClickeados.forEach(productoClickeado => {
+      const producto = this.misProductos.find(p => p.id === productoClickeado.id);
+      if (producto && productoClickeado.clicks) {
+        producto.clicks = productoClickeado.clicks;
+      }
+    });
   }
 
   cambiarSeccion(seccion: string): void {
     this.seccionActiva = seccion;
   }
 
-  verDetallesProducto(producto: Producto): void {
-    if (producto._id) {
-      this.router.navigate(['/product-detail'], {
-        queryParams: { id: producto._id }
-      });
-    } else {
-      // Fallback: usar el ID numérico si no hay _id
-      this.router.navigate(['/product-detail'], {
-        queryParams: { id: producto.id.toString() }
-      });
+  cambiarFiltroProductos(filtro: string): void {
+    this.filtroProductos = filtro;
+  }
+
+  getProductosFiltrados(): Producto[] {
+    switch (this.filtroProductos) {
+      case 'destacados':
+        return this.misProductos.filter(p => p.destacado === true);
+      case 'masClickeados':
+        return [...this.misProductos].sort((a, b) => (b.clicks || 0) - (a.clicks || 0));
+      default:
+        return this.misProductos;
     }
+  }
+
+  getCantidadDestacados(): number {
+    return this.misProductos.filter(p => p.destacado === true).length;
   }
 
   calcularGanancias(): void {
@@ -401,6 +442,79 @@ export class MiPerfilComponent implements OnInit {
     }
   }
 
+  abrirEdicionProducto(producto: Producto): void {
+    this.productoEditando = producto;
+    this.productoEditado = {
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagen,
+      descripcion: producto.descripcion,
+      categoria: producto.categoria,
+      _id: producto._id,
+      clicks: producto.clicks,
+      destacado: producto.destacado
+    };
+    this.mostrarModalEdicion = true;
+  }
+
+  cerrarModalEdicion(): void {
+    this.mostrarModalEdicion = false;
+    this.productoEditando = null;
+  }
+
+  guardarProductoEditado(): void {
+    if (!this.productoEditando) return;
+
+    // Buscar el producto en el array y actualizarlo
+    const index = this.misProductos.findIndex(p => p.id === this.productoEditando!.id);
+    if (index !== -1) {
+      this.misProductos[index] = { ...this.productoEditado };
+    }
+
+    // También actualizar en otros arrays si existe
+    const indexDestacados = this.productosDestacados.findIndex(p => p.id === this.productoEditando!.id);
+    if (indexDestacados !== -1) {
+      this.productosDestacados[indexDestacados] = { ...this.productoEditado };
+    }
+
+    const indexClickeados = this.productosMasClickeados.findIndex(p => p.id === this.productoEditando!.id);
+    if (indexClickeados !== -1) {
+      this.productosMasClickeados[indexClickeados] = { ...this.productoEditado };
+    }
+
+    this.cerrarModalEdicion();
+  }
+
+  abrirEdicionDatos(): void {
+    this.datosEditados = {
+      nombre: this.misDatos.nombre,
+      apellido: this.misDatos.apellido,
+      email: this.misDatos.email,
+      telefono: this.misDatos.telefono,
+      direccion: this.misDatos.direccion,
+      ciudad: this.misDatos.ciudad,
+      provincia: this.misDatos.provincia,
+      codigoPostal: this.misDatos.codigoPostal,
+      tipoUsuario: this.misDatos.tipoUsuario,
+      plan: this.misDatos.plan,
+      fechaRegistro: this.misDatos.fechaRegistro,
+      estado: this.misDatos.estado,
+      imagenPerfil: this.misDatos.imagenPerfil
+    };
+    this.mostrarModalEdicionDatos = true;
+  }
+
+  cerrarModalEdicionDatos(): void {
+    this.mostrarModalEdicionDatos = false;
+    this.datosEditados = {};
+  }
+
+  guardarDatosEditados(): void {
+    this.misDatos = { ...this.datosEditados };
+    this.cerrarModalEdicionDatos();
+  }
+
   abrirModalCalificaciones(): void {
     this.dialog.open(CalificacionesModalComponent, {
       width: '90%',
@@ -412,6 +526,22 @@ export class MiPerfilComponent implements OnInit {
         total: this.estadisticas.ratePerfil.totalResenas
       },
       panelClass: 'calificaciones-modal'
+    });
+  }
+
+  abrirModalCambiarPassword(): void {
+    const dialogRef = this.dialog.open(CambiarPasswordModalComponent, {
+      width: '90%',
+      maxWidth: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.success) {
+        // Simulación de cambio de contraseña exitoso (solo para presentación)
+        console.log('Contraseña cambiada:', result.message);
+        // Aquí podrías mostrar un mensaje de éxito si quisieras
+      }
     });
   }
 

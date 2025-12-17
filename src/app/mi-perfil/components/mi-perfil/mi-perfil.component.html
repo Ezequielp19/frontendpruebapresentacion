@@ -25,20 +25,6 @@
       </button>
       <button 
         class="tab-button" 
-        [class.active]="seccionActiva === 'destacados'"
-        (click)="cambiarSeccion('destacados')">
-        <mat-icon>star</mat-icon>
-        <span>Productos Destacados</span>
-      </button>
-      <button 
-        class="tab-button" 
-        [class.active]="seccionActiva === 'clicks'"
-        (click)="cambiarSeccion('clicks')">
-        <mat-icon>trending_up</mat-icon>
-        <span>Productos Más Clickeados</span>
-      </button>
-      <button 
-        class="tab-button" 
         [class.active]="seccionActiva === 'calculadora'"
         (click)="cambiarSeccion('calculadora')">
         <mat-icon>calculate</mat-icon>
@@ -149,11 +135,11 @@
         </div>
 
         <div class="profile-actions">
-          <button class="btn-edit-profile">
+          <button class="btn-edit-profile" (click)="abrirEdicionDatos()">
             <mat-icon>edit</mat-icon>
             Editar Perfil
           </button>
-          <button class="btn-change-password">
+          <button class="btn-change-password" (click)="abrirModalCambiarPassword()">
             <mat-icon>lock</mat-icon>
             Cambiar Contraseña
           </button>
@@ -166,42 +152,35 @@
       <div class="section-header">
         <h2 class="section-title">
           <mat-icon>inventory_2</mat-icon>
-          Tus Productos ({{ misProductos.length }})
+          Tus Productos ({{ getProductosFiltrados().length }})
         </h2>
-      </div>
-      <div class="products-grid">
-        <div class="product-card" *ngFor="let producto of misProductos">
-          <div class="product-image">
-            <img [src]="producto.imagen" [alt]="producto.nombre">
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">{{ producto.nombre }}</h3>
-            <p class="product-category">{{ producto.categoria }}</p>
-            <p class="product-description">{{ producto.descripcion }}</p>
-            <div class="product-footer">
-              <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
-              <button class="btn-action">
-                <mat-icon>edit</mat-icon>
-                Editar
-              </button>
-            </div>
-          </div>
+        <div class="filters-container">
+          <button 
+            class="filter-btn" 
+            [class.active]="filtroProductos === 'todos'"
+            (click)="cambiarFiltroProductos('todos')">
+            <mat-icon>apps</mat-icon>
+            Todos ({{ misProductos.length }})
+          </button>
+          <button 
+            class="filter-btn" 
+            [class.active]="filtroProductos === 'destacados'"
+            (click)="cambiarFiltroProductos('destacados')">
+            <mat-icon>star</mat-icon>
+            Destacados ({{ getCantidadDestacados() }})
+          </button>
+          <button 
+            class="filter-btn" 
+            [class.active]="filtroProductos === 'masClickeados'"
+            (click)="cambiarFiltroProductos('masClickeados')">
+            <mat-icon>trending_up</mat-icon>
+            Más Clickeados
+          </button>
         </div>
       </div>
-    </div>
-
-    <!-- Sección: Productos Destacados -->
-    <div class="section-content" *ngIf="seccionActiva === 'destacados'">
-      <div class="section-header">
-        <h2 class="section-title">
-          <mat-icon>star</mat-icon>
-          Productos Destacados ({{ productosDestacados.length }})
-        </h2>
-        <p class="section-subtitle">Estos son tus productos más populares y destacados</p>
-      </div>
       <div class="products-grid">
-        <div class="product-card featured" *ngFor="let producto of productosDestacados">
-          <div class="featured-badge">
+        <div class="product-card" *ngFor="let producto of getProductosFiltrados()" [class.featured]="producto.destacado">
+          <div class="featured-badge" *ngIf="producto.destacado">
             <mat-icon>star</mat-icon>
             Destacado
           </div>
@@ -212,37 +191,7 @@
             <h3 class="product-name">{{ producto.nombre }}</h3>
             <p class="product-category">{{ producto.categoria }}</p>
             <p class="product-description">{{ producto.descripcion }}</p>
-            <div class="product-footer">
-              <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
-              <button class="btn-action" (click)="verDetallesProducto(producto)">
-                <mat-icon>visibility</mat-icon>
-                Ver Detalles
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sección: Productos Más Clickeados -->
-    <div class="section-content" *ngIf="seccionActiva === 'clicks'">
-      <div class="section-header">
-        <h2 class="section-title">
-          <mat-icon>trending_up</mat-icon>
-          Productos Más Clickeados ({{ productosMasClickeados.length }})
-        </h2>
-        <p class="section-subtitle">Estadísticas de visualizaciones de tus productos</p>
-      </div>
-      <div class="products-grid">
-        <div class="product-card" *ngFor="let producto of productosMasClickeados">
-          <div class="product-image">
-            <img [src]="producto.imagen" [alt]="producto.nombre">
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">{{ producto.nombre }}</h3>
-            <p class="product-category">{{ producto.categoria }}</p>
-            <p class="product-description">{{ producto.descripcion }}</p>
-            <div class="product-stats">
+            <div class="product-stats" *ngIf="producto.clicks">
               <div class="stat-item">
                 <mat-icon>mouse</mat-icon>
                 <span class="stat-value">{{ producto.clicks }}</span>
@@ -251,6 +200,10 @@
             </div>
             <div class="product-footer">
               <span class="product-price">${{ producto.precio | number:'1.2-2' }}</span>
+              <button class="btn-action" (click)="abrirEdicionProducto(producto)">
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
             </div>
           </div>
         </div>
@@ -418,20 +371,6 @@
           </div>
         </div>
 
-        <div class="calculator-info" *ngIf="!resultadoCalculo">
-          <div class="info-card">
-            <mat-icon>info</mat-icon>
-            <h4>¿Cómo funciona?</h4>
-            <ul>
-              <li><strong>Revendedor:</strong> Solo ve el precio total del producto y su ganancia del 1%</li>
-              <li><strong>Empresario:</strong> Se le descuenta el 5% por uso de plataforma (no visible para el revendedor)</li>
-              <li><strong>Plan:</strong> El empresario contrata un plan (5%, 15% o 30%) según la cantidad de empleados contratados</li>
-              <li><strong>Descuento del Plan:</strong> Si tiene 30 empleados, se le descuenta el 30% (cada empleado que vende resta 1%)</li>
-              <li><strong>Ganancia Revendedor:</strong> El revendedor siempre obtiene un 1% de ganancia sobre el precio original</li>
-              <li><strong>Ganancia Empresario:</strong> Lo que queda después de todos los descuentos (plataforma, plan y revendedor)</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -673,6 +612,371 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Edición de Producto -->
+<div class="modal-overlay" *ngIf="mostrarModalEdicion" (click)="cerrarModalEdicion()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <mat-icon>edit</mat-icon>
+        Editar Producto
+      </h2>
+      <button class="btn-close-modal" (click)="cerrarModalEdicion()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form class="edit-product-form">
+        <div class="form-group">
+          <label for="edit-nombre">
+            <mat-icon>label</mat-icon>
+            Nombre del Producto
+          </label>
+          <input 
+            type="text" 
+            id="edit-nombre"
+            class="form-control"
+            [(ngModel)]="productoEditado.nombre"
+            name="nombre"
+            placeholder="Nombre del producto">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-precio">
+            <mat-icon>attach_money</mat-icon>
+            Precio ($)
+          </label>
+          <input 
+            type="number" 
+            id="edit-precio"
+            class="form-control"
+            [(ngModel)]="productoEditado.precio"
+            name="precio"
+            placeholder="0.00"
+            min="0"
+            step="0.01">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-categoria">
+            <mat-icon>category</mat-icon>
+            Categoría
+          </label>
+          <input 
+            type="text" 
+            id="edit-categoria"
+            class="form-control"
+            [(ngModel)]="productoEditado.categoria"
+            name="categoria"
+            placeholder="Categoría del producto">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-imagen">
+            <mat-icon>image</mat-icon>
+            URL de la Imagen
+          </label>
+          <input 
+            type="url" 
+            id="edit-imagen"
+            class="form-control"
+            [(ngModel)]="productoEditado.imagen"
+            name="imagen"
+            placeholder="https://ejemplo.com/imagen.jpg">
+          <small class="form-hint">Ingresa la URL de la imagen del producto</small>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-descripcion">
+            <mat-icon>description</mat-icon>
+            Descripción
+          </label>
+          <textarea 
+            id="edit-descripcion"
+            class="form-control textarea"
+            [(ngModel)]="productoEditado.descripcion"
+            name="descripcion"
+            rows="4"
+            placeholder="Descripción detallada del producto"></textarea>
+        </div>
+
+        <div class="preview-section" *ngIf="productoEditado.imagen">
+          <label>Vista Previa:</label>
+          <div class="image-preview">
+            <img [src]="productoEditado.imagen" [alt]="productoEditado.nombre" 
+                 onerror="this.src='https://via.placeholder.com/300x300?text=Imagen+no+disponible'">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="cerrarModalEdicion()">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button class="btn-save" (click)="guardarProductoEditado()">
+        <mat-icon>save</mat-icon>
+        Guardar Cambios
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Edición de Datos del Perfil -->
+<div class="modal-overlay" *ngIf="mostrarModalEdicionDatos" (click)="cerrarModalEdicionDatos()">
+  <div class="modal-content modal-datos" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <mat-icon>edit</mat-icon>
+        Editar Mis Datos
+      </h2>
+      <button class="btn-close-modal" (click)="cerrarModalEdicionDatos()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form class="edit-datos-form">
+        <!-- Información Personal -->
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>badge</mat-icon>
+            Información Personal
+          </h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-nombre">
+                <mat-icon>person</mat-icon>
+                Nombre
+              </label>
+              <input 
+                type="text" 
+                id="edit-nombre"
+                class="form-control"
+                [(ngModel)]="datosEditados.nombre"
+                name="nombre"
+                placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <label for="edit-apellido">
+                <mat-icon>person</mat-icon>
+                Apellido
+              </label>
+              <input 
+                type="text" 
+                id="edit-apellido"
+                class="form-control"
+                [(ngModel)]="datosEditados.apellido"
+                name="apellido"
+                placeholder="Apellido">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-email">
+                <mat-icon>email</mat-icon>
+                Email
+              </label>
+              <input 
+                type="email" 
+                id="edit-email"
+                class="form-control"
+                [(ngModel)]="datosEditados.email"
+                name="email"
+                placeholder="email@ejemplo.com">
+            </div>
+            <div class="form-group">
+              <label for="edit-telefono">
+                <mat-icon>phone</mat-icon>
+                Teléfono
+              </label>
+              <input 
+                type="tel" 
+                id="edit-telefono"
+                class="form-control"
+                [(ngModel)]="datosEditados.telefono"
+                name="telefono"
+                placeholder="+54 11 2345-6789">
+            </div>
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>location_on</mat-icon>
+            Dirección
+          </h3>
+          <div class="form-group">
+            <label for="edit-direccion">
+              <mat-icon>home</mat-icon>
+              Dirección
+            </label>
+            <input 
+              type="text" 
+              id="edit-direccion"
+              class="form-control"
+              [(ngModel)]="datosEditados.direccion"
+              name="direccion"
+              placeholder="Av. Corrientes 1234">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-ciudad">
+                <mat-icon>location_city</mat-icon>
+                Ciudad
+              </label>
+              <input 
+                type="text" 
+                id="edit-ciudad"
+                class="form-control"
+                [(ngModel)]="datosEditados.ciudad"
+                name="ciudad"
+                placeholder="Buenos Aires">
+            </div>
+            <div class="form-group">
+              <label for="edit-provincia">
+                <mat-icon>map</mat-icon>
+                Provincia
+              </label>
+              <input 
+                type="text" 
+                id="edit-provincia"
+                class="form-control"
+                [(ngModel)]="datosEditados.provincia"
+                name="provincia"
+                placeholder="Buenos Aires">
+            </div>
+            <div class="form-group">
+              <label for="edit-codigo-postal">
+                <mat-icon>markunread_mailbox</mat-icon>
+                Código Postal
+              </label>
+              <input 
+                type="text" 
+                id="edit-codigo-postal"
+                class="form-control"
+                [(ngModel)]="datosEditados.codigoPostal"
+                name="codigoPostal"
+                placeholder="C1043AAX">
+            </div>
+          </div>
+        </div>
+
+        <!-- Información de Cuenta -->
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>business</mat-icon>
+            Información de Cuenta
+          </h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-tipo-usuario">
+                <mat-icon>badge</mat-icon>
+                Tipo de Usuario
+              </label>
+              <select 
+                id="edit-tipo-usuario"
+                class="form-control"
+                [(ngModel)]="datosEditados.tipoUsuario"
+                name="tipoUsuario">
+                <option value="Empresario">Empresario</option>
+                <option value="Revendedor">Revendedor</option>
+                <option value="Profesional">Profesional</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="edit-plan">
+                <mat-icon>subscriptions</mat-icon>
+                Plan Contratado
+              </label>
+              <select 
+                id="edit-plan"
+                class="form-control"
+                [(ngModel)]="datosEditados.plan"
+                name="plan">
+                <option value="Plan 5% (5 empleados)">Plan 5% (5 empleados)</option>
+                <option value="Plan 15% (15 empleados)">Plan 15% (15 empleados)</option>
+                <option value="Plan 30% (30 empleados)">Plan 30% (30 empleados)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-fecha-registro">
+                <mat-icon>calendar_today</mat-icon>
+                Fecha de Registro
+              </label>
+              <input 
+                type="date" 
+                id="edit-fecha-registro"
+                class="form-control"
+                [(ngModel)]="datosEditados.fechaRegistro"
+                name="fechaRegistro">
+            </div>
+            <div class="form-group">
+              <label for="edit-estado">
+                <mat-icon>check_circle</mat-icon>
+                Estado
+              </label>
+              <select 
+                id="edit-estado"
+                class="form-control"
+                [(ngModel)]="datosEditados.estado"
+                name="estado">
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+                <option value="Pendiente">Pendiente</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen de Perfil -->
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>image</mat-icon>
+            Imagen de Perfil
+          </h3>
+          <div class="form-group">
+            <label for="edit-imagen-perfil">
+              <mat-icon>photo</mat-icon>
+              URL de la Imagen de Perfil
+            </label>
+            <input 
+              type="url" 
+              id="edit-imagen-perfil"
+              class="form-control"
+              [(ngModel)]="datosEditados.imagenPerfil"
+              name="imagenPerfil"
+              placeholder="https://ejemplo.com/imagen.jpg">
+            <small class="form-hint">Ingresa la URL de tu imagen de perfil</small>
+          </div>
+          <div class="preview-section" *ngIf="datosEditados.imagenPerfil">
+            <label>Vista Previa:</label>
+            <div class="avatar-preview">
+              <img [src]="datosEditados.imagenPerfil" [alt]="datosEditados.nombre + ' ' + datosEditados.apellido"
+                   onerror="this.src='https://via.placeholder.com/200x200?text=Imagen+no+disponible'">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="cerrarModalEdicionDatos()">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button class="btn-save" (click)="guardarDatosEditados()">
+        <mat-icon>save</mat-icon>
+        Guardar Cambios
+      </button>
     </div>
   </div>
 </div>
