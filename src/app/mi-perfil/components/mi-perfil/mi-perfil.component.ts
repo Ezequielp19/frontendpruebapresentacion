@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { CalificacionesModalComponent } from '../calificaciones-modal/calificaciones-modal.component';
 import { CambiarPasswordModalComponent } from '../cambiar-password-modal/cambiar-password-modal.component';
 
@@ -11,6 +12,7 @@ interface Producto {
   imagen: string;
   descripcion: string;
   categoria: string;
+  stock?: number;
   clicks?: number;
   destacado?: boolean;
   _id?: string; // ID real del producto para navegación
@@ -32,7 +34,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 1299.99,
       imagen: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&h=500&fit=crop',
       descripcion: 'Smartphone de alta gama con pantalla AMOLED de 6.8 pulgadas, procesador Snapdragon 8 Gen 3, cámara de 200MP, batería de 5000mAh',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 45
     },
     {
       id: 2,
@@ -40,7 +43,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 2199.00,
       imagen: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop',
       descripcion: 'Portátil profesional con chip M3, pantalla Liquid Retina XDR de 14.2 pulgadas, 16GB RAM, 512GB SSD',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 12
     },
     {
       id: 3,
@@ -48,7 +52,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 399.99,
       imagen: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&h=500&fit=crop',
       descripcion: 'Auriculares inalámbricos premium con cancelación de ruido líder del mercado, 30 horas de batería',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 78
     },
     {
       id: 4,
@@ -56,7 +61,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 1449.00,
       imagen: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&h=500&fit=crop',
       descripcion: 'Smartphone premium con chip A17 Pro, cámara de 48MP con zoom óptico 5x, titanio',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 23
     },
     {
       id: 5,
@@ -64,7 +70,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 149.99,
       imagen: 'https://images.unsplash.com/photo-1592861956120-e524fc739696?w=500&h=500&fit=crop',
       descripcion: 'E-reader con pantalla de 6.8 pulgadas, 16GB de almacenamiento, resistente al agua',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 156
     },
     {
       id: 6,
@@ -72,7 +79,8 @@ export class MiPerfilComponent implements OnInit {
       precio: 2499.00,
       imagen: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=500&fit=crop',
       descripcion: 'Cámara mirrorless profesional de 24.2MP, sensor full-frame, grabación 4K 60fps',
-      categoria: 'Electrónica'
+      categoria: 'Electrónica',
+      stock: 8
     }
   ];
 
@@ -86,6 +94,7 @@ export class MiPerfilComponent implements OnInit {
       descripcion: 'Consola de videojuegos de última generación, SSD 825GB, gráficos 4K 120Hz',
       categoria: 'Electrónica',
       destacado: true,
+      stock: 15,
       _id: '690f88bed87dfe080187b67b'
     },
     {
@@ -96,6 +105,7 @@ export class MiPerfilComponent implements OnInit {
       descripcion: 'Portátil profesional con chip M3, pantalla Liquid Retina XDR de 14.2 pulgadas',
       categoria: 'Electrónica',
       destacado: true,
+      stock: 12,
       _id: '690f88bed87dfe080187b675'
     },
     {
@@ -106,6 +116,7 @@ export class MiPerfilComponent implements OnInit {
       descripcion: 'Aspiradora inalámbrica con láser detector de polvo, filtración HEPA, 60 min batería',
       categoria: 'Hogar',
       destacado: true,
+      stock: 34,
       _id: '690f88bfd87dfe080187b689'
     }
   ];
@@ -118,6 +129,7 @@ export class MiPerfilComponent implements OnInit {
       imagen: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&h=500&fit=crop',
       descripcion: 'Smartphone de alta gama con pantalla AMOLED de 6.8 pulgadas, procesador Snapdragon 8 Gen 3',
       categoria: 'Electrónica',
+      stock: 45,
       clicks: 1250
     },
     {
@@ -127,6 +139,7 @@ export class MiPerfilComponent implements OnInit {
       imagen: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&h=500&fit=crop',
       descripcion: 'Consola de videojuegos de última generación, SSD 825GB, gráficos 4K 120Hz',
       categoria: 'Electrónica',
+      stock: 15,
       clicks: 980
     },
     {
@@ -136,6 +149,7 @@ export class MiPerfilComponent implements OnInit {
       imagen: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop',
       descripcion: 'Portátil profesional con chip M3, pantalla Liquid Retina XDR de 14.2 pulgadas',
       categoria: 'Electrónica',
+      stock: 12,
       clicks: 750
     },
     {
@@ -145,6 +159,7 @@ export class MiPerfilComponent implements OnInit {
       imagen: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&h=500&fit=crop',
       descripcion: 'Smartphone premium con chip A17 Pro, cámara de 48MP con zoom óptico 5x',
       categoria: 'Electrónica',
+      stock: 23,
       clicks: 650
     },
     {
@@ -154,12 +169,14 @@ export class MiPerfilComponent implements OnInit {
       imagen: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&h=500&fit=crop',
       descripcion: 'Auriculares inalámbricos premium con cancelación de ruido líder del mercado',
       categoria: 'Electrónica',
+      stock: 78,
       clicks: 520
     }
   ];
 
   seccionActiva: string = 'datos';
   periodoSeleccionado: string = 'mes'; // hora, dia, semana, mes, año
+  periodoSeleccionadoDirectos: string = 'mes'; // dia, semana, mes, año
   filtroProductos: string = 'todos'; // todos, destacados, masClickeados
 
   // Datos del perfil del usuario
@@ -176,8 +193,86 @@ export class MiPerfilComponent implements OnInit {
     plan: 'Plan 15% (15 empleados)',
     fechaRegistro: '2024-01-15',
     estado: 'Activo',
-    imagenPerfil: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop'
+    imagenPerfil: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop',
+    formaPago: {
+      tipo: 'Tarjeta de Crédito',
+      tipoTarjeta: 'Visa',
+      numeroTarjeta: '****1234',
+      fechaVencimiento: '12/25',
+      nombreTitular: 'Juan Pérez',
+      cvv: '***'
+    }
   };
+
+  // Datos del plan
+  datosPlan: any = {
+    planActual: 'Plan Estándar (15 empleados)',
+    fechaContratacion: '2024-01-15',
+    fechaVencimiento: '2025-01-15',
+    precioMensual: 299.99,
+    precioAnual: 2999.99,
+    descuento: '15% por empleado',
+    empleadosIncluidos: 15,
+    empleadosActivos: 12,
+    estado: 'Activo',
+    metodoPago: 'Tarjeta de Crédito',
+    ultimoPago: '2024-12-15',
+    proximoPago: '2025-01-15',
+    historialPagos: [
+      { fecha: '2024-12-15', monto: 299.99, metodo: 'Tarjeta ****1234', estado: 'Pagado' },
+      { fecha: '2024-11-15', monto: 299.99, metodo: 'Tarjeta ****1234', estado: 'Pagado' },
+      { fecha: '2024-10-15', monto: 299.99, metodo: 'Tarjeta ****1234', estado: 'Pagado' }
+    ]
+  };
+
+  planesDisponibles: any[] = [
+    {
+      nombre: 'Plan Básico',
+      precioMensual: 99.99,
+      precioAnual: 999.99,
+      empleados: 5,
+      descuento: 5,
+      caracteristicas: [
+        '5 empleados incluidos',
+        'Soporte estándar',
+        'Reportes básicos',
+        'Hasta 100 productos'
+      ],
+      recomendado: false
+    },
+    {
+      nombre: 'Plan Estándar',
+      precioMensual: 299.99,
+      precioAnual: 2999.99,
+      empleados: 15,
+      descuento: 15,
+      caracteristicas: [
+        '15 empleados incluidos',
+        'Soporte prioritario',
+        'Reportes avanzados',
+        'Hasta 500 productos',
+        'Funciones de marketing'
+      ],
+      recomendado: true,
+      destacado: true
+    },
+    {
+      nombre: 'Plan Premium',
+      precioMensual: 599.99,
+      precioAnual: 5999.99,
+      empleados: 30,
+      descuento: 30,
+      caracteristicas: [
+        '30 empleados incluidos',
+        'Soporte 24/7 dedicado',
+        'Reportes personalizados',
+        'Productos ilimitados',
+        'Integraciones avanzadas',
+        'Gestor de cuenta personal'
+      ],
+      recomendado: false
+    }
+  ];
 
   // Variables para la calculadora
   precioProducto: number = 0;
@@ -187,14 +282,19 @@ export class MiPerfilComponent implements OnInit {
   // Variables para edición de productos
   productoEditando: Producto | null = null;
   mostrarModalEdicion: boolean = false;
+  esNuevoProducto: boolean = false;
   productoEditado: Producto = {
     id: 0,
     nombre: '',
     precio: 0,
     imagen: '',
     descripcion: '',
-    categoria: ''
+    categoria: '',
+    stock: 0
   };
+
+  // Variables para modal de plan
+  mostrarModalPlan: boolean = false;
 
   // Variables para edición de datos del perfil
   mostrarModalEdicionDatos: boolean = false;
@@ -214,14 +314,22 @@ export class MiPerfilComponent implements OnInit {
         this.misProductos.push({ ...productoDestacado, destacado: true });
       } else {
         existe.destacado = true;
+        if (productoDestacado.stock !== undefined) {
+          existe.stock = productoDestacado.stock;
+        }
       }
     });
 
-    // Agregar clicks a productos que están en productosMasClickeados
+    // Agregar clicks y stock a productos que están en productosMasClickeados
     this.productosMasClickeados.forEach(productoClickeado => {
       const producto = this.misProductos.find(p => p.id === productoClickeado.id);
-      if (producto && productoClickeado.clicks) {
-        producto.clicks = productoClickeado.clicks;
+      if (producto) {
+        if (productoClickeado.clicks) {
+          producto.clicks = productoClickeado.clicks;
+        }
+        if (productoClickeado.stock !== undefined) {
+          producto.stock = productoClickeado.stock;
+        }
       }
     });
   }
@@ -288,6 +396,10 @@ export class MiPerfilComponent implements OnInit {
     this.periodoSeleccionado = periodo;
   }
 
+  cambiarPeriodoDirectos(periodo: string): void {
+    this.periodoSeleccionadoDirectos = periodo;
+  }
+
   // Datos de estadísticas
   estadisticas = {
     productosVendidos: {
@@ -306,6 +418,13 @@ export class MiPerfilComponent implements OnInit {
       semana: [1234, 1456, 1678, 1890],
       mes: [5234, 6123, 5890, 6789, 7234, 7890],
       año: [45234, 52341, 61234, 67890, 72341, 78901, 81234, 85678, 89012, 92345, 95678, 98901]
+    },
+    directosRealizados: {
+      total: 156,
+      dia: [3, 5, 2, 4, 6, 3, 4],
+      semana: [18, 22, 19, 21],
+      mes: [45, 52, 48, 51, 49, 53],
+      año: [12, 15, 18, 22, 25, 28, 31, 29, 27, 24, 21, 19]
     },
     inscripcionesPorPlan: {
       plan5: 234,
@@ -413,6 +532,55 @@ export class MiPerfilComponent implements OnInit {
     return visitas.reduce((a, b) => a + b, 0);
   }
 
+  getDirectosActuales(): number[] {
+    switch (this.periodoSeleccionadoDirectos) {
+      case 'dia': return this.estadisticas.directosRealizados.dia;
+      case 'semana': return this.estadisticas.directosRealizados.semana;
+      case 'mes': return this.estadisticas.directosRealizados.mes;
+      case 'año': return this.estadisticas.directosRealizados.año;
+      default: return this.estadisticas.directosRealizados.mes;
+    }
+  }
+
+  getMaxDirectos(): number {
+    const directos = this.getDirectosActuales();
+    return Math.max(...directos, 1);
+  }
+
+  getPorcentajeDirecto(valor: number): number {
+    const max = this.getMaxDirectos();
+    return (valor / max) * 100;
+  }
+
+  getTotalDirectos(): number {
+    const directos = this.getDirectosActuales();
+    return directos.reduce((a, b) => a + b, 0);
+  }
+
+  getPeriodoLabelDirectos(): string {
+    switch (this.periodoSeleccionadoDirectos) {
+      case 'dia': return 'Día';
+      case 'semana': return 'Semana';
+      case 'mes': return 'Mes';
+      case 'año': return 'Año';
+      default: return 'Mes';
+    }
+  }
+
+  getBarLabelDirectos(periodo: string, index: number): string {
+    const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+    const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'];
+    const mesesAno = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+    switch (periodo) {
+      case 'dia': return diasSemana[index] || '';
+      case 'semana': return 'Sem ' + (index + 1);
+      case 'mes': return meses[index] || '';
+      case 'año': return mesesAno[index] || '';
+      default: return '';
+    }
+  }
+
   getPorcentajeProductosVendidos(): number {
     return (this.estadisticas.productosVendidos.esteMes / this.estadisticas.productosVendidos.total) * 100;
   }
@@ -442,7 +610,23 @@ export class MiPerfilComponent implements OnInit {
     }
   }
 
+  abrirModalNuevoProducto(): void {
+    this.esNuevoProducto = true;
+    this.productoEditando = null;
+    this.productoEditado = {
+      id: 0,
+      nombre: '',
+      precio: 0,
+      imagen: '',
+      descripcion: '',
+      categoria: '',
+      stock: 0
+    };
+    this.mostrarModalEdicion = true;
+  }
+
   abrirEdicionProducto(producto: Producto): void {
+    this.esNuevoProducto = false;
     this.productoEditando = producto;
     this.productoEditado = {
       id: producto.id,
@@ -451,6 +635,7 @@ export class MiPerfilComponent implements OnInit {
       imagen: producto.imagen,
       descripcion: producto.descripcion,
       categoria: producto.categoria,
+      stock: producto.stock || 0,
       _id: producto._id,
       clicks: producto.clicks,
       destacado: producto.destacado
@@ -458,32 +643,219 @@ export class MiPerfilComponent implements OnInit {
     this.mostrarModalEdicion = true;
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Validar que sea una imagen
+      if (!file.type.match('image.*')) {
+        alert('Por favor selecciona un archivo de imagen válido');
+        return;
+      }
+
+      // Validar tamaño (máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('La imagen es demasiado grande. Por favor selecciona una imagen menor a 5MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        // Convertir la imagen a base64 para mostrarla
+        this.productoEditado.imagen = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onFileSelectedPerfil(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Validar que sea una imagen
+      if (!file.type.match('image.*')) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor selecciona un archivo de imagen válido',
+          icon: 'error',
+          confirmButtonColor: '#236bd8',
+          confirmButtonText: 'Aceptar'
+        });
+        return;
+      }
+
+      // Validar tamaño (máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        Swal.fire({
+          title: 'Error',
+          text: 'La imagen es demasiado grande. Por favor selecciona una imagen menor a 5MB',
+          icon: 'error',
+          confirmButtonColor: '#236bd8',
+          confirmButtonText: 'Aceptar'
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        // Convertir la imagen a base64 para mostrarla
+        this.datosEditados.imagenPerfil = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   cerrarModalEdicion(): void {
     this.mostrarModalEdicion = false;
     this.productoEditando = null;
+    this.esNuevoProducto = false;
+    this.productoEditado = {
+      id: 0,
+      nombre: '',
+      precio: 0,
+      imagen: '',
+      descripcion: '',
+      categoria: '',
+      stock: 0
+    };
   }
 
   guardarProductoEditado(): void {
-    if (!this.productoEditando) return;
+    if (this.esNuevoProducto) {
+      // Crear nuevo producto
+      const nuevoId = Math.max(...this.misProductos.map(p => p.id), 0) + 1;
+      const nuevoProducto: Producto = {
+        ...this.productoEditado,
+        id: nuevoId,
+        clicks: 0,
+        destacado: false
+      };
+      this.misProductos.push(nuevoProducto);
+    } else {
+      // Actualizar producto existente
+      if (!this.productoEditando) return;
 
-    // Buscar el producto en el array y actualizarlo
-    const index = this.misProductos.findIndex(p => p.id === this.productoEditando!.id);
-    if (index !== -1) {
-      this.misProductos[index] = { ...this.productoEditado };
-    }
+      const index = this.misProductos.findIndex(p => p.id === this.productoEditando!.id);
+      if (index !== -1) {
+        this.misProductos[index] = { ...this.productoEditado };
+      }
 
-    // También actualizar en otros arrays si existe
-    const indexDestacados = this.productosDestacados.findIndex(p => p.id === this.productoEditando!.id);
-    if (indexDestacados !== -1) {
-      this.productosDestacados[indexDestacados] = { ...this.productoEditado };
-    }
+      // También actualizar en otros arrays si existe
+      const indexDestacados = this.productosDestacados.findIndex(p => p.id === this.productoEditando!.id);
+      if (indexDestacados !== -1) {
+        this.productosDestacados[indexDestacados] = { ...this.productoEditado };
+      }
 
-    const indexClickeados = this.productosMasClickeados.findIndex(p => p.id === this.productoEditando!.id);
-    if (indexClickeados !== -1) {
-      this.productosMasClickeados[indexClickeados] = { ...this.productoEditado };
+      const indexClickeados = this.productosMasClickeados.findIndex(p => p.id === this.productoEditando!.id);
+      if (indexClickeados !== -1) {
+        this.productosMasClickeados[indexClickeados] = { ...this.productoEditado };
+      }
     }
 
     this.cerrarModalEdicion();
+  }
+
+  eliminarProducto(producto: Producto): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar el producto "${producto.nombre}"? Esta acción no se puede deshacer.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#236bd8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      background: '#ffffff',
+      customClass: {
+        confirmButton: 'swal2-confirm',
+        cancelButton: 'swal2-cancel'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Eliminar de misProductos
+        const index = this.misProductos.findIndex(p => p.id === producto.id);
+        if (index !== -1) {
+          this.misProductos.splice(index, 1);
+        }
+
+        // Eliminar de productosDestacados
+        const indexDestacados = this.productosDestacados.findIndex(p => p.id === producto.id);
+        if (indexDestacados !== -1) {
+          this.productosDestacados.splice(indexDestacados, 1);
+        }
+
+        // Eliminar de productosMasClickeados
+        const indexClickeados = this.productosMasClickeados.findIndex(p => p.id === producto.id);
+        if (indexClickeados !== -1) {
+          this.productosMasClickeados.splice(indexClickeados, 1);
+        }
+
+        Swal.fire({
+          title: '¡Eliminado!',
+          text: `El producto "${producto.nombre}" ha sido eliminado correctamente.`,
+          icon: 'success',
+          confirmButtonColor: '#236bd8',
+          confirmButtonText: 'Aceptar',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  abrirModalPlan(): void {
+    this.mostrarModalPlan = true;
+  }
+
+  cerrarModalPlan(): void {
+    this.mostrarModalPlan = false;
+  }
+
+  esPlanActual(plan: any): boolean {
+    return plan.nombre === this.datosPlan.planActual.split('(')[0].trim();
+  }
+
+  seleccionarPlan(plan: any): void {
+    if (this.esPlanActual(plan)) {
+      Swal.fire({
+        title: 'Plan Actual',
+        text: 'Ya tienes este plan contratado.',
+        icon: 'info',
+        confirmButtonColor: '#236bd8',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+    
+    Swal.fire({
+      title: '¿Cambiar de plan?',
+      text: `¿Estás seguro de que quieres cambiar a ${plan.nombre}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#236bd8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cambiar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.datosPlan.planActual = `${plan.nombre} (${plan.empleados} empleados)`;
+        this.datosPlan.descuento = `${plan.descuento}% por empleado`;
+        this.datosPlan.precioMensual = plan.precioMensual;
+        this.datosPlan.precioAnual = plan.precioAnual;
+        this.datosPlan.empleadosIncluidos = plan.empleados;
+        this.misDatos.plan = `${plan.nombre} (${plan.empleados} empleados)`;
+        
+        Swal.fire({
+          title: '¡Plan actualizado!',
+          text: `Has cambiado tu plan a ${plan.nombre}.`,
+          icon: 'success',
+          confirmButtonColor: '#236bd8',
+          confirmButtonText: 'Aceptar',
+          timer: 2000,
+          timerProgressBar: true
+        });
+        
+        this.cerrarModalPlan();
+      }
+    });
   }
 
   abrirEdicionDatos(): void {
@@ -500,7 +872,15 @@ export class MiPerfilComponent implements OnInit {
       plan: this.misDatos.plan,
       fechaRegistro: this.misDatos.fechaRegistro,
       estado: this.misDatos.estado,
-      imagenPerfil: this.misDatos.imagenPerfil
+      imagenPerfil: this.misDatos.imagenPerfil,
+      formaPago: {
+        tipo: this.misDatos.formaPago?.tipo || 'Tarjeta de Crédito',
+        tipoTarjeta: this.misDatos.formaPago?.tipoTarjeta || 'Visa',
+        numeroTarjeta: this.misDatos.formaPago?.numeroTarjeta || '****1234',
+        fechaVencimiento: this.misDatos.formaPago?.fechaVencimiento || '12/25',
+        nombreTitular: this.misDatos.formaPago?.nombreTitular || this.misDatos.nombre + ' ' + this.misDatos.apellido,
+        cvv: this.misDatos.formaPago?.cvv || '***'
+      }
     };
     this.mostrarModalEdicionDatos = true;
   }
