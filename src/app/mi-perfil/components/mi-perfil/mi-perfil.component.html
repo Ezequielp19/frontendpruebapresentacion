@@ -402,10 +402,16 @@
     <!-- Sección: Mis Estadísticas -->
     <div class="section-content" *ngIf="seccionActiva === 'estadisticas'">
       <div class="section-header">
-        <h2 class="section-title">
-          <mat-icon>analytics</mat-icon>
-          Mis Estadísticas y Analíticas
-        </h2>
+        <div class="section-title-container">
+          <h2 class="section-title">
+            <mat-icon>analytics</mat-icon>
+            Mis Estadísticas y Analíticas
+          </h2>
+          <button class="btn-start-live" (click)="iniciarLive()">
+            <mat-icon>live_tv</mat-icon>
+            Iniciar Live
+          </button>
+        </div>
         <p class="section-subtitle">Visualiza el rendimiento de tu negocio en tiempo real</p>
       </div>
 
@@ -600,7 +606,7 @@
       <!-- Gráficos en Grid -->
       <div class="charts-grid">
         <!-- Productos Vendidos -->
-        <div class="chart-card small">
+        <div class="chart-card">
           <div class="chart-header">
             <h3 class="chart-title">
               <mat-icon>inventory_2</mat-icon>
@@ -617,6 +623,36 @@
                   </div>
                 </div>
                 <div class="progress-total">Total: {{ estadisticas.productosVendidos.total }}</div>
+              </div>
+            </div>
+            
+            <!-- Lista de Productos Más Vendidos -->
+            <div class="top-products-list">
+              <h4 class="top-products-title">
+                <mat-icon>trending_up</mat-icon>
+                Productos Más Vendidos
+              </h4>
+              <div class="products-list">
+                <div class="product-item" *ngFor="let producto of estadisticas.productosVendidos.productosMasVendidos; let i = index" [attr.data-rank]="i + 1">
+                  <div class="product-rank" [class.rank-1]="i === 0" [class.rank-2]="i === 1" [class.rank-3]="i === 2">{{ i + 1 }}</div>
+                  <div class="product-image-small">
+                    <img [src]="producto.imagen" [alt]="producto.nombre"
+                         onerror="this.src='https://via.placeholder.com/60x60?text=Imagen+no+disponible'">
+                  </div>
+                  <div class="product-info-small">
+                    <div class="product-name-small">{{ producto.nombre }}</div>
+                    <div class="product-sales">
+                      <mat-icon>shopping_cart</mat-icon>
+                      <span>{{ producto.cantidad }} vendidos</span>
+                    </div>
+                  </div>
+                  <div class="product-bar-wrapper">
+                    <div class="product-bar" 
+                         [style.width.%]="(producto.cantidad / estadisticas.productosVendidos.productosMasVendidos[0].cantidad) * 100"
+                         [style.background]="getProductBarColor(i)">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

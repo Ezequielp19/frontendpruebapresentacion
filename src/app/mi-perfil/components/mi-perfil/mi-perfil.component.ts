@@ -405,7 +405,17 @@ export class MiPerfilComponent implements OnInit {
     productosVendidos: {
       total: 1247,
       esteMes: 342,
-      variacion: 15.3
+      variacion: 15.3,
+      productosMasVendidos: [
+        { id: 1, nombre: 'Samsung Galaxy S24 Ultra', cantidad: 245, imagen: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&h=500&fit=crop' },
+        { id: 7, nombre: 'PlayStation 5 Digital Edition', cantidad: 189, imagen: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&h=500&fit=crop' },
+        { id: 2, nombre: 'MacBook Pro 14 M3', cantidad: 156, imagen: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop' },
+        { id: 3, nombre: 'Sony WH-1000XM5', cantidad: 134, imagen: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&h=500&fit=crop' },
+        { id: 4, nombre: 'iPhone 15 Pro Max', cantidad: 128, imagen: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&h=500&fit=crop' },
+        { id: 5, nombre: 'Kindle Paperwhite 11 Gen', cantidad: 98, imagen: 'https://images.unsplash.com/photo-1592861956120-e524fc739696?w=500&h=500&fit=crop' },
+        { id: 9, nombre: 'Dyson V15 Detect', cantidad: 87, imagen: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500&h=500&fit=crop' },
+        { id: 6, nombre: 'Canon EOS R6 Mark II', cantidad: 65, imagen: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=500&fit=crop' }
+      ]
     },
     interaccionesDirecto: {
       total: 8934,
@@ -567,6 +577,11 @@ export class MiPerfilComponent implements OnInit {
     }
   }
 
+  iniciarLive(): void {
+    // Navegar a la ruta de live para iniciar el stream
+    this.router.navigate(['/live']);
+  }
+
   getBarLabelDirectos(periodo: string, index: number): string {
     const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
     const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'];
@@ -583,6 +598,20 @@ export class MiPerfilComponent implements OnInit {
 
   getPorcentajeProductosVendidos(): number {
     return (this.estadisticas.productosVendidos.esteMes / this.estadisticas.productosVendidos.total) * 100;
+  }
+
+  getProductBarColor(index: number): string {
+    const colors = [
+      'linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%)',
+      'linear-gradient(90deg, #27ae60 0%, #2ecc71 100%)',
+      'linear-gradient(90deg, #f39c12 0%, #f1c40f 100%)',
+      'linear-gradient(90deg, #e67e22 0%, #d35400 100%)',
+      'linear-gradient(90deg, #9b59b6 0%, #8e44ad 100%)',
+      'linear-gradient(90deg, #3498db 0%, #2980b9 100%)',
+      'linear-gradient(90deg, #1abc9c 0%, #16a085 100%)',
+      'linear-gradient(90deg, #95a5a6 0%, #7f8c8d 100%)'
+    ];
+    return colors[index % colors.length];
   }
 
   getStrokeDashArray(plan: number): string {
