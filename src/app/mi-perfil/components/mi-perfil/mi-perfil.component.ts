@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CalificacionesModalComponent } from '../calificaciones-modal/calificaciones-modal.component';
 
 interface Producto {
   id: number;
@@ -13,14 +15,6 @@ interface Producto {
   _id?: string; // ID real del producto para navegación
 }
 
-interface Mensaje {
-  id: number;
-  remitente: string;
-  asunto: string;
-  mensaje: string;
-  fecha: string;
-  leido: boolean;
-}
 
 @Component({
   selector: 'app-mi-perfil',
@@ -81,48 +75,6 @@ export class MiPerfilComponent implements OnInit {
     }
   ];
 
-  misMensajes: Mensaje[] = [
-    {
-      id: 1,
-      remitente: 'Juan Pérez',
-      asunto: 'Consulta sobre producto',
-      mensaje: 'Hola, me interesa saber más sobre el Smartphone Samsung Galaxy S21. ¿Tiene garantía?',
-      fecha: '2024-01-15',
-      leido: false
-    },
-    {
-      id: 2,
-      remitente: 'María González',
-      asunto: 'Oferta especial',
-      mensaje: 'Tenemos una oferta especial en laptops. ¿Te interesa?',
-      fecha: '2024-01-14',
-      leido: true
-    },
-    {
-      id: 3,
-      remitente: 'Carlos Rodríguez',
-      asunto: 'Pregunta sobre envío',
-      mensaje: '¿Cuánto tiempo tarda el envío a Buenos Aires?',
-      fecha: '2024-01-13',
-      leido: false
-    },
-    {
-      id: 4,
-      remitente: 'Ana Martínez',
-      asunto: 'Seguimiento de pedido',
-      mensaje: 'Quisiera saber el estado de mi pedido #12345',
-      fecha: '2024-01-12',
-      leido: true
-    },
-    {
-      id: 5,
-      remitente: 'Pedro Sánchez',
-      asunto: 'Recomendación de producto',
-      mensaje: '¿Podrías recomendarme un producto similar?',
-      fecha: '2024-01-11',
-      leido: false
-    }
-  ];
 
   productosDestacados: Producto[] = [
     {
@@ -205,28 +157,42 @@ export class MiPerfilComponent implements OnInit {
     }
   ];
 
-  seccionActiva: string = 'productos';
+  seccionActiva: string = 'datos';
+  periodoSeleccionado: string = 'mes'; // hora, dia, semana, mes, año
+
+  // Datos del perfil del usuario
+  misDatos: any = {
+    nombre: 'Juan',
+    apellido: 'Pérez',
+    email: 'juan.perez@example.com',
+    telefono: '+54 11 2345-6789',
+    direccion: 'Av. Corrientes 1234',
+    ciudad: 'Buenos Aires',
+    provincia: 'Buenos Aires',
+    codigoPostal: 'C1043AAX',
+    tipoUsuario: 'Empresario',
+    plan: 'Plan 15% (15 empleados)',
+    fechaRegistro: '2024-01-15',
+    estado: 'Activo',
+    imagenPerfil: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop'
+  };
 
   // Variables para la calculadora
   precioProducto: number = 0;
   planSeleccionado: number = 5; // 5%, 15% o 30%
   resultadoCalculo: any = null;
 
-  constructor(private router: Router) { }
+
+  constructor(
+    private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
   cambiarSeccion(seccion: string): void {
     this.seccionActiva = seccion;
-  }
-
-  marcarMensajeLeido(mensaje: Mensaje): void {
-    mensaje.leido = true;
-  }
-
-  getMensajesNoLeidos(): number {
-    return this.misMensajes.filter(m => !m.leido).length;
   }
 
   verDetallesProducto(producto: Producto): void {
@@ -249,17 +215,23 @@ export class MiPerfilComponent implements OnInit {
     }
 
     const precioOriginal = this.precioProducto;
-    const descuentoPlataforma = precioOriginal * 0.05; // 5% por uso de plataforma (no se muestra)
-    const descuentoPlan = precioOriginal * (this.planSeleccionado / 100); // % del plan
+    
+    // Para el REVENDEDOR (lo que ve):
     const gananciaRevendedor = precioOriginal * 0.01; // 1% siempre para el revendedor
+    
+    // Para el EMPRESARIO (lo que se le descuenta):
+    const descuentoPlataforma = precioOriginal * 0.05; // 5% por uso de plataforma (NO se muestra al revendedor)
+    const descuentoPlan = precioOriginal * (this.planSeleccionado / 100); // % del plan según empleados contratados
     
     // Lo que le queda al empresario = Precio original - descuento plataforma - descuento plan - ganancia revendedor
     const gananciaEmpresario = precioOriginal - descuentoPlataforma - descuentoPlan - gananciaRevendedor;
 
     this.resultadoCalculo = {
       precioOriginal: precioOriginal,
-      descuentoPlan: descuentoPlan,
       gananciaRevendedor: gananciaRevendedor,
+      // Para el empresario:
+      descuentoPlataforma: descuentoPlataforma,
+      descuentoPlan: descuentoPlan,
       gananciaEmpresario: gananciaEmpresario,
       planPorcentaje: this.planSeleccionado
     };
@@ -270,4 +242,260 @@ export class MiPerfilComponent implements OnInit {
     this.planSeleccionado = 5;
     this.resultadoCalculo = null;
   }
+
+  cambiarPeriodo(periodo: string): void {
+    this.periodoSeleccionado = periodo;
+  }
+
+  // Datos de estadísticas
+  estadisticas = {
+    productosVendidos: {
+      total: 1247,
+      esteMes: 342,
+      variacion: 15.3
+    },
+    interaccionesDirecto: {
+      total: 8934,
+      promedio: 298,
+      variacion: 8.7
+    },
+    visitasDirecto: {
+      hora: [45, 52, 38, 67, 89, 102, 95, 78, 65, 72, 88, 94, 105, 98, 87, 76, 68, 79, 92, 101, 97, 85, 73, 66],
+      dia: [234, 267, 189, 312, 298, 345, 389],
+      semana: [1234, 1456, 1678, 1890],
+      mes: [5234, 6123, 5890, 6789, 7234, 7890],
+      año: [45234, 52341, 61234, 67890, 72341, 78901, 81234, 85678, 89012, 92345, 95678, 98901]
+    },
+    inscripcionesPorPlan: {
+      plan5: 234,
+      plan15: 156,
+      plan30: 89
+    },
+    ratePerfil: {
+      valor: 4.7,
+      totalResenas: 1247,
+      distribucion: {
+        cinco: 856,
+        cuatro: 234,
+        tres: 98,
+        dos: 45,
+        uno: 14
+      }
+    }
+  };
+
+  getVisitasActuales(): number[] {
+    switch (this.periodoSeleccionado) {
+      case 'hora': return this.estadisticas.visitasDirecto.hora;
+      case 'dia': return this.estadisticas.visitasDirecto.dia;
+      case 'semana': return this.estadisticas.visitasDirecto.semana;
+      case 'mes': return this.estadisticas.visitasDirecto.mes;
+      case 'año': return this.estadisticas.visitasDirecto.año;
+      default: return this.estadisticas.visitasDirecto.mes;
+    }
+  }
+
+  getMaxVisitas(): number {
+    const visitas = this.getVisitasActuales();
+    return Math.max(...visitas, 1);
+  }
+
+  getPorcentajeVisita(valor: number): number {
+    const max = this.getMaxVisitas();
+    return (valor / max) * 100;
+  }
+
+  getTotalInscripciones(): number {
+    return this.estadisticas.inscripcionesPorPlan.plan5 + 
+           this.estadisticas.inscripcionesPorPlan.plan15 + 
+           this.estadisticas.inscripcionesPorPlan.plan30;
+  }
+
+  getPorcentajePlan(plan: number): number {
+    const total = this.getTotalInscripciones();
+    const valor = plan === 5 ? this.estadisticas.inscripcionesPorPlan.plan5 :
+                  plan === 15 ? this.estadisticas.inscripcionesPorPlan.plan15 :
+                  this.estadisticas.inscripcionesPorPlan.plan30;
+    return (valor / total) * 100;
+  }
+
+  getRatingKey(rating: number): string {
+    switch (rating) {
+      case 5: return 'cinco';
+      case 4: return 'cuatro';
+      case 3: return 'tres';
+      case 2: return 'dos';
+      case 1: return 'uno';
+      default: return 'uno';
+    }
+  }
+
+  getRatingValue(rating: number): number {
+    const key = this.getRatingKey(rating);
+    const distribucion: any = this.estadisticas.ratePerfil.distribucion;
+    return distribucion[key];
+  }
+
+  getRatingPercentage(rating: number): number {
+    const value = this.getRatingValue(rating);
+    return (value / this.estadisticas.ratePerfil.totalResenas) * 100;
+  }
+
+  getRatingBackground(rating: number): string {
+    switch (rating) {
+      case 5: return 'linear-gradient(90deg, #27ae60, #2ecc71)';
+      case 4: return 'linear-gradient(90deg, #3498db, #2980b9)';
+      case 3: return 'linear-gradient(90deg, #f39c12, #e67e22)';
+      case 2: return 'linear-gradient(90deg, #e74c3c, #c0392b)';
+      case 1: return 'linear-gradient(90deg, #95a5a6, #7f8c8d)';
+      default: return 'linear-gradient(90deg, #95a5a6, #7f8c8d)';
+    }
+  }
+
+  getBarLabel(periodo: string, index: number): string {
+    const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+    const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'];
+    const mesesAno = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+    switch (periodo) {
+      case 'hora': return index + 'h';
+      case 'dia': return diasSemana[index] || '';
+      case 'semana': return 'Sem ' + (index + 1);
+      case 'mes': return meses[index] || '';
+      case 'año': return mesesAno[index] || '';
+      default: return '';
+    }
+  }
+
+  getTotalVisitas(): number {
+    const visitas = this.getVisitasActuales();
+    return visitas.reduce((a, b) => a + b, 0);
+  }
+
+  getPorcentajeProductosVendidos(): number {
+    return (this.estadisticas.productosVendidos.esteMes / this.estadisticas.productosVendidos.total) * 100;
+  }
+
+  getStrokeDashArray(plan: number): string {
+    const porcentaje = this.getPorcentajePlan(plan);
+    return (porcentaje / 100) * 502.4 + ' 502.4';
+  }
+
+  getStrokeDashOffset(plan: number): string {
+    if (plan === 15) {
+      return '-' + ((this.getPorcentajePlan(5) / 100) * 502.4);
+    } else if (plan === 30) {
+      return '-' + (((this.getPorcentajePlan(5) + this.getPorcentajePlan(15)) / 100) * 502.4);
+    }
+    return '0';
+  }
+
+  getPeriodoLabel(): string {
+    switch (this.periodoSeleccionado) {
+      case 'hora': return 'Hora';
+      case 'dia': return 'Día';
+      case 'semana': return 'Semana';
+      case 'mes': return 'Mes';
+      case 'año': return 'Año';
+      default: return 'Mes';
+    }
+  }
+
+  abrirModalCalificaciones(): void {
+    this.dialog.open(CalificacionesModalComponent, {
+      width: '90%',
+      maxWidth: '900px',
+      maxHeight: '90vh',
+      data: {
+        calificaciones: this.calificacionesDetalladas,
+        promedio: this.estadisticas.ratePerfil.valor,
+        total: this.estadisticas.ratePerfil.totalResenas
+      },
+      panelClass: 'calificaciones-modal'
+    });
+  }
+
+  // Datos de calificaciones detalladas
+  calificacionesDetalladas: any[] = [
+    {
+      id: 1,
+      usuario: 'María González',
+      calificacion: 5,
+      comentario: 'Excelente producto, muy satisfecha con la compra. La calidad superó mis expectativas.',
+      fecha: '2024-01-20',
+      producto: 'Samsung Galaxy S24 Ultra'
+    },
+    {
+      id: 2,
+      usuario: 'Carlos Rodríguez',
+      calificacion: 5,
+      comentario: 'Muy buen servicio y entrega rápida. El producto llegó en perfectas condiciones.',
+      fecha: '2024-01-18',
+      producto: 'MacBook Pro 14 M3'
+    },
+    {
+      id: 3,
+      usuario: 'Ana Martínez',
+      calificacion: 4,
+      comentario: 'Buen producto, cumple con lo esperado. La única pega es que el envío tardó un poco más de lo esperado.',
+      fecha: '2024-01-15',
+      producto: 'Sony WH-1000XM5'
+    },
+    {
+      id: 4,
+      usuario: 'Pedro Sánchez',
+      calificacion: 5,
+      comentario: 'Increíble calidad precio. Recomiendo totalmente este vendedor.',
+      fecha: '2024-01-12',
+      producto: 'iPhone 15 Pro Max'
+    },
+    {
+      id: 5,
+      usuario: 'Laura Fernández',
+      calificacion: 5,
+      comentario: 'Perfecto, todo excelente. Volveré a comprar sin duda.',
+      fecha: '2024-01-10',
+      producto: 'PlayStation 5 Digital Edition'
+    },
+    {
+      id: 6,
+      usuario: 'Roberto López',
+      calificacion: 3,
+      comentario: 'El producto está bien pero esperaba más por el precio. Funciona correctamente.',
+      fecha: '2024-01-08',
+      producto: 'Kindle Paperwhite 11 Gen'
+    },
+    {
+      id: 7,
+      usuario: 'Sofía García',
+      calificacion: 5,
+      comentario: 'Excelente atención al cliente y producto de primera calidad. Muy recomendado.',
+      fecha: '2024-01-05',
+      producto: 'Canon EOS R6 Mark II'
+    },
+    {
+      id: 8,
+      usuario: 'Diego Torres',
+      calificacion: 4,
+      comentario: 'Buen producto, funciona bien. El empaque podría mejorar un poco.',
+      fecha: '2024-01-03',
+      producto: 'Dyson V15 Detect'
+    },
+    {
+      id: 9,
+      usuario: 'Carmen Ruiz',
+      calificacion: 2,
+      comentario: 'El producto llegó con algunos defectos menores. El servicio al cliente resolvió el problema rápidamente.',
+      fecha: '2024-01-01',
+      producto: 'Samsung Galaxy S24 Ultra'
+    },
+    {
+      id: 10,
+      usuario: 'Javier Morales',
+      calificacion: 5,
+      comentario: 'Perfecto en todos los aspectos. Calidad, precio y servicio excelentes.',
+      fecha: '2023-12-28',
+      producto: 'MacBook Pro 14 M3'
+    }
+  ];
 }

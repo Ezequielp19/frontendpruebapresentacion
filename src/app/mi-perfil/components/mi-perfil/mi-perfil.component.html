@@ -3,11 +3,18 @@
     <!-- Header del Perfil -->
     <div class="profile-header mb-5">
       <h1 class="profile-title">{{ 'my profile' | translate }}</h1>
-      <p class="profile-subtitle">Gestiona tus productos, mensajes y estadísticas</p>
+      <p class="profile-subtitle">Gestiona tus productos y estadísticas</p>
     </div>
 
     <!-- Navegación por Pestañas -->
     <div class="tabs-navigation mb-4">
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'datos'"
+        (click)="cambiarSeccion('datos')">
+        <mat-icon>person</mat-icon>
+        <span>Mis Datos</span>
+      </button>
       <button 
         class="tab-button" 
         [class.active]="seccionActiva === 'productos'"
@@ -15,14 +22,6 @@
         <mat-icon>inventory_2</mat-icon>
         <span>Tus Productos</span>
         <span class="badge" *ngIf="misProductos.length > 0">{{ misProductos.length }}</span>
-      </button>
-      <button 
-        class="tab-button" 
-        [class.active]="seccionActiva === 'mensajes'"
-        (click)="cambiarSeccion('mensajes')">
-        <mat-icon>mail</mat-icon>
-        <span>Tus Mensajes</span>
-        <span class="badge badge-unread" *ngIf="getMensajesNoLeidos() > 0">{{ getMensajesNoLeidos() }}</span>
       </button>
       <button 
         class="tab-button" 
@@ -45,6 +44,121 @@
         <mat-icon>calculate</mat-icon>
         <span>Calculadora de Ganancias</span>
       </button>
+      <button 
+        class="tab-button" 
+        [class.active]="seccionActiva === 'estadisticas'"
+        (click)="cambiarSeccion('estadisticas')">
+        <mat-icon>analytics</mat-icon>
+        <span>Mis Estadísticas</span>
+      </button>
+    </div>
+
+    <!-- Sección: Mis Datos -->
+    <div class="section-content" *ngIf="seccionActiva === 'datos'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>person</mat-icon>
+          Mis Datos Personales
+        </h2>
+        <p class="section-subtitle">Información de tu cuenta y perfil</p>
+      </div>
+
+      <div class="profile-data-container">
+        <div class="profile-avatar-section">
+          <div class="avatar-container">
+            <img [src]="misDatos.imagenPerfil" [alt]="misDatos.nombre + ' ' + misDatos.apellido" class="avatar-image">
+            <button class="btn-edit-avatar">
+              <mat-icon>camera_alt</mat-icon>
+            </button>
+          </div>
+          <div class="profile-status">
+            <span class="status-badge" [class.active]="misDatos.estado === 'Activo'">
+              <mat-icon>{{ misDatos.estado === 'Activo' ? 'check_circle' : 'cancel' }}</mat-icon>
+              {{ misDatos.estado }}
+            </span>
+          </div>
+        </div>
+
+        <div class="profile-info-grid">
+          <div class="info-card">
+            <div class="info-header">
+              <mat-icon>badge</mat-icon>
+              <h3>Información Personal</h3>
+            </div>
+            <div class="info-content">
+              <div class="info-item">
+                <span class="info-label">Nombre:</span>
+                <span class="info-value">{{ misDatos.nombre }} {{ misDatos.apellido }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{ misDatos.email }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Teléfono:</span>
+                <span class="info-value">{{ misDatos.telefono }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-header">
+              <mat-icon>location_on</mat-icon>
+              <h3>Dirección</h3>
+            </div>
+            <div class="info-content">
+              <div class="info-item">
+                <span class="info-label">Dirección:</span>
+                <span class="info-value">{{ misDatos.direccion }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Ciudad:</span>
+                <span class="info-value">{{ misDatos.ciudad }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Provincia:</span>
+                <span class="info-value">{{ misDatos.provincia }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Código Postal:</span>
+                <span class="info-value">{{ misDatos.codigoPostal }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-header">
+              <mat-icon>business</mat-icon>
+              <h3>Información de Cuenta</h3>
+            </div>
+            <div class="info-content">
+              <div class="info-item">
+                <span class="info-label">Tipo de Usuario:</span>
+                <span class="info-value badge-type">{{ misDatos.tipoUsuario }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Plan Contratado:</span>
+                <span class="info-value badge-plan">{{ misDatos.plan }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Fecha de Registro:</span>
+                <span class="info-value">{{ misDatos.fechaRegistro }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="btn-edit-profile">
+            <mat-icon>edit</mat-icon>
+            Editar Perfil
+          </button>
+          <button class="btn-change-password">
+            <mat-icon>lock</mat-icon>
+            Cambiar Contraseña
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Sección: Tus Productos -->
@@ -72,42 +186,6 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sección: Tus Mensajes -->
-    <div class="section-content" *ngIf="seccionActiva === 'mensajes'">
-      <div class="section-header">
-        <h2 class="section-title">
-          <mat-icon>mail</mat-icon>
-          Tus Mensajes ({{ misMensajes.length }})
-        </h2>
-        <p class="section-subtitle" *ngIf="getMensajesNoLeidos() > 0">
-          Tienes {{ getMensajesNoLeidos() }} mensaje(s) sin leer
-        </p>
-      </div>
-      <div class="messages-list">
-        <div 
-          class="message-card" 
-          [class.unread]="!mensaje.leido"
-          *ngFor="let mensaje of misMensajes"
-          (click)="marcarMensajeLeido(mensaje)">
-          <div class="message-header">
-            <div class="message-sender">
-              <mat-icon class="sender-icon">person</mat-icon>
-              <strong>{{ mensaje.remitente }}</strong>
-            </div>
-            <div class="message-meta">
-              <span class="message-date">{{ mensaje.fecha }}</span>
-              <span class="message-status" *ngIf="!mensaje.leido">
-                <mat-icon>mark_email_unread</mat-icon>
-                No leído
-              </span>
-            </div>
-          </div>
-          <h4 class="message-subject">{{ mensaje.asunto }}</h4>
-          <p class="message-text">{{ mensaje.mensaje }}</p>
         </div>
       </div>
     </div>
@@ -241,51 +319,101 @@
             Resultado del Cálculo
           </h3>
           
-          <div class="result-grid">
-            <div class="result-card">
-              <div class="result-label">Precio Original del Producto</div>
-              <div class="result-value original">${{ resultadoCalculo.precioOriginal | number:'1.2-2' }}</div>
+          <!-- Vista del REVENDEDOR (lo que ve) -->
+          <div class="perspective-section revendedor-view">
+            <h4 class="perspective-title">
+              <mat-icon>person</mat-icon>
+              Vista del Revendedor (Autónomo)
+            </h4>
+            <p class="perspective-subtitle">Lo que ve el revendedor al vender el producto</p>
+            
+            <div class="result-grid">
+              <div class="result-card">
+                <div class="result-label">Precio Total del Producto</div>
+                <div class="result-value original">${{ resultadoCalculo.precioOriginal | number:'1.2-2' }}</div>
+              </div>
+
+              <div class="result-card profit">
+                <div class="result-label">
+                  <mat-icon>trending_up</mat-icon>
+                  Ganancia del Revendedor - 1%
+                </div>
+                <div class="result-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</div>
+              </div>
             </div>
 
-            <div class="result-card discount">
-              <div class="result-label">
-                <mat-icon>remove_circle</mat-icon>
-                Descuento por Plan ({{ resultadoCalculo.planPorcentaje }}%)
+            <div class="result-summary">
+              <div class="summary-item highlight revendedor">
+                <span class="summary-label">
+                  <mat-icon>person</mat-icon>
+                  Lo que recibe el Revendedor:
+                </span>
+                <span class="summary-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</span>
               </div>
-              <div class="result-value">-${{ resultadoCalculo.descuentoPlan | number:'1.2-2' }}</div>
-            </div>
-
-            <div class="result-card profit">
-              <div class="result-label">
-                <mat-icon>person</mat-icon>
-                Ganancia del Revendedor (Autónomo) - 1%
-              </div>
-              <div class="result-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</div>
-            </div>
-
-            <div class="result-card final">
-              <div class="result-label">
-                <mat-icon>business</mat-icon>
-                Ganancia del Empresario
-              </div>
-              <div class="result-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</div>
             </div>
           </div>
 
-          <div class="result-summary">
-            <div class="summary-item highlight revendedor">
-              <span class="summary-label">
-                <mat-icon>person</mat-icon>
-                Lo que le queda al Revendedor (Autónomo):
-              </span>
-              <span class="summary-value">${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</span>
+          <!-- Vista del EMPRESARIO (lo que realmente pasa) -->
+          <div class="perspective-section empresario-view">
+            <h4 class="perspective-title">
+              <mat-icon>business</mat-icon>
+              Vista del Empresario
+            </h4>
+            <p class="perspective-subtitle">Descuentos y ganancia real del empresario</p>
+            
+            <div class="result-grid">
+              <div class="result-card">
+                <div class="result-label">Precio Original del Producto</div>
+                <div class="result-value original">${{ resultadoCalculo.precioOriginal | number:'1.2-2' }}</div>
+              </div>
+
+              <div class="result-card discount">
+                <div class="result-label">
+                  <mat-icon>remove_circle</mat-icon>
+                  Descuento por Plataforma - 5%
+                </div>
+                <div class="result-value">-${{ resultadoCalculo.descuentoPlataforma | number:'1.2-2' }}</div>
+              </div>
+
+              <div class="result-card discount">
+                <div class="result-label">
+                  <mat-icon>remove_circle</mat-icon>
+                  Descuento por Plan ({{ resultadoCalculo.planPorcentaje }}% - {{ resultadoCalculo.planPorcentaje }} empleados)
+                </div>
+                <div class="result-value">-${{ resultadoCalculo.descuentoPlan | number:'1.2-2' }}</div>
+              </div>
+
+              <div class="result-card discount">
+                <div class="result-label">
+                  <mat-icon>remove_circle</mat-icon>
+                  Ganancia del Revendedor - 1%
+                </div>
+                <div class="result-value">-${{ resultadoCalculo.gananciaRevendedor | number:'1.2-2' }}</div>
+              </div>
+
+              <div class="result-card final">
+                <div class="result-label">
+                  <mat-icon>business</mat-icon>
+                  Ganancia Final del Empresario
+                </div>
+                <div class="result-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</div>
+              </div>
             </div>
-            <div class="summary-item highlight empresario">
-              <span class="summary-label">
-                <mat-icon>business</mat-icon>
-                Lo que le queda al Empresario:
-              </span>
-              <span class="summary-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</span>
+
+            <div class="result-summary">
+              <div class="summary-item">
+                <span class="summary-label">Total Descuentos:</span>
+                <span class="summary-value">
+                  ${{ (resultadoCalculo.descuentoPlataforma + resultadoCalculo.descuentoPlan + resultadoCalculo.gananciaRevendedor) | number:'1.2-2' }}
+                </span>
+              </div>
+              <div class="summary-item highlight empresario">
+                <span class="summary-label">
+                  <mat-icon>business</mat-icon>
+                  Lo que le queda al Empresario:
+                </span>
+                <span class="summary-value">${{ resultadoCalculo.gananciaEmpresario | number:'1.2-2' }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -295,11 +423,253 @@
             <mat-icon>info</mat-icon>
             <h4>¿Cómo funciona?</h4>
             <ul>
-              <li>El empresario contrata un plan (5%, 15% o 30%) según la cantidad de empleados</li>
-              <li>Se descuenta el porcentaje correspondiente al plan del empresario</li>
-              <li>El revendedor (autónomo) siempre obtiene un 1% de ganancia sobre el precio original</li>
-              <li>El resto del dinero queda para el empresario (después de descontar el plan y la ganancia del revendedor)</li>
+              <li><strong>Revendedor:</strong> Solo ve el precio total del producto y su ganancia del 1%</li>
+              <li><strong>Empresario:</strong> Se le descuenta el 5% por uso de plataforma (no visible para el revendedor)</li>
+              <li><strong>Plan:</strong> El empresario contrata un plan (5%, 15% o 30%) según la cantidad de empleados contratados</li>
+              <li><strong>Descuento del Plan:</strong> Si tiene 30 empleados, se le descuenta el 30% (cada empleado que vende resta 1%)</li>
+              <li><strong>Ganancia Revendedor:</strong> El revendedor siempre obtiene un 1% de ganancia sobre el precio original</li>
+              <li><strong>Ganancia Empresario:</strong> Lo que queda después de todos los descuentos (plataforma, plan y revendedor)</li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Mis Estadísticas -->
+    <div class="section-content" *ngIf="seccionActiva === 'estadisticas'">
+      <div class="section-header">
+        <h2 class="section-title">
+          <mat-icon>analytics</mat-icon>
+          Mis Estadísticas y Analíticas
+        </h2>
+        <p class="section-subtitle">Visualiza el rendimiento de tu negocio en tiempo real</p>
+      </div>
+
+      <!-- KPIs Principales -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <mat-icon>shopping_cart</mat-icon>
+          </div>
+          <div class="kpi-content">
+            <h3 class="kpi-label">Productos Vendidos</h3>
+            <div class="kpi-value">{{ estadisticas.productosVendidos.total | number }}</div>
+            <div class="kpi-detail">
+              <span class="kpi-period">Este mes: {{ estadisticas.productosVendidos.esteMes | number }}</span>
+              <span class="kpi-variation positive">
+                <mat-icon>trending_up</mat-icon>
+                +{{ estadisticas.productosVendidos.variacion }}%
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background: linear-gradient(90deg, #236bd8 10%, #04c2fc 50%, #6779d9 90%);">
+            <mat-icon>videocam</mat-icon>
+          </div>
+          <div class="kpi-content">
+            <h3 class="kpi-label">Interacciones en Directo</h3>
+            <div class="kpi-value">{{ estadisticas.interaccionesDirecto.total | number }}</div>
+            <div class="kpi-detail">
+              <span class="kpi-period">Promedio: {{ estadisticas.interaccionesDirecto.promedio | number }}</span>
+              <span class="kpi-variation positive">
+                <mat-icon>trending_up</mat-icon>
+                +{{ estadisticas.interaccionesDirecto.variacion }}%
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <mat-icon>visibility</mat-icon>
+          </div>
+          <div class="kpi-content">
+            <h3 class="kpi-label">Visitas en Directo</h3>
+            <div class="kpi-value">{{ getTotalVisitas() | number }}</div>
+            <div class="kpi-detail">
+              <span class="kpi-period">Período: {{ getPeriodoLabel() }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <mat-icon>star</mat-icon>
+          </div>
+          <div class="kpi-content">
+            <h3 class="kpi-label">Rate de Perfil</h3>
+            <div class="kpi-value">{{ estadisticas.ratePerfil.valor }}</div>
+            <div class="kpi-detail">
+              <span class="kpi-period">{{ estadisticas.ratePerfil.totalResenas | number }} reseñas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfico de Visitas en Directo -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3 class="chart-title">
+            <mat-icon>show_chart</mat-icon>
+            Visitas en Directo
+          </h3>
+          <div class="period-selector">
+            <button 
+              class="period-btn" 
+              [class.active]="periodoSeleccionado === 'hora'"
+              (click)="cambiarPeriodo('hora')">
+              Hora
+            </button>
+            <button 
+              class="period-btn" 
+              [class.active]="periodoSeleccionado === 'dia'"
+              (click)="cambiarPeriodo('dia')">
+              Día
+            </button>
+            <button 
+              class="period-btn" 
+              [class.active]="periodoSeleccionado === 'semana'"
+              (click)="cambiarPeriodo('semana')">
+              Semana
+            </button>
+            <button 
+              class="period-btn" 
+              [class.active]="periodoSeleccionado === 'mes'"
+              (click)="cambiarPeriodo('mes')">
+              Mes
+            </button>
+            <button 
+              class="period-btn" 
+              [class.active]="periodoSeleccionado === 'año'"
+              (click)="cambiarPeriodo('año')">
+              Año
+            </button>
+          </div>
+        </div>
+        <div class="chart-body">
+          <div class="bar-chart">
+            <div class="chart-bars">
+              <div class="bar-item" *ngFor="let visita of getVisitasActuales(); let i = index">
+                <div class="bar-wrapper">
+                  <div class="bar" [style.height.%]="getPorcentajeVisita(visita)" 
+                       [style.background]="'linear-gradient(180deg, #236bd8 0%, #04c2fc 100%)'">
+                    <span class="bar-value">{{ visita }}</span>
+                  </div>
+                </div>
+                <div class="bar-label">
+                  <span>{{ getBarLabel(periodoSeleccionado, i) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos en Grid -->
+      <div class="charts-grid">
+        <!-- Productos Vendidos -->
+        <div class="chart-card small">
+          <div class="chart-header">
+            <h3 class="chart-title">
+              <mat-icon>inventory_2</mat-icon>
+              Productos Vendidos
+            </h3>
+          </div>
+          <div class="chart-body">
+            <div class="progress-chart">
+              <div class="progress-item">
+                <div class="progress-label">Este Mes</div>
+                <div class="progress-bar-wrapper">
+                  <div class="progress-bar" [style.width.%]="getPorcentajeProductosVendidos()">
+                    <span class="progress-value">{{ estadisticas.productosVendidos.esteMes }}</span>
+                  </div>
+                </div>
+                <div class="progress-total">Total: {{ estadisticas.productosVendidos.total }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inscripciones por Plan -->
+        <div class="chart-card small">
+          <div class="chart-header">
+            <h3 class="chart-title">
+              <mat-icon>subscriptions</mat-icon>
+              Inscripciones por Plan
+            </h3>
+          </div>
+          <div class="chart-body">
+            <div class="pie-chart">
+              <svg viewBox="0 0 200 200" class="pie-svg">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#e0e0e0" stroke-width="40"/>
+                <circle cx="100" cy="100" r="80" fill="none" 
+                        [attr.stroke-dasharray]="getStrokeDashArray(5)"
+                        stroke="#236bd8" stroke-width="40" 
+                        transform="rotate(-90 100 100)"/>
+                <circle cx="100" cy="100" r="80" fill="none" 
+                        [attr.stroke-dasharray]="getStrokeDashArray(15)"
+                        stroke="#04c2fc" stroke-width="40" 
+                        [attr.stroke-dashoffset]="getStrokeDashOffset(15)"
+                        transform="rotate(-90 100 100)"/>
+                <circle cx="100" cy="100" r="80" fill="none" 
+                        [attr.stroke-dasharray]="getStrokeDashArray(30)"
+                        stroke="#6779d9" stroke-width="40" 
+                        [attr.stroke-dashoffset]="getStrokeDashOffset(30)"
+                        transform="rotate(-90 100 100)"/>
+                <text x="100" y="100" text-anchor="middle" dy=".3em" class="pie-center-text">
+                  {{ getTotalInscripciones() }}
+                </text>
+              </svg>
+              <div class="pie-legend">
+                <div class="legend-item">
+                  <span class="legend-color" style="background: #236bd8;"></span>
+                  <span>Plan 5%: {{ estadisticas.inscripcionesPorPlan.plan5 }}</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background: #04c2fc;"></span>
+                  <span>Plan 15%: {{ estadisticas.inscripcionesPorPlan.plan15 }}</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background: #6779d9;"></span>
+                  <span>Plan 30%: {{ estadisticas.inscripcionesPorPlan.plan30 }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rate de Perfil -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3 class="chart-title">
+            <mat-icon>star_rate</mat-icon>
+            Distribución de Calificaciones
+          </h3>
+          <button class="btn-view-ratings" (click)="abrirModalCalificaciones()">
+            <mat-icon>visibility</mat-icon>
+            Ver Calificaciones
+          </button>
+        </div>
+        <div class="chart-body">
+          <div class="rating-chart">
+            <div class="rating-item" *ngFor="let rating of [5, 4, 3, 2, 1]">
+              <div class="rating-label">
+                <mat-icon>star</mat-icon>
+                <span>{{ rating }}</span>
+              </div>
+              <div class="rating-bar-wrapper">
+                <div class="rating-bar" 
+                     [style.width.%]="getRatingPercentage(rating)"
+                     [style.background]="getRatingBackground(rating)">
+                  <span class="rating-value">
+                    {{ getRatingValue(rating) }}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
